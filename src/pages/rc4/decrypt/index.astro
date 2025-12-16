@@ -106,8 +106,16 @@ const activePage = "rc4/decrypt/";
               <div class="setting text-only">
                 <label for="input-type">Input Encoding</label>
                 <select data-toggle="encoding" id="input-type" data-remember="input-type" data-share="input_type" data-auto-update>
+                  <option value="hex">Hex</option>
+                  <option value="base64" data-load-encoding="base64">Base64</option>
+                </select>
+              </div>
+              <div class="setting text-only">
+                <label for="output-type">Output Encoding</label>
+                <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update>
                   <optgroup label="Binary">
-                    <option value="hex">Hex</option>
+                    <option value="hex">Hex (Lower Case)</option>
+                    <option value="hex_upper">Hex (Upper Case)</option>
                     <option value="base64" data-load-encoding="base64">Base64</option>
                   </optgroup>
                   <optgroup label="Text">
@@ -115,14 +123,6 @@ const activePage = "rc4/decrypt/";
                     <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
                     <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
                   </optgroup>
-                </select>
-              </div>
-              <div class="setting text-only">
-                <label for="output-type">Output Encoding</label>
-                <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update>
-                  <option value="hex">Hex (Lower Case)</option>
-                  <option value="hex_upper">Hex (Upper Case)</option>
-                  <option value="base64" data-load-encoding="base64">Base64</option>
                 </select>
               </div>
               
