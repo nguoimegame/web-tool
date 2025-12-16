@@ -5,13 +5,22 @@ import PageHeader from "../components/PageHeader.astro";
 import InputBlock from "../components/InputBlock.astro";
 import OutputBlock from "../components/OutputBlock.astro";
 
+interface Props {
+  title: string;
+  description: string;
+  algorithmName: string;
+  jsFile?: string;
+  activePage: string;
+  methodWrapper?: string;
+}
+
 const {
   title,
   description,
   algorithmName,
   jsFile = "crypto-js.js",
   activePage,
-  methodWrapper, // Optional: e.g., "withOptions(shake_128, ['bits'])"
+  methodWrapper,
 } = Astro.props;
 
 // Pre-calculate the script source path
@@ -32,8 +41,21 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
       <main>
         <div class="layout">
           <div class="layout-block">
-            <InputBlock id="input" title="Input" placeholder="Enter here..." dataRemember="input" dataShare="input" dataEncodingFrom="#input-type" dataAutoUpdate={true} />
-            <OutputBlock id="output" title="Output" placeholder="Output here..." dataEncodingFrom="#output-type" />
+            <InputBlock
+              id="input"
+              title="Input"
+              placeholder="Enter here..."
+              dataRemember="input"
+              dataShare="input"
+              dataEncodingFrom="#input-type"
+              dataAutoUpdate={true}
+            />
+            <OutputBlock
+              id="output"
+              title="Output"
+              placeholder="Output here..."
+              dataEncodingFrom="#output-type"
+            />
           </div>
           <div class="settings">
             <div class="block block-fill">
@@ -44,7 +66,12 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
                 </div>
                 <div class="setting">
                   <label class="switcher">
-                    <input type="checkbox" value="1" id="auto-update" checked />
+                    <input
+                      type="checkbox"
+                      value="1"
+                      id="auto-update"
+                      checked
+                    />
                     <div class="toggle"></div>
                     <span>Auto Update</span>
                   </label>
@@ -58,29 +85,57 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
                 </div>
                 <div class="setting">
                   <label for="input-type">Input Encoding</label>
-                  <select data-toggle="encoding" id="input-type" data-remember="input-type" data-share="input_type" data-auto-update>
+                  <select
+                    data-toggle="encoding"
+                    id="input-type"
+                    data-remember="input-type"
+                    data-share="input_type"
+                    data-auto-update
+                  >
                     <optgroup label="Binary">
                       <option value="hex">Hex</option>
-                      <option value="base64" data-load-encoding="base64">Base64</option>
+                      <option value="base64" data-load-encoding="base64">
+                        Base64
+                      </option>
                     </optgroup>
                     <optgroup label="Text">
                       <option value="utf-8" selected>UTF-8</option>
-                      <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
-                      <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
+                      <option value="utf-16le" data-load-encoding="1">
+                        UTF-16LE
+                      </option>
+                      <option value="utf-16be" data-load-encoding="1">
+                        UTF-16BE
+                      </option>
                     </optgroup>
                   </select>
                 </div>
                 <div class="setting">
                   <label for="output-type">Output Encoding</label>
-                  <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update data-type="hex">
+                  <select
+                    data-toggle="encoding"
+                    id="output-type"
+                    data-remember="output-type"
+                    data-share="output_type"
+                    data-auto-update
+                    data-type="hex"
+                  >
                     <option value="hex">Hex (Lower Case)</option>
                     <option value="hex_upper">Hex (Upper Case)</option>
-                    <option value="base64" data-load-encoding="base64">Base64</option>
+                    <option value="base64" data-load-encoding="base64">
+                      Base64
+                    </option>
                   </select>
                 </div>
                 <div class="setting">
                   <label class="switcher">
-                    <input type="checkbox" value="1" id="hmac-enabled" data-remember="hmac-enabled" data-share="hmac_enabled" data-auto-update />
+                    <input
+                      type="checkbox"
+                      value="1"
+                      id="hmac-enabled"
+                      data-remember="hmac-enabled"
+                      data-share="hmac_enabled"
+                      data-auto-update
+                    />
                     <div class="toggle"></div>
                     <span>Enable HMAC</span>
                   </label>
@@ -89,21 +144,40 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
                   <summary>HMAC</summary>
                   <div class="setting">
                     <label for="hmac-input-type">Encoding</label>
-                    <select data-toggle="encoding" id="hmac-input-type" data-remember="hmac-input-type" data-share="hmac_input_type" data-auto-update>
+                    <select
+                      data-toggle="encoding"
+                      id="hmac-input-type"
+                      data-remember="hmac-input-type"
+                      data-share="hmac_input_type"
+                      data-auto-update
+                    >
                       <optgroup label="Binary">
                         <option value="hex">Hex</option>
-                        <option value="base64" data-load-encoding="base64">Base64</option>
+                        <option value="base64" data-load-encoding="base64">
+                          Base64
+                        </option>
                       </optgroup>
                       <optgroup label="Text">
                         <option value="utf-8" selected>UTF-8</option>
-                        <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
-                        <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
+                        <option value="utf-16le" data-load-encoding="1">
+                          UTF-16LE
+                        </option>
+                        <option value="utf-16be" data-load-encoding="1">
+                          UTF-16BE
+                        </option>
                       </optgroup>
                     </select>
                   </div>
                   <div class="setting">
                     <label for="hmac-key">Key</label>
-                    <input type="text" id="hmac-key" data-remember="hmac-key" data-share="hmac_key" data-encoding-from="#hmac-input-type" data-auto-update />
+                    <input
+                      type="text"
+                      id="hmac-key"
+                      data-remember="hmac-key"
+                      data-share="hmac_key"
+                      data-encoding-from="#hmac-input-type"
+                      data-auto-update
+                    />
                   </div>
                 </details>
                 <script is:inline>
@@ -121,53 +195,19 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
     <div id="message"></div>
   </div>
 
-  <script
-    is:inline
-    set:html={`
-    ++waitLoadCount;
-    delayScripts.push({
-      src: '${scriptSrc}',
-      onload: function () {
-        ${
-          methodWrapper
-            ? `
-        // Wait for withOptions if needed
-        var initMethod = function() {
-          if (typeof window.withOptions === 'function') {
-            window.method = ${methodCode};
-            methodLoad();
-          } else {
-            setTimeout(initMethod, 50);
-          }
-        };
-        initMethod();
-        `
-            : `
-        window.method = window['${algorithmName}'];
-        methodLoad();
-        `
-        }
-      }
+  <!-- Hash Page Loader -->
+  <script is:inline src="/js/hash-page-loader.js"></script>
+  
+  <script is:inline define:vars={{ scriptSrc, algorithmName, methodCode, methodWrapper }}>
+    // Initialize hash page loader
+    const loader = new HashPageLoader({
+      scriptSrc,
+      algorithmName,
+      methodCode,
+      methodWrapper
     });
-
-    ++waitLoadCount;
-    delayScripts.push({
-      src: '/js/encoding.js?v=8',
-      onload: function () {
-        methodLoad();
-      }
-    });
-
-    delayScripts.push({
-      src: '/js/clipboard.min.js',
-      onload: function () {
-        new ClipboardJS('[data-toggle="copy"]').on('success', function (e) {
-          showMessage(e.trigger.getAttribute('data-message'));
-          gtag('event', 'copy');
-        });
-      },
-      delay: 100
-    });
-  `}
-  />
+    
+    // Load all required scripts
+    loader.loadScripts();
+  </script>
 </BaseLayout>
