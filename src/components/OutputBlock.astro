@@ -1,0 +1,61 @@
+---
+const {
+    id = "output",
+    title = "Output",
+    placeholder = "Output here...",
+    copyMessage = "Output copied",
+    showFullscreen = true,
+    showCopy = true,
+    // Data attributes
+    dataEncodingFrom = null,
+    dataToggleMonaco = true,
+    // Share link
+    showShareLink = true,
+} = Astro.props;
+
+// Build data attributes object
+const dataAttrs: Record<string, any> = {};
+if (dataEncodingFrom) dataAttrs["data-encoding-from"] = dataEncodingFrom;
+if (dataToggleMonaco) dataAttrs["data-toggle"] = "monacoEditor";
+---
+
+<div class="output">
+    <div class="block block-fill">
+        <div class="block-title">
+            {title}
+            <div class="toolbar">
+                {
+                    showCopy && (
+                        <button class="icon" data-toggle="copy" data-clipboard-target={`#${id}`} data-message={copyMessage}>
+                            <img src="/images/copy.svg" alt="Copy" title="Copy" />
+                        </button>
+                    )
+                }
+                {
+                    showFullscreen && (
+                        <button class="icon" data-toggle="fullscreen">
+                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" />
+                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen" />
+                        </button>
+                    )
+                }
+            </div>
+        </div>
+        <textarea class="container" id={id} spellcheck="false" placeholder={placeholder} readonly="readonly" {...dataAttrs}></textarea>
+    </div>
+    {
+        showShareLink && (
+            <details class="block text-only" data-toggle="copyblock">
+                <summary class="block-title">
+                    Share Link
+                    <div class="toolbar">
+                        <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
+                            <img src="/images/copy.svg" alt="Copy" title="Copy" />
+                        </button>
+                    </div>
+                </summary>
+                <input id="share-link" type="text" placeholder="Share Link" readonly="readonly" />
+            </details>
+        )
+    }
+</div>

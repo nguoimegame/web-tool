@@ -1,0 +1,51 @@
+---
+const { 
+  id = "input",
+  fileId = "file",
+  title = "Input",
+  urlPlaceholder = "Enter the URL here, and it will attempt to download. If it cannot be downloaded programmatically, you may need to download it manually.",
+  dropText = "Drag and drop the file here or click to select a file. It will process locally and won't be uploaded.",
+  showFullscreen = true,
+  // Data attributes for textarea
+  dataRemember = null,
+  dataShare = null,
+  // Data attributes for file input
+  dataAutoUpdate = true
+} = Astro.props;
+---
+
+<div class="input">
+  <div class="block block-fill">
+    <div class="block-title">{title}
+      <div class="toolbar">
+        {showFullscreen && (
+          <button class="icon" data-toggle="fullscreen">
+            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
+            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+          </button>
+        )}
+      </div>
+    </div>
+    <textarea 
+      class="container" 
+      id={id} 
+      spellcheck="false" 
+      placeholder={urlPlaceholder}
+      data-remember={dataRemember}
+      data-share={dataShare}
+      style="display:none"
+    ></textarea>
+    <div class="droppable-zone container" id="droppable-zone">
+      <input 
+        class="droppable-file" 
+        type="file" 
+        id={fileId}
+        data-auto-update={dataAutoUpdate ? true : undefined}
+      >
+      <div class="droppable-zone-wrapper">
+        <img class="droppable-zone-icon" src="/images/file.svg" alt="File">
+        <div class="droppable-zone-text">{dropText}</div>
+      </div>
+    </div>
+  </div>
+</div>

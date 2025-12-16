@@ -1,408 +1,16 @@
 ﻿---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { toolSections } from "../data/toolSections";
 ---
 
 <BaseLayout title="Web Tools" description="Online tools offer many functions for hashing, encoding, decoding, encryption, decryption, formatting, generating and so on. Examples include MD5, SHA-256, SHA-512, SHA-3, Keccak, Base64, Base32, JSON, XML, and QR code related tools.">
   <div id="app">
-    <div id="sidebar">
-      <div class="mask"></div>
-      <div class="container">
-        <header><a href="./">
-            <h2>Web Tools</h2>
-          </a>
-          <div class="toolbar">
-            <div class="lang-dropdown">
-              <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false">
-                <span class="lang-flag">・・</span>
-                <span class="lang-text">EN</span>
-                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <div class="lang-menu" id="lang-menu" role="menu">
-                <a href="./" class="lang-option active" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">English</span>
-                </a>
-                <a href="vi/" class="lang-option" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">Ti蘯ｿng Vi盻㏄</span>
-                </a>
-                <a href="zh/" class="lang-option" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">荳ｭ譁・/span>
-                </a>
-                <a href="hi/" class="lang-option" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">爨ｹ爨ｿ爨も､ｦ爭</span>
-                </a>
-                <a href="es/" class="lang-option" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">Espaﾃｱol</span>
-                </a>
-                <a href="fr/" class="lang-option" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">Franﾃｧais</span>
-                </a>
-                <a href="pt/" class="lang-option" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">Portuguﾃｪs</span>
-                </a>
-                <a href="ja/" class="lang-option" role="menuitem">
-                  <span class="lang-flag">・・</span>
-                  <span class="lang-name">譌･譛ｬ隱・/span>
-                </a>
-              </div>
-            </div>
-            <button class="icon theme"><img class="light" src="/images/light.svg" alt="Dark mode" title="Dark mode"><img class="dark" src="/images/dark.svg" alt="Dark mode" title="Dark mode"></button>
-          </div>
-        </header>
-        <div class="section">
-          <h3>Hash</h3>
-          <details>
-            <summary>CRC</summary>
-            <nav>
-              <ol>
-                <li><a href="crc/">CRC</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>MD</summary>
-            <nav>
-              <ol>
-                <li><a href="/md2">MD2</a></li>
-                <li><a href="md2_file_hash">MD2 File</a></li>
-                <li><a href="md4">MD4</a></li>
-                <li><a href="md4_file_hash">MD4 File</a></li>
-                <li><a href="md5">MD5</a></li>
-                <li><a href="md5_checksum">MD5 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>SHA1</summary>
-            <nav>
-              <ol>
-                <li><a href="sha1">SHA1</a></li>
-                <li><a href="sha1_checksum">SHA1 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>SHA2</summary>
-            <nav>
-              <ol>
-                <li><a href="sha224">SHA224</a></li>
-                <li><a href="sha224_checksum">SHA224 File</a></li>
-                <li><a href="sha256">SHA256</a></li>
-                <li><a href="sha256_checksum">SHA256 File</a></li>
-                <li><a href="double_sha256">Double SHA256</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>SHA2-512</summary>
-            <nav>
-              <ol>
-                <li><a href="sha384">SHA384</a></li>
-                <li><a href="sha384_file_hash">SHA384 File</a></li>
-                <li><a href="sha512">SHA512</a></li>
-                <li><a href="sha512_file_hash">SHA512 File</a></li>
-                <li><a href="sha512_224">SHA512/224</a></li>
-                <li><a href="sha512_224_file_hash">SHA512/224 File</a></li>
-                <li><a href="sha512_256">SHA512/256</a></li>
-                <li><a href="sha512_256_file_hash">SHA512/256 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>SHA3</summary>
-            <nav>
-              <ol>
-                <li><a href="sha3_224">SHA3-224</a></li>
-                <li><a href="sha3_224_checksum">SHA3-224 File</a></li>
-                <li><a href="sha3_256">SHA3-256</a></li>
-                <li><a href="sha3_256_checksum">SHA3-256 File</a></li>
-                <li><a href="sha3_384">SHA3-384</a></li>
-                <li><a href="sha3_384_checksum">SHA3-384 File</a></li>
-                <li><a href="sha3_512">SHA3-512</a></li>
-                <li><a href="sha3_512_checksum">SHA3-512 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>Keccak</summary>
-            <nav>
-              <ol>
-                <li><a href="keccak_224">Keccak-224</a></li>
-                <li><a href="keccak_224_checksum">Keccak-224 File</a></li>
-                <li><a href="keccak_256">Keccak-256</a></li>
-                <li><a href="keccak_256_checksum">Keccak-256 File</a></li>
-                <li><a href="keccak_384">Keccak-384</a></li>
-                <li><a href="keccak_384_checksum">Keccak-384 File</a></li>
-                <li><a href="keccak_512">Keccak-512</a></li>
-                <li><a href="keccak_512_checksum">Keccak-512 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>SHAKE</summary>
-            <nav>
-              <ol>
-                <li><a href="shake128/">SHAKE128</a></li>
-                <li><a href="shake128/file/">SHAKE128 File</a></li>
-                <li><a href="shake256/">SHAKE256</a></li>
-                <li><a href="shake256/file/">SHAKE256 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>cSHAKE</summary>
-            <nav>
-              <ol>
-                <li><a href="cshake128/">cSHAKE128</a></li>
-                <li><a href="cshake128/file/">cSHAKE128 File</a></li>
-                <li><a href="cshake256/">cSHAKE256</a></li>
-                <li><a href="cshake256/file/">cSHAKE256 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>KMAC</summary>
-            <nav>
-              <ol>
-                <li><a href="kmac128/">KMAC128</a></li>
-                <li><a href="kmac128/file/">KMAC128 File</a></li>
-                <li><a href="kmac256/">KMAC256</a></li>
-                <li><a href="kmac256/file/">KMAC256 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>RIPEMD</summary>
-            <nav>
-              <ol>
-                <li><a href="ripemd-128/">RIPEMD-128</a></li>
-                <li><a href="ripemd-128/file/">RIPEMD-128 File</a></li>
-                <li><a href="ripemd-160/">RIPEMD-160</a></li>
-                <li><a href="ripemd-160/file/">RIPEMD-160 File</a></li>
-                <li><a href="ripemd-256/">RIPEMD-256</a></li>
-                <li><a href="ripemd-256/file/">RIPEMD-256 File</a></li>
-                <li><a href="ripemd-320/">RIPEMD-320</a></li>
-                <li><a href="ripemd-320/file/">RIPEMD-320 File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>BLAKE</summary>
-            <nav>
-              <ol>
-                <li><a href="blake2b/">BLAKE2b</a></li>
-                <li><a href="blake2b/file/">BLAKE2b File</a></li>
-                <li><a href="blake2s/">BLAKE2s</a></li>
-                <li><a href="blake2s/file/">BLAKE2s File</a></li>
-                <li><a href="blake3/">BLAKE3</a></li>
-                <li><a href="blake3/file/">BLAKE3 File</a></li>
-              </ol>
-            </nav>
-          </details>
-        </div>
-        <div class="section">
-          <h3>Cryptography</h3>
-          <details>
-            <summary>AES</summary>
-            <nav>
-              <ol>
-                <li><a href="aes/encrypt/">Encryption</a></li>
-                <li><a href="aes/decrypt/">Decryption</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>DES</summary>
-            <nav>
-              <ol>
-                <li><a href="des/encrypt/">Encryption</a></li>
-                <li><a href="des/decrypt/">Decryption</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>Triple DES</summary>
-            <nav>
-              <ol>
-                <li><a href="triple-des/encrypt/">Encryption</a></li>
-                <li><a href="triple-des/decrypt/">Decryption</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>RC4</summary>
-            <nav>
-              <ol>
-                <li><a href="rc4/encrypt/">Encryption</a></li>
-                <li><a href="rc4/decrypt/">Decryption</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>ECDSA</summary>
-            <nav>
-              <ol>
-                <li><a href="ecdsa/key-generator/">Key Generator</a></li>
-                <li><a href="ecdsa/sign/">Sign Message</a></li>
-                <li><a href="ecdsa/verify/">Verify Signature</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>RSA</summary>
-            <nav>
-              <ol>
-                <li><a href="rsa/key-generator/">Key Generator</a></li>
-                <li><a href="rsa/sign/">Sign Message</a></li>
-                <li><a href="rsa/verify/">Verify Signature</a></li>
-                <li><a href="rsa/encrypt/">Encryption</a></li>
-                <li><a href="rsa/decrypt/">Decryption</a></li>
-              </ol>
-            </nav>
-          </details>
-        </div>
-        <div class="section">
-          <h3>Encoding</h3>
-          <details>
-            <summary>Hex (Base16)</summary>
-            <nav>
-              <ol>
-                <li><a href="hex_encode">Encode</a></li>
-                <li><a href="hex_decode">Decode</a></li>
-                <li><a href="hex_encode_file">File to Hex</a></li>
-                <li><a href="hex_decode_file">Hex to File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>Base32</summary>
-            <nav>
-              <ol>
-                <li><a href="base32_encode">Encode</a></li>
-                <li><a href="base32_decode">Decode</a></li>
-                <li><a href="base32_encode_file">File to Base32</a></li>
-                <li><a href="base32_decode_file">Base32 to File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>Base58</summary>
-            <nav>
-              <ol>
-                <li><a href="base58/encode/">Encode</a></li>
-                <li><a href="base58/decode/">Decode</a></li>
-                <li><a href="base58/encode/file/">File to Base58</a></li>
-                <li><a href="base58/decode/file/">Base58 to File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>Base64</summary>
-            <nav>
-              <ol>
-                <li><a href="base64_encode">Encode</a></li>
-                <li><a href="base64_decode">Decode</a></li>
-                <li><a href="base64_encode_file">File to Base64</a></li>
-                <li><a href="base64_decode_file">Base64 to File</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>HTML</summary>
-            <nav>
-              <ol>
-                <li><a href="html_encode">Encode</a></li>
-                <li><a href="html_decode">Decode</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>URL</summary>
-            <nav>
-              <ol>
-                <li><a href="url_encode">Encode</a></li>
-                <li><a href="url_decode">Decode</a></li>
-              </ol>
-            </nav>
-          </details>
-        </div>
-        <div class="section">
-          <h3>Format</h3>
-          <details>
-            <summary>JSON</summary>
-            <nav>
-              <ol>
-                <li><a href="json/validator/">Validator</a></li>
-                <li><a href="json/minifier/">Minifier</a></li>
-                <li><a href="json/formatter/">Formatter</a></li>
-                <li><a href="json/viewer/">Viewer</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>XML</summary>
-            <nav>
-              <ol>
-                <li><a href="xml/validator/">Validator</a></li>
-                <li><a href="xml/minifier/">Minifier</a></li>
-                <li><a href="xml/formatter/">Formatter</a></li>
-              </ol>
-            </nav>
-          </details>
-          <details>
-            <summary>SQL</summary>
-            <nav>
-              <ol>
-                <li><a href="sql/formatter/">Formatter</a></li>
-              </ol>
-            </nav>
-          </details>
-        </div>
-        <div class="section">
-          <h3>Convert</h3>
-          <details>
-            <summary>Case</summary>
-            <nav>
-              <ol>
-                <li><a href="case/lower/">lower case</a></li>
-                <li><a href="case/upper/">UPPER CASE</a></li>
-                <li><a href="case/lower-camel/">lowerCamelCase</a></li>
-                <li><a href="case/upper-camel/">UpperCamelCase</a></li>
-                <li><a href="case/snake/">snake_case</a></li>
-                <li><a href="case/kebab/">kebab-case</a></li>
-                <li><a href="case/constant/">CONSTANT_CASE</a></li>
-              </ol>
-            </nav>
-          </details>
-        </div>
-        <div class="section">
-          <h3>Others</h3>
-          <details>
-            <summary>Others</summary>
-            <nav>
-              <ol>
-                <li><a href="qr-code/generator/">QR Code Generator</a></li>
-                <li><a href="syntax-highlight/">Syntax Highlight</a></li>
-              </ol>
-            </nav>
-          </details>
-        </div>
-      </div>
-    </div>
+    <Sidebar />
     <div id="content">
-      <div class="top-nav"><button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu"><img src="/images/menu.svg" width="24" height="24" alt="Menu"></button></div>
-      <header>
-        <h1>Web Tools</h1>
-        <p>Online tools offer many functions for hashing, encoding, decoding, encryption, decryption, formatting, generating and so on. Examples include MD5, SHA-256, SHA-512, SHA-3, Keccak, Base64, Base32, JSON, XML, and QR code related tools.</p>
-      </header>
+      <div class="top-nav"><button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu"><img src="/images/menu.svg" width="24" height="24" alt="Menu" /></button></div>
+      <PageHeader title="Web Tools" description="Online tools offer many functions for hashing, encoding, decoding, encryption, decryption, formatting, generating and so on. Examples include MD5, SHA-256, SHA-512, SHA-3, Keccak, Base64, Base32, JSON, XML, and QR code related tools." />
       <main>
         <div id="index">
           <!-- My Tools Card -->
@@ -413,606 +21,244 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <h3>My Tools</h3>
                 <nav>
                   <ol id="favorite-tools-list">
-                    <li class="empty-state">Click the heart icon (､・ next to any tool to add it to your favorites!</li>
+                    <li class="empty-state">Click the heart icon next to any tool to add it to your favorites!</li>
                   </ol>
                 </nav>
               </div>
             </div>
           </div>
-          
+
           <!-- Search Box -->
           <div class="section" id="search-section">
             <div class="search-container">
-              <input type="text" id="tool-search" placeholder="剥 Search tools..." autocomplete="off">
+              <input type="text" id="tool-search" placeholder=" Search tools..." autocomplete="off" />
               <div id="search-results-count"></div>
             </div>
           </div>
-          
-          <div class="section">
-            <h2>Hash</h2>
-            <div class="blocks">
-              <div class="block">
-                <h3>CRC</h3>
-                <nav>
-                  <ol>
-                    <li><a href="crc/">CRC</a></li>
-                  </ol>
-                </nav>
+
+          {
+            toolSections.map((section) => (
+              <div class="section">
+                <h2>{section.title}</h2>
+                <div class="blocks">
+                  {section.blocks.map((block) => (
+                    <div class="block">
+                      <h3>{block.title}</h3>
+                      <nav>
+                        <ol>
+                          {block.items.map((item) => (
+                            <li>
+                              <a href={item.url}>{item.name}</a>
+                            </li>
+                          ))}
+                        </ol>
+                      </nav>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div class="block">
-                <h3>MD</h3>
-                <nav>
-                  <ol>
-                    <li><a href="md2">MD2</a></li>
-                    <li><a href="md2_file_hash">MD2 File</a></li>
-                    <li><a href="md4">MD4</a></li>
-                    <li><a href="md4_file_hash">MD4 File</a></li>
-                    <li><a href="md5">MD5</a></li>
-                    <li><a href="md5_checksum">MD5 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>SHA1</h3>
-                <nav>
-                  <ol>
-                    <li><a href="sha1">SHA1</a></li>
-                    <li><a href="sha1_checksum">SHA1 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>SHA2</h3>
-                <nav>
-                  <ol>
-                    <li><a href="sha224">SHA224</a></li>
-                    <li><a href="sha224_checksum">SHA224 File</a></li>
-                    <li><a href="sha256">SHA256</a></li>
-                    <li><a href="sha256_checksum">SHA256 File</a></li>
-                    <li><a href="double_sha256">Double SHA256</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>SHA2-512</h3>
-                <nav>
-                  <ol>
-                    <li><a href="sha384">SHA384</a></li>
-                    <li><a href="sha384_file_hash">SHA384 File</a></li>
-                    <li><a href="sha512">SHA512</a></li>
-                    <li><a href="sha512_file_hash">SHA512 File</a></li>
-                    <li><a href="sha512_224">SHA512/224</a></li>
-                    <li><a href="sha512_224_file_hash">SHA512/224 File</a></li>
-                    <li><a href="sha512_256">SHA512/256</a></li>
-                    <li><a href="sha512_256_file_hash">SHA512/256 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>SHA3</h3>
-                <nav>
-                  <ol>
-                    <li><a href="sha3_224">SHA3-224</a></li>
-                    <li><a href="sha3_224_checksum">SHA3-224 File</a></li>
-                    <li><a href="sha3_256">SHA3-256</a></li>
-                    <li><a href="sha3_256_checksum">SHA3-256 File</a></li>
-                    <li><a href="sha3_384">SHA3-384</a></li>
-                    <li><a href="sha3_384_checksum">SHA3-384 File</a></li>
-                    <li><a href="sha3_512">SHA3-512</a></li>
-                    <li><a href="sha3_512_checksum">SHA3-512 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>Keccak</h3>
-                <nav>
-                  <ol>
-                    <li><a href="keccak_224">Keccak-224</a></li>
-                    <li><a href="keccak_224_checksum">Keccak-224 File</a></li>
-                    <li><a href="keccak_256">Keccak-256</a></li>
-                    <li><a href="keccak_256_checksum">Keccak-256 File</a></li>
-                    <li><a href="keccak_384">Keccak-384</a></li>
-                    <li><a href="keccak_384_checksum">Keccak-384 File</a></li>
-                    <li><a href="keccak_512">Keccak-512</a></li>
-                    <li><a href="keccak_512_checksum">Keccak-512 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>SHAKE</h3>
-                <nav>
-                  <ol>
-                    <li><a href="shake128/">SHAKE128</a></li>
-                    <li><a href="shake128/file/">SHAKE128 File</a></li>
-                    <li><a href="shake256/">SHAKE256</a></li>
-                    <li><a href="shake256/file/">SHAKE256 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>cSHAKE</h3>
-                <nav>
-                  <ol>
-                    <li><a href="cshake128/">cSHAKE128</a></li>
-                    <li><a href="cshake128/file/">cSHAKE128 File</a></li>
-                    <li><a href="cshake256/">cSHAKE256</a></li>
-                    <li><a href="cshake256/file/">cSHAKE256 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>KMAC</h3>
-                <nav>
-                  <ol>
-                    <li><a href="kmac128/">KMAC128</a></li>
-                    <li><a href="kmac128/file/">KMAC128 File</a></li>
-                    <li><a href="kmac256/">KMAC256</a></li>
-                    <li><a href="kmac256/file/">KMAC256 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>RIPEMD</h3>
-                <nav>
-                  <ol>
-                    <li><a href="ripemd-128/">RIPEMD-128</a></li>
-                    <li><a href="ripemd-128/file/">RIPEMD-128 File</a></li>
-                    <li><a href="ripemd-160/">RIPEMD-160</a></li>
-                    <li><a href="ripemd-160/file/">RIPEMD-160 File</a></li>
-                    <li><a href="ripemd-256/">RIPEMD-256</a></li>
-                    <li><a href="ripemd-256/file/">RIPEMD-256 File</a></li>
-                    <li><a href="ripemd-320/">RIPEMD-320</a></li>
-                    <li><a href="ripemd-320/file/">RIPEMD-320 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>BLAKE</h3>
-                <nav>
-                  <ol>
-                    <li><a href="blake2b/">BLAKE2b</a></li>
-                    <li><a href="blake2b/file/">BLAKE2b File</a></li>
-                    <li><a href="blake2s/">BLAKE2s</a></li>
-                    <li><a href="blake2s/file/">BLAKE2s File</a></li>
-                    <li><a href="blake3/">BLAKE3</a></li>
-                    <li><a href="blake3/file/">BLAKE3 File</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <div class="section">
-            <h2>Cryptography</h2>
-            <div class="blocks">
-              <div class="block">
-                <h3>AES</h3>
-                <nav>
-                  <ol>
-                    <li><a href="aes/encrypt/">Encryption</a></li>
-                    <li><a href="aes/decrypt/">Decryption</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>DES</h3>
-                <nav>
-                  <ol>
-                    <li><a href="des/encrypt/">Encryption</a></li>
-                    <li><a href="des/decrypt/">Decryption</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>Triple DES</h3>
-                <nav>
-                  <ol>
-                    <li><a href="triple-des/encrypt/">Encryption</a></li>
-                    <li><a href="triple-des/decrypt/">Decryption</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>RC4</h3>
-                <nav>
-                  <ol>
-                    <li><a href="rc4/encrypt/">Encryption</a></li>
-                    <li><a href="rc4/decrypt/">Decryption</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>ECDSA</h3>
-                <nav>
-                  <ol>
-                    <li><a href="ecdsa/key-generator/">Key Generator</a></li>
-                    <li><a href="ecdsa/sign/">Sign Message</a></li>
-                    <li><a href="ecdsa/verify/">Verify Signature</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>RSA</h3>
-                <nav>
-                  <ol>
-                    <li><a href="rsa/key-generator/">Key Generator</a></li>
-                    <li><a href="rsa/sign/">Sign Message</a></li>
-                    <li><a href="rsa/verify/">Verify Signature</a></li>
-                    <li><a href="rsa/encrypt/">Encryption</a></li>
-                    <li><a href="rsa/decrypt/">Decryption</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <div class="section">
-            <h2>Encoding</h2>
-            <div class="blocks">
-              <div class="block">
-                <h3>Hex (Base16)</h3>
-                <nav>
-                  <ol>
-                    <li><a href="hex_encode">Encode</a></li>
-                    <li><a href="hex_decode">Decode</a></li>
-                    <li><a href="hex_encode_file">File to Hex</a></li>
-                    <li><a href="hex_decode_file">Hex to File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>Base32</h3>
-                <nav>
-                  <ol>
-                    <li><a href="base32_encode">Encode</a></li>
-                    <li><a href="base32_decode">Decode</a></li>
-                    <li><a href="base32_encode_file">File to Base32</a></li>
-                    <li><a href="base32_decode_file">Base32 to File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>Base58</h3>
-                <nav>
-                  <ol>
-                    <li><a href="base58/encode/">Encode</a></li>
-                    <li><a href="base58/decode/">Decode</a></li>
-                    <li><a href="base58/encode/file/">File to Base58</a></li>
-                    <li><a href="base58/decode/file/">Base58 to File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>Base64</h3>
-                <nav>
-                  <ol>
-                    <li><a href="base64_encode">Encode</a></li>
-                    <li><a href="base64_decode">Decode</a></li>
-                    <li><a href="base64_encode_file">File to Base64</a></li>
-                    <li><a href="base64_decode_file">Base64 to File</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>HTML</h3>
-                <nav>
-                  <ol>
-                    <li><a href="html_encode">Encode</a></li>
-                    <li><a href="html_decode">Decode</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>URL</h3>
-                <nav>
-                  <ol>
-                    <li><a href="url_encode">Encode</a></li>
-                    <li><a href="url_decode">Decode</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <div class="section">
-            <h2>Format</h2>
-            <div class="blocks">
-              <div class="block">
-                <h3>JSON</h3>
-                <nav>
-                  <ol>
-                    <li><a href="json/validator/">Validator</a></li>
-                    <li><a href="json/minifier/">Minifier</a></li>
-                    <li><a href="json/formatter/">Formatter</a></li>
-                    <li><a href="json/viewer/">Viewer</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>XML</h3>
-                <nav>
-                  <ol>
-                    <li><a href="xml/validator/">Validator</a></li>
-                    <li><a href="xml/minifier/">Minifier</a></li>
-                    <li><a href="xml/formatter/">Formatter</a></li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="block">
-                <h3>SQL</h3>
-                <nav>
-                  <ol>
-                    <li><a href="sql/formatter/">Formatter</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <div class="section">
-            <h2>Convert</h2>
-            <div class="blocks">
-              <div class="block">
-                <h3>Case</h3>
-                <nav>
-                  <ol>
-                    <li><a href="case/lower/">lower case</a></li>
-                    <li><a href="case/upper/">UPPER CASE</a></li>
-                    <li><a href="case/lower-camel/">lowerCamelCase</a></li>
-                    <li><a href="case/upper-camel/">UpperCamelCase</a></li>
-                    <li><a href="case/snake/">snake_case</a></li>
-                    <li><a href="case/kebab/">kebab-case</a></li>
-                    <li><a href="case/constant/">CONSTANT_CASE</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <div class="section">
-            <h2>Others</h2>
-            <div class="blocks">
-              <div class="block">
-                <h3>Others</h3>
-                <nav>
-                  <ol>
-                    <li><a href="qr-code/generator/">QR Code Generator</a></li>
-                    <li><a href="syntax-highlight/">Syntax Highlight</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
+            ))
+          }
         </div>
       </main>
     </div>
     <div id="message"></div>
   </div>
-  
+
   <script is:inline>
-    // Language Dropdown Toggle
-    (function() {
-      const langBtn = document.getElementById('lang-btn');
-      const langMenu = document.getElementById('lang-menu');
-      
-      if (langBtn && langMenu) {
-        langBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const isExpanded = langBtn.getAttribute('aria-expanded') === 'true';
-          langBtn.setAttribute('aria-expanded', !isExpanded);
-          langMenu.classList.toggle('show');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            langBtn.setAttribute('aria-expanded', 'false');
-            langMenu.classList.remove('show');
-          }
-        });
-        
-        // Close dropdown on Escape
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            langBtn.setAttribute('aria-expanded', 'false');
-            langMenu.classList.remove('show');
-          }
-        });
-      }
-    })();
-    
     // Favorites Management
-    (function() {
-      const FAVORITES_KEY = 'favorite-tools';
-      
+    (function () {
+      const FAVORITES_KEY = "favorite-tools";
+
       function getFavorites() {
         try {
-          return JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
-        } catch(e) {
+          return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+        } catch (e) {
           return [];
         }
       }
-      
+
       function saveFavorites(favorites) {
         localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
       }
-      
+
       function toggleFavorite(url, title) {
         let favorites = getFavorites();
-        const index = favorites.findIndex(f => f.url === url);
-        
+        const index = favorites.findIndex((f) => f.url === url);
+
         if (index > -1) {
           favorites.splice(index, 1);
         } else {
           favorites.push({ url: url, title: title });
         }
-        
+
         saveFavorites(favorites);
         updateFavoritesList();
         updateHeartIcons();
       }
-      
+
       function updateFavoritesList() {
         const favorites = getFavorites();
-        const list = document.getElementById('favorite-tools-list');
-        
+        const list = document.getElementById("favorite-tools-list");
+
         if (!list) return;
-        
+
         if (favorites.length === 0) {
           list.innerHTML = '<li class="empty-state">Click the heart icon (､・ next to any tool to add it to your favorites!</li>';
         } else {
-          list.innerHTML = favorites.map(fav => 
-            `<li><a href="${fav.url}">${fav.title}</a><span class="favorite-toggle active" data-url="${fav.url}" data-title="${fav.title}"></span></li>`
-          ).join('');
+          list.innerHTML = favorites.map((fav) => `<li><a href="${fav.url}">${fav.title}</a><span class="favorite-toggle active" data-url="${fav.url}" data-title="${fav.title}"></span></li>`).join("");
         }
-        
+
         // Attach event listeners to favorite toggles in My Tools
-        list.querySelectorAll('.favorite-toggle').forEach(toggle => {
-          toggle.addEventListener('click', function(e) {
+        list.querySelectorAll(".favorite-toggle").forEach((toggle) => {
+          toggle.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
             toggleFavorite(this.dataset.url, this.dataset.title);
           });
         });
       }
-      
+
       function updateHeartIcons() {
         const favorites = getFavorites();
-        const favoriteUrls = favorites.map(f => f.url);
-        
-        document.querySelectorAll('#index .favorite-toggle').forEach(toggle => {
+        const favoriteUrls = favorites.map((f) => f.url);
+
+        document.querySelectorAll("#index .favorite-toggle").forEach((toggle) => {
           const isFavorite = favoriteUrls.includes(toggle.dataset.url);
-          toggle.classList.toggle('active', isFavorite);
+          toggle.classList.toggle("active", isFavorite);
         });
       }
-      
+
       function initFavorites() {
         // Add heart icons to all tool links (except in My Tools card)
-        document.querySelectorAll('#index .section:not(#my-tools-card) li').forEach(li => {
-          const link = li.querySelector('a');
+        document.querySelectorAll("#index .section:not(#my-tools-card) li").forEach((li) => {
+          const link = li.querySelector("a");
           if (!link) return;
-          
-          const url = link.getAttribute('href');
+
+          const url = link.getAttribute("href");
           const itemName = link.textContent;
-          
+
           // Get category from the block's h3 element
-          const block = li.closest('.block');
-          const category = block ? block.querySelector('h3')?.textContent : '';
-          
+          const block = li.closest(".block");
+          const category = block ? block.querySelector("h3")?.textContent : "";
+
           // Format title as "Category: Item Name"
           const title = category ? `${category}: ${itemName}` : itemName;
-          
-          const heart = document.createElement('span');
-          heart.className = 'favorite-toggle';
+
+          const heart = document.createElement("span");
+          heart.className = "favorite-toggle";
           heart.dataset.url = url;
           heart.dataset.title = title;
-          
-          heart.addEventListener('click', function(e) {
+
+          heart.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
             toggleFavorite(url, title);
           });
-          
+
           li.appendChild(heart);
         });
-        
+
         updateFavoritesList();
         updateHeartIcons();
       }
-      
+
       // Initialize when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initFavorites);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initFavorites);
       } else {
         initFavorites();
       }
     })();
-    
+
     // Realtime Search Functionality
-    (function() {
-      const searchInput = document.getElementById('tool-search');
-      const resultsCount = document.getElementById('search-results-count');
-      const allSections = document.querySelectorAll('#index .section:not(#my-tools-card):not(#search-section)');
-      
+    (function () {
+      const searchInput = document.getElementById("tool-search");
+      const resultsCount = document.getElementById("search-results-count");
+      const allSections = document.querySelectorAll("#index .section:not(#my-tools-card):not(#search-section)");
+
       function performSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
         let totalVisible = 0;
         let totalTools = 0;
-        
-        if (searchTerm === '') {
+
+        if (searchTerm === "") {
           // Show all sections, blocks, and items
-          allSections.forEach(section => {
-            section.style.display = '';
-            const blocks = section.querySelectorAll('.block');
-            blocks.forEach(block => {
-              block.style.display = '';
-              const items = block.querySelectorAll('li');
-              items.forEach(item => {
-                item.style.display = '';
+          allSections.forEach((section) => {
+            section.style.display = "";
+            const blocks = section.querySelectorAll(".block");
+            blocks.forEach((block) => {
+              block.style.display = "";
+              const items = block.querySelectorAll("li");
+              items.forEach((item) => {
+                item.style.display = "";
                 totalTools++;
               });
             });
           });
-          resultsCount.textContent = '';
+          resultsCount.textContent = "";
           return;
         }
-        
+
         // Filter sections and items
-        allSections.forEach(section => {
-          const sectionTitle = section.querySelector('h2')?.textContent.toLowerCase() || '';
-          const blocks = section.querySelectorAll('.block');
+        allSections.forEach((section) => {
+          const sectionTitle = section.querySelector("h2")?.textContent.toLowerCase() || "";
+          const blocks = section.querySelectorAll(".block");
           let sectionHasVisibleItems = false;
-          
-          blocks.forEach(block => {
-            const blockTitle = block.querySelector('h3')?.textContent.toLowerCase() || '';
-            const items = block.querySelectorAll('li');
+
+          blocks.forEach((block) => {
+            const blockTitle = block.querySelector("h3")?.textContent.toLowerCase() || "";
+            const items = block.querySelectorAll("li");
             let blockHasVisibleItems = false;
-            
-            items.forEach(item => {
+
+            items.forEach((item) => {
               totalTools++;
-              const link = item.querySelector('a');
+              const link = item.querySelector("a");
               if (!link) return;
-              
+
               const toolName = link.textContent.toLowerCase();
-              const isMatch = toolName.includes(searchTerm) || 
-                            blockTitle.includes(searchTerm) || 
-                            sectionTitle.includes(searchTerm);
-              
+              const isMatch = toolName.includes(searchTerm) || blockTitle.includes(searchTerm) || sectionTitle.includes(searchTerm);
+
               if (isMatch) {
-                item.style.display = '';
+                item.style.display = "";
                 blockHasVisibleItems = true;
                 sectionHasVisibleItems = true;
                 totalVisible++;
               } else {
-                item.style.display = 'none';
+                item.style.display = "none";
               }
             });
-            
+
             // Hide block if no visible items
-            block.style.display = blockHasVisibleItems ? '' : 'none';
+            block.style.display = blockHasVisibleItems ? "" : "none";
           });
-          
+
           // Hide section if no visible items
-          section.style.display = sectionHasVisibleItems ? '' : 'none';
+          section.style.display = sectionHasVisibleItems ? "" : "none";
         });
-        
+
         // Update results count
         if (totalVisible === 0) {
           resultsCount.innerHTML = '<span style="color: var(--var-red);">No tools found</span>';
         } else {
-          resultsCount.innerHTML = `<span style="color: var(--var-primary);">Found ${totalVisible} tool${totalVisible !== 1 ? 's' : ''}</span>`;
+          resultsCount.innerHTML = `<span style="color: var(--var-primary);">Found ${totalVisible} tool${totalVisible !== 1 ? "s" : ""}</span>`;
         }
       }
-      
+
       // Add event listener for realtime search
       if (searchInput) {
-        searchInput.addEventListener('input', performSearch);
-        
+        searchInput.addEventListener("input", performSearch);
+
         // Focus search on Ctrl+K or Cmd+K
-        document.addEventListener('keydown', function(e) {
-          if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        document.addEventListener("keydown", function (e) {
+          if ((e.ctrlKey || e.metaKey) && e.key === "k") {
             e.preventDefault();
             searchInput.focus();
           }
-          
+
           // Clear search on Escape
-          if (e.key === 'Escape' && document.activeElement === searchInput) {
-            searchInput.value = '';
+          if (e.key === "Escape" && document.activeElement === searchInput) {
+            searchInput.value = "";
             performSearch();
             searchInput.blur();
           }

@@ -1,18 +1,21 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Sidebar from '../components/Sidebar.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import PageHeader from "../components/PageHeader.astro";
+import InputBlock from "../components/InputBlock.astro";
+import OutputBlock from "../components/OutputBlock.astro";
 
-const { 
-  title, 
-  description, 
+const {
+  title,
+  description,
   algorithmName,
-  jsFile = 'crypto-js.js',
+  jsFile = "crypto-js.js",
   activePage,
-  methodWrapper // Optional: e.g., "withOptions(shake_128, ['bits'])"
+  methodWrapper, // Optional: e.g., "withOptions(shake_128, ['bits'])"
 } = Astro.props;
 
 // Pre-calculate the script source path
-const scriptSrc = jsFile.startsWith('http') ? jsFile : `/js/${jsFile}`;
+const scriptSrc = jsFile.startsWith("http") ? jsFile : `/js/${jsFile}`;
 const methodCode = methodWrapper || `window['${algorithmName}']`;
 ---
 
@@ -22,55 +25,15 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
     <div id="content">
       <div class="top-nav">
         <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
-          <img src="/images/menu.svg" width="24" height="24" alt="Menu">
+          <img src="/images/menu.svg" width="24" height="24" alt="Menu" />
         </button>
       </div>
-      <header>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </header>
+      <PageHeader title={title} description={description} />
       <main>
         <div class="layout">
           <div class="layout-block">
-            <div class="input">
-              <div class="block block-fill">
-                <div class="block-title">Input
-                  <div class="toolbar">
-                    <button class="icon" data-toggle="fullscreen">
-                      <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
-                      <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
-                    </button>
-                  </div>
-                </div>
-                <textarea class="container" id="input" spellcheck="false" placeholder="Enter here..." data-remember="input" data-share="input" data-encoding-from="#input-type" data-auto-update data-toggle="monacoEditor"></textarea>
-              </div>
-            </div>
-            <div class="output">
-              <div class="block block-fill">
-                <div class="block-title">Output
-                  <div class="toolbar">
-                    <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
-                      <img src="/images/copy.svg" alt="Copy" title="Copy"/>
-                    </button>
-                    <button class="icon" data-toggle="fullscreen">
-                      <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
-                      <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
-                    </button>
-                  </div>
-                </div>
-                <textarea class="container" id="output" spellcheck="false" placeholder="Output here..." data-encoding-from="#output-type" data-toggle="monacoEditor" readonly="readonly"></textarea>
-              </div>
-              <details class="block text-only" data-toggle="copyblock">
-                <summary class="block-title">Share Link
-                  <div class="toolbar">
-                    <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
-                      <img src="/images/copy.svg" alt="Copy" title="Copy"/>
-                    </button>
-                  </div>
-                </summary>
-                <input id="share-link" type="text" placeholder="Share Link" readonly="readonly"/>
-              </details>
-            </div>
+            <InputBlock id="input" title="Input" placeholder="Enter here..." dataRemember="input" dataShare="input" dataEncodingFrom="#input-type" dataAutoUpdate={true} />
+            <OutputBlock id="output" title="Output" placeholder="Output here..." dataEncodingFrom="#output-type" />
           </div>
           <div class="settings">
             <div class="block block-fill">
@@ -81,14 +44,14 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
                 </div>
                 <div class="setting">
                   <label class="switcher">
-                    <input type="checkbox" value="1" id="auto-update" checked>
+                    <input type="checkbox" value="1" id="auto-update" checked />
                     <div class="toggle"></div>
                     <span>Auto Update</span>
                   </label>
                 </div>
                 <div class="setting">
                   <label class="switcher">
-                    <input type="checkbox" value="1" id="remember-input">
+                    <input type="checkbox" value="1" id="remember-input" />
                     <div class="toggle"></div>
                     <span>Remember Input</span>
                   </label>
@@ -117,7 +80,7 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
                 </div>
                 <div class="setting">
                   <label class="switcher">
-                    <input type="checkbox" value="1" id="hmac-enabled" data-remember="hmac-enabled" data-share="hmac_enabled" data-auto-update>
+                    <input type="checkbox" value="1" id="hmac-enabled" data-remember="hmac-enabled" data-share="hmac_enabled" data-auto-update />
                     <div class="toggle"></div>
                     <span>Enable HMAC</span>
                   </label>
@@ -140,13 +103,13 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
                   </div>
                   <div class="setting">
                     <label for="hmac-key">Key</label>
-                    <input type="text" id="hmac-key" data-remember="hmac-key" data-share="hmac_key" data-encoding-from="#hmac-input-type" data-auto-update>
+                    <input type="text" id="hmac-key" data-remember="hmac-key" data-share="hmac_key" data-encoding-from="#hmac-input-type" data-auto-update />
                   </div>
                 </details>
                 <script is:inline>
                   ++waitLoadCount;
                   delayScripts.push({
-                    src: '/js/hmac.js?v=2'
+                    src: "/js/hmac.js?v=2",
                   });
                 </script>
               </div>
@@ -158,12 +121,16 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
     <div id="message"></div>
   </div>
 
-  <script is:inline set:html={`
+  <script
+    is:inline
+    set:html={`
     ++waitLoadCount;
     delayScripts.push({
       src: '${scriptSrc}',
       onload: function () {
-        ${methodWrapper ? `
+        ${
+          methodWrapper
+            ? `
         // Wait for withOptions if needed
         var initMethod = function() {
           if (typeof window.withOptions === 'function') {
@@ -174,10 +141,12 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
           }
         };
         initMethod();
-        ` : `
+        `
+            : `
         window.method = window['${algorithmName}'];
         methodLoad();
-        `}
+        `
+        }
       }
     });
 
@@ -199,5 +168,6 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
       },
       delay: 100
     });
-  `}></script>
+  `}
+  />
 </BaseLayout>

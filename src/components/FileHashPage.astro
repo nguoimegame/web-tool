@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Sidebar from './Sidebar.astro';
+import PageHeader from './PageHeader.astro';
+import InputFileBlock from './InputFileBlock.astro';
+import OutputBlock from './OutputBlock.astro';
 
 interface Props {
     title: string;
@@ -25,54 +28,25 @@ const { title, description, algorithmName, jsFile, activePage, methodWrapper } =
                 </button>
             </div>
             
-            <header>
-                <h1>{title}</h1>
-                <p>{description}</p>
-            </header>
+            <PageHeader title={title} description={description} />
             
             <main>
                 <div class="layout">
                     <div class="layout-block">
-                        <div class="input">
-                            <div class="block block-fill">
-                                <div class="block-title">Input
-                                    <div class="toolbar">
-                                        <button class="icon" data-toggle="fullscreen">
-                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
-                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
-                                        </button>
-                                    </div>
-                                </div>
-                                <textarea class="container" id="input" spellcheck="false" 
-                                    placeholder="Enter the URL here, and it will attempt to download. If it cannot be downloaded programmatically, you may need to download it manually." 
-                                    data-remember="input" data-share="input" style="display:none"></textarea>
-                                <div class="droppable-zone container" id="droppable-zone">
-                                    <input class="droppable-file" type="file" id="file" data-auto-update>
-                                    <div class="droppable-zone-wrapper">
-                                        <img class="droppable-zone-icon" src="/images/file.svg" alt="File">
-                                        <div class="droppable-zone-text">Drag and drop the file here or click to select a file. It will process locally and won't be uploaded.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="output">
-                            <div class="block block-fill">
-                                <div class="block-title">Output
-                                    <div class="toolbar">
-                                        <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
-                                            <img src="/images/copy.svg" alt="Copy" title="Copy"/>
-                                        </button>
-                                        <button class="icon" data-toggle="fullscreen">
-                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
-                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
-                                        </button>
-                                    </div>
-                                </div>
-                                <textarea class="container" id="output" spellcheck="false" placeholder="Output here..." 
-                                    data-encoding-from="#output-type" data-toggle="monacoEditor" readonly="readonly"></textarea>
-                            </div>
-                        </div>
+                        <InputFileBlock 
+                            id="input"
+                            fileId="file"
+                            title="Input"
+                            dataRemember="input"
+                            dataShare="input"
+                        />
+                        <OutputBlock 
+                            id="output"
+                            title="Output"
+                            placeholder="Output here..."
+                            dataEncodingFrom="#output-type"
+                            showShareLink={false}
+                        />
                     </div>
                     
                     <div class="settings">
