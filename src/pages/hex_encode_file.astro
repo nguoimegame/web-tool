@@ -1,0 +1,20 @@
+﻿---
+import EncodingPage from '../components/EncodingPage.astro';
+const title = "File to Hex";
+const description = "Encode text or file to File. Free online File encoding tool.";
+const toolName = "Encode";
+const jsFile = "hex.js?v=3";
+const activePage = "hex_encode_file";
+const reverseLink = "hex_decode_file";
+---
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+/>

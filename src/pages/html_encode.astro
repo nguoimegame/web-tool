@@ -1,0 +1,20 @@
+﻿---
+import EncodingPage from '../components/EncodingPage.astro';
+const title = "HTML Encode";
+const description = "Encode text or file to HTML. Free online HTML encoding tool.";
+const toolName = "Encode";
+const jsFile = "html.js?v=4";
+const activePage = "html_encode";
+const reverseLink = "html_decode";
+---
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+/>

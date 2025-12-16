@@ -1,0 +1,430 @@
+---
+const { activePage } = Astro.props;
+---
+
+<div id="sidebar">
+  <div class="mask"></div>
+  <div class="container">
+    <header><a href="/">
+        <h2>Web Tools</h2>
+      </a>
+      <div class="toolbar">
+        <div class="lang-dropdown">
+          <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-flag">🇬🇧</span>
+            <span class="lang-text">EN</span>
+            <svg class="lang-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lang-menu" id="lang-menu" role="menu">
+            <a href="/" class="lang-option active" role="menuitem">
+              <span class="lang-flag">🇬🇧</span>
+              <span class="lang-name">English</span>
+            </a>
+            <a href="/vi/" class="lang-option" role="menuitem">
+              <span class="lang-flag">🇻🇳</span>
+              <span class="lang-name">Tiếng Việt</span>
+            </a>
+            <a href="/zh/" class="lang-option" role="menuitem">
+              <span class="lang-flag">🇨🇳</span>
+              <span class="lang-name">中文</span>
+            </a>
+            <a href="/hi/" class="lang-option" role="menuitem">
+              <span class="lang-flag">🇮🇳</span>
+              <span class="lang-name">हिंदी</span>
+            </a>
+            <a href="/es/" class="lang-option" role="menuitem">
+              <span class="lang-flag">🇪🇸</span>
+              <span class="lang-name">Español</span>
+            </a>
+            <a href="/fr/" class="lang-option" role="menuitem">
+              <span class="lang-flag">🇫🇷</span>
+              <span class="lang-name">Français</span>
+            </a>
+            <a href="/pt/" class="lang-option" role="menuitem">
+              <span class="lang-flag">🇵🇹</span>
+              <span class="lang-name">Português</span>
+            </a>
+            <a href="/ja/" class="lang-option" role="menuitem">
+              <span class="lang-flag">🇯🇵</span>
+              <span class="lang-name">日本語</span>
+            </a>
+          </div>
+        </div>
+        <button class="icon theme"><img class="light" src="/images/light.svg" alt="Dark mode" title="Dark mode"><img class="dark" src="/images/dark.svg" alt="Dark mode" title="Dark mode"></button>
+      </div>
+    </header>
+    <div class="section">
+      <h3>Hash</h3>
+      <details class={activePage === 'crc' ? 'active' : ''} open={activePage === 'crc'}>
+        <summary>CRC</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'crc' ? 'active' : ''}><a href="/crc/">CRC</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('md') && !activePage?.startsWith('md5') ? 'active' : ''} open={activePage?.startsWith('md') && !activePage?.startsWith('md5')}>
+        <summary>MD</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'md2' ? 'active' : ''}><a href="/md2">MD2</a></li>
+            <li class={activePage === 'md2_file_hash' ? 'active' : ''}><a href="/md2_file_hash">MD2 File</a></li>
+            <li class={activePage === 'md4' ? 'active' : ''}><a href="/md4">MD4</a></li>
+            <li class={activePage === 'md4_file_hash' ? 'active' : ''}><a href="/md4_file_hash">MD4 File</a></li>
+            <li class={activePage === 'md5' ? 'active' : ''}><a href="/md5">MD5</a></li>
+            <li class={activePage === 'md5_checksum' ? 'active' : ''}><a href="/md5_checksum">MD5 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('sha1') ? 'active' : ''} open={activePage?.startsWith('sha1')}>
+        <summary>SHA1</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'sha1' ? 'active' : ''}><a href="/sha1">SHA1</a></li>
+            <li class={activePage === 'sha1_checksum' ? 'active' : ''}><a href="/sha1_checksum">SHA1 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('sha2') || activePage?.startsWith('double_sha256') ? 'active' : ''} open={activePage?.startsWith('sha2') || activePage?.startsWith('double_sha256')}>
+        <summary>SHA2</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'sha224' ? 'active' : ''}><a href="/sha224">SHA224</a></li>
+            <li class={activePage === 'sha224_checksum' ? 'active' : ''}><a href="/sha224_checksum">SHA224 File</a></li>
+            <li class={activePage === 'sha256' ? 'active' : ''}><a href="/sha256">SHA256</a></li>
+            <li class={activePage === 'sha256_checksum' ? 'active' : ''}><a href="/sha256_checksum">SHA256 File</a></li>
+            <li class={activePage === 'double_sha256' ? 'active' : ''}><a href="/double_sha256">Double SHA256</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('sha3') || activePage?.startsWith('sha5') ? 'active' : ''} open={activePage?.startsWith('sha3') || activePage?.startsWith('sha5')}>
+        <summary>SHA2-512</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'sha384' ? 'active' : ''}><a href="/sha384">SHA384</a></li>
+            <li class={activePage === 'sha384_file_hash' ? 'active' : ''}><a href="/sha384_file_hash">SHA384 File</a></li>
+            <li class={activePage === 'sha512' ? 'active' : ''}><a href="/sha512">SHA512</a></li>
+            <li class={activePage === 'sha512_file_hash' ? 'active' : ''}><a href="/sha512_file_hash">SHA512 File</a></li>
+            <li class={activePage === 'sha512_224' ? 'active' : ''}><a href="/sha512_224">SHA512/224</a></li>
+            <li class={activePage === 'sha512_224_file_hash' ? 'active' : ''}><a href="/sha512_224_file_hash">SHA512/224 File</a></li>
+            <li class={activePage === 'sha512_256' ? 'active' : ''}><a href="/sha512_256">SHA512/256</a></li>
+            <li class={activePage === 'sha512_256_file_hash' ? 'active' : ''}><a href="/sha512_256_file_hash">SHA512/256 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('sha3_') ? 'active' : ''} open={activePage?.startsWith('sha3_')}>
+        <summary>SHA3</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'sha3_224' ? 'active' : ''}><a href="/sha3_224">SHA3-224</a></li>
+            <li class={activePage === 'sha3_224_checksum' ? 'active' : ''}><a href="/sha3_224_checksum">SHA3-224 File</a></li>
+            <li class={activePage === 'sha3_256' ? 'active' : ''}><a href="/sha3_256">SHA3-256</a></li>
+            <li class={activePage === 'sha3_256_checksum' ? 'active' : ''}><a href="/sha3_256_checksum">SHA3-256 File</a></li>
+            <li class={activePage === 'sha3_384' ? 'active' : ''}><a href="/sha3_384">SHA3-384</a></li>
+            <li class={activePage === 'sha3_384_checksum' ? 'active' : ''}><a href="/sha3_384_checksum">SHA3-384 File</a></li>
+            <li class={activePage === 'sha3_512' ? 'active' : ''}><a href="/sha3_512">SHA3-512</a></li>
+            <li class={activePage === 'sha3_512_checksum' ? 'active' : ''}><a href="/sha3_512_checksum">SHA3-512 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('keccak_') ? 'active' : ''} open={activePage?.startsWith('keccak_')}>
+        <summary>Keccak</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'keccak_224' ? 'active' : ''}><a href="/keccak_224">Keccak-224</a></li>
+            <li class={activePage === 'keccak_224_checksum' ? 'active' : ''}><a href="/keccak_224_checksum">Keccak-224 File</a></li>
+            <li class={activePage === 'keccak_256' ? 'active' : ''}><a href="/keccak_256">Keccak-256</a></li>
+            <li class={activePage === 'keccak_256_checksum' ? 'active' : ''}><a href="/keccak_256_checksum">Keccak-256 File</a></li>
+            <li class={activePage === 'keccak_384' ? 'active' : ''}><a href="/keccak_384">Keccak-384</a></li>
+            <li class={activePage === 'keccak_384_checksum' ? 'active' : ''}><a href="/keccak_384_checksum">Keccak-384 File</a></li>
+            <li class={activePage === 'keccak_512' ? 'active' : ''}><a href="/keccak_512">Keccak-512</a></li>
+            <li class={activePage === 'keccak_512_checksum' ? 'active' : ''}><a href="/keccak_512_checksum">Keccak-512 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details open={activePage?.startsWith('shake')}>
+        <summary>SHAKE</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'shake128' ? 'active' : ''}><a href="/shake128/">SHAKE128</a></li>
+            <li class={activePage === 'shake_128_checksum' ? 'active' : ''}><a href="/shake_128_checksum">SHAKE128 File</a></li>
+            <li class={activePage === 'shake256' ? 'active' : ''}><a href="/shake256/">SHAKE256</a></li>
+            <li class={activePage === 'shake_256_checksum' ? 'active' : ''}><a href="/shake_256_checksum">SHAKE256 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details open={activePage?.startsWith('cshake')}>
+        <summary>cSHAKE</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'cshake128' ? 'active' : ''}><a href="/cshake128/">cSHAKE128</a></li>
+            <li class={activePage === 'cshake128_file_hash' ? 'active' : ''}><a href="/cshake128_file_hash">cSHAKE128 File</a></li>
+            <li class={activePage === 'cshake256' ? 'active' : ''}><a href="/cshake256/">cSHAKE256</a></li>
+            <li class={activePage === 'cshake256_file_hash' ? 'active' : ''}><a href="/cshake256_file_hash">cSHAKE256 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details open={activePage?.startsWith('kmac')}>
+        <summary>KMAC</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'kmac128' ? 'active' : ''}><a href="/kmac128/">KMAC128</a></li>
+            <li class={activePage === 'kmac128_file_hash' ? 'active' : ''}><a href="/kmac128_file_hash">KMAC128 File</a></li>
+            <li class={activePage === 'kmac256' ? 'active' : ''}><a href="/kmac256/">KMAC256</a></li>
+            <li class={activePage === 'kmac256_file_hash' ? 'active' : ''}><a href="/kmac256_file_hash">KMAC256 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details open={activePage?.startsWith('ripemd')}>
+        <summary>RIPEMD</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'ripemd-128' ? 'active' : ''}><a href="/ripemd-128/">RIPEMD-128</a></li>
+            <li class={activePage === 'ripemd_128_checksum' ? 'active' : ''}><a href="/ripemd_128_checksum">RIPEMD-128 File</a></li>
+            <li class={activePage === 'ripemd-160' ? 'active' : ''}><a href="/ripemd-160/">RIPEMD-160</a></li>
+            <li class={activePage === 'ripemd_160_checksum' ? 'active' : ''}><a href="/ripemd_160_checksum">RIPEMD-160 File</a></li>
+            <li class={activePage === 'ripemd-256' ? 'active' : ''}><a href="/ripemd-256/">RIPEMD-256</a></li>
+            <li class={activePage === 'ripemd_256_checksum' ? 'active' : ''}><a href="/ripemd_256_checksum">RIPEMD-256 File</a></li>
+            <li class={activePage === 'ripemd-320' ? 'active' : ''}><a href="/ripemd-320/">RIPEMD-320</a></li>
+            <li class={activePage === 'ripemd_320_checksum' ? 'active' : ''}><a href="/ripemd_320_checksum">RIPEMD-320 File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details open={activePage?.startsWith('blake')}>
+        <summary>BLAKE</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'blake2b' ? 'active' : ''}><a href="/blake2b/">BLAKE2b</a></li>
+            <li class={activePage === 'blake2b_file_hash' ? 'active' : ''}><a href="/blake2b_file_hash">BLAKE2b File</a></li>
+            <li class={activePage === 'blake2s' ? 'active' : ''}><a href="/blake2s/">BLAKE2s</a></li>
+            <li class={activePage === 'blake2s_file_hash' ? 'active' : ''}><a href="/blake2s_file_hash">BLAKE2s File</a></li>
+            <li class={activePage === 'blake3' ? 'active' : ''}><a href="/blake3/">BLAKE3</a></li>
+            <li class={activePage === 'blake3_file_hash' ? 'active' : ''}><a href="/blake3_file_hash">BLAKE3 File</a></li>
+          </ol>
+        </nav>
+      </details>
+    </div>
+    <div class="section">
+      <h3>Cryptography</h3>
+      <details class={activePage?.startsWith('aes/') ? 'active' : ''} open={activePage?.startsWith('aes/')}>
+        <summary>AES</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'aes/encrypt/' ? 'active' : ''}><a href="/aes/encrypt/">Encryption</a></li>
+            <li class={activePage === 'aes/decrypt/' ? 'active' : ''}><a href="/aes/decrypt/">Decryption</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('des/') ? 'active' : ''} open={activePage?.startsWith('des/')}>
+        <summary>DES</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'des/encrypt/' ? 'active' : ''}><a href="/des/encrypt/">Encryption</a></li>
+            <li class={activePage === 'des/decrypt/' ? 'active' : ''}><a href="/des/decrypt/">Decryption</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('triple-des/') ? 'active' : ''} open={activePage?.startsWith('triple-des/')}>
+        <summary>Triple DES</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'triple-des/encrypt/' ? 'active' : ''}><a href="/triple-des/encrypt/">Encryption</a></li>
+            <li class={activePage === 'triple-des/decrypt/' ? 'active' : ''}><a href="/triple-des/decrypt/">Decryption</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('rc4/') ? 'active' : ''} open={activePage?.startsWith('rc4/')}>
+        <summary>RC4</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'rc4/encrypt/' ? 'active' : ''}><a href="/rc4/encrypt/">Encryption</a></li>
+            <li class={activePage === 'rc4/decrypt/' ? 'active' : ''}><a href="/rc4/decrypt/">Decryption</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('ecdsa/') ? 'active' : ''} open={activePage?.startsWith('ecdsa/')}>
+        <summary>ECDSA</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'ecdsa/key-generator/' ? 'active' : ''}><a href="/ecdsa/key-generator/">Key Generator</a></li>
+            <li class={activePage === 'ecdsa/sign/' ? 'active' : ''}><a href="/ecdsa/sign/">Sign Message</a></li>
+            <li class={activePage === 'ecdsa/verify/' ? 'active' : ''}><a href="/ecdsa/verify/">Verify Signature</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('rsa/') ? 'active' : ''} open={activePage?.startsWith('rsa/')}>
+        <summary>RSA</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'rsa/key-generator/' ? 'active' : ''}><a href="/rsa/key-generator/">Key Generator</a></li>
+            <li class={activePage === 'rsa/sign/' ? 'active' : ''}><a href="/rsa/sign/">Sign Message</a></li>
+            <li class={activePage === 'rsa/verify/' ? 'active' : ''}><a href="/rsa/verify/">Verify Signature</a></li>
+            <li class={activePage === 'rsa/encrypt/' ? 'active' : ''}><a href="/rsa/encrypt/">Encryption</a></li>
+            <li class={activePage === 'rsa/decrypt/' ? 'active' : ''}><a href="/rsa/decrypt/">Decryption</a></li>
+          </ol>
+        </nav>
+      </details>
+    </div>
+    <div class="section">
+      <h3>Encoding</h3>
+      <details class={activePage?.startsWith('hex_') ? 'active' : ''} open={activePage?.startsWith('hex_')}>
+        <summary>Hex (Base16)</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'hex_encode' ? 'active' : ''}><a href="/hex_encode">Encode</a></li>
+            <li class={activePage === 'hex_decode' ? 'active' : ''}><a href="/hex_decode">Decode</a></li>
+            <li class={activePage === 'hex_encode_file' ? 'active' : ''}><a href="/hex_encode_file">File to Hex</a></li>
+            <li class={activePage === 'hex_decode_file' ? 'active' : ''}><a href="/hex_decode_file">Hex to File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('base32_') ? 'active' : ''} open={activePage?.startsWith('base32_')}>
+        <summary>Base32</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'base32_encode' ? 'active' : ''}><a href="/base32_encode">Encode</a></li>
+            <li class={activePage === 'base32_decode' ? 'active' : ''}><a href="/base32_decode">Decode</a></li>
+            <li class={activePage === 'base32_encode_file' ? 'active' : ''}><a href="/base32_encode_file">File to Base32</a></li>
+            <li class={activePage === 'base32_decode_file' ? 'active' : ''}><a href="/base32_decode_file">Base32 to File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('base58/') ? 'active' : ''} open={activePage?.startsWith('base58/')}>
+        <summary>Base58</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'base58/encode/' ? 'active' : ''}><a href="/base58/encode/">Encode</a></li>
+            <li class={activePage === 'base58/decode/' ? 'active' : ''}><a href="/base58/decode/">Decode</a></li>
+            <li class={activePage === 'base58/encode/file/' ? 'active' : ''}><a href="/base58/encode/file/">File to Base58</a></li>
+            <li class={activePage === 'base58/decode/file/' ? 'active' : ''}><a href="/base58/decode/file/">Base58 to File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('base64_') ? 'active' : ''} open={activePage?.startsWith('base64_')}>
+        <summary>Base64</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'base64_encode' ? 'active' : ''}><a href="/base64_encode">Encode</a></li>
+            <li class={activePage === 'base64_decode' ? 'active' : ''}><a href="/base64_decode">Decode</a></li>
+            <li class={activePage === 'base64_encode_file' ? 'active' : ''}><a href="/base64_encode_file">File to Base64</a></li>
+            <li class={activePage === 'base64_decode_file' ? 'active' : ''}><a href="/base64_decode_file">Base64 to File</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('html_') ? 'active' : ''} open={activePage?.startsWith('html_')}>
+        <summary>HTML</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'html_encode' ? 'active' : ''}><a href="/html_encode">Encode</a></li>
+            <li class={activePage === 'html_decode' ? 'active' : ''}><a href="/html_decode">Decode</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('url_') ? 'active' : ''} open={activePage?.startsWith('url_')}>
+        <summary>URL</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'url_encode' ? 'active' : ''}><a href="/url_encode">Encode</a></li>
+            <li class={activePage === 'url_decode' ? 'active' : ''}><a href="/url_decode">Decode</a></li>
+          </ol>
+        </nav>
+      </details>
+    </div>
+    <div class="section">
+      <h3>Format</h3>
+      <details class={activePage?.startsWith('json/') ? 'active' : ''} open={activePage?.startsWith('json/')}>
+        <summary>JSON</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'json/validator/' ? 'active' : ''}><a href="/json/validator/">Validator</a></li>
+            <li class={activePage === 'json/minifier/' ? 'active' : ''}><a href="/json/minifier/">Minifier</a></li>
+            <li class={activePage === 'json/formatter/' ? 'active' : ''}><a href="/json/formatter/">Formatter</a></li>
+            <li class={activePage === 'json/viewer/' ? 'active' : ''}><a href="/json/viewer/">Viewer</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('xml/') ? 'active' : ''} open={activePage?.startsWith('xml/')}>
+        <summary>XML</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'xml/validator/' ? 'active' : ''}><a href="/xml/validator/">Validator</a></li>
+            <li class={activePage === 'xml/minifier/' ? 'active' : ''}><a href="/xml/minifier/">Minifier</a></li>
+            <li class={activePage === 'xml/formatter/' ? 'active' : ''}><a href="/xml/formatter/">Formatter</a></li>
+          </ol>
+        </nav>
+      </details>
+      <details class={activePage?.startsWith('sql/') ? 'active' : ''} open={activePage?.startsWith('sql/')}>
+        <summary>SQL</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'sql/formatter/' ? 'active' : ''}><a href="/sql/formatter/">Formatter</a></li>
+          </ol>
+        </nav>
+      </details>
+    </div>
+    <div class="section">
+      <h3>Convert</h3>
+      <details class={activePage?.startsWith('case/') ? 'active' : ''} open={activePage?.startsWith('case/')}>
+        <summary>Case</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'case/lower/' ? 'active' : ''}><a href="/case/lower/">lower case</a></li>
+            <li class={activePage === 'case/upper/' ? 'active' : ''}><a href="/case/upper/">UPPER CASE</a></li>
+            <li class={activePage === 'case/lower-camel/' ? 'active' : ''}><a href="/case/lower-camel/">lowerCamelCase</a></li>
+            <li class={activePage === 'case/upper-camel/' ? 'active' : ''}><a href="/case/upper-camel/">UpperCamelCase</a></li>
+            <li class={activePage === 'case/snake/' ? 'active' : ''}><a href="/case/snake/">snake_case</a></li>
+            <li class={activePage === 'case/kebab/' ? 'active' : ''}><a href="/case/kebab/">kebab-case</a></li>
+            <li class={activePage === 'case/constant/' ? 'active' : ''}><a href="/case/constant/">CONSTANT_CASE</a></li>
+          </ol>
+        </nav>
+      </details>
+    </div>
+    <div class="section">
+      <h3>Others</h3>
+      <details class={activePage?.startsWith('qr-code/') || activePage?.startsWith('syntax-highlight') ? 'active' : ''} open={activePage?.startsWith('qr-code/') || activePage?.startsWith('syntax-highlight')}>
+        <summary>Others</summary>
+        <nav>
+          <ol>
+            <li class={activePage === 'qr-code/generator/' ? 'active' : ''}><a href="/qr-code/generator/">QR Code Generator</a></li>
+            <li class={activePage === 'syntax-highlight/' ? 'active' : ''}><a href="/syntax-highlight/">Syntax Highlight</a></li>
+          </ol>
+        </nav>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // Language Dropdown Toggle
+  (function() {
+    const langBtn = document.getElementById('lang-btn');
+    const langMenu = document.getElementById('lang-menu');
+    
+    if (langBtn && langMenu) {
+      langBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isExpanded = langBtn.getAttribute('aria-expanded') === 'true';
+        langBtn.setAttribute('aria-expanded', !isExpanded);
+        langMenu.classList.toggle('show');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+          langBtn.setAttribute('aria-expanded', 'false');
+          langMenu.classList.remove('show');
+        }
+      });
+      
+      // Close dropdown on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          langBtn.setAttribute('aria-expanded', 'false');
+          langMenu.classList.remove('show');
+        }
+      });
+    }
+  })();
+</script>

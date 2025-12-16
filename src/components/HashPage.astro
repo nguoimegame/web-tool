@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+const { 
+  title, 
+  description, 
+  algorithmName,
+  jsFile = 'crypto-js.js',
+  activePage,
+  methodWrapper // Optional: e.g., "withOptions(shake_128, ['bits'])"
+} = Astro.props;
+
+// Pre-calculate the script source path
+const scriptSrc = jsFile.startsWith('http') ? jsFile : `/js/${jsFile}`;
+const methodCode = methodWrapper || `window['${algorithmName}']`;
+---
+
+<BaseLayout title={`${title} - Web Tools`} description={description}>
+  <div id="app">
+    <Sidebar activePage={activePage} />
+    <div id="content">
+      <div class="top-nav">
+        <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
+          <img src="/images/menu.svg" width="24" height="24" alt="Menu">
+        </button>
+      </div>
+      <header>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </header>
+      <main>
+        <div class="layout">
+          <div class="layout-block">
+            <div class="input">
+              <div class="block block-fill">
+                <div class="block-title">Input
+                  <div class="toolbar">
+                    <button class="icon" data-toggle="fullscreen">
+                      <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
+                      <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                    </button>
+                  </div>
+                </div>
+                <textarea class="container" id="input" spellcheck="false" placeholder="Enter here..." data-remember="input" data-share="input" data-encoding-from="#input-type" data-auto-update data-toggle="monacoEditor"></textarea>
+              </div>
+            </div>
+            <div class="output">
+              <div class="block block-fill">
+                <div class="block-title">Output
+                  <div class="toolbar">
+                    <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
+                      <img src="/images/copy.svg" alt="Copy" title="Copy"/>
+                    </button>
+                    <button class="icon" data-toggle="fullscreen">
+                      <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
+                      <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                    </button>
+                  </div>
+                </div>
+                <textarea class="container" id="output" spellcheck="false" placeholder="Output here..." data-encoding-from="#output-type" data-toggle="monacoEditor" readonly="readonly"></textarea>
+              </div>
+              <details class="block text-only" data-toggle="copyblock">
+                <summary class="block-title">Share Link
+                  <div class="toolbar">
+                    <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
+                      <img src="/images/copy.svg" alt="Copy" title="Copy"/>
+                    </button>
+                  </div>
+                </summary>
+                <input id="share-link" type="text" placeholder="Share Link" readonly="readonly"/>
+              </details>
+            </div>
+          </div>
+          <div class="settings">
+            <div class="block block-fill">
+              <div class="block-title">Settings</div>
+              <div class="container">
+                <div class="setting">
+                  <a class="btn" id="execute">Hash</a>
+                </div>
+                <div class="setting">
+                  <label class="switcher">
+                    <input type="checkbox" value="1" id="auto-update" checked>
+                    <div class="toggle"></div>
+                    <span>Auto Update</span>
+                  </label>
+                </div>
+                <div class="setting">
+                  <label class="switcher">
+                    <input type="checkbox" value="1" id="remember-input">
+                    <div class="toggle"></div>
+                    <span>Remember Input</span>
+                  </label>
+                </div>
+                <div class="setting">
+                  <label for="input-type">Input Encoding</label>
+                  <select data-toggle="encoding" id="input-type" data-remember="input-type" data-share="input_type" data-auto-update>
+                    <optgroup label="Binary">
+                      <option value="hex">Hex</option>
+                      <option value="base64" data-load-encoding="base64">Base64</option>
+                    </optgroup>
+                    <optgroup label="Text">
+                      <option value="utf-8" selected>UTF-8</option>
+                      <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
+                      <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="setting">
+                  <label for="output-type">Output Encoding</label>
+                  <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update data-type="hex">
+                    <option value="hex">Hex (Lower Case)</option>
+                    <option value="hex_upper">Hex (Upper Case)</option>
+                    <option value="base64" data-load-encoding="base64">Base64</option>
+                  </select>
+                </div>
+                <div class="setting">
+                  <label class="switcher">
+                    <input type="checkbox" value="1" id="hmac-enabled" data-remember="hmac-enabled" data-share="hmac_enabled" data-auto-update>
+                    <div class="toggle"></div>
+                    <span>Enable HMAC</span>
+                  </label>
+                </div>
+                <details class="setting-group" id="hmac" style="display:none" open>
+                  <summary>HMAC</summary>
+                  <div class="setting">
+                    <label for="hmac-input-type">Encoding</label>
+                    <select data-toggle="encoding" id="hmac-input-type" data-remember="hmac-input-type" data-share="hmac_input_type" data-auto-update>
+                      <optgroup label="Binary">
+                        <option value="hex">Hex</option>
+                        <option value="base64" data-load-encoding="base64">Base64</option>
+                      </optgroup>
+                      <optgroup label="Text">
+                        <option value="utf-8" selected>UTF-8</option>
+                        <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
+                        <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <div class="setting">
+                    <label for="hmac-key">Key</label>
+                    <input type="text" id="hmac-key" data-remember="hmac-key" data-share="hmac_key" data-encoding-from="#hmac-input-type" data-auto-update>
+                  </div>
+                </details>
+                <script is:inline>
+                  ++waitLoadCount;
+                  delayScripts.push({
+                    src: '/js/hmac.js?v=2'
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div id="message"></div>
+  </div>
+
+  <script is:inline set:html={`
+    ++waitLoadCount;
+    delayScripts.push({
+      src: '${scriptSrc}',
+      onload: function () {
+        ${methodWrapper ? `
+        // Wait for withOptions if needed
+        var initMethod = function() {
+          if (typeof window.withOptions === 'function') {
+            window.method = ${methodCode};
+            methodLoad();
+          } else {
+            setTimeout(initMethod, 50);
+          }
+        };
+        initMethod();
+        ` : `
+        window.method = window['${algorithmName}'];
+        methodLoad();
+        `}
+      }
+    });
+
+    ++waitLoadCount;
+    delayScripts.push({
+      src: '/js/encoding.js?v=8',
+      onload: function () {
+        methodLoad();
+      }
+    });
+
+    delayScripts.push({
+      src: '/js/clipboard.min.js',
+      onload: function () {
+        new ClipboardJS('[data-toggle="copy"]').on('success', function (e) {
+          showMessage(e.trigger.getAttribute('data-message'));
+          gtag('event', 'copy');
+        });
+      },
+      delay: 100
+    });
+  `}></script>
+</BaseLayout>

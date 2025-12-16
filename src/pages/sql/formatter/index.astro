@@ -1,0 +1,193 @@
+﻿---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+
+const title = "SQL Formatter";
+const description = "This free online SQL formatter helps you beautify your SQL queries and make them more readable. You can choose the indentation level and uppercase keywords option.";
+const activePage = "sql/formatter/";
+---
+
+<BaseLayout title={title} description={description}>
+    <div id="app">
+        <Sidebar activePage={activePage} />
+        
+        <div id="content">
+            <div class="top-nav">
+                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
+                    <img src="/images/menu.svg" width="24" height="24" alt="Menu">
+                </button>
+            </div>
+            
+            <header>
+                <h1>{title}</h1>
+                <p>{description}</p>
+            </header>
+            
+            <main>
+                <div class="layout">
+                    <div class="layout-block">
+                        <div class="input">
+                            <div class="block block-fill">
+                                <div class="block-title">Input
+                                    <div class="toolbar">
+                                        <button class="icon" data-toggle="fullscreen">
+                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
+                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea class="container" id="input" spellcheck="false" placeholder="Enter your SQL query here..." 
+                                    data-remember="input" data-share="input" data-auto-update 
+                                    data-toggle="monacoEditor" data-language="mysql"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="output">
+                            <div class="block block-fill">
+                                <div class="block-title">Output
+                                    <div class="toolbar">
+                                        <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
+                                            <img src="/images/copy.svg" alt="Copy" title="Copy"/>
+                                        </button>
+                                        <button class="icon" data-toggle="fullscreen">
+                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
+                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                                        </button>
+                                    </div>
+                                </div>
+                                <pre class="container syntax-highlight" id="output"><code class="sql"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings">
+                        <div class="block block-fill">
+                            <div class="block-title">Settings</div>
+                            <div class="container">
+                                <div class="setting">
+                                    <a class="btn" id="execute">Format</a>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label class="switcher">
+                                        <input type="checkbox" value="1" id="auto-update" checked>
+                                        <div class="toggle"></div>
+                                        <span>Auto Update</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label class="switcher">
+                                        <input type="checkbox" value="1" id="remember-input">
+                                        <div class="toggle"></div>
+                                        <span>Remember Input</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label class="switcher">
+                                        <input type="checkbox" value="1" id="uppercase-keywords" checked data-remember="uppercase-keywords">
+                                        <div class="toggle"></div>
+                                        <span>Uppercase Keywords</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="indent-type">Indent Type</label>
+                                    <select id="indent-type" data-remember="indent-type">
+                                        <option value="space" selected>Space</option>
+                                        <option value="tab">Tab</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="indent">Indent</label>
+                                    <input id="indent" type="number" value="2" step="1" min="1" max="10" data-remember="indent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script is:inline>
+        // SQL Formatter using sql-formatter library
+        (function() {
+            window.method = function(input) {
+                if (!input || typeof input !== 'string') {
+                    var codeElement = document.querySelector('#output code');
+                    if (codeElement) codeElement.textContent = '';
+                    return '';
+                }
+                
+                try {
+                    var indent = parseInt(document.getElementById('indent').value) || 2;
+                    var indentType = document.getElementById('indent-type').value;
+                    var uppercaseKeywords = document.getElementById('uppercase-keywords').checked;
+                    
+                    // Configure sql-formatter options
+                    var options = {
+                        language: 'sql',
+                        tabWidth: indentType === 'tab' ? 1 : indent,
+                        useTabs: indentType === 'tab',
+                        keywordCase: uppercaseKeywords ? 'upper' : 'preserve',
+                        indentStyle: 'standard',
+                        logicalOperatorNewline: 'before',
+                        expressionWidth: 50
+                    };
+                    
+                    // Format SQL using sql-formatter library
+                    var formatted = '';
+                    if (typeof sqlFormatter !== 'undefined' && sqlFormatter.format) {
+                        formatted = sqlFormatter.format(input, options);
+                    } else {
+                        formatted = input; // Fallback to original if library not loaded
+                    }
+                    
+                    // Update code element and apply highlighting
+                    var codeElement = document.querySelector('#output code');
+                    if (codeElement) {
+                        codeElement.textContent = formatted;
+                        codeElement.className = 'sql';
+                        if (typeof hljs !== 'undefined') {
+                            hljs.highlightBlock(codeElement);
+                        }
+                    }
+                    
+                    return formatted;
+                } catch(e) {
+                    console.error('SQL formatting error:', e);
+                    return input; // Return original on error
+                }
+            };
+            
+            if (typeof methodLoad === 'function') {
+                methodLoad();
+            }
+        })();
+    </script>
+    
+    <script is:inline>
+        ++waitLoadCount;
+        delayScripts.push({
+            src: 'https://cdn.jsdelivr.net/npm/sql-formatter@15.4.7/dist/sql-formatter.min.js',
+            onload: function () {
+                methodLoad();
+            }
+        });
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    
+    <script is:inline>
+        ++waitLoadCount;
+        delayScripts.push({
+            src: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js',
+            onload: function () {
+                methodLoad();
+            }
+        });
+    </script>
+</BaseLayout>

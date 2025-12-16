@@ -1,0 +1,40 @@
+---
+// Hash algorithm to JS file mapping
+// External CDN libraries
+export const externalLibraries = {
+  // SHA family (external CDN)
+  'sha1': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.7.0/sha1.min.js',
+  'sha224': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.11.0/sha256.min.js',
+  'sha256': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.11.0/sha256.min.js',
+  'sha384': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.9.0/sha512.min.js',
+  'sha512': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.9.0/sha512.min.js',
+  'sha512_224': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.9.0/sha512.min.js',
+  'sha512_256': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.9.0/sha512.min.js',
+  
+  // SHA3 family (external CDN)
+  'sha3_224': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  'sha3_256': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  'sha3_384': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  'sha3_512': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  
+  // Keccak (external CDN)
+  'keccak_224': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  'keccak_256': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  'keccak_384': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  'keccak_512': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
+  
+  // Double SHA256
+  'double_sha256': 'https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.11.0/sha256.min.js',
+};
+
+// Local JS files
+export const localLibraries = {
+  // MD family (local)
+  'md2': null, // Special case: uses crypto-api.js + external
+  'md4': 'md4.min.js',
+  'md5': 'md5.min.js',
+};
+
+// Algorithms requiring crypto-api.js
+export const cryptoApiAlgorithms = ['md2'];
+---

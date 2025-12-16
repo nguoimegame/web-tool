@@ -1,0 +1,20 @@
+﻿---
+import EncodingPage from '../components/EncodingPage.astro';
+const title = "Base32 to File";
+const description = "Decode File to text or file. Free online File decoding tool.";
+const toolName = "Decode";
+const jsFile = "base32.js?v=4";
+const activePage = "base32_decode_file";
+const reverseLink = "base32_encode_file";
+---
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+/>

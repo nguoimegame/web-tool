@@ -1,0 +1,22 @@
+﻿---
+import EncodingPage from '../../components/EncodingPage.astro';
+
+const title = "QR Code";
+const description = "Generate QR codes from text or URLs. Free online QR code generator.";
+const toolName = "Generate";
+const jsFile = "qrcode.js?v=5";
+const activePage = "qr-code/";
+const reverseLink = "";
+---
+
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+/>

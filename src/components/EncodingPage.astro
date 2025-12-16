@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from './Sidebar.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    toolName: string;
+    jsFile: string;
+    activePage: string;
+    reverseLink: string;
+    hasInputSettings?: boolean;
+    hasOutputSettings?: boolean;
+    hasFormatSettings?: boolean;
+}
+
+const { title, description, toolName, jsFile, activePage, reverseLink, hasInputSettings = true, hasOutputSettings = false, hasFormatSettings = false } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+    <div id="app">
+        <Sidebar activePage={activePage} />
+        
+        <div id="content">
+            <div class="top-nav">
+                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
+                    <img src="/images/menu.svg" width="24" height="24" alt="Menu">
+                </button>
+            </div>
+            
+            <header>
+                <h1>{title}</h1>
+                <p>{description}</p>
+            </header>
+            
+            <main>
+                <div class="layout">
+                    <div class="layout-block">
+                        <div class="input">
+                            <div class="block block-fill">
+                                <div class="block-title">Input
+                                    <div class="toolbar">
+                                        <button class="icon" data-toggle="fullscreen">
+                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
+                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea class="container" id="input" spellcheck="false" placeholder="Enter here..." 
+                                    data-remember="input" data-share="input" data-encoding-from="#input-type" 
+                                    data-auto-update data-toggle="monacoEditor"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="output">
+                            <div class="block block-fill">
+                                <div class="block-title">Output
+                                    <div class="toolbar">
+                                        <button class="icon" id="swap" onclick={`swap('${reverseLink}', [['#output', '#input'], ['#input-type', '#output-type']])`}>
+                                            <img src="/images/swap.svg" alt="Swap" title="Swap"/>
+                                        </button>
+                                        <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
+                                            <img src="/images/copy.svg" alt="Copy" title="Copy"/>
+                                        </button>
+                                        <button class="icon" data-toggle="fullscreen">
+                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
+                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea class="container" id="output" spellcheck="false" placeholder="Output here..." 
+                                    data-encoding-from="#output-type" data-toggle="monacoEditor" readonly="readonly" 
+                                    style="word-break:break-all;"></textarea>
+                            </div>
+                            
+                            <details class="block text-only" data-toggle="copyblock">
+                                <summary class="block-title">Share Link
+                                    <div class="toolbar">
+                                        <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
+                                            <img src="/images/copy.svg" alt="Copy" title="Copy"/>
+                                        </button>
+                                    </div>
+                                </summary>
+                                <input id="share-link" type="text" placeholder="Share Link" readonly="readonly"/>
+                            </details>
+                        </div>
+                    </div>
+                    
+                    <div class="settings">
+                        <div class="block block-fill">
+                            <div class="block-title">Settings</div>
+                            <div class="container">
+                                <div class="setting">
+                                    <a class="btn" id="execute">{toolName}</a>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label class="switcher">
+                                        <input type="checkbox" value="1" id="auto-update" checked>
+                                        <div class="toggle"></div>
+                                        <span>Auto Update</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label class="switcher">
+                                        <input type="checkbox" value="1" id="remember-input">
+                                        <div class="toggle"></div>
+                                        <span>Remember Input</span>
+                                    </label>
+                                </div>
+                                
+                                {hasInputSettings && (
+                                    <div class="setting">
+                                        <label for="input-type">Input Encoding</label>
+                                        <select data-toggle="encoding" id="input-type" data-remember="input-type" data-share="input_type" data-auto-update>
+                                            <optgroup label="Binary">
+                                                <option value="hex">Hex</option>
+                                                <option value="base64" data-load-encoding="base64">Base64</option>
+                                            </optgroup>
+                                            <optgroup label="Text">
+                                                <option value="utf-8" selected>UTF-8</option>
+                                                <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
+                                                <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                )}
+                                
+                                {hasOutputSettings && (
+                                    <div class="setting">
+                                        <label for="output-type">Output Encoding</label>
+                                        <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update>
+                                            <optgroup label="Binary">
+                                                <option value="hex">Hex</option>
+                                                <option value="base64" data-load-encoding="base64">Base64</option>
+                                            </optgroup>
+                                            <optgroup label="Text">
+                                                <option value="utf-8" selected>UTF-8</option>
+                                                <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
+                                                <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                )}
+                                
+                                {hasFormatSettings && (
+                                    <div class="setting">
+                                        <label for="format">Format</label>
+                                        <select id="format" data-remember="format" data-option="format" data-share="format">
+                                            <option value="rfc_4648">RFC 4648</option>
+                                            <option value="rfc_4648_url_safe">RFC 4648 URL Safe</option>
+                                            <option value="rfc_2045">RFC 2045 (MIME)</option>
+                                            <option value="rfc_2152">RFC 2152 (UTF-7)</option>
+                                            <option value="rfc_3501">RFC 3501 (IMAP)</option>
+                                        </select>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script is:inline set:html={`
+        ++waitLoadCount;
+        delayScripts.push({
+            src: '/js/${jsFile}',
+            onload: function () {
+                console.log('Loaded ${jsFile}');
+            }
+        });
+    `}></script>
+</BaseLayout>

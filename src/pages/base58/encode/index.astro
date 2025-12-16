@@ -1,0 +1,22 @@
+﻿---
+import EncodingPage from '../../../components/EncodingPage.astro';
+
+const title = "Base58 Encode";
+const description = "Encode text or file to Base58. Free online Base58 encoding tool.";
+const toolName = "Encode";
+const jsFile = "base58.js?v=7";
+const activePage = "base58/encode/";
+const reverseLink = "";
+---
+
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={true}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+/>

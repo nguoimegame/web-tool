@@ -1,0 +1,22 @@
+﻿---
+import EncodingPage from '../../../components/EncodingPage.astro';
+
+const title = "JSON Viewer";
+const description = "Free online JSON viewter. Format, minify, validate or view JSON data.";
+const toolName = "View";
+const jsFile = "json.js?v=6";
+const activePage = "json/viewer/";
+const reverseLink = "";
+---
+
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+/>
