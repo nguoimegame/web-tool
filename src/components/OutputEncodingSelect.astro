@@ -1,0 +1,30 @@
+---
+interface Props {
+  id: string;
+  dataRemember?: string;
+  dataShare?: string;
+  dataAutoUpdate?: boolean;
+  dataType?: string;
+}
+
+const {
+  id,
+  dataRemember = id,
+  dataShare,
+  dataAutoUpdate = false,
+  dataType = "hex",
+} = Astro.props;
+---
+
+<select
+  data-toggle="encoding"
+  id={id}
+  data-remember={dataRemember}
+  data-share={dataShare}
+  data-auto-update={dataAutoUpdate || undefined}
+  data-type={dataType}
+>
+  <option value="hex">Hex (Lower Case)</option>
+  <option value="hex_upper">Hex (Upper Case)</option>
+  <option value="base64" data-load-encoding="base64">Base64</option>
+</select>

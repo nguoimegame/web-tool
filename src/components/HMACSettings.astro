@@ -1,0 +1,28 @@
+---
+import InputEncodingSelect from "./InputEncodingSelect.astro";
+---
+
+<div class="setting">
+  <label class="switcher">
+    <input type="checkbox" value="1" id="hmac-enabled" data-remember="hmac-enabled" data-share="hmac_enabled" data-auto-update />
+    <div class="toggle"></div>
+    <span>Enable HMAC</span>
+  </label>
+</div>
+<details class="setting-group" id="hmac" style="display:none" open>
+  <summary>HMAC</summary>
+  <div class="setting">
+    <label for="hmac-input-type">Encoding</label>
+    <InputEncodingSelect id="hmac-input-type" dataRemember="hmac-input-type" dataShare="hmac_input_type" dataAutoUpdate={true} includeTextEncodings={true} />
+  </div>
+  <div class="setting">
+    <label for="hmac-key">Key</label>
+    <input type="text" id="hmac-key" data-remember="hmac-key" data-share="hmac_key" data-encoding-from="#hmac-input-type" data-auto-update />
+  </div>
+</details>
+<script is:inline>
+  ++waitLoadCount;
+  delayScripts.push({
+    src: "/js/hmac.js?v=2",
+  });
+</script>

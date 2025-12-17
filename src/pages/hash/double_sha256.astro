@@ -1,5 +1,7 @@
 ﻿---
 import BaseHashPage from "../../components/BaseHashPage.astro";
+import InputEncodingSelect from "../../components/InputEncodingSelect.astro";
+import OutputEncodingSelect from "../../components/OutputEncodingSelect.astro";
 
 const title = "Double SHA256";
 const description = "This Double SHA256 online tool helps you calculate hashes from strings. You can input UTF-8, UTF-16, Hex, Base64, or other encodings.";
@@ -9,25 +11,11 @@ const activePage = "hash/double_sha256";
 <BaseHashPage title={title} description={description} activePage={activePage}>
   <div class="setting">
     <label for="input-type">Input Encoding</label>
-    <select data-toggle="encoding" id="input-type" data-remember="input-type" data-share="input_type" data-auto-update>
-      <optgroup label="Binary">
-        <option value="hex">Hex</option>
-        <option value="base64" data-load-encoding="base64">Base64</option>
-      </optgroup>
-      <optgroup label="Text">
-        <option value="utf-8" selected>UTF-8</option>
-        <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
-        <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
-      </optgroup>
-    </select>
+    <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} includeTextEncodings={true} />
   </div>
   <div class="setting">
     <label for="output-type">Output Encoding</label>
-    <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update data-type="hex">
-      <option value="hex">Hex (Lower Case)</option>
-      <option value="hex_upper">Hex (Upper Case)</option>
-      <option value="base64" data-load-encoding="base64">Base64</option>
-    </select>
+    <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} />
   </div>
 
   <script is:inline slot="scripts">
