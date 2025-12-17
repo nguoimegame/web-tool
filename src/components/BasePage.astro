@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+interface Props {
+    title: string;
+    description: string;
+    activePage: string;
+}
+
+const { title, description, activePage } = Astro.props;
+---
+
+<BaseLayout title={`${title} - Web Tools`} description={description}>
+    <div id="app">
+        <Sidebar activePage={activePage} />
+        <div id="content">
+            <div class="top-nav">
+                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
+                    <img src="/images/menu.svg" width="24" height="24" alt="Menu" />
+                </button>
+            </div>
+            <PageHeader title={title} description={description} />
+            <main>
+                <slot />
+            </main>
+        </div>
+        <div id="message"></div>
+    </div>
+</BaseLayout>

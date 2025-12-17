@@ -38,23 +38,32 @@ import { toolSections } from "../data/toolSections";
 
           {
             toolSections.map((section) => (
-              <div class="section">
-                <h2>{section.title}</h2>
-                <div class="blocks">
-                  {section.blocks.map((block) => (
-                    <div class="block">
-                      <h3>{block.title}</h3>
-                      <nav>
-                        <ol>
-                          {block.items.map((item) => (
-                            <li>
-                              <a href={item.url}>{item.name}</a>
-                            </li>
-                          ))}
-                        </ol>
-                      </nav>
-                    </div>
-                  ))}
+              <div class="section" data-section={section.title.toLowerCase().replace(/\s+/g, '-')}>
+                <h2 class="section-title">
+                  <button class="section-toggle" aria-expanded="true">
+                    <svg class="section-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span>{section.title}</span>
+                  </button>
+                </h2>
+                <div class="section-content">
+                  <div class="blocks">
+                    {section.blocks.map((block) => (
+                      <div class="block">
+                        <h3>{block.title}</h3>
+                        <nav>
+                          <ol>
+                            {block.items.map((item) => (
+                              <li>
+                                <a href={item.url}>{item.name}</a>
+                              </li>
+                            ))}
+                          </ol>
+                        </nav>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))
@@ -265,5 +274,100 @@ import { toolSections } from "../data/toolSections";
         });
       }
     })();
+
+    // Section Collapse/Expand Toggle
+    (function () {
+      const sections = document.querySelectorAll("#index .section[data-section]");
+      const STORAGE_KEY = "index-sections-state";
+
+      // Load saved state from localStorage
+      function loadSectionStates() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          return saved ? JSON.parse(saved) : {};
+        } catch {
+          return {};
+        }
+      }
+
+      // Save state to localStorage
+      function saveSectionState(sectionId, isExpanded) {
+        try {
+          const states = loadSectionStates();
+          states[sectionId] = isExpanded;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
+        } catch {
+          // Ignore localStorage errors
+        }
+      }
+
+      // Initialize sections with saved states
+      const savedStates = loadSectionStates();
+      sections.forEach(function (section) {
+        const sectionId = section.getAttribute("data-section");
+        const toggleBtn = section.querySelector(".section-toggle");
+        const content = section.querySelector(".section-content");
+
+        if (!toggleBtn || !content) return;
+
+        // Apply saved state or default to expanded
+        const isExpanded = savedStates[sectionId] !== false;
+        toggleBtn.setAttribute("aria-expanded", isExpanded);
+        if (!isExpanded) {
+          content.style.display = "none";
+        }
+
+        // Add click handler
+        toggleBtn.addEventListener("click", function () {
+          const currentState = toggleBtn.getAttribute("aria-expanded") === "true";
+          const newState = !currentState;
+
+          toggleBtn.setAttribute("aria-expanded", newState);
+          content.style.display = newState ? "" : "none";
+          saveSectionState(sectionId, newState);
+        });
+      });
+    })();
   </script>
+
+  <style>
+    #index .section-title {
+      margin: 0;
+      padding: 0;
+    }
+
+    #index .section-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 0;
+      background: none;
+      border: none;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      text-align: left;
+      transition: opacity 0.2s;
+      margin-bottom: 16px;
+    }
+
+    #index .section-toggle:hover {
+      opacity: 0.7;
+    }
+
+    #index .section-arrow {
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    #index .section-toggle[aria-expanded="false"] .section-arrow {
+      transform: rotate(-90deg);
+    }
+
+    #index .section-content {
+      transition: opacity 0.2s;
+    }
+  </style>
 </BaseLayout>

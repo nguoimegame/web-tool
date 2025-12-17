@@ -1,0 +1,33 @@
+---
+interface Props {
+    executeLabel?: string;
+}
+
+const { executeLabel = "Hash" } = Astro.props;
+---
+
+<div class="settings">
+    <div class="block block-fill">
+        <div class="block-title">Settings</div>
+        <div class="container">
+            <div class="setting">
+                <a class="btn" id="execute">{executeLabel}</a>
+            </div>
+            <div class="setting">
+                <label class="switcher">
+                    <input type="checkbox" value="1" id="auto-update" checked />
+                    <div class="toggle"></div>
+                    <span>Auto Update</span>
+                </label>
+            </div>
+            <div class="setting">
+                <label class="switcher">
+                    <input type="checkbox" value="1" id="remember-input" />
+                    <div class="toggle"></div>
+                    <span>Remember Input</span>
+                </label>
+            </div>
+            <slot />
+        </div>
+    </div>
+</div>
