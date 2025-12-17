@@ -1,0 +1,20 @@
+﻿---
+import EncodingPage from '../../components/EncodingPage.astro';
+const title = "File to Base64";
+const description = "Encode file to Base64. Free online Base64 encoding tool.";
+const toolName = "FileEncode";
+const jsFile = "base64.js?v=3";
+const activePage = "encoding/base64_encode_file";
+const reverseLink = "encoding/base64_decode_file";
+---
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={true}
+/>
