@@ -1,9 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Sidebar from './Sidebar.astro';
-import PageHeader from './PageHeader.astro';
-import InputFileBlock from './InputFileBlock.astro';
-import OutputBlock from './OutputBlock.astro';
+import BaseHashPage from '../components/BaseHashPage.astro';
+import OutputEncodingSelect from './OutputEncodingSelect.astro';
+import HMACSettings from './HMACSettings.astro';
+import FileTypeSelect from './FileTypeSelect.astro';
 
 interface Props {
     title: string;
@@ -11,191 +10,42 @@ interface Props {
     algorithmName: string;
     jsFile: string;
     activePage: string;
-    methodWrapper?: string; // Optional: e.g., "withOptions(cshake_128, ['bits', 'function-name', 'customization'])"
+    methodWrapper?: string;
 }
 
 const { title, description, algorithmName, jsFile, activePage, methodWrapper } = Astro.props;
+
+// Pre-calculate the script source path
+const scriptSrc = jsFile.startsWith('http') ? jsFile : `/js/${jsFile}`;
+const methodCode = methodWrapper || `window['${algorithmName.toLowerCase().replace(/\//g, '_').replace(/-/g, '_')}']`;
 ---
 
-<BaseLayout title={title} description={description}>
-    <div id="app">
-        <Sidebar activePage={activePage} />
-        
-        <div id="content">
-            <div class="top-nav">
-                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
-                    <img src="/images/menu.svg" width="24" height="24" alt="Menu">
-                </button>
-            </div>
-            
-            <PageHeader title={title} description={description} />
-            
-            <main>
-                <div class="layout">
-                    <div class="layout-block">
-                        <InputFileBlock 
-                            id="input"
-                            fileId="file"
-                            title="Input"
-                            dataRemember="input"
-                            dataShare="input"
-                        />
-                        <OutputBlock 
-                            id="output"
-                            title="Output"
-                            placeholder="Output here..."
-                            dataEncodingFrom="#output-type"
-                            showShareLink={false}
-                        />
-                    </div>
-                    
-                    <div class="settings">
-                        <div class="block block-fill">
-                            <div class="block-title">Settings</div>
-                            <div class="container">
-                                <div class="setting">
-                                    <a class="btn" id="execute">Hash</a>
-                                </div>
-                                
-                                <div class="setting">
-                                    <label class="switcher">
-                                        <input type="checkbox" value="1" id="auto-update" checked>
-                                        <div class="toggle"></div>
-                                        <span>Auto Update</span>
-                                    </label>
-                                </div>
-                                
-                                <div class="setting">
-                                    <label class="switcher">
-                                        <input type="checkbox" value="1" id="remember-input">
-                                        <div class="toggle"></div>
-                                        <span>Remember Input</span>
-                                    </label>
-                                </div>
-                                
-                                <div class="setting">
-                                    <label for="file-type">Input Type</label>
-                                    <select id="file-type" data-remember="file-type" data-auto-update>
-                                        <option value="file">File</option>
-                                        <option value="url">URL</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="setting">
-                                    <label for="output-type">Output Encoding</label>
-                                    <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update data-type="hex">
-                                        <option value="hex">Hex (Lower Case)</option>
-                                        <option value="hex_upper">Hex (Upper Case)</option>
-                                        <option value="base64" data-load-encoding="base64">Base64</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="setting">
-                                    <label class="switcher">
-                                        <input type="checkbox" value="1" id="hmac-enabled" data-remember="hmac-enabled" data-share="hmac_enabled" data-auto-update>
-                                        <div class="toggle"></div>
-                                        <span>Enable HMAC</span>
-                                    </label>
-                                </div>
-                                
-                                <details class="setting-group" id="hmac" style="display:none" open>
-                                    <summary>HMAC</summary>
-                                    <div class="setting">
-                                        <label for="hmac-input-type">Encoding</label>
-                                        <select data-toggle="encoding" id="hmac-input-type" data-remember="hmac-input-type" data-share="hmac_input_type" data-auto-update>
-                                            <optgroup label="Binary">
-                                                <option value="hex">Hex</option>
-                                                <option value="base64" data-load-encoding="base64">Base64</option>
-                                            </optgroup>
-                                            <optgroup label="Text">
-                                                <option value="utf-8" selected>UTF-8</option>
-                                                <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
-                                                <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                    <div class="setting">
-                                        <label for="hmac-key">Key</label>
-                                        <input type="text" id="hmac-key" data-remember="hmac-key" data-share="hmac_key" data-encoding-from="#hmac-input-type" data-auto-update>
-                                    </div>
-                                </details>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+<BaseHashPage title={title} description={description} activePage={activePage} isUseFile={true}>
+    <div class="setting">
+        <label for="file-type">Input Type</label>
+        <FileTypeSelect id="file-type" dataRemember="file-type" dataAutoUpdate={true} />
     </div>
     
-    <script is:inline set:html={`
-        ++waitLoadCount;
-        delayScripts.push({
-            src: ${jsFile.startsWith('http') ? `'${jsFile}'` : `'/js/${jsFile}'`},
-            onload: function () {
-                ${methodWrapper ? `
-                // Wait for withOptions if needed
-                var initMethod = function() {
-                  if (typeof window.withOptions === 'function') {
-                    window.method = ${methodWrapper};
-                    methodLoad();
-                  } else {
-                    setTimeout(initMethod, 50);
-                  }
-                };
-                initMethod();
-                ` : `
-                window.method = ${algorithmName.toLowerCase().replace(/\//g, '_').replace(/-/g, '_')};
-                methodLoad();
-                `}
-            }
+    <div class="setting">
+        <label for="output-type">Output Encoding</label>
+        <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} />
+    </div>
+    
+    <HMACSettings />
+    
+    <!-- File Hash Page Loader -->
+    <script is:inline slot="scripts" src="/js/file-hash-page-loader.js"></script>
+    
+    <script is:inline slot="scripts" define:vars={{ scriptSrc, algorithmName, methodCode, methodWrapper }}>
+        // Initialize file hash page loader
+        const loader = new FileHashPageLoader({
+            scriptSrc,
+            algorithmName,
+            methodCode,
+            methodWrapper
         });
         
-        ++waitLoadCount;
-        delayScripts.push({
-            src: '/js/hmac.js?v=2'
-        });
-        
-        ++waitLoadCount;
-        delayScripts.push({
-            src: '/js/encoding.js?v=8',
-            onload: function () {
-                methodLoad();
-            }
-        });
-        
-        delayScripts.push({
-            src: '/js/clipboard.min.js',
-            onload: function () {
-                new ClipboardJS('[data-toggle="copy"]').on('success', function (e) {
-                    showMessage(e.trigger.getAttribute('data-message'));
-                    gtag('event', 'copy');
-                });
-            },
-            delay: 100
-        });
-        
-        ++waitLoadCount;
-        delayScripts.push({
-            src: '/js/url-blob.js?v=1',
-            onload: function () {
-                methodLoad();
-            }
-        });
-        
-        ++waitLoadCount;
-        delayScripts.push({
-            src: '/js/droppable-file.js',
-            onload: function () {
-                methodLoad();
-            }
-        });
-        
-        ++waitLoadCount;
-        delayScripts.push({
-            src: '/js/file.js?v=10',
-            onload: function () {
-                methodLoad();
-            }
-        });
-    `}></script>
-</BaseLayout>
+        // Load all required scripts
+        loader.loadScripts();
+    </script>
+</BaseHashPage>

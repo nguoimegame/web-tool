@@ -1,6 +1,7 @@
 ---
 import BasePage from "../components/BasePage.astro";
 import InputBlock from "../components/InputBlock.astro";
+import InputFileBlock from "../components/InputFileBlock.astro";
 import OutputBlock from "../components/OutputBlock.astro";
 import SettingBlock from "../components/SettingBlock.astro";
 
@@ -9,15 +10,20 @@ interface Props {
     description: string;
     activePage: string;
     executeLabel?: string;
+    isUseFile?: boolean;
 }
 
-const { title, description, activePage, executeLabel = "Hash" } = Astro.props;
+const { title, description, activePage, executeLabel = "Hash", isUseFile = false } = Astro.props;
 ---
 
 <BasePage title={title} description={description} activePage={activePage}>
     <div class="layout">
         <div class="layout-block">
-            <InputBlock id="input" title="Input" placeholder="Enter here..." dataRemember="input" dataShare="input" dataEncodingFrom="#input-type" dataAutoUpdate={true} />
+            {isUseFile ? (
+                <InputFileBlock id="input" fileId="file" title="Input" dataRemember="input" dataShare="input" />
+            ) : (
+                <InputBlock id="input" title="Input" placeholder="Enter here..." dataRemember="input" dataShare="input" dataEncodingFrom="#input-type" dataAutoUpdate={true} />
+            )}
             <OutputBlock id="output" title="Output" placeholder="Output here..." dataEncodingFrom="#output-type" />
         </div>
         <SettingBlock executeLabel={executeLabel}>
