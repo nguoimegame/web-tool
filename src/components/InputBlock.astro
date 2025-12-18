@@ -7,6 +7,9 @@ const {
     showFullscreen = true,
     showCopy = false,
     copyMessage = "Copied",
+    // File upload support
+    showFileUpload = false,
+    fileId = "file",
     // Data attributes
     dataRemember = null,
     dataShare = null,
@@ -47,5 +50,14 @@ if (dataToggleMonaco) dataAttrs["data-toggle"] = "monacoEditor";
             </div>
         </div>
         <textarea class="container" id={id} spellcheck="false" placeholder={placeholder} readonly={readonly ? "readonly" : undefined} {...dataAttrs}></textarea>
+        {showFileUpload && (
+            <div class="droppable-zone container" id="droppable-zone" style="display:none;">
+                <input class="droppable-file" type="file" id={fileId} data-auto-update />
+                <div class="droppable-zone-wrapper">
+                    <img class="droppable-zone-icon" src="/images/file.svg" alt="File" />
+                    <div class="droppable-zone-text">Drag and drop the file here or click to select a file. It will process locally and won't be uploaded.</div>
+                </div>
+            </div>
+        )}
     </div>
 </div>

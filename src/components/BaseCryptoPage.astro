@@ -1,0 +1,45 @@
+---
+import BasePage from "./BasePage.astro";
+import InputBlock from "./InputBlock.astro";
+import OutputBlock from "./OutputBlock.astro";
+import SettingBlock from "./SettingBlock.astro";
+
+interface Props {
+    title: string;
+    description: string;
+    activePage: string;
+    executeLabel?: string;
+}
+
+const { title, description, activePage, executeLabel = "Encrypt" } = Astro.props;
+---
+
+<BasePage title={title} description={description} activePage={activePage}>
+    <div class="layout">
+        <div class="layout-block">
+            <InputBlock 
+                id="input"
+                title="Input"
+                placeholder="Enter here..."
+                dataRemember="input"
+                dataShare="input"
+                dataEncodingFrom="#input-type"
+                dataAutoUpdate={true}
+                showFileUpload={true}
+                fileId="file"
+            />
+            <OutputBlock 
+                id="output"
+                title="Output"
+                placeholder="Output here..."
+                dataEncodingFrom="#output-type"
+                showShareLink={true}
+            />
+        </div>
+        <SettingBlock executeLabel={executeLabel}>
+            <slot />
+        </SettingBlock>
+    </div>
+    
+    <slot name="scripts" />
+</BasePage>
