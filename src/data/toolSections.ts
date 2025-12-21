@@ -266,7 +266,7 @@ export const toolSections: ToolSection[] = [
       },
       {
         title: "SQL",
-        items: [{ url: "sql/formatter/", name: "Formatter" }],
+        items: [{ url: "sql/formatter", name: "Formatter" }],
       },
     ],
   },
@@ -276,13 +276,13 @@ export const toolSections: ToolSection[] = [
       {
         title: "Case",
         items: [
-          { url: "case/lower/", name: "lower case" },
-          { url: "case/upper/", name: "UPPER CASE" },
-          { url: "case/lower-camel/", name: "lowerCamelCase" },
-          { url: "case/upper-camel/", name: "UpperCamelCase" },
-          { url: "case/snake/", name: "snake_case" },
-          { url: "case/kebab/", name: "kebab-case" },
-          { url: "case/constant/", name: "CONSTANT_CASE" },
+          { url: "case/lower", name: "lower case" },
+          { url: "case/upper", name: "UPPER CASE" },
+          { url: "case/lower-camel", name: "lowerCamelCase" },
+          { url: "case/upper-camel", name: "UpperCamelCase" },
+          { url: "case/snake", name: "snake_case" },
+          { url: "case/kebab", name: "kebab-case" },
+          { url: "case/constant", name: "CONSTANT_CASE" },
         ],
       },
     ],
@@ -293,8 +293,8 @@ export const toolSections: ToolSection[] = [
       {
         title: "Others",
         items: [
-          { url: "qr-code/generator/", name: "QR Code Generator" },
-          { url: "syntax-highlight/", name: "Syntax Highlight" },
+          { url: "qr-code/generator", name: "QR Code Generator" },
+          { url: "syntax-highlight", name: "Syntax Highlight" },
         ],
       },
     ],

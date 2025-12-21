@@ -84,6 +84,7 @@ const { title, description } = Astro.props;
     }
   </script>
   <link rel="stylesheet" href="/css/style.css?v=27">
+  <slot name="head-css" />
 </head>
 <body>
   <slot />
