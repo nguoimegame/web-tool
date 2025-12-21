@@ -1,0 +1,400 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Sidebar from "../../components/Sidebar.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import { toolSections } from "../../data/toolSections";
+import { languages } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<BaseLayout title={t('sidebar.title')} description={t('sidebar.description')}>
+  <div id="app">
+    <Sidebar />
+    <div id="content">
+      <div class="top-nav"><button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}><img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} /></button></div>
+      <PageHeader title={t('sidebar.title')} description={t('sidebar.description')} />
+      <main>
+        <div id="index">
+          <!-- My Tools Card -->
+          <div class="section" id="my-tools-card">
+            <h2>{t('sidebar.my_tools')}</h2>
+            <div class="blocks">
+              <div class="block">
+                <h3>{t('sidebar.my_tools')}</h3>
+                <nav>
+                  <ol id="favorite-tools-list">
+                    <li class="empty-state">{t('sidebar.my_tools.empty')}</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Box -->
+          <div class="section" id="search-section">
+            <div class="search-container">
+              <input type="text" id="tool-search" placeholder={t('sidebar.search')} autocomplete="off" />
+              <div id="search-results-count"></div>
+            </div>
+          </div>
+
+          {
+            toolSections.map((section) => (
+              <div class="section" data-section={section.title.toLowerCase().replace(/\s+/g, '-')}>
+                <h2 class="section-title">
+                  <button class="section-toggle" aria-expanded="true">
+                    <svg class="section-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span>{section.title}</span>
+                  </button>
+                </h2>
+                <div class="section-content">
+                  <div class="blocks">
+                    {section.blocks.map((block) => (
+                      <div class="block">
+                        <h3>{block.title}</h3>
+                        <nav>
+                          <ol>
+                            {block.items.map((item) => (
+                              <li>
+                                <a href={`/${lang === 'en' ? '' : lang + '/'}${item.url}`}>{item.name}</a>
+                              </li>
+                            ))}
+                          </ol>
+                        </nav>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </main>
+    </div>
+    <div id="message"></div>
+
+    <!-- Hidden element to pass i18n data to script -->
+    <div id="i18n-data"
+      data-no-result={t('sidebar.search.no_result')}
+      data-found={t('sidebar.search.found')}
+      data-empty={t('sidebar.my_tools.empty')}
+      style="display: none;">
+    </div>
+  </div>
+
+  <script is:inline>
+    // Favorites Management
+    (function () {
+      const i18nData = document.getElementById('i18n-data');
+      const emptyFavoritesText = i18nData ? i18nData.getAttribute('data-empty') : 'Click the heart icon next to any tool to add it to your favorites!';
+
+      const FAVORITES_KEY = "favorite-tools";
+
+      function getFavorites() {
+        try {
+          return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveFavorites(favorites) {
+        localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+      }
+
+      function toggleFavorite(url, title) {
+        let favorites = getFavorites();
+        const index = favorites.findIndex((f) => f.url === url);
+
+        if (index > -1) {
+          favorites.splice(index, 1);
+        } else {
+          favorites.push({ url: url, title: title });
+        }
+
+        saveFavorites(favorites);
+        updateFavoritesList();
+        updateHeartIcons();
+      }
+
+      function updateFavoritesList() {
+        const favorites = getFavorites();
+        const list = document.getElementById("favorite-tools-list");
+
+        if (!list) return;
+
+        if (favorites.length === 0) {
+          list.innerHTML = `<li class="empty-state">${emptyFavoritesText}</li>`;
+        } else {
+          list.innerHTML = favorites.map((fav) => `<li><a href="${fav.url}">${fav.title}</a><span class="favorite-toggle active" data-url="${fav.url}" data-title="${fav.title}"></span></li>`).join("");
+        }
+
+        // Attach event listeners to favorite toggles in My Tools
+        list.querySelectorAll(".favorite-toggle").forEach((toggle) => {
+          toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleFavorite(this.dataset.url, this.dataset.title);
+          });
+        });
+      }
+
+      function updateHeartIcons() {
+        const favorites = getFavorites();
+        const favoriteUrls = favorites.map((f) => f.url);
+
+        document.querySelectorAll("#index .favorite-toggle").forEach((toggle) => {
+          const isFavorite = favoriteUrls.includes(toggle.dataset.url);
+          toggle.classList.toggle("active", isFavorite);
+        });
+      }
+
+      function initFavorites() {
+        // Add heart icons to all tool links (except in My Tools card)
+        document.querySelectorAll("#index .section:not(#my-tools-card) li").forEach((li) => {
+          const link = li.querySelector("a");
+          if (!link) return;
+
+          const url = link.getAttribute("href");
+          const itemName = link.textContent;
+
+          // Get category from the block's h3 element
+          const block = li.closest(".block");
+          const category = block ? block.querySelector("h3")?.textContent : "";
+
+          // Format title as "Category: Item Name"
+          const title = category ? `${category}: ${itemName}` : itemName;
+
+          const heart = document.createElement("span");
+          heart.className = "favorite-toggle";
+          heart.dataset.url = url;
+          heart.dataset.title = title;
+
+          heart.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleFavorite(url, title);
+          });
+
+          li.appendChild(heart);
+        });
+
+        updateFavoritesList();
+        updateHeartIcons();
+      }
+
+      // Initialize when DOM is ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initFavorites);
+      } else {
+        initFavorites();
+      }
+    })();
+
+    // Realtime Search Functionality
+    (function () {
+      const i18nData = document.getElementById('i18n-data');
+      const noResultText = i18nData ? i18nData.getAttribute('data-no-result') : 'No tools found';
+      const foundText = i18nData ? i18nData.getAttribute('data-found') : 'Found {0} tool{1}';
+
+      const searchInput = document.getElementById("tool-search");
+      const resultsCount = document.getElementById("search-results-count");
+      const allSections = document.querySelectorAll("#index .section:not(#my-tools-card):not(#search-section)");
+
+      function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let totalVisible = 0;
+        let totalTools = 0;
+
+        if (searchTerm === "") {
+          // Show all sections, blocks, and items
+          allSections.forEach((section) => {
+            section.style.display = "";
+            const blocks = section.querySelectorAll(".block");
+            blocks.forEach((block) => {
+              block.style.display = "";
+              const items = block.querySelectorAll("li");
+              items.forEach((item) => {
+                item.style.display = "";
+                totalTools++;
+              });
+            });
+          });
+          resultsCount.textContent = "";
+          return;
+        }
+
+        // Filter sections and items
+        allSections.forEach((section) => {
+          const sectionTitle = section.querySelector("h2")?.textContent.toLowerCase() || "";
+          const blocks = section.querySelectorAll(".block");
+          let sectionHasVisibleItems = false;
+
+          blocks.forEach((block) => {
+            const blockTitle = block.querySelector("h3")?.textContent.toLowerCase() || "";
+            const items = block.querySelectorAll("li");
+            let blockHasVisibleItems = false;
+
+            items.forEach((item) => {
+              totalTools++;
+              const link = item.querySelector("a");
+              if (!link) return;
+
+              const toolName = link.textContent.toLowerCase();
+              const isMatch = toolName.includes(searchTerm) || blockTitle.includes(searchTerm) || sectionTitle.includes(searchTerm);
+
+              if (isMatch) {
+                item.style.display = "";
+                blockHasVisibleItems = true;
+                sectionHasVisibleItems = true;
+                totalVisible++;
+              } else {
+                item.style.display = "none";
+              }
+            });
+
+            // Hide block if no visible items
+            block.style.display = blockHasVisibleItems ? "" : "none";
+          });
+
+          // Hide section if no visible items
+          section.style.display = sectionHasVisibleItems ? "" : "none";
+        });
+
+        // Update results count
+        if (totalVisible === 0) {
+          resultsCount.innerHTML = `<span style="color: var(--var-red);">${noResultText}</span>`;
+        } else {
+          const text = foundText.replace('{0}', totalVisible).replace('{1}', totalVisible !== 1 ? "s" : "");
+          resultsCount.innerHTML = `<span style="color: var(--var-primary);">${text}</span>`;
+        }
+      }
+
+      // Add event listener for realtime search
+      if (searchInput) {
+        searchInput.addEventListener("input", performSearch);
+
+        // Focus search on Ctrl+K or Cmd+K
+        document.addEventListener("keydown", function (e) {
+          if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+            e.preventDefault();
+            searchInput.focus();
+          }
+
+          // Clear search on Escape
+          if (e.key === "Escape" && document.activeElement === searchInput) {
+            searchInput.value = "";
+            performSearch();
+            searchInput.blur();
+          }
+        });
+      }
+    })();
+
+    // Section Collapse/Expand Toggle
+    (function () {
+      const sections = document.querySelectorAll("#index .section[data-section]");
+      const STORAGE_KEY = "index-sections-state";
+
+      // Load saved state from localStorage
+      function loadSectionStates() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          return saved ? JSON.parse(saved) : {};
+        } catch {
+          return {};
+        }
+      }
+
+      // Save state to localStorage
+      function saveSectionState(sectionId, isExpanded) {
+        try {
+          const states = loadSectionStates();
+          states[sectionId] = isExpanded;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
+        } catch {
+          // Ignore localStorage errors
+        }
+      }
+
+      // Initialize sections with saved states
+      const savedStates = loadSectionStates();
+      sections.forEach(function (section) {
+        const sectionId = section.getAttribute("data-section");
+        const toggleBtn = section.querySelector(".section-toggle");
+        const content = section.querySelector(".section-content");
+
+        if (!toggleBtn || !content) return;
+
+        // Apply saved state or default to expanded
+        const isExpanded = savedStates[sectionId] !== false;
+        toggleBtn.setAttribute("aria-expanded", isExpanded);
+        if (!isExpanded) {
+          content.style.display = "none";
+        }
+
+        // Add click handler
+        toggleBtn.addEventListener("click", function () {
+          const currentState = toggleBtn.getAttribute("aria-expanded") === "true";
+          const newState = !currentState;
+
+          toggleBtn.setAttribute("aria-expanded", newState);
+          content.style.display = newState ? "" : "none";
+          saveSectionState(sectionId, newState);
+        });
+      });
+    })();
+  </script>
+
+  <style>
+    #index .section-title {
+      margin: 0;
+      padding: 0;
+    }
+
+    #index .section-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 0;
+      background: none;
+      border: none;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      text-align: left;
+      transition: opacity 0.2s;
+      margin-bottom: 16px;
+    }
+
+    #index .section-toggle:hover {
+      opacity: 0.7;
+    }
+
+    #index .section-arrow {
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    #index .section-toggle[aria-expanded="false"] .section-arrow {
+      transform: rotate(-90deg);
+    }
+
+    #index .section-content {
+      transition: opacity 0.2s;
+    }
+  </style>
+</BaseLayout>

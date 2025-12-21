@@ -1,6 +1,9 @@
 ---
 import { toolSections } from "../data/toolSections";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const { activePage } = Astro.props;
 
 // Helper function to check if a page matches an item URL
@@ -17,60 +20,47 @@ function isBlockActive(items: any[], currentPage: string | undefined): boolean {
   if (!currentPage) return false;
   return items.some((item) => isActiveItem(item.url, currentPage));
 }
+
+const languages = [
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳' },
+  { code: 'zh', name: '中文', flag: '🇨🇳' },
+  { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+];
+
+const currentLang = languages.find(l => l.code === lang) || languages[0];
 ---
 
 <div id="sidebar">
   <div class="mask"></div>
   <div class="container">
     <header>
-      <a href="/">
-        <h2>Web Tools</h2>
+      <a href={`/${lang === 'en' ? '' : lang + '/'}`}>
+        <h2>{t('sidebar.title')}</h2>
       </a>
       <div class="toolbar">
         <div class="lang-dropdown">
           <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false">
-            <span class="lang-flag">🇬🇧</span>
-            <span class="lang-text">EN</span>
+            <span class="lang-flag">{currentLang.flag}</span>
+            <span class="lang-text">{currentLang.code.toUpperCase()}</span>
             <svg class="lang-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
           <div class="lang-menu" id="lang-menu" role="menu">
-            <a href="/" class="lang-option active" role="menuitem">
-              <span class="lang-flag">🇬🇧</span>
-              <span class="lang-name">English</span>
-            </a>
-            <a href="/vi/" class="lang-option" role="menuitem">
-              <span class="lang-flag">🇻🇳</span>
-              <span class="lang-name">Tiếng Việt</span>
-            </a>
-            <a href="/zh/" class="lang-option" role="menuitem">
-              <span class="lang-flag">🇨🇳</span>
-              <span class="lang-name">中文</span>
-            </a>
-            <a href="/hi/" class="lang-option" role="menuitem">
-              <span class="lang-flag">🇮🇳</span>
-              <span class="lang-name">हिंदी</span>
-            </a>
-            <a href="/es/" class="lang-option" role="menuitem">
-              <span class="lang-flag">🇪🇸</span>
-              <span class="lang-name">Español</span>
-            </a>
-            <a href="/fr/" class="lang-option" role="menuitem">
-              <span class="lang-flag">🇫🇷</span>
-              <span class="lang-name">Français</span>
-            </a>
-            <a href="/pt/" class="lang-option" role="menuitem">
-              <span class="lang-flag">🇵🇹</span>
-              <span class="lang-name">Português</span>
-            </a>
-            <a href="/ja/" class="lang-option" role="menuitem">
-              <span class="lang-flag">🇯🇵</span>
-              <span class="lang-name">日本語</span>
-            </a>
+            {languages.map((l) => (
+              <a href={`/${l.code === 'en' ? '' : l.code + '/'}`} class={`lang-option ${lang === l.code ? 'active' : ''}`} role="menuitem">
+                <span class="lang-flag">{l.flag}</span>
+                <span class="lang-name">{l.name}</span>
+              </a>
+            ))}
           </div>
         </div>
-        <button class="icon theme"><img class="light" src="/images/light.svg" alt="Dark mode" title="Dark mode" /><img class="dark" src="/images/dark.svg" alt="Dark mode" title="Dark mode" /></button>
+        <button class="icon theme"><img class="light" src="/images/light.svg" alt={t('sidebar.dark_mode')} title={t('sidebar.dark_mode')} /><img class="dark" src="/images/dark.svg" alt={t('sidebar.dark_mode')} title={t('sidebar.dark_mode')} /></button>
       </div>
     </header>
 
@@ -85,7 +75,7 @@ function isBlockActive(items: any[], currentPage: string | undefined): boolean {
                 <ol>
                   {block.items.map((item) => (
                     <li class={isActiveItem(item.url, activePage) ? "active" : ""}>
-                      <a href={`/${item.url}`}>{item.name}</a>
+                      <a href={`/${lang === 'en' ? '' : lang + '/'}${item.url}`}>{item.name}</a>
                     </li>
                   ))}
                 </ol>
