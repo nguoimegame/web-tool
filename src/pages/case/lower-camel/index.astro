@@ -1,10 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
 
-const title = "Convert to lowerCamelCase";
-const description = "Convert text to lowerCamelCase. Free online case conversion tool.";
+const title = "Lower Camel Case Converter";
+const description = "Convert string to lower camel case (Dromedary case).";
 const toolName = "Convert";
-const jsFile = "case.js?v=1";
+const jsFile = "change-case.min.js";
+const initScript = "window.method = ChangeCase.camelCase; methodLoad();";
 const activePage = "case/lower-camel/";
 const reverseLink = "";
 ---
@@ -14,6 +15,7 @@ const reverseLink = "";
     description={description}
     toolName={toolName}
     jsFile={jsFile}
+    initScript={initScript}
     activePage={activePage}
     reverseLink={reverseLink}
     hasInputSettings={false}
