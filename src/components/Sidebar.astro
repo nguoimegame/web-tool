@@ -43,16 +43,24 @@ function getLangSwitchUrl(targetLang: string) {
   const segments = currentPath.split('/').filter(Boolean);
 
   // Remove current language code if it exists at the start
-  if (segments.length > 0 && segments[0] === lang) {
-    segments.shift();
+  if (segments.length > 0) {
+    const firstSegment = segments[0].replace(/\.html$/, '');
+    // Check if the first segment is a valid language code
+    const isLanguage = languages.some(l => l.code === firstSegment);
+    if (isLanguage) {
+      segments.shift();
+    }
   }
 
   // Reconstruct path
-  const pathRest = segments.join('/');
+  let pathRest = segments.join('/');
+  
+  // Remove .html extension if present (for static builds)
+  pathRest = pathRest.replace(/\.html$/, '');
 
   let result;
-  // Handle root or index.html
-  if (pathRest === '' || pathRest === 'index.html') {
+  // Handle root or index
+  if (pathRest === '' || pathRest === 'index') {
     result = `/${targetLang}`;
   } else {
     result = `/${targetLang}/${pathRest}`;
