@@ -1,23 +1,26 @@
 ﻿---
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import Sidebar from "../../../../components/Sidebar.astro";
+import { useTranslations } from "../../../../i18n/utils";
+
+const t = useTranslations('en');
+const title = t('rsa_key_generator.title');
+const description = t('rsa_key_generator.description');
+const activePage = "cryptography/rsa/key-generator";
 ---
 
-<BaseLayout
-  title="RSA Key Generator - Web Tools"
-  description="This online tool helps you generate a pair of RSA keys. The PEM format supports PKCS#1, PKCS#5, and PKCS#8."
->
+<BaseLayout title={title} description={description}>
   <div id="app">
-    <Sidebar activePage="cryptography/rsa/key-generator" />
+    <Sidebar activePage={activePage} />
     <div id="content">
       <div class="top-nav">
-        <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu"
-          ><img src="/images/menu.svg" width="24" height="24" alt="Menu" /></button
+        <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}
+          ><img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} /></button
         >
       </div>
       <header>
-        <h1>RSA Key Generator</h1>
-        <p>This online tool helps you generate a pair of RSA keys. The PEM format supports PKCS#1, PKCS#5, and PKCS#8.</p>
+        <h1>{t('rsa_key_generator.title')}</h1>
+        <p>{t('rsa_key_generator.description')}</p>
       </header>
       <main>
         <div class="layout">
@@ -25,7 +28,7 @@ import Sidebar from "../../../../components/Sidebar.astro";
             <div class="output">
               <div class="block block-fill">
                 <div class="block-title">
-                  Private Key
+                  {t('private_key')}
                   <div class="toolbar">
                     <a
                       class="icon"
@@ -53,7 +56,7 @@ import Sidebar from "../../../../components/Sidebar.astro";
               </div>
               <div class="block block-fill">
                 <div class="block-title">
-                  Public Key
+                  {t('public_key')}
                   <div class="toolbar">
                     <a class="icon" id="download-public" download="public.pem" style="display:none"
                       ><img src="/images/download.svg" alt="Download" title="Download" /></a
@@ -80,35 +83,35 @@ import Sidebar from "../../../../components/Sidebar.astro";
               </div>
               <details class="block text-only" data-toggle="copyblock">
                 <summary class="block-title"
-                  >Share Link<div class="toolbar">
+                  >{t('share_link')}<div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied"
                       ><img src="/images/copy.svg" alt="Copy" title="Copy" /></button
                     >
                   </div></summary
                 >
-                <input id="share-link" type="text" placeholder="Share Link" readonly="readonly" />
+                <input id="share-link" type="text" placeholder={t('share_link')} readonly="readonly" />
               </details>
             </div>
           </div>
           <div class="settings">
             <div class="block block-fill">
-              <div class="block-title">Settings</div>
+              <div class="block-title">{t('settings')}</div>
               <div class="container">
-                <div class="setting"><a class="btn" id="execute">Generate</a></div>
+                <div class="setting"><a class="btn" id="execute">{t('generate')}</a></div>
                 <div class="setting">
                   <label class="switcher"
                     ><input type="checkbox" value="1" id="auto-update" checked /><div class="toggle"></div>
-                    <span>Auto Update</span></label
+                    <span>{t('auto_update')}</span></label
                   >
                 </div>
                 <div class="setting">
                   <label class="switcher"
                     ><input type="checkbox" value="1" id="remember-input" /><div class="toggle"></div>
-                    <span>Remember Input</span></label
+                    <span>{t('remember_input')}</span></label
                   >
                 </div>
                 <div class="setting">
-                  <label for="rsa-bits">Bits</label><input
+                  <label for="rsa-bits">{t('bits')}</label><input
                     type="number"
                     id="rsa-bits"
                     data-option="rsa-bits"
@@ -121,7 +124,7 @@ import Sidebar from "../../../../components/Sidebar.astro";
                   />
                 </div>
                 <div class="setting">
-                  <label for="pem-format">Format</label><select
+                  <label for="pem-format">{t('format')}</label><select
                     id="pem-format"
                     data-option="pem-format"
                     data-remember="pem-format"
@@ -133,7 +136,7 @@ import Sidebar from "../../../../components/Sidebar.astro";
                   </select>
                 </div>
                 <div class="setting" id="cipher-algorithm-block">
-                  <label for="cipher-algorithm">Cipher Algorithm</label><select
+                  <label for="cipher-algorithm">{t('cipher_algorithm')}</label><select
                     id="cipher-algorithm"
                     data-option="cipher-algorithm"
                     data-remember="cipher-algorithm"
@@ -159,11 +162,11 @@ import Sidebar from "../../../../components/Sidebar.astro";
                         data-toggle="toggle"
                         data-target="#passphrase-block"
                       /><div class="toggle"></div>
-                      <span>Passphrase</span></label
+                      <span>{t('passphrase')}</span></label
                     >
                   </div>
                   <div class="setting" id="passphrase-block" style="display:none;">
-                    <label for="passphrase">Passphrase</label><input
+                    <label for="passphrase">{t('passphrase')}</label><input
                       type="text"
                       id="passphrase"
                       data-option="passphrase"

@@ -1,10 +1,13 @@
 ﻿---
 import HashPage from '../../components/HashPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
 ---
 
 <HashPage 
-  title="SHA3-384"
-  description="This SHA3-384 online tool helps you calculate hashes from strings. You can input UTF-8, UTF-16, Hex, Base64, or other encodings. It also supports HMAC."
+  title={t('sha3_384.title')}
+  description={t('sha3_384.description')}
   algorithmName="sha3_384"
   jsFile="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js"
   activePage="hash/sha3_384"

@@ -1,0 +1,42 @@
+---
+import EncodingPage from '../../../../components/EncodingPage.astro';
+import { languages } from '../../../../i18n/ui';
+import { useTranslations } from '../../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('xml_validator.title').replace('XML', 'JSON');
+const description = t('xml_validator.description').replace('XML', 'JSON');
+const toolName = t('validate');
+const jsFile = "json.js?v=6";
+const activePage = "json/validator";
+const reverseLink = "";
+const initScript = `window.method = json.validate; methodLoad();`;
+const extraJsFile = "validator.js";
+---
+
+<EncodingPage
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+    initScript={initScript}
+    extraJsFile={extraJsFile}
+    editorLanguage="json"
+    outputToggleMonaco={false}
+    outputPlaceholder={t('error_message')}
+>
+    <div slot="before-output-textarea" class="container" id="validate-result"></div>
+</EncodingPage>

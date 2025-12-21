@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../components/EncodingPage.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const title = "Encode File to Base64";
-const description = "This online Base64 encoding tool helps you encode a file from local or URL to Base64 without uploading the file. It also supports various formats such as RFC 4648 (standard and URL Safe), RFC 2045 (MIME), RFC 2152 (UTF-7), and RFC 3501 (IMAP).";
-const toolName = "Encode";
+const t = useTranslations('en');
+const title = t('base64_encode_file.title');
+const description = t('base64_encode_file.description');
+const toolName = t('encode');
 const jsFile = "base64.js?v=6";
 const activePage = "encoding/base64_encode_file";
 ---
@@ -19,8 +21,8 @@ const activePage = "encoding/base64_encode_file";
     hasOutputSettings={false}
     hasFormatSettings={true}
     hasFileInput={true}
-    inputFileUrlPlaceholder="Enter the URL here, and it will attempt to download. If it cannot be downloaded programmatically, you may need to download it manually."
-    inputFileDropText="Drag and drop the file here or click to select a file. It will process locally and won't be uploaded."
+    inputFileUrlPlaceholder={t('url_placeholder')}
+    inputFileDropText={t('drag_drop')}
     initScript={`
         window.method = withOptions(base64Encode, ['format']);
         methodLoad();
@@ -28,7 +30,7 @@ const activePage = "encoding/base64_encode_file";
 >
     <div slot="settings">
         <div class="setting">
-            <label for="file-type">Input Type</label>
+            <label for="file-type">{t('input_type')}</label>
             <select id="file-type" data-remember="file-type" data-auto-update>
                 <option value="file">File</option>
                 <option value="url">URL</option>

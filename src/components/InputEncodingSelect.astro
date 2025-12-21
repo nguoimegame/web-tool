@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n/utils';
+
 interface Props {
   id: string;
   dataRemember?: string;
@@ -14,6 +16,9 @@ const {
   dataAutoUpdate = false,
   includeTextEncodings = true,
 } = Astro.props;
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <select
@@ -23,13 +28,13 @@ const {
   data-share={dataShare}
   data-auto-update={dataAutoUpdate || undefined}
 >
-  <optgroup label="Binary">
+  <optgroup label={t('binary')}>
     <option value="hex">Hex</option>
     <option value="base64" data-load-encoding="base64">Base64</option>
   </optgroup>
   {
     includeTextEncodings && (
-      <optgroup label="Text">
+      <optgroup label={t('text')}>
         <option value="utf-8" selected>
           UTF-8
         </option>

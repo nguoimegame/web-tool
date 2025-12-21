@@ -1,4 +1,5 @@
 ---
+import { useTranslations } from '../i18n/utils';
 const {
     id = "input",
     title = "Input",
@@ -27,6 +28,9 @@ if (dataEncodingFrom) dataAttrs["data-encoding-from"] = dataEncodingFrom;
 if (dataAutoUpdate) dataAttrs["data-auto-update"] = true;
 if (dataToggleMonaco) dataAttrs["data-toggle"] = "monacoEditor";
 if (dataLanguage) dataAttrs["data-language"] = dataLanguage;
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <div class="input">
@@ -57,7 +61,7 @@ if (dataLanguage) dataAttrs["data-language"] = dataLanguage;
                 <input class="droppable-file" type="file" id={fileId} data-auto-update />
                 <div class="droppable-zone-wrapper">
                     <img class="droppable-zone-icon" src="/images/file.svg" alt="File" />
-                    <div class="droppable-zone-text">Drag and drop the file here or click to select a file. It will process locally and won't be uploaded.</div>
+                    <div class="droppable-zone-text">{t('drag_drop')}</div>
                 </div>
             </div>
         )}

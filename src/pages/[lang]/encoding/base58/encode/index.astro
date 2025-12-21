@@ -1,0 +1,56 @@
+---
+import EncodingPage from '../../../../../components/EncodingPage.astro';
+import { languages } from '../../../../../i18n/ui';
+import { useTranslations } from "../../../../../i18n/utils";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('base58_encode.title');
+const description = t('base58_encode.description');
+const toolName = t('encode');
+const jsFile = "base58.js?v=3";
+const activePage = "encoding/base58/encode";
+---
+
+<EncodingPage
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink="base58/decode"
+    hasInputSettings={true}
+    hasOutputSettings={false}
+    initScript={`
+        window.method = base58Encode;
+        methodLoad();
+    `}
+    extraJsFile="encoding.js?v=8"
+>
+    <script is:inline slot="scripts" set:html={`
+        ++waitLoadCount;
+        delayScripts.push({
+            src: '/js/base-x.min.js',
+            onload: function () {
+                methodLoad();
+            }
+        });
+        delayScripts.push({
+            src: '/js/clipboard.min.js',
+            onload: function () {
+                new ClipboardJS('[data-toggle="copy"]').on('success', function (e) {
+                    showMessage(e.trigger.getAttribute('data-message'));
+                    gtag('event', 'copy');
+                });
+            },
+            delay: 100
+        });
+    `}></script>
+</EncodingPage>

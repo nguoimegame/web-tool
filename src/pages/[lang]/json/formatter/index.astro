@@ -1,0 +1,50 @@
+---
+import EncodingPage from '../../../../components/EncodingPage.astro';
+import { languages } from '../../../../i18n/ui';
+import { useTranslations } from '../../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('json_formatter.title');
+const description = t('json_formatter.description');
+const toolName = t('format');
+const jsFile = "json.js?v=6";
+const activePage = "json/formatter";
+const reverseLink = "";
+const initScript = `window.method = withOptions(json.format, ['indent-type', 'indent']); methodLoad();`;
+---
+
+<EncodingPage
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+    initScript={initScript}
+    editorLanguage="json"
+>
+    <div slot="settings">
+        <div class="setting">
+            <label for="indent-type">{t('indent_type')}</label>
+            <select id="indent-type" data-option="indent-type" data-remember="indent-type">
+                <option value="space" selected>Space</option>
+                <option value="tab">Tab</option>
+            </select>
+        </div>
+        <div class="setting">
+            <label for="indent">{t('indent')}</label>
+            <input id="indent" type="number" value="2" step="1" min="1" max="10" data-option="indent" data-remember="indent">
+        </div>
+    </div>
+</EncodingPage>

@@ -1,11 +1,19 @@
 ﻿---
 import HashPage from '../../components/HashPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const title = t('md5.title');
+const description = t('md5.description');
+const algorithmName = "md5";
+const jsFile = "md5.min.js";
+const activePage = "hash/md5";
 ---
 
 <HashPage 
-  title="MD5"
-  description="This MD5 online tool helps you calculate hashes from strings. You can input UTF-8, UTF-16, Hex, Base64, or other encodings. It also supports HMAC."
-  algorithmName="md5"
-  jsFile="md5.min.js"
-  activePage="hash/md5"
+  title={title}
+  description={description}
+  algorithmName={algorithmName}
+  jsFile={jsFile}
+  activePage={activePage}
 />

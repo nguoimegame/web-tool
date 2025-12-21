@@ -1,0 +1,32 @@
+---
+import BaseFileHashPage from "../../../components/BaseFileHashPage.astro";
+import { languages } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+---
+
+<BaseFileHashPage
+  title="SHAKE128 File Hash"
+  description="This SHAKE128 online tool helps you calculate the hash of a file from local or URL using SHAKE128 without uploading the file."
+  activePage="hash/shake_128_checksum"
+>
+  <div class="setting">
+    <label for="bits">Output Bits</label>
+    <input type="number" id="bits" data-option="bits" data-remember="bits-256" data-share="bits" value="256" step="8" min="8" />
+  </div>
+
+  <script is:inline slot="algorithm-script">
+    ++waitLoadCount;
+    delayScripts.push({
+      src: "https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js",
+      onload: function () {
+        window.method = withOptions(shake_128, ["bits"]);
+        methodLoad();
+      },
+    });
+  </script>
+</BaseFileHashPage>

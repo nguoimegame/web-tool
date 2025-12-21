@@ -1,7 +1,10 @@
 ﻿---
 import FileHashPage from '../../components/FileHashPage.astro';
-const title = "MD5 Checksum";
-const description = "This MD5 online tool helps you calculate the hash of a file from local or URL using MD5 without uploading the file. It also supports HMAC.";
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const title = t('md5_checksum.title');
+const description = t('md5_checksum.description');
 const algorithmName = "MD5";
 const jsFile = "md5.min.js";
 const activePage = "hash/md5_checksum";

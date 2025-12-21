@@ -1,14 +1,17 @@
 ---
+import { useTranslations } from '../i18n/utils';
 interface Props {
     executeLabel?: string;
 }
 
 const { executeLabel = "Hash" } = Astro.props;
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <div class="settings">
     <div class="block block-fill">
-        <div class="block-title">Settings</div>
+        <div class="block-title">{t('settings')}</div>
         <div class="container">
             <div class="setting">
                 <a class="btn" id="execute">{executeLabel}</a>
@@ -17,14 +20,14 @@ const { executeLabel = "Hash" } = Astro.props;
                 <label class="switcher">
                     <input type="checkbox" value="1" id="auto-update" checked />
                     <div class="toggle"></div>
-                    <span>Auto Update</span>
+                    <span>{t('auto_update')}</span>
                 </label>
             </div>
             <div class="setting">
                 <label class="switcher">
                     <input type="checkbox" value="1" id="remember-input" />
                     <div class="toggle"></div>
-                    <span>Remember Input</span>
+                    <span>{t('remember_input')}</span>
                 </label>
             </div>
             <slot />

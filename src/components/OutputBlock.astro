@@ -1,4 +1,5 @@
 ---
+import { useTranslations } from '../i18n/utils';
 const {
     id = "output",
     title = "Output",
@@ -23,6 +24,9 @@ const dataAttrs: Record<string, any> = {};
 if (dataEncodingFrom) dataAttrs["data-encoding-from"] = dataEncodingFrom;
 if (dataToggleMonaco) dataAttrs["data-toggle"] = "monacoEditor";
 if (dataLanguage) dataAttrs["data-language"] = dataLanguage;
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <div class="output">
@@ -63,14 +67,14 @@ if (dataLanguage) dataAttrs["data-language"] = dataLanguage;
         showShareLink && (
             <details class="block text-only" data-toggle="copyblock">
                 <summary class="block-title">
-                    Share Link
+                    {t('share_link')}
                     <div class="toolbar">
                         <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
                             <img src="/images/copy.svg" alt="Copy" title="Copy" />
                         </button>
                     </div>
                 </summary>
-                <input id="share-link" type="text" placeholder="Share Link" readonly="readonly" />
+                <input id="share-link" type="text" placeholder={t('share_link')} readonly="readonly" />
             </details>
         )
     }

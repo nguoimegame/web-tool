@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "JSON Minifier";
-const description = "This free online JSON minifier helps you minify your JSON string and make it more cleaner. It can remove indentation and new lines to reduce size and make it one line.";
-const toolName = "Minify";
+const t = useTranslations('en');
+const title = t('json_minifier.title');
+const description = t('json_minifier.description');
+const toolName = t('minify');
 const jsFile = "json.js?v=6";
 const activePage = "json/minifier";
 const reverseLink = "";

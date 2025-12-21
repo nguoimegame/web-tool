@@ -1,0 +1,27 @@
+---
+import FileHashPage from '../../../components/FileHashPage.astro';
+import { languages } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('keccak_224_checksum.title');
+const description = t('keccak_224_checksum.description');
+const algorithmName = "keccak_224";
+const jsFile = "https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js";
+const activePage = "hash/keccak_224_checksum";
+---
+<FileHashPage 
+    title={title}
+    description={description}
+    algorithmName={algorithmName}
+    jsFile={jsFile}
+    activePage={activePage}
+/>

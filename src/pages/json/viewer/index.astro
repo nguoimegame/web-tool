@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "JSON Viewer";
-const description = "This JSON Viewer online tool helps you view JSON object in a readable way.";
-const toolName = "View";
+const t = useTranslations('en');
+const title = t('json_viewer.title');
+const description = t('json_viewer.description');
+const toolName = t('view');
 const jsFile = "json.js?v=6";
 const activePage = "json/viewer";
 const reverseLink = "";

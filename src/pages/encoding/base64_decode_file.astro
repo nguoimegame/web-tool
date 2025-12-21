@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../components/EncodingPage.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const title = "Decode Base64 to File";
-const description = "This online Base64 decoding tool helps you decode Base64 to a file for download. It also supports various formats such as RFC 4648 (standard and URL Safe), RFC 2045 (MIME), RFC 2152 (UTF-7), and RFC 3501 (IMAP)";
-const toolName = "Decode";
+const t = useTranslations('en');
+const title = t('base64_decode_file.title');
+const description = t('base64_decode_file.description');
+const toolName = t('decode');
 const jsFile = "base64.js?v=6";
 const activePage = "encoding/base64_decode_file";
 ---
@@ -18,9 +20,9 @@ const activePage = "encoding/base64_decode_file";
     hasInputSettings={false}
     hasOutputSettings={false}
     hasFileInput={true}
-    inputFileUrlPlaceholder="Enter here..."
+    inputFileUrlPlaceholder={t('enter_here')}
     showOutputDownload={true}
-    inputFileDropText="Drag and drop the file here or click to select a file. It will process locally and won't be uploaded."
+    inputFileDropText={t('drag_drop')}
     initScript={`
         window.method = download;
         methodLoad();
@@ -28,15 +30,15 @@ const activePage = "encoding/base64_decode_file";
 >
     <div slot="settings">
         <div class="setting">
-            <label for="file-type">Input Type</label>
+            <label for="file-type">{t('input_type')}</label>
             <select id="file-type" data-remember="file-type" data-auto-update>
                 <option value="text">Encoded Text</option>
                 <option value="file">Encoded File</option>
             </select>
         </div>
         <div class="setting">
-            <label for="download-file-name">File Name</label>
-            <input type="text" id="download-file-name" data-remember="download-file-name" value="download.txt" placeholder="Download File Name">
+            <label for="download-file-name">{t('file_name')}</label>
+            <input type="text" id="download-file-name" data-remember="download-file-name" value="download.txt" placeholder={t('file_name')}>
         </div>
     </div>
 

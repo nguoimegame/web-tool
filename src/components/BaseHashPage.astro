@@ -4,6 +4,7 @@ import InputBlock from "../components/InputBlock.astro";
 import InputFileBlock from "../components/InputFileBlock.astro";
 import OutputBlock from "../components/OutputBlock.astro";
 import SettingBlock from "../components/SettingBlock.astro";
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
     title: string;
@@ -14,17 +15,19 @@ interface Props {
 }
 
 const { title, description, activePage, executeLabel = "Hash", isUseFile = false } = Astro.props;
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <BasePage title={title} description={description} activePage={activePage}>
     <div class="layout">
         <div class="layout-block">
             {isUseFile ? (
-                <InputFileBlock id="input" fileId="file" title="Input" dataRemember="input" dataShare="input" />
+                <InputFileBlock id="input" fileId="file" title={t('input')} dataRemember="input" dataShare="input" />
             ) : (
-                <InputBlock id="input" title="Input" placeholder="Enter here..." dataRemember="input" dataShare="input" dataEncodingFrom="#input-type" dataAutoUpdate={true} />
+                <InputBlock id="input" title={t('input')} placeholder={t('enter_here')} dataRemember="input" dataShare="input" dataEncodingFrom="#input-type" dataAutoUpdate={true} />
             )}
-            <OutputBlock id="output" title="Output" placeholder="Output here..." dataEncodingFrom="#output-type" />
+            <OutputBlock id="output" title={t('output')} placeholder={t('output_placeholder')} dataEncodingFrom="#output-type" />
         </div>
         <SettingBlock executeLabel={executeLabel}>
             <slot />

@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "Upper Case Converter";
-const description = "Convert string to upper case. (Upcase, All caps)";
-const toolName = "Convert";
+const t = useTranslations('en');
+const title = t('upper.title');
+const description = t('upper.description');
+const toolName = t('convert');
 const initScript = "window.method = function toUpperCase(s) { return s.toUpperCase(); }; methodLoad();";
 const activePage = "case/upper/";
 const reverseLink = "";

@@ -1,9 +1,12 @@
 ﻿---
 import FileHashPage from '../../components/FileHashPage.astro';
-const title = "SHA1 Checksum";
-const description = "Calculate SHA1 hash from file. Free online SHA1 checksum calculator.";
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const title = t('sha1_checksum.title');
+const description = t('sha1_checksum.description');
 const algorithmName = "SHA1";
-const jsFile = "https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.7.0/sha1.min.js";
+const jsFile = "sha1.min.js";
 const activePage = "hash/sha1_checksum";
 ---
 <FileHashPage 

@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../components/EncodingPage.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const title = "Base64 Decode";
-const description = "This online Base64 decoding tool helps you decode Base64 to text or binary. You can output UTF-8, UTF-16, Hex, or other encodings. It also supports various formats such as RFC 4648 (standard and URL Safe), RFC 2045 (MIME), RFC 2152 (UTF-7), and RFC 3501 (IMAP).";
-const toolName = "Decode";
+const t = useTranslations('en');
+const title = t('base64_decode.title');
+const description = t('base64_decode.description');
+const toolName = t('decode');
 const jsFile = "base64.js?v=6";
 const activePage = "encoding/base64_decode";
 ---

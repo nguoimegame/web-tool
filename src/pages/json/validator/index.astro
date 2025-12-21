@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "JSON Validator";
-const description = "This free online JSON validator helps you validate your JSON string.";
-const toolName = "Validate";
+const t = useTranslations('en');
+const title = t('xml_validator.title').replace('XML', 'JSON');
+const description = t('xml_validator.description').replace('XML', 'JSON');
+const toolName = t('validate');
 const jsFile = "json.js?v=6";
 const activePage = "json/validator";
 const reverseLink = "";
@@ -25,7 +27,7 @@ const extraJsFile = "validator.js";
     extraJsFile={extraJsFile}
     editorLanguage="json"
     outputToggleMonaco={false}
-    outputPlaceholder="Error message..."
+    outputPlaceholder={t('error_message')}
 >
     <div slot="before-output-textarea" class="container" id="validate-result"></div>
 </EncodingPage>

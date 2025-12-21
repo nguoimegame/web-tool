@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../components/EncodingPage.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const title = "URL Decode";
-const description = "This URL decode online tool helps you decode percent-encoding string to URL.";
-const toolName = "Decode";
+const t = useTranslations('en');
+const title = t('url_decode.title');
+const description = t('url_decode.description');
+const toolName = t('decode');
 const jsFile = ""; // No external JS file needed for decodeURIComponent
 const activePage = "encoding/url_decode";
 ---

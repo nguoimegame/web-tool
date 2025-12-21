@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "Snake Case Converter";
-const description = "Convert string to snake case. (Snail case, Pothole case)";
-const toolName = "Convert";
+const t = useTranslations('en');
+const title = t('snake.title');
+const description = t('snake.description');
+const toolName = t('convert');
 const jsFile = "change-case.min.js";
 const initScript = "window.method = ChangeCase.snakeCase; methodLoad();";
 const activePage = "case/snake/";

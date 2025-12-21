@@ -5,10 +5,12 @@ import PageHeader from '../../components/PageHeader.astro';
 import InputFileBlock from '../../components/InputFileBlock.astro';
 import OutputBlock from '../../components/OutputBlock.astro';
 import SettingBlock from '../../components/SettingBlock.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const title = "Decode Hex to File";
-const description = "Decode Hex to file. Free online Hex decoding tool.";
-const toolName = "FileDecode";
+const t = useTranslations('en');
+const title = t('hex_decode_file.title');
+const description = t('hex_decode_file.description');
+const toolName = t('decode');
 const jsFile = "hex.js?v=3";
 const activePage = "encoding/hex_decode_file";
 ---
@@ -19,8 +21,8 @@ const activePage = "encoding/hex_decode_file";
         
         <div id="content">
             <div class="top-nav">
-                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
-                    <img src="/images/menu.svg" width="24" height="24" alt="Menu">
+                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
+                    <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')}>
                 </button>
             </div>
             
@@ -30,29 +32,28 @@ const activePage = "encoding/hex_decode_file";
                 <div class="layout">
                     <div class="layout-block">
                         <InputFileBlock
-                            title="Input"
-                            urlPlaceholder="Enter here..."
-                            dropText="Drag and drop the file here or click to select a file. It will process locally and won't be uploaded."
+                            title={t('input')}
+                            urlPlaceholder={t('enter_here')}
+                            dropText={t('drag_drop')}
                             dataRemember="input"
                             dataShare="input"
                             dataAutoUpdate={true}
                         />
                         
                         <OutputBlock 
-                            title="Output"
-                            placeholder="Output here..."
+                            title={t('output')}
+                            placeholder={t('output_placeholder')}
                             dataEncodingFrom="#output-type"
                             isReadonly={true}
                             showDownload={true}
                             showCopy={false}
                             showShareLink={false}
-                            showDownload={true}
                         />
                     </div>
                     
-                    <SettingBlock executeLabel="Decode">
+                    <SettingBlock executeLabel={toolName}>
                         <div class="setting">
-                            <label for="file-type">Input Type</label>
+                            <label for="file-type">{t('input_type')}</label>
                             <select id="file-type" data-remember="file-type" data-auto-update>
                                 <option value="text">Encoded Text</option>
                                 <option value="file">Encoded File</option>
@@ -60,8 +61,8 @@ const activePage = "encoding/hex_decode_file";
                         </div>
                         
                         <div class="setting">
-                            <label for="download-file-name">File Name</label>
-                            <input type="text" id="download-file-name" data-remember="download-file-name" value="download.txt" placeholder="Download File Name">
+                            <label for="download-file-name">{t('file_name')}</label>
+                            <input type="text" id="download-file-name" data-remember="download-file-name" value="download.txt" placeholder={t('file_name')}>
                         </div>
                     </SettingBlock>
                 </div>

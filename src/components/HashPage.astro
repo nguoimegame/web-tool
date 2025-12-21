@@ -3,6 +3,7 @@ import BaseHashPage from "../components/BaseHashPage.astro";
 import InputEncodingSelect from "../components/InputEncodingSelect.astro";
 import OutputEncodingSelect from "../components/OutputEncodingSelect.astro";
 import HMACSettings from "../components/HMACSettings.astro";
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -14,6 +15,8 @@ interface Props {
 }
 
 const { title, description, algorithmName, jsFile = "crypto-js.js", activePage, methodWrapper } = Astro.props;
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 
 // Pre-calculate the script source path
 const scriptSrc = jsFile.startsWith("http") ? jsFile : `/js/${jsFile}`;
@@ -22,11 +25,11 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
 
 <BaseHashPage title={title} description={description} activePage={activePage}>
   <div class="setting">
-    <label for="input-type">Input Encoding</label>
+    <label for="input-type">{t('input_encoding')}</label>
     <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} />
   </div>
   <div class="setting">
-    <label for="output-type">Output Encoding</label>
+    <label for="output-type">{t('output_encoding')}</label>
     <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} />
   </div>
   <HMACSettings />

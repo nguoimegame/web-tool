@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "XML Formatter";
-const description = "This free online XML formatter helps you beautify your XML string and make it more readable. You can choose the indentation level and characters.";
-const toolName = "Format";
+const t = useTranslations('en');
+const title = t('xml_formatter.title');
+const description = t('xml_formatter.description');
+const toolName = t('format');
 const jsFile = "xml.js?v=2";
 const activePage = "xml/formatter";
 const reverseLink = "";
@@ -27,14 +29,14 @@ const extraJsFile = "xml-formatter-singleton.min.js";
 >
     <div slot="settings">
         <div class="setting">
-            <label for="indent-type">Indent Type</label>
+            <label for="indent-type">{t('indent_type')}</label>
             <select id="indent-type" data-option="indent-type" data-remember="indent-type">
                 <option value="space" selected>Space</option>
                 <option value="tab">Tab</option>
             </select>
         </div>
         <div class="setting">
-            <label for="indent">Indent</label>
+            <label for="indent">{t('indent')}</label>
             <input id="indent" type="number" value="2" step="1" min="1" max="10" data-option="indent" data-remember="indent">
         </div>
     </div>

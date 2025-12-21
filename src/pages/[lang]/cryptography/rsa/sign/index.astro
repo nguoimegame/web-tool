@@ -1,0 +1,234 @@
+---
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import Sidebar from "../../../../../components/Sidebar.astro";
+import { languages } from '../../../../../i18n/ui';
+import { useTranslations } from "../../../../../i18n/utils";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('rsa_sign.title');
+const description = t('rsa_sign.description');
+const activePage = "cryptography/rsa/sign";
+---
+
+<BaseLayout title={title} description={description}>
+  <div id="app">
+    <Sidebar activePage={activePage} />
+    <div id="content">
+      <div class="top-nav">
+        <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}
+          ><img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} /></button
+        >
+      </div>
+      <header>
+        <h1>{t('rsa_sign.title')}</h1>
+        <p>{t('rsa_sign.description')}</p>
+      </header>
+      <main>
+        <div class="layout">
+          <div class="layout-block">
+            <div class="input">
+              <div class="block block-fill">
+                <div class="block-title">
+                  {t('input')}
+                  <div class="toolbar">
+                    <button class="icon" data-toggle="fullscreen"
+                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                        class="fullscreen-icon-exit"
+                        src="/images/fullscreen-exit.svg"
+                        alt="Full Screen"
+                        title="Full Screen"
+                      /></button
+                    >
+                  </div>
+                </div>
+                <textarea
+                  class="container"
+                  id="input"
+                  spellcheck="false"
+                  placeholder={t('enter_here')}
+                  data-remember="input"
+                  data-share="input"
+                  data-encoding-from="#input-type"
+                  data-auto-update
+                  data-toggle="monacoEditor"></textarea>
+              </div>
+            </div>
+            <div class="output">
+              <div class="block block-fill">
+                <div class="block-title">
+                  {t('output')}
+                  <div class="toolbar">
+                    <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied"
+                      ><img src="/images/copy.svg" alt="Copy" title="Copy" /></button
+                    >
+                    <button class="icon" data-toggle="fullscreen"
+                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                        class="fullscreen-icon-exit"
+                        src="/images/fullscreen-exit.svg"
+                        alt="Full Screen"
+                        title="Full Screen"
+                      /></button
+                    >
+                  </div>
+                </div>
+                <textarea
+                  class="container"
+                  id="output"
+                  spellcheck="false"
+                  placeholder={t('output_placeholder')}
+                  data-encoding-from="#output-type"
+                  data-toggle="monacoEditor"
+                  readonly="readonly"></textarea>
+              </div>
+              <details class="block text-only" data-toggle="copyblock">
+                <summary class="block-title"
+                  >{t('share_link')}<div class="toolbar">
+                    <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied"
+                      ><img src="/images/copy.svg" alt="Copy" title="Copy" /></button
+                    >
+                  </div></summary
+                >
+                <input id="share-link" type="text" placeholder={t('share_link')} readonly="readonly" />
+              </details>
+            </div>
+          </div>
+          <div class="settings">
+            <div class="block block-fill">
+              <div class="block-title">{t('settings')}</div>
+              <div class="container">
+                <div class="setting"><a class="btn" id="execute">{t('sign')}</a></div>
+                <div class="setting">
+                  <label class="switcher"
+                    ><input type="checkbox" value="1" id="auto-update" checked /><div class="toggle"></div>
+                    <span>{t('auto_update')}</span></label
+                  >
+                </div>
+                <div class="setting">
+                  <label class="switcher"
+                    ><input type="checkbox" value="1" id="remember-input" /><div class="toggle"></div>
+                    <span>{t('remember_input')}</span></label
+                  >
+                </div>
+                <div class="setting">
+                  <label for="input-type">{t('input_encoding')}</label><select
+                    data-toggle="encoding"
+                    id="input-type"
+                    data-remember="input-type"
+                    data-share="input_type"
+                    data-auto-update
+                  >
+                    <optgroup label="Binary">
+                      <option value="hex">Hex</option>
+                      <option value="base64" data-load-encoding="base64">Base64</option>
+                    </optgroup>
+                    <optgroup label="Text">
+                      <option value="utf-8" selected>UTF-8</option>
+                      <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
+                      <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="setting">
+                  <label for="output-type">{t('output_encoding')}</label><select
+                    data-toggle="encoding"
+                    id="output-type"
+                    data-remember="output-type"
+                    data-share="output_type"
+                    data-auto-update
+                    data-type="hex"
+                  >
+                    <option value="hex">Hex (Lower Case)</option>
+                    <option value="hex_upper">Hex (Upper Case)</option>
+                    <option value="base64" data-load-encoding="base64">Base64</option>
+                  </select>
+                </div>
+                <div class="setting">
+                  <label for="algorithm">{t('algorithm')}</label><select
+                    id="algorithm"
+                    data-option="algorithm"
+                    data-remember="algorithm"
+                    data-share="algorithm"
+                  >
+                    <option value="MD5">MD5</option>
+                    <option value="SHA1">SHA1</option>
+                    <option value="SHA224">SHA224</option>
+                    <option value="SHA256" selected>SHA256</option>
+                    <option value="SHA384">SHA384</option>
+                    <option value="SHA512">SHA512</option>
+                    <option value="RIPEMD160">RIPEMD160</option>
+                  </select>
+                </div>
+                <div class="setting">
+                  <label for="private-key">{t('private_key')}</label><textarea
+                    id="private-key"
+                    placeholder={t('private_key')}
+                    data-option="private-key"
+                    data-remember="private-key"
+                    data-share="private_key"></textarea>
+                </div>
+                <div class="setting">
+                  <label for="passphrase">{t('passphrase')}</label><input
+                    type="text"
+                    id="passphrase"
+                    data-option="passphrase"
+                    data-remember="passphrase"
+                    data-share="passphrase"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script is:inline>
+          ++waitLoadCount;
+          delayScripts.push({
+            src: "/js/jsrsasign.js?v=1",
+            onload: function () {
+              window.method = withOptions(rsa.sign, ["private-key", "algorithm", "passphrase"]);
+              methodLoad();
+            },
+          });
+        </script>
+        <script is:inline>
+          ++waitLoadCount;
+          delayScripts.push({
+            src: "/js/jsrsasign-all-min.min.js",
+            onload: function () {
+              methodLoad();
+            },
+          });
+        </script>
+        <script is:inline>
+          ++waitLoadCount;
+          delayScripts.push({
+            src: "/js/encoding.js?v=8",
+            onload: function () {
+              methodLoad();
+            },
+          });
+        </script>
+        <script is:inline>
+          delayScripts.push({
+            src: "/js/clipboard.min.js",
+            onload: function () {
+              new ClipboardJS('[data-toggle="copy"]').on("success", function (e) {
+                showMessage(e.trigger.getAttribute("data-message"));
+                gtag("event", "copy");
+              });
+            },
+            delay: 100,
+          });
+        </script>
+      </main>
+    </div>
+    <div id="message"></div>
+  </div>
+</BaseLayout>

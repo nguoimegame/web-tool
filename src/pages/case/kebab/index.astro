@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "Convert to kebab-case";
-const description = "Convert text to kebab-case. Free online case conversion tool.";
-const toolName = "Convert";
+const t = useTranslations('en');
+const title = t('kebab.title');
+const description = t('kebab.description');
+const toolName = t('convert');
 const jsFile = "change-case.min.js";
 const initScript = "window.method = ChangeCase.kebabCase; methodLoad();";
 const activePage = "case/kebab/";

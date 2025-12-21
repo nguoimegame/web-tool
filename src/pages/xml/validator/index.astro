@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "XML Validator";
-const description = "This free online XML validator helps you validate your XML string.";
-const toolName = "Validate";
+const t = useTranslations('en');
+const title = t('xml_validator.title');
+const description = t('xml_validator.description');
+const toolName = t('validate');
 const jsFile = "xml.js?v=2";
 const activePage = "xml/validator";
 const reverseLink = "";
@@ -25,7 +27,7 @@ const extraJsFile = "validator.js";
     extraJsFile={extraJsFile}
     editorLanguage="xml"
     outputToggleMonaco={false}
-    outputPlaceholder="Error message..."
+    outputPlaceholder={t('error_message')}
 >
     <div slot="before-output-textarea" class="container" id="validate-result"></div>
 </EncodingPage>

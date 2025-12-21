@@ -1,9 +1,11 @@
 ﻿---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Sidebar from '../../../components/Sidebar.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "SQL Formatter";
-const description = "This free online SQL formatter helps you beautify your SQL queries and make them more readable. You can choose the indentation level and uppercase keywords option.";
+const t = useTranslations('en');
+const title = t('sql_formatter.title');
+const description = t('sql_formatter.description');
 const activePage = "sql/formatter/";
 ---
 
@@ -13,8 +15,8 @@ const activePage = "sql/formatter/";
         
         <div id="content">
             <div class="top-nav">
-                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
-                    <img src="/images/menu.svg" width="24" height="24" alt="Menu">
+                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
+                    <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')}>
                 </button>
             </div>
             
@@ -28,7 +30,7 @@ const activePage = "sql/formatter/";
                     <div class="layout-block">
                         <div class="input">
                             <div class="block block-fill">
-                                <div class="block-title">Input
+                                <div class="block-title">{t('input')}
                                     <div class="toolbar">
                                         <button class="icon" data-toggle="fullscreen">
                                             <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
@@ -36,7 +38,7 @@ const activePage = "sql/formatter/";
                                         </button>
                                     </div>
                                 </div>
-                                <textarea class="container" id="input" spellcheck="false" placeholder="Enter your SQL query here..." 
+                                <textarea class="container" id="input" spellcheck="false" placeholder={t('sql_formatter.enter_query')} 
                                     data-remember="input" data-share="input" data-auto-update 
                                     data-toggle="monacoEditor" data-language="mysql"></textarea>
                             </div>
@@ -44,7 +46,7 @@ const activePage = "sql/formatter/";
                         
                         <div class="output">
                             <div class="block block-fill">
-                                <div class="block-title">Output
+                                <div class="block-title">{t('output')}
                                     <div class="toolbar">
                                         <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
                                             <img src="/images/copy.svg" alt="Copy" title="Copy"/>
@@ -62,17 +64,17 @@ const activePage = "sql/formatter/";
                     
                     <div class="settings">
                         <div class="block block-fill">
-                            <div class="block-title">Settings</div>
+                            <div class="block-title">{t('settings')}</div>
                             <div class="container">
                                 <div class="setting">
-                                    <a class="btn" id="execute">Format</a>
+                                    <a class="btn" id="execute">{t('format')}</a>
                                 </div>
                                 
                                 <div class="setting">
                                     <label class="switcher">
                                         <input type="checkbox" value="1" id="auto-update" checked>
                                         <div class="toggle"></div>
-                                        <span>Auto Update</span>
+                                        <span>{t('auto_update')}</span>
                                     </label>
                                 </div>
                                 
@@ -80,7 +82,7 @@ const activePage = "sql/formatter/";
                                     <label class="switcher">
                                         <input type="checkbox" value="1" id="remember-input">
                                         <div class="toggle"></div>
-                                        <span>Remember Input</span>
+                                        <span>{t('remember_input')}</span>
                                     </label>
                                 </div>
                                 
@@ -88,12 +90,12 @@ const activePage = "sql/formatter/";
                                     <label class="switcher">
                                         <input type="checkbox" value="1" id="uppercase-keywords" checked data-remember="uppercase-keywords">
                                         <div class="toggle"></div>
-                                        <span>Uppercase Keywords</span>
+                                        <span>{t('sql_formatter.uppercase_keywords')}</span>
                                     </label>
                                 </div>
                                 
                                 <div class="setting">
-                                    <label for="indent-type">Indent Type</label>
+                                    <label for="indent-type">{t('sql_formatter.indent_type')}</label>
                                     <select id="indent-type" data-remember="indent-type">
                                         <option value="space" selected>Space</option>
                                         <option value="tab">Tab</option>
@@ -101,7 +103,7 @@ const activePage = "sql/formatter/";
                                 </div>
                                 
                                 <div class="setting">
-                                    <label for="indent">Indent</label>
+                                    <label for="indent">{t('sql_formatter.indent')}</label>
                                     <input id="indent" type="number" value="2" step="1" min="1" max="10" data-remember="indent">
                                 </div>
                             </div>

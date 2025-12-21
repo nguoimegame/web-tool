@@ -2,33 +2,36 @@
 import BaseHashPage from '../../components/BaseHashPage.astro';
 import OutputEncodingSelect from '../../components/OutputEncodingSelect.astro';
 import InputEncodingSelect from "../../components/InputEncodingSelect.astro";
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
 ---
 
 <BaseHashPage
-  title="BLAKE2b"
-  description="This BLAKE2b online tool helps you calculate hashes from strings. You can input UTF-8, UTF-16, Hex, Base64, or other encodings. It also supports HMAC."
+  title={t('blake2b.title')}
+  description={t('blake2b.description')}
   activePage="hash/blake2b"
   isUseFile={false}
 >
   <div class="setting">
-    <label for="input-type">Input Encoding</label>
+    <label for="input-type">{t('input_encoding')}</label>
     <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} />
   </div>
 
   <div class="setting">
-    <label for="output-type">Output Encoding</label>
+    <label for="output-type">{t('output_encoding')}</label>
     <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} />
   </div>
 
   <div class="setting">
-    <label for="bits">Output Bits</label>
+    <label for="bits">{t('bits')}</label>
     <input type="number" id="bits" data-option="bits" data-remember="bits-512" data-share="bits" value="512" step="8" min="8" />
   </div>
   
   <details class="setting-group" open>
-    <summary>Key</summary>
+    <summary>{t('hmac_key')}</summary>
     <div class="setting">
-      <label for="key-input-type">Type</label>
+      <label for="key-input-type">{t('type')}</label>
       <select data-toggle="encoding" id="key-input-type" data-remember="key-input-type" data-share="key_input_type" data-auto-update>
         <optgroup label="Binary">
           <option value="hex">Hex</option>
@@ -42,7 +45,7 @@ import InputEncodingSelect from "../../components/InputEncodingSelect.astro";
       </select>
     </div>
     <div class="setting">
-      <label for="key">Data</label>
+      <label for="key">{t('data')}</label>
       <input type="text" id="key" data-option="key" data-remember="key" data-share="key" data-option-type="encoding" data-encoding-from="#key-input-type" />
     </div>
   </details>
@@ -106,4 +109,3 @@ import InputEncodingSelect from "../../components/InputEncodingSelect.astro";
     });
   </script>
 </BaseHashPage>
-

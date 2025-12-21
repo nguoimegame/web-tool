@@ -1,12 +1,21 @@
 class FileHashPageLoader {
   constructor(config) {
     this.scriptSrc = config.scriptSrc;
+    this.extraScriptSrc = config.extraScriptSrc;
     this.algorithmName = config.algorithmName;
     this.methodCode = config.methodCode;
     this.methodWrapper = config.methodWrapper;
   }
 
   loadScripts() {
+    // Load extra script if provided
+    if (this.extraScriptSrc) {
+      ++waitLoadCount;
+      delayScripts.push({
+        src: this.extraScriptSrc
+      });
+    }
+
     // Load hash algorithm library
     ++waitLoadCount;
     delayScripts.push({

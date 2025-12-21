@@ -1,0 +1,27 @@
+---
+import FileHashPage from '../../../components/FileHashPage.astro';
+import { languages } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('md5_checksum.title');
+const description = t('md5_checksum.description');
+const algorithmName = "MD5";
+const jsFile = "md5.min.js";
+const activePage = "hash/md5_checksum";
+---
+<FileHashPage 
+    title={title}
+    description={description}
+    algorithmName={algorithmName}
+    jsFile={jsFile}
+    activePage={activePage}
+/>

@@ -1,0 +1,27 @@
+---
+import FileHashPage from '../../../components/FileHashPage.astro';
+import { languages } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('sha1_checksum.title');
+const description = t('sha1_checksum.description');
+const algorithmName = "sha1";
+const jsFile = "https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.7.0/sha1.min.js";
+const activePage = "hash/sha1_checksum";
+---
+<FileHashPage 
+    title={title}
+    description={description}
+    algorithmName={algorithmName}
+    jsFile={jsFile}
+    activePage={activePage}
+/>

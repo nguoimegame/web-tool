@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n/utils';
+
 interface Props {
   id: string;
   dataRemember?: string;
@@ -14,6 +16,9 @@ const {
   dataAutoUpdate = false,
   dataType = "hex",
 } = Astro.props;
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <select
@@ -24,7 +29,7 @@ const {
   data-auto-update={dataAutoUpdate || undefined}
   data-type={dataType}
 >
-  <option value="hex">Hex (Lower Case)</option>
-  <option value="hex_upper">Hex (Upper Case)</option>
+  <option value="hex">{t('hex_lower')}</option>
+  <option value="hex_upper">{t('hex_upper')}</option>
   <option value="base64" data-load-encoding="base64">Base64</option>
 </select>

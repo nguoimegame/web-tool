@@ -2,23 +2,25 @@
 import BaseHashPage from "../../components/BaseHashPage.astro";
 import InputEncodingSelect from "../../components/InputEncodingSelect.astro";
 import OutputEncodingSelect from "../../components/OutputEncodingSelect.astro";
+import { useTranslations } from '../../i18n/utils';
 
-const title = "SHAKE256";
-const description = "This SHAKE256 online tool helps you calculate hashes from strings. You can input UTF-8, UTF-16, Hex, Base64, or other encodings.";
+const t = useTranslations('en');
+const title = t('shake256.title');
+const description = t('shake256.description');
 const activePage = "hash/shake256";
 ---
 
 <BaseHashPage title={title} description={description} activePage={activePage}>
   <div class="setting">
-    <label for="input-type">Input Encoding</label>
+    <label for="input-type">{t('input_encoding')}</label>
     <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} />
   </div>
   <div class="setting">
-    <label for="output-type">Output Encoding</label>
+    <label for="output-type">{t('output_encoding')}</label>
     <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} />
   </div>
   <div class="setting">
-    <label for="bits">Output Bits</label>
+    <label for="bits">{t('bits')}</label>
     <input type="number" id="bits" data-option="bits" data-remember="bits-512" data-share="bits" value="512" step="8" min="8" />
   </div>
 

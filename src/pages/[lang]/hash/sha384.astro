@@ -1,0 +1,28 @@
+---
+import HashPage from '../../../components/HashPage.astro';
+import { languages } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('sha384.title');
+const description = t('sha384.description');
+const algorithmName = "sha384";
+const jsFile = "https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.9.0/sha512.min.js";
+const activePage = "hash/sha384";
+---
+
+<HashPage 
+  title={title}
+  description={description}
+  algorithmName={algorithmName}
+  jsFile={jsFile}
+  activePage={activePage}
+/>

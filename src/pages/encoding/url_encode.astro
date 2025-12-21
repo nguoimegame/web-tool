@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../components/EncodingPage.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const title = "URL Encode";
-const description = "This URL encode online tool helps you encode URL to percent-encoding string.";
-const toolName = "Encode";
+const t = useTranslations('en');
+const title = t('url_encode.title');
+const description = t('url_encode.description');
+const toolName = t('encode');
 const jsFile = ""; // No external JS file needed for encodeURIComponent
 const activePage = "encoding/url_encode";
 ---

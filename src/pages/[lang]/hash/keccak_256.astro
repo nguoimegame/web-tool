@@ -1,0 +1,22 @@
+---
+import HashPage from '../../../components/HashPage.astro';
+import { languages } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<HashPage 
+  title={t('keccak_256.title')}
+  description={t('keccak_256.description')}
+  algorithmName="keccak_256"
+  jsFile="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js"
+  activePage="hash/keccak_256"
+/>

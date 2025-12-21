@@ -1,7 +1,10 @@
 ﻿---
 import FileHashPage from '../../components/FileHashPage.astro';
-const title = "MD4 File Hash";
-const description = "This MD4 online tool helps you calculate the hash of a file from local or URL using MD4 without uploading the file. It also supports HMAC.";
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const title = t('md4_file_hash.title');
+const description = t('md4_file_hash.description');
 const algorithmName = "MD4";
 const jsFile = "md4.min.js";
 const activePage = "hash/md4_file_hash";

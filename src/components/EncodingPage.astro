@@ -8,6 +8,7 @@ import InputBlock from './InputBlock.astro';
 import InputFileBlock from './InputFileBlock.astro';
 import OutputBlock from './OutputBlock.astro';
 import SettingBlock from './SettingBlock.astro';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
     title: string;
@@ -58,6 +59,9 @@ const {
     outputPlaceholder,
     showOutputDownload = false
 } = Astro.props;
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <BaseLayout title={title} description={description}>
@@ -66,8 +70,8 @@ const {
         
         <div id="content">
             <div class="top-nav">
-                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
-                    <img src="/images/menu.svg" width="24" height="24" alt="Menu">
+                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
+                    <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')}>
                 </button>
             </div>
             
@@ -78,7 +82,7 @@ const {
                     <div class="layout-block">
                         {hasFileInput ? (
                             <InputFileBlock
-                                title="Input"
+                                title={t('input')}
                                 urlPlaceholder={inputFileUrlPlaceholder}
                                 dropText={inputFileDropText}
                                 dataRemember="input"
@@ -88,8 +92,8 @@ const {
                         ) : (
                             <InputBlock 
                                 id="input" 
-                                title="Input" 
-                                placeholder="Enter here..." 
+                                title={t('input')} 
+                                placeholder={t('enter_here')} 
                                 dataRemember="input" 
                                 dataShare="input" 
                                 dataEncodingFrom="#input-type" 
@@ -101,8 +105,8 @@ const {
                         
                         <OutputBlock 
                             id="output" 
-                            title="Output" 
-                            placeholder={outputPlaceholder || "Output here..."}
+                            title={t('output')} 
+                            placeholder={outputPlaceholder || t('output_placeholder')}
                             dataEncodingFrom="#output-type" 
                             dataToggleMonaco={outputToggleMonaco} 
                             dataLanguage={editorLanguage}
@@ -124,14 +128,14 @@ const {
                     <SettingBlock executeLabel={toolName}>
                         {hasInputSettings && (
                             <div class="setting">
-                                <label for="input-type">Input Encoding</label>
+                                <label for="input-type">{t('input_encoding')}</label>
                                 <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} />
                             </div>
                         )}
                         
                         {hasOutputSettings && (
                             <div class="setting">
-                                <label for="output-type">Output Encoding</label>
+                                <label for="output-type">{t('output_encoding')}</label>
                                 <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} dataType={outputDataType} />
                             </div>
                         )}

@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "Lower Case Converter";
-const description = "Convert string to lower case. (Downcase)";
-const toolName = "Convert";
+const t = useTranslations('en');
+const title = t('lower.title');
+const description = t('lower.description');
+const toolName = t('convert');
 const initScript = "window.method = function toLowerCase(s) { return s.toLowerCase(); }; methodLoad();";
 const activePage = "case/lower/";
 const reverseLink = "";

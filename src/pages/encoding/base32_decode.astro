@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../components/EncodingPage.astro';
+import { useTranslations } from '../../i18n/utils';
 
-const title = "Base32 Decode";
-const description = "This online Base32 decoding tool helps you decode Base32 to text or binary. You can output UTF-8, UTF-16, Hex, Base64, or other encodings.";
-const toolName = "Decode";
+const t = useTranslations('en');
+const title = t('base32_decode.title');
+const description = t('base32_decode.description');
+const toolName = t('decode');
 const jsFile = "base32.min.js";
 const activePage = "encoding/base32_decode";
 ---

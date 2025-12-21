@@ -1,0 +1,35 @@
+---
+import EncodingPage from '../../../../components/EncodingPage.astro';
+import { languages } from '../../../../i18n/ui';
+import { useTranslations } from '../../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('lower_camel.title');
+const description = t('lower_camel.description');
+const toolName = t('convert');
+const jsFile = "change-case.min.js";
+const initScript = "window.method = ChangeCase.camelCase; methodLoad();";
+const activePage = "case/lower-camel/";
+const reverseLink = "";
+---
+
+<EncodingPage 
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    initScript={initScript}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+/>

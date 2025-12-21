@@ -1,9 +1,11 @@
 ﻿---
 import EncodingPage from '../../../components/EncodingPage.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const title = "XML Minifier";
-const description = "This free online XML minifier helps you minify your XML string and make it more cleaner. It can remove indentation, new lines and comments to reduce size.";
-const toolName = "Minify";
+const t = useTranslations('en');
+const title = t('xml_minifier.title');
+const description = t('xml_minifier.description');
+const toolName = t('minify');
 const jsFile = "xml.js?v=2";
 const activePage = "xml/minifier";
 const reverseLink = "";
@@ -30,7 +32,7 @@ const extraJsFile = "xml-formatter-singleton.min.js";
             <label class="switcher">
                 <input type="checkbox" value="1" id="remove-comments" data-option="remove-comments" data-remember="remove-comments" checked>
                 <div class="toggle"></div>
-                <span>Remove Comments</span>
+                <span>{t('remove_comments')}</span>
             </label>
         </div>
     </div>

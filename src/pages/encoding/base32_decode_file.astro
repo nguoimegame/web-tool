@@ -1,8 +1,11 @@
 ﻿---
 import EncodingPage from '../../components/EncodingPage.astro';
-const title = "Base32 to File";
-const description = "Decode Base32 to file. Free online Base32 decoding tool.";
-const toolName = "FileDecode";
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const title = t('base32_decode_file.title');
+const description = t('base32_decode_file.description');
+const toolName = t('decode');
 const jsFile = "base32.js?v=3";
 const activePage = "encoding/base32_decode_file";
 const reverseLink = "encoding/base32_encode_file";

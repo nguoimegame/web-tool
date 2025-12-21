@@ -3,31 +3,36 @@ import BaseHashPage from '../components/BaseHashPage.astro';
 import OutputEncodingSelect from './OutputEncodingSelect.astro';
 import HMACSettings from './HMACSettings.astro';
 import FileTypeSelect from './FileTypeSelect.astro';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
     title: string;
     description: string;
     algorithmName: string;
     jsFile: string;
+    extraJsFile?: string;
     activePage: string;
     methodWrapper?: string;
 }
 
-const { title, description, algorithmName, jsFile, activePage, methodWrapper } = Astro.props;
+const { title, description, algorithmName, jsFile, extraJsFile, activePage, methodWrapper } = Astro.props;
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 
 // Pre-calculate the script source path
 const scriptSrc = jsFile.startsWith('http') ? jsFile : `/js/${jsFile}`;
+const extraScriptSrc = extraJsFile ? (extraJsFile.startsWith('http') ? extraJsFile : `/js/${extraJsFile}`) : undefined;
 const methodCode = methodWrapper || `window['${algorithmName.toLowerCase().replace(/\//g, '_').replace(/-/g, '_')}']`;
 ---
 
 <BaseHashPage title={title} description={description} activePage={activePage} isUseFile={true}>
     <div class="setting">
-        <label for="file-type">Input Type</label>
+        <label for="file-type">{t('input_type')}</label>
         <FileTypeSelect id="file-type" dataRemember="file-type" dataAutoUpdate={true} />
     </div>
     
     <div class="setting">
-        <label for="output-type">Output Encoding</label>
+        <label for="output-type">{t('output_encoding')}</label>
         <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} />
     </div>
     
@@ -36,10 +41,11 @@ const methodCode = methodWrapper || `window['${algorithmName.toLowerCase().repla
     <!-- File Hash Page Loader -->
     <script is:inline slot="scripts" src="/js/file-hash-page-loader.js"></script>
     
-    <script is:inline slot="scripts" define:vars={{ scriptSrc, algorithmName, methodCode, methodWrapper }}>
+    <script is:inline slot="scripts" define:vars={{ scriptSrc, extraScriptSrc, algorithmName, methodCode, methodWrapper }}>
         // Initialize file hash page loader
         const loader = new FileHashPageLoader({
             scriptSrc,
+            extraScriptSrc,
             algorithmName,
             methodCode,
             methodWrapper

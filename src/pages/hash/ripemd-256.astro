@@ -3,21 +3,24 @@ import BaseHashPage from '../../components/BaseHashPage.astro';
 import OutputEncodingSelect from '../../components/OutputEncodingSelect.astro';
 import InputEncodingSelect from "../../components/InputEncodingSelect.astro";
 import HMACSettings from '../../components/HMACSettings.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
 ---
 
 <BaseHashPage
-  title="RIPEMD-256"
-  description="This RIPEMD-256 online tool helps you calculate hashes from strings. You can input UTF-8, UTF-16, Hex, Base64, or other encodings. It also supports HMAC."
+  title={t('ripemd-256.title')}
+  description={t('ripemd-256.description')}
   activePage="hash/ripemd-256"
   isUseFile={false}
 >
   <div class="setting">
-    <label for="input-type">Input Encoding</label>
+    <label for="input-type">{t('input_encoding')}</label>
     <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} />
   </div>
 
   <div class="setting">
-    <label for="output-type">Output Encoding</label>
+    <label for="output-type">{t('output_encoding')}</label>
     <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} />
   </div>
 

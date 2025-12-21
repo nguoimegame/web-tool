@@ -1,0 +1,33 @@
+---
+import EncodingPage from '../../../components/EncodingPage.astro';
+import { languages } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+      return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+
+const title = t('base32_decode_file.title');
+const description = t('base32_decode_file.description');
+const toolName = t('decode');
+const jsFile = "base32.js?v=3";
+const activePage = "encoding/base32_decode_file";
+const reverseLink = "encoding/base32_encode_file";
+---
+<EncodingPage
+    title={title}
+    description={description}
+    toolName={toolName}
+    jsFile={jsFile}
+    activePage={activePage}
+    reverseLink={reverseLink}
+    hasInputSettings={false}
+    hasOutputSettings={false}
+    hasFormatSettings={false}
+    showOutputDownload={true}
+/>

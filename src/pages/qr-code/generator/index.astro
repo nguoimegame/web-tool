@@ -1,9 +1,11 @@
 ﻿---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Sidebar from "../../../components/Sidebar.astro";
+import { useTranslations } from "../../../i18n/utils";
 
-const title = "QR Code Generator - Web Tools";
-const description = "This online QR code tool helps you generate a QR code and customize its design. You can download the image, share a link, or use an embedded script. Quick and free.";
+const t = useTranslations('en');
+const title = t('qr_code_generator.title');
+const description = t('qr_code_generator.description');
 const activePage = "qr-code/generator/";
 ---
 
@@ -16,13 +18,13 @@ const activePage = "qr-code/generator/";
     <Sidebar activePage={activePage} />
     <div id="content">
       <div class="top-nav">
-        <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
-          <img src="/images/menu.svg" width="24" height="24" alt="Menu" />
+        <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
+          <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} />
         </button>
       </div>
       <header>
-        <h1>QR Code Generator</h1>
-        <p>This online QR code tool helps you generate a QR code and customize its design. You can download the image, share a link, or use an embedded script. Quick and free.</p>
+        <h1>{t('qr_code_generator.title')}</h1>
+        <p>{t('qr_code_generator.description')}</p>
       </header>
       <main>
         <div class="layout">
@@ -30,7 +32,7 @@ const activePage = "qr-code/generator/";
             <div class="input">
               <div class="block block-fill">
                 <div class="block-title">
-                  Input
+                  {t('input')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen">
                       <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" />
@@ -38,10 +40,10 @@ const activePage = "qr-code/generator/";
                     </button>
                   </div>
                 </div>
-                <textarea class="container" id="input" spellcheck="false" placeholder="Enter here..." data-remember="input" data-share="input" data-encoding-from="#input-type" data-auto-update data-toggle="monacoEditor"></textarea>
+                <textarea class="container" id="input" spellcheck="false" placeholder={t('enter_here')} data-remember="input" data-share="input" data-encoding-from="#input-type" data-auto-update data-toggle="monacoEditor"></textarea>
               </div>
               <details class="block">
-                <summary class="block-title">Examples<div class="toolbar"></div></summary>
+                <summary class="block-title">{t('examples')}<div class="toolbar"></div></summary>
                 <div class="examples">
                   <a href="/qr-code/generator/?input=https%3A%2F%2Fwww.facebook.com%2F&type=png&size=150&padding=8&ec=H&dot_option_type=dots&dot_option_color=%230866FF&corners_square_option_type=dot&corners_square_option_color=%230866FF&corners_dot_option_type=dot&corners_dot_option_color=%230866FF&background_option_color=rgb(255%2C%20255%2C%20255)&image_type=url&image=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fb%2Fb9%2F2023_Facebook_icon.svg&image_size=0.3&image_margin=0&image_show_background=0" target="_blank">
                     <iframe src="/qr-code/?input=https%3A%2F%2Fwww.facebook.com%2F&type=png&size=150&padding=8&ec=H&dot_option_type=dots&dot_option_color=%230866FF&corners_square_option_type=dot&corners_square_option_color=%230866FF&corners_dot_option_type=dot&corners_dot_option_color=%230866FF&background_option_color=rgb(255%2C%20255%2C%20255)&image_type=url&image=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fb%2Fb9%2F2023_Facebook_icon.svg&image_size=0.3&image_margin=0&image_show_background=0" frameborder="0" scrolling="no" width="150" height="150" loading="lazy"></iframe>
@@ -61,7 +63,7 @@ const activePage = "qr-code/generator/";
             <div class="output">
               <div class="block block-fill">
                 <div class="block-title">
-                  Output
+                  {t('output')}
                   <div class="toolbar">
                     <a class="icon" id="download-image" download="download" style="display:none" onclick="gtag('event', 'download');">
                       <img src="/images/download.svg" alt="Download" title="Download" />
@@ -76,62 +78,62 @@ const activePage = "qr-code/generator/";
               </div>
               <details class="block" data-toggle="copyblock">
                 <summary class="block-title">
-                  Embedded Code
+                  {t('embedded_code')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Embedded code copied">
                       <img src="/images/copy.svg" alt="Copy" title="Copy" />
                     </button>
                   </div>
                 </summary>
-                <textarea id="output" placeholder="Embedded Code" readonly="readonly"></textarea>
+                <textarea id="output" placeholder={t('embedded_code')} readonly="readonly"></textarea>
               </details>
               <details class="block" data-toggle="copyblock">
                 <summary class="block-title">
-                  QR Code Link
+                  {t('qrcode_link')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#qrcode-link" data-message="QR code link copied">
                       <img src="/images/copy.svg" alt="Copy" title="Copy" />
                     </button>
                   </div>
                 </summary>
-                <input id="qrcode-link" type="text" placeholder="QR Code Link" readonly="readonly" />
+                <input id="qrcode-link" type="text" placeholder={t('qrcode_link')} readonly="readonly" />
               </details>
               <details class="block text-only" data-toggle="copyblock">
                 <summary class="block-title">
-                  Share Link
+                  {t('share_link')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
                       <img src="/images/copy.svg" alt="Copy" title="Copy" />
                     </button>
                   </div>
                 </summary>
-                <input id="share-link" type="text" placeholder="Share Link" readonly="readonly" />
+                <input id="share-link" type="text" placeholder={t('share_link')} readonly="readonly" />
               </details>
             </div>
           </div>
           <div class="settings">
             <div class="block block-fill">
-              <div class="block-title">Settings</div>
+              <div class="block-title">{t('settings')}</div>
               <div class="container">
-                <div class="setting"><a class="btn" id="execute">Generate</a></div>
+                <div class="setting"><a class="btn" id="execute">{t('generate')}</a></div>
                 <div class="setting">
                   <label class="switcher">
                     <input type="checkbox" value="1" id="auto-update" checked />
                     <div class="toggle"></div>
-                    <span>Auto Update</span>
+                    <span>{t('auto_update')}</span>
                   </label>
                 </div>
                 <div class="setting">
                   <label class="switcher">
                     <input type="checkbox" value="1" id="remember-input" />
                     <div class="toggle"></div>
-                    <span>Remember Input</span>
+                    <span>{t('remember_input')}</span>
                   </label>
                 </div>
                 <details class="setting-group" open>
-                  <summary>Main</summary>
+                  <summary>{t('main')}</summary>
                   <div class="setting">
-                    <label for="type">Type</label>
+                    <label for="type">{t('type')}</label>
                     <select id="type" data-remember="type" data-share="type" data-auto-update>
                       <option value="png">PNG</option>
                       <option value="jpeg">JPG</option>
@@ -140,15 +142,15 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting">
-                    <label for="size">Size</label>
+                    <label for="size">{t('size')}</label>
                     <input type="number" id="size" data-option="size" data-remember="size" data-share="size" value="256" step="1" min="64" max="2000" />
                   </div>
                   <div class="setting">
-                    <label for="padding">Padding</label>
+                    <label for="padding">{t('padding')}</label>
                     <input type="number" id="padding" data-option="padding" data-remember="padding" data-share="padding" value="16" step="1" min="0" max="2000" />
                   </div>
                   <div class="setting">
-                    <label for="ec">Error Correction</label>
+                    <label for="ec">{t('error_correction')}</label>
                     <select id="ec" data-remember="ec" data-share="ec" data-auto-update>
                       <option value="L">L</option>
                       <option value="M">M</option>
@@ -158,9 +160,9 @@ const activePage = "qr-code/generator/";
                   </div>
                 </details>
                 <details class="setting-group" open>
-                  <summary>Dot</summary>
+                  <summary>{t('dot')}</summary>
                   <div class="setting">
-                    <label for="dot-option-type">Type</label>
+                    <label for="dot-option-type">{t('type')}</label>
                     <select id="dot-option-type" data-option="dotoption-type" data-remember="dotoption-type" data-share="dot_option_type">
                       <option value="rounded">Rounded</option>
                       <option value="dots">Dots</option>
@@ -171,7 +173,7 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting">
-                    <label for="dot-option-color-type">Color Type</label>
+                    <label for="dot-option-color-type">{t('color_type')}</label>
                     <select id="dot-option-color-type" data-option="dotoption-color-type" data-remember="dotoption-color-type" data-share="dot_option_color_type" data-toggle="color-type">
                       <option value="">Single Color</option>
                       <option value="linear">Linear Gradient</option>
@@ -179,14 +181,14 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting color-block">
-                    <label for="dot-option-color">Color</label>
+                    <label for="dot-option-color">{t('color')}</label>
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
                       <input spellcheck="false" value="#000" id="dot-option-color" data-option="dot-option-color" data-remember="dot-option-color" data-share="dot_option_color" />
                     </div>
                   </div>
                   <div class="setting grapick-block">
-                    <label for="dot-option-gradient-color">Color</label>
+                    <label for="dot-option-gradient-color">{t('color')}</label>
                     <input value='[[10,"#000"],[90,"#49b1f5"]]' data-toggle="grapick" id="dot-option-gradient-color" data-option="dot-option-gradient-color" data-remember="dot-option-gradient-color" data-share="dot_option_gradient_color" />
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
@@ -194,14 +196,14 @@ const activePage = "qr-code/generator/";
                     </div>
                   </div>
                   <div class="setting rotation-block">
-                    <label for="dot-option-rotation">Rotation</label>
+                    <label for="dot-option-rotation">{t('rotation')}</label>
                     <input type="number" id="dot-option-rotation" data-option="dot-option-rotation" data-remember="dot-option-rotation" data-share="dot_option_rotation" value="0" step="1" min="-180" max="180" />
                   </div>
                 </details>
                 <details class="setting-group" open>
-                  <summary>Corners Square</summary>
+                  <summary>{t('corners_square')}</summary>
                   <div class="setting">
-                    <label for="corners-square-option-type">Type</label>
+                    <label for="corners-square-option-type">{t('type')}</label>
                     <select id="corners-square-option-type" data-option="corners-squareoption-type" data-remember="corners-squareoption-type" data-share="corners_square_option_type">
                       <option value="">None</option>
                       <option value="dot">Dot</option>
@@ -210,7 +212,7 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting">
-                    <label for="corners-square-option-color-type">Color Type</label>
+                    <label for="corners-square-option-color-type">{t('color_type')}</label>
                     <select id="corners-square-option-color-type" data-option="corners-squareoption-color-type" data-remember="corners-squareoption-color-type" data-share="corners_square_option_color_type" data-toggle="color-type">
                       <option value="">Single Color</option>
                       <option value="linear">Linear Gradient</option>
@@ -218,14 +220,14 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting color-block">
-                    <label for="corners-square-option-color">Color</label>
+                    <label for="corners-square-option-color">{t('color')}</label>
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
                       <input spellcheck="false" value="#000" id="corners-square-option-color" data-option="corners-square-option-color" data-remember="corners-square-option-color" data-share="corners_square_option_color" />
                     </div>
                   </div>
                   <div class="setting grapick-block">
-                    <label for="corners-square-option-gradient-color">Color</label>
+                    <label for="corners-square-option-gradient-color">{t('color')}</label>
                     <input value='[[10,"#000"],[90,"#49b1f5"]]' data-toggle="grapick" id="corners-square-option-gradient-color" data-option="corners-square-option-gradient-color" data-remember="corners-square-option-gradient-color" data-share="corners_square_option_gradient_color" />
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
@@ -233,14 +235,14 @@ const activePage = "qr-code/generator/";
                     </div>
                   </div>
                   <div class="setting rotation-block">
-                    <label for="corners-square-option-rotation">Rotation</label>
+                    <label for="corners-square-option-rotation">{t('rotation')}</label>
                     <input type="number" id="corners-square-option-rotation" data-option="corners-square-option-rotation" data-remember="corners-square-option-rotation" data-share="corners_square_option_rotation" value="0" step="1" min="-180" max="180" />
                   </div>
                 </details>
                 <details class="setting-group" open>
-                  <summary>Corners Dot</summary>
+                  <summary>{t('corners_dot')}</summary>
                   <div class="setting">
-                    <label for="corners-dot-option-type">Type</label>
+                    <label for="corners-dot-option-type">{t('type')}</label>
                     <select id="corners-dot-option-type" data-option="corners-dotoption-type" data-remember="corners-dotoption-type" data-share="corners_dot_option_type">
                       <option value="">None</option>
                       <option value="dot">Dot</option>
@@ -248,7 +250,7 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting">
-                    <label for="corners-dot-option-color-type">Color Type</label>
+                    <label for="corners-dot-option-color-type">{t('color_type')}</label>
                     <select id="corners-dot-option-color-type" data-option="corners-dotoption-color-type" data-remember="corners-dotoption-color-type" data-share="corners_dot_option_color_type" data-toggle="color-type">
                       <option value="">Single Color</option>
                       <option value="linear">Linear Gradient</option>
@@ -256,14 +258,14 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting color-block">
-                    <label for="corners-dot-option-color">Color</label>
+                    <label for="corners-dot-option-color">{t('color')}</label>
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
                       <input spellcheck="false" value="#000" id="corners-dot-option-color" data-option="corners-dot-option-color" data-remember="corners-dot-option-color" data-share="corners_dot_option_color" />
                     </div>
                   </div>
                   <div class="setting grapick-block">
-                    <label for="corners-dot-option-gradient-color">Color</label>
+                    <label for="corners-dot-option-gradient-color">{t('color')}</label>
                     <input value='[[10,"#000"],[90,"#49b1f5"]]' data-toggle="grapick" id="corners-dot-option-gradient-color" data-option="corners-dot-option-gradient-color" data-remember="corners-dot-option-gradient-color" data-share="corners_dot_option_gradient_color" />
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
@@ -271,14 +273,14 @@ const activePage = "qr-code/generator/";
                     </div>
                   </div>
                   <div class="setting rotation-block">
-                    <label for="corners-dot-option-rotation">Rotation</label>
+                    <label for="corners-dot-option-rotation">{t('rotation')}</label>
                     <input type="number" id="corners-dot-option-rotation" data-option="corners-dot-option-rotation" data-remember="corners-dot-option-rotation" data-share="corners_dot_option_rotation" value="0" step="1" min="-180" max="180" />
                   </div>
                 </details>
                 <details class="setting-group" open>
-                  <summary>Background</summary>
+                  <summary>{t('background')}</summary>
                   <div class="setting">
-                    <label for="background-option-color-type">Color Type</label>
+                    <label for="background-option-color-type">{t('color_type')}</label>
                     <select id="background-option-color-type" data-option="backgroundoption-color-type" data-remember="backgroundoption-color-type" data-share="background_option_color_type" data-toggle="color-type">
                       <option value="">Single Color</option>
                       <option value="linear">Linear Gradient</option>
@@ -286,14 +288,14 @@ const activePage = "qr-code/generator/";
                     </select>
                   </div>
                   <div class="setting color-block">
-                    <label for="background-option-color">Color</label>
+                    <label for="background-option-color">{t('color')}</label>
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
                       <input spellcheck="false" value="#fff" id="background-option-color" data-option="background-option-color" data-remember="background-option-color" data-share="background_option_color" />
                     </div>
                   </div>
                   <div class="setting grapick-block">
-                    <label for="background-option-gradient-color">Color</label>
+                    <label for="background-option-gradient-color">{t('color')}</label>
                     <input value='[[10,"#49b1f5"],[90,"#fff"]]' data-toggle="grapick" id="background-option-gradient-color" data-option="background-option-gradient-color" data-remember="background-option-gradient-color" data-share="background_option_gradient_color" />
                     <div class="color-input">
                       <div class="color-wrapper"><div class="color"></div></div>
@@ -301,14 +303,14 @@ const activePage = "qr-code/generator/";
                     </div>
                   </div>
                   <div class="setting rotation-block">
-                    <label for="background-option-rotation">Rotation</label>
-                    <input type="number" id="background-option-rotation" data-option="background-option-rotation" data-remember="background-option-rotation" data-share="background-option_rotation" value="0" step="1" min="-180" max="180" />
+                    <label for="background-option-rotation">{t('rotation')}</label>
+                    <input type="number" id="background-option-rotation" data-option="background-option-rotation" data-remember="background-option-rotation" data-share="background_option_rotation" value="0" step="1" min="-180" max="180" />
                   </div>
                 </details>
                 <details class="setting-group" open>
-                  <summary>Image</summary>
+                  <summary>{t('image')}</summary>
                   <div class="setting">
-                    <label for="image-type">Type</label>
+                    <label for="image-type">{t('type')}</label>
                     <select id="image-type" data-option="image-type" data-remember="image-type" data-share="image_type">
                       <option value="url">URL</option>
                       <option value="file">File</option>
@@ -324,23 +326,23 @@ const activePage = "qr-code/generator/";
                       <input class="droppable-file" type="file" id="image-file" data-option="image-file" accept="image/*" />
                       <div class="droppable-zone-wrapper">
                         <img class="droppable-zone-icon" src="/images/file.svg" alt="File" />
-                        <div class="droppable-zone-text">Drag and drop the file here or click to select a file. It will process locally and won't be uploaded.</div>
+                        <div class="droppable-zone-text">{t('drag_drop')}</div>
                       </div>
                     </div>
                   </div>
                   <div class="setting">
-                    <label for="image-size">Size</label>
+                    <label for="image-size">{t('size')}</label>
                     <input id="image-size" type="range" value="0.4" step="0.1" min="0.1" max="0.5" data-option="image-size" data-remember="image-size" data-share="image_size" />
                   </div>
                   <div class="setting">
-                    <label for="image-margin">Margin</label>
+                    <label for="image-margin">{t('margin')}</label>
                     <input type="number" id="image-margin" data-option="image-margin" data-remember="image-margin" data-share="image_margin" value="0" step="1" min="0" max="20" />
                   </div>
                   <div class="setting">
                     <label class="switcher">
                       <input type="checkbox" value="1" id="image-show-background" data-option="image-show-background" data-remember="image-show-background" data-share="image_show_background" />
                       <div class="toggle"></div>
-                      <span>Show Background Dots</span>
+                      <span>{t('show_background_dots')}</span>
                     </label>
                   </div>
                 </details>

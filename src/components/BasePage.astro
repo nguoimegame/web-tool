@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Sidebar from "../components/Sidebar.astro";
 import PageHeader from "../components/PageHeader.astro";
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
     title: string;
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const { title, description, activePage } = Astro.props;
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
 ---
 
 <BaseLayout title={`${title} - Web Tools`} description={description}>
@@ -17,8 +20,8 @@ const { title, description, activePage } = Astro.props;
         <Sidebar activePage={activePage} />
         <div id="content">
             <div class="top-nav">
-                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu">
-                    <img src="/images/menu.svg" width="24" height="24" alt="Menu" />
+                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
+                    <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} />
                 </button>
             </div>
             <PageHeader title={title} description={description} />
