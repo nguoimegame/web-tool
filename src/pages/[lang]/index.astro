@@ -67,7 +67,7 @@ const t = useTranslations(lang as any);
                           <ol>
                             {block.items.map((item) => (
                               <li>
-                                <a href={`/${lang === 'en' ? '' : lang + '/'}${item.url}`}>{item.name}</a>
+                                <a href={`/${lang}${item.url}`}>{item.name}</a>
                               </li>
                             ))}
                           </ol>
