@@ -6,11 +6,13 @@ const {
     copyMessage = "Output copied",
     showFullscreen = true,
     showCopy = true,
+    showDownload = false,
     // Data attributes
     dataEncodingFrom = null,
     dataToggleMonaco = true,
     // Share link
     showShareLink = true,
+    isReadonly = true,
 } = Astro.props;
 
 // Build data attributes object
@@ -24,6 +26,13 @@ if (dataToggleMonaco) dataAttrs["data-toggle"] = "monacoEditor";
         <div class="block-title">
             {title}
             <div class="toolbar">
+                {
+                    showDownload && (
+                        <a class="icon" id="download-image" download="download" style="display:none" onclick="gtag('event', 'download');">
+                            <img src="/images/download.svg" alt="Download" title="Download"/>
+                        </a>
+                    )
+                }
                 {
                     showCopy && (
                         <button class="icon" data-toggle="copy" data-clipboard-target={`#${id}`} data-message={copyMessage}>
@@ -41,7 +50,7 @@ if (dataToggleMonaco) dataAttrs["data-toggle"] = "monacoEditor";
                 }
             </div>
         </div>
-        <textarea class="container" id={id} spellcheck="false" placeholder={placeholder} readonly="readonly" {...dataAttrs}></textarea>
+        <textarea class="container" id={id} spellcheck="false" placeholder={placeholder} readonly={isReadonly ? "readonly" : undefined} {...dataAttrs}></textarea>
     </div>
     {
         showShareLink && (

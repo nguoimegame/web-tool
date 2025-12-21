@@ -179,15 +179,8 @@ import Sidebar from "../../../../components/Sidebar.astro";
         <script is:inline>
           ++waitLoadCount;
           delayScripts.push({
-            src: "/js/jsrsasign.js?v=1",
+            src: "/js/jsrsasign.js",
             onload: function () {
-              window.method = withOptions(rsa.generate, [
-                "rsa-bits",
-                "pem-format",
-                "cipher-algorithm",
-                "passphrase-enabled",
-                "passphrase",
-              ]);
               methodLoad();
             },
           });
@@ -197,6 +190,17 @@ import Sidebar from "../../../../components/Sidebar.astro";
           delayScripts.push({
             src: "/js/jsrsasign-all-min.min.js",
             onload: function () {
+              var execute = function () {
+                var bits = parseInt($("#rsa-bits").val());
+                var pemFormat = $("#pem-format").val();
+                var cipher = $("#cipher-algorithm").val();
+                var passphraseEnabled = $("#passphrase-enabled").prop("checked");
+                var passphrase = $("#passphrase").val();
+                rsa.generate(bits, pemFormat, cipher, passphraseEnabled, passphrase).then(function (prvKey) {
+                  $("#output").val(prvKey);
+                });
+              };
+              ot.setExecute(execute);
               methodLoad();
             },
           });

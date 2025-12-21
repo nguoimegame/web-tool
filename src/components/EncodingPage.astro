@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Sidebar from './Sidebar.astro';
 import PageHeader from './PageHeader.astro';
+import InputEncodingSelect from './InputEncodingSelect.astro';
+import OutputEncodingSelect from './OutputEncodingSelect2.astro';
 
 interface Props {
     title: string;
@@ -13,9 +15,12 @@ interface Props {
     hasInputSettings?: boolean;
     hasOutputSettings?: boolean;
     hasFormatSettings?: boolean;
+    initScript?: string;
+    extraJsFile?: string;
+    outputDataType?: string;
 }
 
-const { title, description, toolName, jsFile, activePage, reverseLink, hasInputSettings = true, hasOutputSettings = false, hasFormatSettings = false } = Astro.props;
+const { title, description, toolName, jsFile, activePage, reverseLink, hasInputSettings = true, hasOutputSettings = false, hasFormatSettings = false, initScript, extraJsFile, outputDataType } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -111,34 +116,14 @@ const { title, description, toolName, jsFile, activePage, reverseLink, hasInputS
                                 {hasInputSettings && (
                                     <div class="setting">
                                         <label for="input-type">Input Encoding</label>
-                                        <select data-toggle="encoding" id="input-type" data-remember="input-type" data-share="input_type" data-auto-update>
-                                            <optgroup label="Binary">
-                                                <option value="hex">Hex</option>
-                                                <option value="base64" data-load-encoding="base64">Base64</option>
-                                            </optgroup>
-                                            <optgroup label="Text">
-                                                <option value="utf-8" selected>UTF-8</option>
-                                                <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
-                                                <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
-                                            </optgroup>
-                                        </select>
+                                        <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} />
                                     </div>
                                 )}
                                 
                                 {hasOutputSettings && (
                                     <div class="setting">
                                         <label for="output-type">Output Encoding</label>
-                                        <select data-toggle="encoding" id="output-type" data-remember="output-type" data-share="output_type" data-auto-update>
-                                            <optgroup label="Binary">
-                                                <option value="hex">Hex</option>
-                                                <option value="base64" data-load-encoding="base64">Base64</option>
-                                            </optgroup>
-                                            <optgroup label="Text">
-                                                <option value="utf-8" selected>UTF-8</option>
-                                                <option value="utf-16le" data-load-encoding="1">UTF-16LE</option>
-                                                <option value="utf-16be" data-load-encoding="1">UTF-16BE</option>
-                                            </optgroup>
-                                        </select>
+                                        <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} dataType={outputDataType} />
                                     </div>
                                 )}
                                 
@@ -154,6 +139,8 @@ const { title, description, toolName, jsFile, activePage, reverseLink, hasInputS
                                         </select>
                                     </div>
                                 )}
+
+                                <slot name="settings" />
                             </div>
                         </div>
                     </div>
@@ -167,8 +154,17 @@ const { title, description, toolName, jsFile, activePage, reverseLink, hasInputS
         delayScripts.push({
             src: '/js/${jsFile}',
             onload: function () {
-                console.log('Loaded ${jsFile}');
+                ${initScript || `console.log('Loaded ${jsFile}');`}
             }
         });
+        ${extraJsFile ? `
+        ++waitLoadCount;
+        delayScripts.push({
+            src: '/js/${extraJsFile}',
+            onload: function () {
+                methodLoad();
+            }
+        });
+        ` : ''}
     `}></script>
 </BaseLayout>

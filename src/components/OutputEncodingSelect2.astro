@@ -1,0 +1,163 @@
+---
+interface Props {
+  id: string;
+  dataRemember?: string;
+  dataShare?: string;
+  dataAutoUpdate?: boolean;
+  dataType?: string;
+  includeTextEncodings?: boolean;
+}
+
+const {
+  id,
+  dataRemember = id,
+  dataShare,
+  dataAutoUpdate = false,
+  dataType,
+  includeTextEncodings = true,
+} = Astro.props;
+---
+
+<select
+    data-toggle="encoding"
+    id={id}
+    data-remember={dataRemember}
+    data-share={dataShare}
+    data-auto-update={dataAutoUpdate || undefined}
+    data-type={dataType}
+>
+  <optgroup label="Binary">
+    <option value="hex">Hex (Lower Case)</option>
+    <option value="hex_upper">Hex (Upper Case)</option>
+    <option value="base64" data-load-encoding="base64">Base64</option>
+  </optgroup>
+  {
+      includeTextEncodings && (
+          <optgroup label="Text">
+            <option value="utf-8" data-load-encoding="1" selected>
+              UTF-8
+            </option>
+            <option value="utf-16le" data-load-encoding="1">
+              UTF-16LE
+            </option>
+            <option value="utf-16be" data-load-encoding="1">
+              UTF-16BE
+            </option>
+            <option value="ibm866" data-load-encoding="2">
+              IBM866
+            </option>
+            <option value="iso-8859-2" data-load-encoding="2">
+              ISO-8859-2
+            </option>
+            <option value="iso-8859-3" data-load-encoding="2">
+              ISO-8859-3
+            </option>
+            <option value="iso-8859-4" data-load-encoding="2">
+              ISO-8859-4
+            </option>
+            <option value="iso-8859-5" data-load-encoding="2">
+              ISO-8859-5
+            </option>
+            <option value="iso-8859-6" data-load-encoding="2">
+              ISO-8859-6
+            </option>
+            <option value="iso-8859-7" data-load-encoding="2">
+              ISO-8859-7
+            </option>
+            <option value="iso-8859-8" data-load-encoding="2">
+              ISO-8859-8
+            </option>
+            <option value="iso-8859-8-i" data-load-encoding="2">
+              ISO-8859-8-I
+            </option>
+            <option value="iso-8859-10" data-load-encoding="2">
+              ISO-8859-10
+            </option>
+            <option value="iso-8859-13" data-load-encoding="2">
+              ISO-8859-13
+            </option>
+            <option value="iso-8859-14" data-load-encoding="2">
+              ISO-8859-14
+            </option>
+            <option value="iso-8859-15" data-load-encoding="2">
+              ISO-8859-15
+            </option>
+            <option value="iso-8859-16" data-load-encoding="2">
+              ISO-8859-16
+            </option>
+            <option value="koi8-r" data-load-encoding="2">
+              KOI8-R
+            </option>
+            <option value="koi8-u" data-load-encoding="2">
+              KOI8-U
+            </option>
+            <option value="macintosh" data-load-encoding="2">
+              macintosh
+            </option>
+            <option value="windows-874" data-load-encoding="2">
+              Windows-874
+            </option>
+            <option value="windows-1250" data-load-encoding="2">
+              Windows-1250
+            </option>
+            <option value="windows-1251" data-load-encoding="2">
+              Windows-1251
+            </option>
+            <option value="windows-1252" data-load-encoding="2">
+              Windows-1252
+            </option>
+            <option value="windows-1253" data-load-encoding="2">
+              Windows-1253
+            </option>
+            <option value="windows-1254" data-load-encoding="2">
+              Windows-1254
+            </option>
+            <option value="windows-1255" data-load-encoding="2">
+              Windows-1255
+            </option>
+            <option value="windows-1256" data-load-encoding="2">
+              Windows-1256
+            </option>
+            <option value="windows-1257" data-load-encoding="2">
+              Windows-1257
+            </option>
+            <option value="windows-1258" data-load-encoding="2">
+              Windows-1258
+            </option>
+            <option value="x-mac-cyrillic" data-load-encoding="2">
+              x-mac-cyrillic
+            </option>
+            <option value="gbk" data-load-encoding="2">
+              GBK
+            </option>
+            <option value="gb18030" data-load-encoding="2">
+              gb18030
+            </option>
+            <option value="big5" data-load-encoding="2">
+              Big5
+            </option>
+            <option value="euc-jp" data-load-encoding="2">
+              EUC-JP
+            </option>
+            <option value="iso-2022-jp" data-load-encoding="2">
+              ISO-2022-JP
+            </option>
+            <option value="shift_jis" data-load-encoding="2">
+              Shift_JIS
+            </option>
+            <option value="euc-kr" data-load-encoding="2">
+              EUC-KR
+            </option>
+            <option value="x-user-defined" data-load-encoding="2">
+              x-user-defined
+            </option>
+          </optgroup>
+      )
+  }
+</select>
+
+
+
+
+
+
