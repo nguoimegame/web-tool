@@ -2,11 +2,13 @@
 import EncodingPage from '../../../components/EncodingPage.astro';
 
 const title = "XML Formatter";
-const description = "Free online XML formatter. Format, minify or validate XML documents.";
+const description = "This free online XML formatter helps you beautify your XML string and make it more readable. You can choose the indentation level and characters.";
 const toolName = "Format";
-const jsFile = "xml.js?v=3";
-const activePage = "xml/formatter/";
+const jsFile = "xml.js?v=2";
+const activePage = "xml/formatter";
 const reverseLink = "";
+const initScript = `window.method = withOptions(xml.format, ['indent-type', 'indent']); methodLoad();`;
+const extraJsFile = "xml-formatter-singleton.min.js";
 ---
 
 <EncodingPage 
@@ -19,4 +21,21 @@ const reverseLink = "";
     hasInputSettings={false}
     hasOutputSettings={false}
     hasFormatSettings={false}
-/>
+    initScript={initScript}
+    extraJsFile={extraJsFile}
+    editorLanguage="xml"
+>
+    <div slot="settings">
+        <div class="setting">
+            <label for="indent-type">Indent Type</label>
+            <select id="indent-type" data-option="indent-type" data-remember="indent-type">
+                <option value="space" selected>Space</option>
+                <option value="tab">Tab</option>
+            </select>
+        </div>
+        <div class="setting">
+            <label for="indent">Indent</label>
+            <input id="indent" type="number" value="2" step="1" min="1" max="10" data-option="indent" data-remember="indent">
+        </div>
+    </div>
+</EncodingPage>

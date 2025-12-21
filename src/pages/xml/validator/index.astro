@@ -2,11 +2,13 @@
 import EncodingPage from '../../../components/EncodingPage.astro';
 
 const title = "XML Validator";
-const description = "Free online XML validateter. Format, minify or validate XML documents.";
+const description = "This free online XML validator helps you validate your XML string.";
 const toolName = "Validate";
-const jsFile = "xml.js?v=3";
-const activePage = "xml/validator/";
+const jsFile = "xml.js?v=2";
+const activePage = "xml/validator";
 const reverseLink = "";
+const initScript = `window.method = xml.validate; methodLoad();`;
+const extraJsFile = "validator.js";
 ---
 
 <EncodingPage 
@@ -19,4 +21,11 @@ const reverseLink = "";
     hasInputSettings={false}
     hasOutputSettings={false}
     hasFormatSettings={false}
-/>
+    initScript={initScript}
+    extraJsFile={extraJsFile}
+    editorLanguage="xml"
+    outputToggleMonaco={false}
+    outputPlaceholder="Error message..."
+>
+    <div slot="before-output-textarea" class="container" id="validate-result"></div>
+</EncodingPage>

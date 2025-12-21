@@ -1,11 +1,11 @@
 ﻿---
-import EncodingPage from '../../../../components/EncodingPage.astro';
+import EncodingPage from '../../../../../components/EncodingPage.astro';
 
 const title = "Decode Base58 to File";
 const description = "This online Base58 decoding tool helps you decode Base58 to a file for download.";
 const toolName = "Decode";
 const jsFile = "base58.js?v=3";
-const activePage = "base58/decode/file";
+const activePage = "encoding/base58/decode/file";
 ---
 
 <EncodingPage
@@ -19,6 +19,7 @@ const activePage = "base58/decode/file";
     hasOutputSettings={false}
     hasFileInput={true}
     inputFileUrlPlaceholder="Enter here..."
+    showOutputDownload={true}
     inputFileDropText="Drag and drop the file here or click to select a file. It will process locally and won't be uploaded."
     initScript={`
         window.method = download;

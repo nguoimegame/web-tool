@@ -2,11 +2,13 @@
 import EncodingPage from '../../../components/EncodingPage.astro';
 
 const title = "XML Minifier";
-const description = "Free online XML minifyter. Format, minify or validate XML documents.";
+const description = "This free online XML minifier helps you minify your XML string and make it more cleaner. It can remove indentation, new lines and comments to reduce size.";
 const toolName = "Minify";
-const jsFile = "xml.js?v=3";
-const activePage = "xml/minifier/";
+const jsFile = "xml.js?v=2";
+const activePage = "xml/minifier";
 const reverseLink = "";
+const initScript = `window.method = withOptions(xml.minify, ['remove-comments']); methodLoad();`;
+const extraJsFile = "xml-formatter-singleton.min.js";
 ---
 
 <EncodingPage 
@@ -19,4 +21,17 @@ const reverseLink = "";
     hasInputSettings={false}
     hasOutputSettings={false}
     hasFormatSettings={false}
-/>
+    initScript={initScript}
+    extraJsFile={extraJsFile}
+    editorLanguage="xml"
+>
+    <div slot="settings">
+        <div class="setting">
+            <label class="switcher">
+                <input type="checkbox" value="1" id="remove-comments" data-option="remove-comments" data-remember="remove-comments" checked>
+                <div class="toggle"></div>
+                <span>Remove Comments</span>
+            </label>
+        </div>
+    </div>
+</EncodingPage>

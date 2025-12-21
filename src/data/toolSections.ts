@@ -259,9 +259,9 @@ export const toolSections: ToolSection[] = [
       {
         title: "XML",
         items: [
-          { url: "xml/validator/", name: "Validator" },
-          { url: "xml/minifier/", name: "Minifier" },
-          { url: "xml/formatter/", name: "Formatter" },
+          { url: "xml/validator", name: "Validator" },
+          { url: "xml/minifier", name: "Minifier" },
+          { url: "xml/formatter", name: "Formatter" },
         ],
       },
       {

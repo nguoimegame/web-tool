@@ -32,6 +32,7 @@ interface Props {
     outputToggleMonaco?: boolean;
     loadMonaco?: boolean;
     outputPlaceholder?: string;
+    showOutputDownload?: boolean;
 }
 
 const { 
@@ -54,7 +55,8 @@ const {
     hasOutputTextarea = true,
     outputToggleMonaco = true,
     loadMonaco = true,
-    outputPlaceholder
+    outputPlaceholder,
+    showOutputDownload = false
 } = Astro.props;
 ---
 
@@ -107,6 +109,7 @@ const {
                             isReadonly={true}
                             textareaStyle="word-break:break-all;"
                             hasTextarea={hasOutputTextarea}
+                            showDownload={showOutputDownload}
                         >
                             {!hasFileInput && (
                                 <button slot="toolbar" class="icon" id="swap" onclick={`swap('${reverseLink}', [['#output', '#input'], ['#input-type', '#output-type']])`}>
