@@ -2,7 +2,7 @@ export const ja = {
   'nav.home': 'ホーム',
   'nav.about': '約',
   'sidebar.title': 'Web Tools',
-  'sidebar.description': 'オンラインツールは、ハッシュ、エンコード、デコード、暗号化、復号化、フォーマット、生成などの多くの機能を提供します。例には、MD5、SHA-256、SHA-512、SHA-3、Keccak、Base64、Base32、JSON、XML、およびQRコード関連ツールが含まれます。',
+  'sidebar.description': 'WebToolは、エンコーディング、暗号化、JWT処理、画像などのユーティリティを含む、開発者向けの無料オンラインツールのコレクションです。',
   'sidebar.search': 'ツールを検索...',
   'sidebar.search.no_result': 'ツールが見つかりません',
   'sidebar.search.found': '{0} 個のツールが見つかりました',
@@ -147,8 +147,8 @@ export const ja = {
   // SHA384
   'sha384.title': 'SHA384',
   'sha384.description': 'このSHA384オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
-  'sha384_file_hash.title': 'SHA384 ファイルハッシュ',
-  'sha384_file_hash.description': 'このSHA384オンラインツールは、ファイルをアップロードすることなく、SHA384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha3_384_file_hash.title': 'SHA384 ファイルハッシュ',
+  'sha3_384_file_hash.description': 'このSHA384オンラインツールは、ファイルをアップロードすることなく、SHA384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA512
   'sha512.title': 'SHA512',

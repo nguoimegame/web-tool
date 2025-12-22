@@ -2,7 +2,7 @@ export const zh = {
   'nav.home': '首页',
   'nav.about': '关于',
   'sidebar.title': 'Web Tools',
-  'sidebar.description': '在线工具提供多种功能，用于哈希、编码、解码、加密、解密、格式化、生成等。示例 include MD5、SHA-256、SHA-512、SHA-3、Keccak、Base64、Base32、JSON、XML 和 QR code 相关工具。',
+  'sidebar.description': 'WebTool 是一个为开发人员提供的免费在线工具集合，包括编码、加密、JWT 处理、图像等实用程序。',
   'sidebar.search': '搜索工具...',
   'sidebar.search.no_result': '未找到工具',
   'sidebar.search.found': '找到 {0} 个工具',

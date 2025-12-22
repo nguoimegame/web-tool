@@ -2,7 +2,7 @@ export const es = {
   'nav.home': 'Inicio',
   'nav.about': 'Acerca de',
   'sidebar.title': 'Web Tools',
-  'sidebar.description': 'Las herramientas en línea ofrecen muchas funciones para hash, codificación, decodificación, cifrado, descifrado, formateo, generación, etc. Los ejemplos incluyen MD5, SHA-256, SHA-512, SHA-3, Keccak, Base64, Base32, JSON, XML y herramientas relacionadas con códigos QR.',
+  'sidebar.description': 'WebTool es una colección de herramientas en línea gratuitas para desarrolladores, que incluye utilidades para codificación, criptografía, procesamiento de JWT, imágenes y mucho más.',
   'sidebar.search': 'Buscar herramientas...',
   'sidebar.search.no_result': 'No se encontraron herramientas',
   'sidebar.search.found': 'Se encontraron {0} herramienta{1}',

@@ -2,7 +2,7 @@ export const pt = {
   'nav.home': 'Início',
   'nav.about': 'Sobre',
   'sidebar.title': 'Web Tools',
-  'sidebar.description': 'As ferramentas online oferecem muitas funções para hash, codificação, decodificação, criptografia, descriptografia, formatação, geração e assim por diante. Exemplos incluem MD5, SHA-256, SHA-512, SHA-3, Keccak, Base64, Base32, JSON, XML e ferramentas relacionadas a código QR.',
+  'sidebar.description': 'WebTool é uma coleção de ferramentas online gratuitas para desenvolvedores, incluindo utilitários para codificação, criptografia, processamento de JWT, imagens e muito mais.',
   'sidebar.search': 'Pesquisar ferramentas...',
   'sidebar.search.no_result': 'Nenhuma ferramenta encontrada',
   'sidebar.search.found': 'Encontrada(s) {0} ferramenta(s)',
@@ -293,8 +293,8 @@ export const pt = {
   'sha512_256_file_hash.description': 'Esta ferramenta online SHA512/256 ajuda você a calcular o hash de um arquivo local ou URL usando SHA512/256 sem carregar o arquivo.',
 
   // Double SHA256
-  'double_sha256.title': 'SHA256 duplo',
-  'double_sha256.description': 'Esta ferramenta online SHA256 duplo ajuda você a calcular hashes a partir de strings. Você pode inserir UTF-8, UTF-16, Hex, Base64 ou leather codificações.',
+  'double_sha256.title': 'Double SHA256',
+  'double_sha256.description': 'Esta ferramenta online Double SHA256 ajuda você a calcular hashes a partir de strings. Você pode inserir UTF-8, UTF-16, Hex, Base64 ou leather codificações.',
 
   // Kebab Case
   'kebab.title': 'Converter para kebab-case',

@@ -27,16 +27,9 @@ const t = useTranslations(lang as any);
           <!-- My Tools Card -->
           <div class="section" id="my-tools-card">
             <h2>{t('sidebar.my_tools')}</h2>
-            <div class="blocks">
-              <div class="block">
-                <h3>{t('sidebar.my_tools')}</h3>
-                <nav>
-                  <ol id="favorite-tools-list">
-                    <li class="empty-state">{t('sidebar.my_tools.empty')}</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
+            <ol id="favorite-tools-list" class="blocks">
+              <li class="empty-state">{t('sidebar.my_tools.empty')}</li>
+            </ol>
           </div>
 
           <hr/>
@@ -380,7 +373,7 @@ const t = useTranslations(lang as any);
     })();
   </script>
 
-  <style>
+  <style is:inline>
     #index .section-title {
       margin: 0;
       padding: 0;
@@ -432,6 +425,66 @@ const t = useTranslations(lang as any);
     #index li a {
       display: flex;
       align-items: center;
+    }
+
+    /* Favorites List Styles */
+    #favorite-tools-list {
+      /* Grid layout inherited from .blocks class */
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    #index #favorite-tools-list li {
+      background-color: var(--var-main-bg-color);
+      border: 1px solid var(--var-border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      box-shadow: var(--var-shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    #index #favorite-tools-list li:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--var-shadow-md);
+      border-color: var(--var-primary);
+    }
+
+    #index #favorite-tools-list li a {
+      width: 100%;
+      padding: 4px 0;
+      padding-right: 24px;
+      display: flex;
+      align-items: center;
+      color: var(--var-font-color);
+    }
+
+    #index #favorite-tools-list li a:hover {
+      background-color: transparent;
+      transform: none;
+      padding-left: 0;
+      padding-right: 24px;
+      color: var(--var-primary);
+    }
+
+    #index #favorite-tools-list .empty-state {
+      grid-column: 1 / -1;
+      width: 100%;
+      text-align: center;
+      background: none !important;
+      border: 2px dashed var(--var-border-color) !important;
+      box-shadow: none !important;
+      padding: 2rem;
+      color: var(--var-gray-500);
+      cursor: default;
+    }
+
+    #index #favorite-tools-list .empty-state:hover {
+      transform: none;
+      border-color: var(--var-border-color) !important;
     }
   </style>
 </BaseLayout>

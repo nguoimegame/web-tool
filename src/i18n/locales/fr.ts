@@ -2,7 +2,7 @@ export const fr = {
   'nav.home': 'Accueil',
   'nav.about': 'À propos',
   'sidebar.title': 'Web Tools',
-  'sidebar.description': 'Les outils en ligne offrent de nombreuses fonctions pour le hachage, l\'encodage, le décodage, le cryptage, le décryptage, le formatage, la génération, etc. Les exemples incluent MD5, SHA-256, SHA-512, SHA-3, Keccak, Base64, Base32, JSON, XML et les outils liés au code QR.',
+  'sidebar.description': 'WebTool est une collection d\'outils en ligne gratuits pour les développeurs, comprenant des utilitaires pour l\'encodage, la cryptographie, le traitement JWT, les images et bien plus encore.',
   'sidebar.search': 'Rechercher des outils...',
   'sidebar.search.no_result': 'Aucun outil trouvé',
   'sidebar.search.found': '{0} outil{1} trouvé{1}',

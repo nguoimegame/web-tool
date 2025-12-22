@@ -2,7 +2,7 @@ export const vi = {
   'nav.home': 'Trang chủ',
   'nav.about': 'Giới thiệu',
   'sidebar.title': 'Web Tools',
-  'sidebar.description': 'Các công cụ trực tuyến cung cấp nhiều chức năng để băm, mã hóa, giải mã, định dạng, tạo và hơn thế nữa. Ví dụ bao gồm MD5, SHA-256, SHA-512, SHA-3, Keccak, Base64, Base32, JSON, XML và các công cụ liên quan đến mã QR.',
+  'sidebar.description': 'WebTool là bộ sưu tập các công cụ trực tuyến miễn phí dành cho nhà phát triển, bao gồm các tiện ích mã hóa (encoding), mật mã (cryptography), xử lý JWT, hình ảnh và nhiều hơn nữa.',
   'sidebar.search': 'Tìm kiếm công cụ...',
   'sidebar.search.no_result': 'Không tìm thấy công cụ nào',
   'sidebar.search.found': 'Tìm thấy {0} công cụ',
