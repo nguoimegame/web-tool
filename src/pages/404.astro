@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "404 - Page Not Found";
+const description = "The page you are looking for does not exist.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="error-page">
+    <div class="content">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">Page Not Found</h2>
+      <p class="error-description">
+        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+      </p>
+      
+      <a href="/" class="home-btn">
+        <i data-lucide="home"></i>
+        <span>Go to Homepage</span>
+      </a>
+
+      <p class="redirect-message">
+        Redirecting to homepage in <span id="countdown">30</span> seconds...
+      </p>
+    </div>
+  </div>
+
+  <style>
+    .error-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .content {
+      max-width: 600px;
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-weight: 800;
+      line-height: 1;
+      margin: 0;
+      color: var(--var-primary, #007bff);
+      text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    }
+
+    .error-title {
+      font-size: 32px;
+      margin: 10px 0 20px;
+      color: var(--text-color, #333);
+    }
+
+    .error-description {
+      font-size: 18px;
+      color: var(--text-secondary, #666);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background-color: var(--var-primary, #007bff);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .home-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .redirect-message {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--text-secondary, #888);
+    }
+
+    #countdown {
+      font-weight: bold;
+      color: var(--var-primary, #007bff);
+    }
+  </style>
+
+  <script is:inline>
+    // Countdown and Redirect Logic
+    (function() {
+      let seconds = 30;
+      const countdownEl = document.getElementById('countdown');
+      
+      const interval = setInterval(() => {
+        seconds--;
+        if (countdownEl) {
+          countdownEl.textContent = seconds;
+        }
+        
+        if (seconds <= 0) {
+          clearInterval(interval);
+          // Redirect to root (which handles language redirection)
+          window.location.href = '/';
+        }
+      }, 1000);
+    })();
+  </script>
+</BaseLayout>
