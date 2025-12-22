@@ -13,7 +13,7 @@ import PageHeader from "../../../../components/PageHeader.astro";
     <div id="content">
       <div class="top-nav">
         <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu"
-          ><img src="/images/menu.svg" width="24" height="24" alt="Menu" /></button
+          ><i data-lucide="menu" width="24" height="24" alt="Menu"></i></button
         >
       </div>
       <PageHeader title="ECDSA Verify Signature" description="This online tool helps you verify signatures using ECDSA. It supports various curves and signature algorithms." />
@@ -26,12 +26,11 @@ import PageHeader from "../../../../components/PageHeader.astro";
                   Input
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -53,12 +52,11 @@ import PageHeader from "../../../../components/PageHeader.astro";
                   Output
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -75,7 +73,7 @@ import PageHeader from "../../../../components/PageHeader.astro";
                 <summary class="block-title"
                   >Share Link<div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied"
-                      ><img src="/images/copy.svg" alt="Copy" title="Copy" /></button
+                      ><i data-lucide="copy" title="Copy"></i></button
                     >
                   </div></summary
                 >

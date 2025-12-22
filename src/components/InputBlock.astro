@@ -14,6 +14,7 @@ const {
     // Data attributes
     dataRemember = null,
     dataShare = null,
+
     dataEncodingFrom = null,
     dataAutoUpdate = false,
     dataToggleMonaco = true,
@@ -41,15 +42,15 @@ const t = useTranslations(lang as any);
                 {
                     showCopy && (
                         <button class="icon" data-toggle="copy" data-clipboard-target={`#${id}`} data-message={copyMessage}>
-                            <img src="/images/copy.svg" alt="Copy" title="Copy" />
+                            <i data-lucide="copy" title="Copy"></i>
                         </button>
                     )
                 }
                 {
                     showFullscreen && (
                         <button class="icon" data-toggle="fullscreen">
-                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" />
-                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen" />
+                            <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
+                            <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
                         </button>
                     )
                 }
@@ -60,7 +61,7 @@ const t = useTranslations(lang as any);
             <div class="droppable-zone container" id="droppable-zone" style="display:none;">
                 <input class="droppable-file" type="file" id={fileId} data-auto-update />
                 <div class="droppable-zone-wrapper">
-                    <img class="droppable-zone-icon" src="/images/file.svg" alt="File" />
+                    <i class="droppable-zone-icon" data-lucide="file-up" alt="File"></i>
                     <div class="droppable-zone-text">{t('drag_drop')}</div>
                 </div>
             </div>

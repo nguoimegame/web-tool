@@ -71,7 +71,7 @@ const t = useTranslations(lang as any);
         <div id="content">
             <div class="top-nav">
                 <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
-                    <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')}>
+                    <i data-lucide="menu" width="24" height="24" alt={t('sidebar.toggle_menu')}></i>
                 </button>
             </div>
             
@@ -117,7 +117,7 @@ const t = useTranslations(lang as any);
                         >
                             {!hasFileInput && (
                                 <button slot="toolbar" class="icon" id="swap" onclick={`swap('${reverseLink}', [['#output', '#input'], ['#input-type', '#output-type']])`}>
-                                    <img src="/images/swap.svg" alt="Swap" title="Swap"/>
+                                    <i data-lucide="arrow-left-right" alt="Swap" title="Swap"></i>
                                 </button>
                             )}
                             <slot name="before-output-textarea" slot="before-textarea" />

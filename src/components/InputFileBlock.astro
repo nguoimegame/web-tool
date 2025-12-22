@@ -24,8 +24,8 @@ const t = useTranslations(lang as any);
       <div class="toolbar">
         {showFullscreen && (
           <button class="icon" data-toggle="fullscreen">
-            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
-            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+            <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
+            <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
           </button>
         )}
       </div>
@@ -47,7 +47,7 @@ const t = useTranslations(lang as any);
         data-auto-update={dataAutoUpdate ? true : undefined}
       >
       <div class="droppable-zone-wrapper">
-        <img class="droppable-zone-icon" src="/images/file.svg" alt="File">
+        <i class="droppable-zone-icon" data-lucide="file-up" alt="File"></i>
         <div class="droppable-zone-text">{t('drag_drop')}</div>
       </div>
     </div>

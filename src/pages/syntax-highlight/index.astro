@@ -13,7 +13,7 @@ import PageHeader from "../../components/PageHeader.astro";
     <div id="content">
       <div class="top-nav">
         <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu"
-          ><img src="/images/menu.svg" width="24" height="24" alt="Menu" /></button
+          ><i data-lucide="menu" width="24" height="24" alt="Menu"></i></button
         >
       </div>
       <PageHeader title="Syntax Highlight" description="This syntax highlight online tool helps you highlight your code. Supports many languages such as JavaScript, C++, C#, Java... and so on." />
@@ -26,12 +26,11 @@ import PageHeader from "../../components/PageHeader.astro";
                   Input
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -54,12 +53,11 @@ import PageHeader from "../../components/PageHeader.astro";
                 Output
                 <div class="toolbar">
                   <button class="icon" data-toggle="fullscreen"
-                    ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                    ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                       class="fullscreen-icon-exit"
-                      src="/images/fullscreen-exit.svg"
-                      alt="Full Screen"
+                      data-lucide="minimize"
                       title="Full Screen"
-                    /></button
+                    ></i></button
                   >
                 </div>
               </div>

@@ -17,7 +17,7 @@ const activePage = "sql/formatter/";
         <div id="content">
             <div class="top-nav">
                 <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
-                    <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')}>
+                    <i data-lucide="menu" width="24" height="24" alt={t('sidebar.toggle_menu')}></i>
                 </button>
             </div>
             
@@ -31,8 +31,8 @@ const activePage = "sql/formatter/";
                                 <div class="block-title">{t('input')}
                                     <div class="toolbar">
                                         <button class="icon" data-toggle="fullscreen">
-                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
-                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                                            <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
+                                            <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -47,11 +47,11 @@ const activePage = "sql/formatter/";
                                 <div class="block-title">{t('output')}
                                     <div class="toolbar">
                                         <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
-                                            <img src="/images/copy.svg" alt="Copy" title="Copy"/>
+                                            <i data-lucide="copy" title="Copy"></i>
                                         </button>
                                         <button class="icon" data-toggle="fullscreen">
-                                            <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen">
-                                            <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen">
+                                            <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
+                                            <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
                                         </button>
                                     </div>
                                 </div>

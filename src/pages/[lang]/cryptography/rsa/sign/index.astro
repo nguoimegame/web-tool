@@ -25,7 +25,7 @@ const activePage = "cryptography/rsa/sign";
     <div id="content">
       <div class="top-nav">
         <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}
-          ><img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} /></button
+          ><i data-lucide="menu" width="24" height="24" alt={t('sidebar.toggle_menu')}></i></button
         >
       </div>
       <PageHeader title={title} description={description} />
@@ -38,12 +38,11 @@ const activePage = "cryptography/rsa/sign";
                   {t('input')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -65,15 +64,14 @@ const activePage = "cryptography/rsa/sign";
                   {t('output')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied"
-                      ><img src="/images/copy.svg" alt="Copy" title="Copy" /></button
+                      ><i data-lucide="copy" title="Copy"></i></button
                     >
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -90,7 +88,7 @@ const activePage = "cryptography/rsa/sign";
                 <summary class="block-title"
                   >{t('share_link')}<div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied"
-                      ><img src="/images/copy.svg" alt="Copy" title="Copy" /></button
+                      ><i data-lucide="copy" title="Copy"></i></button
                     >
                   </div></summary
                 >

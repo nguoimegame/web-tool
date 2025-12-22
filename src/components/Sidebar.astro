@@ -95,7 +95,10 @@ function getLangSwitchUrl(targetLang: string) {
             ))}
           </div>
         </div>
-        <button class="icon theme"><img class="light" src="/images/light.svg" alt={t('sidebar.dark_mode')} title={t('sidebar.dark_mode')} /><img class="dark" src="/images/dark.svg" alt={t('sidebar.dark_mode')} title={t('sidebar.dark_mode')} /></button>
+        <button class="icon theme">
+          <i class="light" data-lucide="sun" title={t('sidebar.dark_mode')}></i>
+          <i class="dark" data-lucide="moon" title={t('sidebar.dark_mode')}></i>
+        </button>
       </div>
     </header>
 

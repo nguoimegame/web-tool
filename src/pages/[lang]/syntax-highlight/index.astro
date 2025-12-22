@@ -24,7 +24,7 @@ const t = useTranslations(lang as any);
     <div id="content">
       <div class="top-nav">
         <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}
-          ><img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} /></button
+          ><i data-lucide="menu" width="24" height="24" alt={t('sidebar.toggle_menu')}></i></button
         >
       </div>
       <PageHeader title={t('syntax_highlight.title')} description={t('syntax_highlight.description')} />
@@ -37,12 +37,11 @@ const t = useTranslations(lang as any);
                   {t('input')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -64,12 +63,11 @@ const t = useTranslations(lang as any);
                   {t('output')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
