@@ -29,7 +29,7 @@ const activePage = "qr-code/generator/";
     <div id="content">
       <div class="top-nav">
         <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
-          <img src="/images/menu.svg" width="24" height="24" alt={t('sidebar.toggle_menu')} />
+          <i data-lucide="menu" width="24" height="24" alt={t('sidebar.toggle_menu')}></i>
         </button>
       </div>
       <PageHeader title={title} description={description} />
@@ -42,8 +42,8 @@ const activePage = "qr-code/generator/";
                   {t('input')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen">
-                      <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" />
-                      <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen" />
+                      <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
+                      <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
                     </button>
                   </div>
                 </div>
@@ -73,11 +73,11 @@ const activePage = "qr-code/generator/";
                   {t('output')}
                   <div class="toolbar">
                     <a class="icon" id="download-image" download="download" style="display:none" onclick="gtag('event', 'download');">
-                      <img src="/images/download.svg" alt="Download" title="Download" />
+                      <i data-lucide="download" title="Download"></i>
                     </a>
                     <button class="icon" data-toggle="fullscreen">
-                      <img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" />
-                      <img class="fullscreen-icon-exit" src="/images/fullscreen-exit.svg" alt="Full Screen" title="Full Screen" />
+                      <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
+                      <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
                     </button>
                   </div>
                 </div>
@@ -88,7 +88,7 @@ const activePage = "qr-code/generator/";
                   {t('embedded_code')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Embedded code copied">
-                      <img src="/images/copy.svg" alt="Copy" title="Copy" />
+                      <i data-lucide="copy" title="Copy"></i>
                     </button>
                   </div>
                 </summary>
@@ -99,7 +99,7 @@ const activePage = "qr-code/generator/";
                   {t('qrcode_link')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#qrcode-link" data-message="QR code link copied">
-                      <img src="/images/copy.svg" alt="Copy" title="Copy" />
+                      <i data-lucide="copy" title="Copy"></i>
                     </button>
                   </div>
                 </summary>
@@ -110,7 +110,7 @@ const activePage = "qr-code/generator/";
                   {t('share_link')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
-                      <img src="/images/copy.svg" alt="Copy" title="Copy" />
+                      <i data-lucide="copy" title="Copy"></i>
                     </button>
                   </div>
                 </summary>
@@ -332,7 +332,7 @@ const activePage = "qr-code/generator/";
                     <div class="droppable-zone">
                       <input class="droppable-file" type="file" id="image-file" data-option="image-file" accept="image/*" />
                       <div class="droppable-zone-wrapper">
-                        <img class="droppable-zone-icon" src="/images/file.svg" alt="File" />
+                        <i class="droppable-zone-icon" data-lucide="file-up" alt="File"></i>
                         <div class="droppable-zone-text">{t('drag_drop')}</div>
                       </div>
                     </div>

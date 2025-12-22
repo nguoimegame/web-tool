@@ -28,7 +28,7 @@ const activePage = "cryptography/ecdsa/verify";
     <div id="content">
       <div class="top-nav">
         <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label="Menu"
-          ><img src="/images/menu.svg" width="24" height="24" alt="Menu" /></button
+          ><i data-lucide="menu" width="24" height="24" alt="Menu"></i></button
         >
       </div>
       <PageHeader title={title} description={description} />
@@ -41,12 +41,11 @@ const activePage = "cryptography/ecdsa/verify";
                   {t('input')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -68,12 +67,11 @@ const activePage = "cryptography/ecdsa/verify";
                   {t('output')}
                   <div class="toolbar">
                     <button class="icon" data-toggle="fullscreen"
-                      ><img class="fullscreen-icon" src="/images/fullscreen.svg" alt="Full Screen" title="Full Screen" /><img
+                      ><i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i><i
                         class="fullscreen-icon-exit"
-                        src="/images/fullscreen-exit.svg"
-                        alt="Full Screen"
+                        data-lucide="minimize"
                         title="Full Screen"
-                      /></button
+                      ></i></button
                     >
                   </div>
                 </div>
@@ -90,7 +88,7 @@ const activePage = "cryptography/ecdsa/verify";
                 <summary class="block-title"
                   >{t('share_link')}<div class="toolbar">
                     <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message={t('share_link_copied')}
-                      ><img src="/images/copy.svg" alt="Copy" title="Copy" /></button
+                      ><i data-lucide="copy" title="Copy"></i></button
                     >
                   </div></summary
                 >
