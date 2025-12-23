@@ -1,6 +1,4 @@
 ---
-import { useTranslations } from '../i18n/utils';
-
 interface Props {
     title: string;
     showFullscreen?: boolean;
@@ -16,8 +14,6 @@ const {
     copyTarget,
     copyMessage = "Copied"
 } = Astro.props;
-const { lang = 'en' } = Astro.params;
-const t = useTranslations(lang as any);
 ---
 
 <div class="input">

@@ -14,13 +14,16 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "astro": "^5.16.6"
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.16.6",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^6.0.0",
     "astro-eslint-parser": "^0.16.0",
     "eslint": "^8.0.0",
     "prettier": "^3.0.0",
-    "prettier-plugin-astro": "^0.12.0"
+    "prettier-plugin-astro": "^0.12.0",
+    "terser": "^5.44.1"
   }
 }

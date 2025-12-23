@@ -1,6 +1,4 @@
 ---
-import { useTranslations } from '../i18n/utils';
-
 interface Props {
     title: string;
     showFullscreen?: boolean;
@@ -18,8 +16,6 @@ const {
     copyTarget,
     copyMessage = "Output copied"
 } = Astro.props;
-const { lang = 'en' } = Astro.params;
-const t = useTranslations(lang as any);
 ---
 
 <div class="output">
@@ -36,7 +32,7 @@ const t = useTranslations(lang as any);
                     )
                 }
                 {
-                    showCopy && copyTarget && (
+                    showCopy && (
                         <button class="icon" data-toggle="copy" data-clipboard-target={copyTarget} data-message={copyMessage}>
                             <i data-lucide="copy" title="Copy"></i>
                         </button>

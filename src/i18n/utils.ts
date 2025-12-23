@@ -9,7 +9,8 @@ export function getLangFromUrl(url: URL) {
 
 export function useTranslations(lang: keyof typeof ui) {
   return function t(key: keyof typeof ui[typeof defaultLang], ...args: any[]) {
-    let translation = ui[lang][key] || ui[defaultLang][key];
+    const langTranslations = ui[lang] as Record<string, string>;
+    let translation = langTranslations[key as string] || ui[defaultLang][key];
     if (args.length > 0) {
       args.forEach((arg, index) => {
         translation = translation.replace(`{${index}}`, arg);
