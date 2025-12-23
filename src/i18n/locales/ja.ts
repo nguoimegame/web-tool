@@ -2,127 +2,132 @@ export const ja = {
   'nav.home': 'ホーム',
   'nav.about': '約',
   'sidebar.title': 'Web Tools',
-  'sidebar.description': 'WebToolは、エンコーディング、暗号化、JWT処理、画像などのユーティリティを含む、開発者向けの無料オンラインツールのコレクションです。',
+  'sidebar.description':
+    'WebToolは、エンコーディング、暗号化、JWT処理、画像などのユーティリティを含む、開発者向けの無料オンラインツールのコレクションです。',
   'sidebar.search': 'ツールを検索...',
   'sidebar.search.no_result': 'ツールが見つかりません',
   'sidebar.search.found': '{0} 個のツールが見つかりました',
   'sidebar.my_tools': 'お気に入りのツール',
-  'sidebar.my_tools.empty': 'ツールの横にあるハート of アイコンをクリックして、お気に入りに追加してください！',
+  'sidebar.my_tools.empty':
+    'ツールの横にあるハート of アイコンをクリックして、お気に入りに追加してください！',
   'sidebar.toggle_menu': 'メニュー',
   'sidebar.dark_mode': 'ダークモード',
 
   // Common
-  'input': '入力',
-  'output': '出力',
-  'text': 'テキスト',
-  'binary': 'バイナリ',
-  'settings': '設定',
-  'auto_update': '自動更新',
-  'remember_input': '入力を記憶',
-  'input_type': '入力タイプ',
-  'input_encoding': '入力エンコーディング',
-  'output_encoding': '出力エンコーディング',
-  'share_link': '共有リンク',
-  'output_placeholder': 'ここに出力...',
-  'drag_drop': 'ファイルをここにドラッグアンドドロップするか、クリックしてファイルを選択します。ローカルで処理され、アップロードされません。',
-  'url_placeholder': 'ここにURLを入力すると、ダウンロードが試行されます。プログラムでダウンロードできない場合は、手動でダウンロードする必要がある場合があります。',
-  'enter_here': 'ここに入力...',
-  'highlight': 'ハイライト',
-  'language': '言語',
-  'style': 'スタイル',
-  'tool_name': '計算する',
-  'model': 'モデル',
-  'width': '幅',
-  'poly': 'Poly (Hex)',
-  'init': 'Init (Hex)',
-  'xorout': 'XorOut (Hex)',
-  'refin': 'RefIn',
-  'refout': 'RefOut',
-  'enable_hmac': 'HMACを有効にする',
-  'hmac_key': 'キー',
-  'encoding': 'エンコーディング',
-  'convert': '変換',
-  'format': 'フォーマット',
-  'indent_type': 'インデントの種類',
-  'indent': 'インデント',
-  'minify': '圧縮',
-  'remove_comments': 'コメントを削除',
-  'validate': '検証',
-  'error_message': 'エラーメッセージ...',
-  'view': '表示',
-  'encode': 'エンコード',
-  'decode': 'デコード',
-  'upper_case': '大文字',
-  'pretty_display': '整形表示',
-  'generate': '生成',
-  'examples': '例',
-  'embedded_code': '埋め込みコード',
-  'qrcode_link': 'QRコードリンク',
-  'type': 'タイプ',
-  'size': 'サイズ',
-  'padding': '余白',
-  'error_correction': '誤り訂正',
-  'main': 'メイン',
-  'dot': 'ドット',
-  'color_type': '色の種類',
-  'color': '色',
-  'rotation': '回転',
-  'corners_square': '角の四角形',
-  'corners_dot': '角のドット',
-  'background': '背景',
-  'image': '画像',
-  'margin': 'マージン',
-  'show_background_dots': '背景ドットを表示',
-  'file_name': 'ファイル名',
-  'encrypt': '暗号化',
-  'decrypt': '復号化',
-  'key_size': 'キーサイズ',
-  'mode': 'モード',
-  'key_type': 'キータイプ',
-  'passphrase': 'パスフレーズ',
-  'hash': 'ハッシュ',
-  'salt_type': 'ソルトタイプ',
-  'salt': 'ソルト',
-  'data': 'データ',
-  'custom_iteration': 'カスタムイテレーション',
-  'iteration': 'イテレーション回数',
-  'key': 'キー',
-  'iv': 'IV',
-  'drop': 'ドロップ',
-  'derived_key_size': '派生キーサイズ',
-  'algorithm': 'アルゴリズム',
-  'public_key': '公開鍵',
-  'private_key': '秘密鍵',
-  'sign': '署名',
-  'verify': '検証',
-  'signature': '署名',
-  'bits': 'ビット',
-  'cipher_algorithm': '暗号化アルゴリズム',
-  'curve': '曲線',
-  'customization': 'カスタマイズ',
-  'function_name': '関数名',
-  'hex_lower': 'Hex（小文字）',
-  'hex_upper': 'Hex（大文字）',
-  'reset': 'リセット',
-  'upload': 'アップロード',
-  'signature_algorithm': '署名アルゴリズム',
-  'share_link_copied': '共有リンクがコピーされました',
-  'output_here': '出力はこちら...',
-  'output_copied': '出力がコピーされました',
-  'public_key_here': '公開鍵はこちら...',
-  'public_key_copied': '公開鍵がコピーされました',
-  'private_key_here': '秘密鍵はこちら...',
-  'private_key_copied': '秘密鍵がコピーされました',
-  'download_file_name': 'ダウンロードファイル名',
-  'encoded_file': 'エンコードされたファイル',
-  'encoded_text': 'エンコードされたテキスト',
-  'file_drop_text': 'ファイルをここにドラッグアンドドロップするか、クリックして選択してください',
-  'url': 'URL',
-  'file': 'ファイル',
+  input: '入力',
+  output: '出力',
+  text: 'テキスト',
+  binary: 'バイナリ',
+  settings: '設定',
+  auto_update: '自動更新',
+  remember_input: '入力を記憶',
+  input_type: '入力タイプ',
+  input_encoding: '入力エンコーディング',
+  output_encoding: '出力エンコーディング',
+  share_link: '共有リンク',
+  output_placeholder: 'ここに出力...',
+  drag_drop:
+    'ファイルをここにドラッグアンドドロップするか、クリックしてファイルを選択します。ローカルで処理され、アップロードされません。',
+  url_placeholder:
+    'ここにURLを入力すると、ダウンロードが試行されます。プログラムでダウンロードできない場合は、手動でダウンロードする必要がある場合があります。',
+  enter_here: 'ここに入力...',
+  highlight: 'ハイライト',
+  language: '言語',
+  style: 'スタイル',
+  tool_name: '計算する',
+  model: 'モデル',
+  width: '幅',
+  poly: 'Poly (Hex)',
+  init: 'Init (Hex)',
+  xorout: 'XorOut (Hex)',
+  refin: 'RefIn',
+  refout: 'RefOut',
+  enable_hmac: 'HMACを有効にする',
+  hmac_key: 'キー',
+  encoding: 'エンコーディング',
+  convert: '変換',
+  format: 'フォーマット',
+  indent_type: 'インデントの種類',
+  indent: 'インデント',
+  minify: '圧縮',
+  remove_comments: 'コメントを削除',
+  validate: '検証',
+  error_message: 'エラーメッセージ...',
+  view: '表示',
+  encode: 'エンコード',
+  decode: 'デコード',
+  upper_case: '大文字',
+  pretty_display: '整形表示',
+  generate: '生成',
+  examples: '例',
+  embedded_code: '埋め込みコード',
+  qrcode_link: 'QRコードリンク',
+  type: 'タイプ',
+  size: 'サイズ',
+  padding: '余白',
+  error_correction: '誤り訂正',
+  main: 'メイン',
+  dot: 'ドット',
+  color_type: '色の種類',
+  color: '色',
+  rotation: '回転',
+  corners_square: '角の四角形',
+  corners_dot: '角のドット',
+  background: '背景',
+  image: '画像',
+  margin: 'マージン',
+  show_background_dots: '背景ドットを表示',
+  file_name: 'ファイル名',
+  encrypt: '暗号化',
+  decrypt: '復号化',
+  key_size: 'キーサイズ',
+  mode: 'モード',
+  key_type: 'キータイプ',
+  passphrase: 'パスフレーズ',
+  hash: 'ハッシュ',
+  salt_type: 'ソルトタイプ',
+  salt: 'ソルト',
+  data: 'データ',
+  custom_iteration: 'カスタムイテレーション',
+  iteration: 'イテレーション回数',
+  key: 'キー',
+  iv: 'IV',
+  drop: 'ドロップ',
+  derived_key_size: '派生キーサイズ',
+  algorithm: 'アルゴリズム',
+  public_key: '公開鍵',
+  private_key: '秘密鍵',
+  sign: '署名',
+  verify: '検証',
+  signature: '署名',
+  bits: 'ビット',
+  cipher_algorithm: '暗号化アルゴリズム',
+  curve: '曲線',
+  customization: 'カスタマイズ',
+  function_name: '関数名',
+  hex_lower: 'Hex（小文字）',
+  hex_upper: 'Hex（大文字）',
+  reset: 'リセット',
+  upload: 'アップロード',
+  signature_algorithm: '署名アルゴリズム',
+  share_link_copied: '共有リンクがコピーされました',
+  output_here: '出力はこちら...',
+  output_copied: '出力がコピーされました',
+  public_key_here: '公開鍵はこちら...',
+  public_key_copied: '公開鍵がコピーされました',
+  private_key_here: '秘密鍵はこちら...',
+  private_key_copied: '秘密鍵がコピーされました',
+  download_file_name: 'ダウンロードファイル名',
+  encoded_file: 'エンコードされたファイル',
+  encoded_text: 'エンコードされたテキスト',
+  file_drop_text: 'ファイルをここにドラッグアンドドロップするか、クリックして選択してください',
+  url: 'URL',
+  file: 'ファイル',
 
   // Syntax Highlight
   'syntax_highlight.title': 'シンタックスハイライト',
-  'syntax_highlight.description': 'このオンラインシンタックスハイライトツールは、コードをハイライトするのに役立ちます。JavaScript、C++、C#、Javaなどの多くの言語をサポートしています。',
+  'syntax_highlight.description':
+    'このオンラインシンタックスハイライトツールは、コードをハイライトするのに役立ちます。JavaScript、C++、C#、Javaなどの多くの言語をサポートしています。',
 
   // CRC
   'crc.title': 'CRC 計算機',
@@ -130,191 +135,253 @@ export const ja = {
 
   // MD5
   'md5.title': 'MD5',
-  'md5.description': 'このMD5オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'md5.description':
+    'このMD5オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'md5_checksum.title': 'MD5 チェックサム',
-  'md5_checksum.description': 'このMD5オンラインツールは、ファイルをアップロードすることなく、MD5を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'md5_checksum.description':
+    'このMD5オンラインツールは、ファイルをアップロードすることなく、MD5を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // MD2
   'md2.title': 'MD2',
-  'md2.description': 'このMD2オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'md2.description':
+    'このMD2オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'md2_file_hash.title': 'MD2 ファイルハッシュ',
-  'md2_file_hash.description': 'このMD2オンラインツールは、ファイルをアップロードすることなく、MD2を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'md2_file_hash.description':
+    'このMD2オンラインツールは、ファイルをアップロードすることなく、MD2を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // MD4
   'md4.title': 'MD4',
-  'md4.description': 'このMD4オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'md4.description':
+    'このMD4オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'md4_file_hash.title': 'MD4 ファイルハッシュ',
-  'md4_file_hash.description': 'このMD4オンラインツールは、ファイルをアップロードすることなく、MD4を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'md4_file_hash.description':
+    'このMD4オンラインツールは、ファイルをアップロードすることなく、MD4を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA1
   'sha1.title': 'SHA1',
-  'sha1.description': 'このSHA1オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha1.description':
+    'このSHA1オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha1_checksum.title': 'SHA1 チェックサム',
-  'sha1_checksum.description': 'このSHA1オンラインツールは、ファイルをアップロードすることなく、SHA1を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha1_checksum.description':
+    'このSHA1オンラインツールは、ファイルをアップロードすることなく、SHA1を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA224
   'sha224.title': 'SHA224',
-  'sha224.description': 'このSHA224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha224.description':
+    'このSHA224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha224_checksum.title': 'SHA224 チェックサム',
-  'sha224_checksum.description': 'このSHA224オンラインツールは、ファイルをアップロードすることなく、SHA224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha224_checksum.description':
+    'このSHA224オンラインツールは、ファイルをアップロードすることなく、SHA224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA256
   'sha256.title': 'SHA256',
-  'sha256.description': 'このSHA256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha256.description':
+    'このSHA256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha256_checksum.title': 'SHA256 チェックサム',
-  'sha256_checksum.description': 'このSHA256オンラインツールは、ファイルをアップロードすることなく、SHA256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha256_checksum.description':
+    'このSHA256オンラインツールは、ファイルをアップロードすることなく、SHA256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA384
   'sha384.title': 'SHA384',
-  'sha384.description': 'このSHA384オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha384.description':
+    'このSHA384オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha3_384_file_hash.title': 'SHA384 ファイルハッシュ',
-  'sha3_384_file_hash.description': 'このSHA384オンラインツールは、ファイルをアップロードすることなく、SHA384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha3_384_file_hash.description':
+    'このSHA384オンラインツールは、ファイルをアップロードすることなく、SHA384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA512
   'sha512.title': 'SHA512',
-  'sha512.description': 'このSHA512オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha512.description':
+    'このSHA512オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha512_file_hash.title': 'SHA512 ファイルハッシュ',
-  'sha512_file_hash.description': 'このSHA512オンラインツールは、ファイルをアップロードすることなく、SHA512を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha512_file_hash.description':
+    'このSHA512オンラインツールは、ファイルをアップロードすることなく、SHA512を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // BLAKE3
   'blake3.title': 'BLAKE3',
-  'blake3.description': 'このBLAKE3オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'blake3.description':
+    'このBLAKE3オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'blake3_file_hash.title': 'BLAKE3 ファイルハッシュ',
-  'blake3_file_hash.description': 'このBLAKE3オンラインツールは、ファイルをアップロードすることなく、BLAKE3を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
+  'blake3_file_hash.description':
+    'このBLAKE3オンラインツールは、ファイルをアップロードすることなく、BLAKE3を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
 
   // BLAKE2b
   'blake2b.title': 'BLAKE2b',
-  'blake2b.description': 'このBLAKE2bオンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'blake2b.description':
+    'このBLAKE2bオンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'blake2b_file_hash.title': 'BLAKE2b ファイルハッシュ',
-  'blake2b_file_hash.description': 'このBLAKE2bオンラインツールは、ファイルをアップロードすることなく、BLAKE2bを使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'blake2b_file_hash.description':
+    'このBLAKE2bオンラインツールは、ファイルをアップロードすることなく、BLAKE2bを使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // BLAKE2s
   'blake2s.title': 'BLAKE2s',
-  'blake2s.description': 'このBLAKE2sオンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'blake2s.description':
+    'このBLAKE2sオンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'blake2s_file_hash.title': 'BLAKE2s ファイルハッシュ',
-  'blake2s_file_hash.description': 'このBLAKE2sオンラインツールは、ファイルをアップロードすることなく、BLAKE2sを使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'blake2s_file_hash.description':
+    'このBLAKE2sオンラインツールは、ファイルをアップロードすることなく、BLAKE2sを使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // KMAC128
   'kmac128.title': 'KMAC128',
-  'kmac128.description': 'このKMAC128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'kmac128.description':
+    'このKMAC128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'kmac128_file_hash.title': 'KMAC128 ファイルハッシュ',
-  'kmac128_file_hash.description': 'このKMAC128オンラインツールは、ファイルをアップロードすることなく、KMAC128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
+  'kmac128_file_hash.description':
+    'このKMAC128オンラインツールは、ファイルをアップロードすることなく、KMAC128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
 
   // KMAC256
   'kmac256.title': 'KMAC256',
-  'kmac256.description': 'このKMAC256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'kmac256.description':
+    'このKMAC256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'kmac256_file_hash.title': 'KMAC256 ファイルハッシュ',
-  'kmac256_file_hash.description': 'このKMAC256オンラインツールは、ファイルをアップロードすることなく、KMAC256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
+  'kmac256_file_hash.description':
+    'このKMAC256オンラインツールは、ファイルをアップロードすることなく、KMAC256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
 
   // SHA3-224
   'sha3_224.title': 'SHA3-224',
-  'sha3_224.description': 'このSHA3-224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha3_224.description':
+    'このSHA3-224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha3_224_checksum.title': 'SHA3-224 チェックサム',
-  'sha3_224_checksum.description': 'このSHA3-224オンラインツールは、ファイルをアップロードすることなく、SHA3-224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha3_224_checksum.description':
+    'このSHA3-224オンラインツールは、ファイルをアップロードすることなく、SHA3-224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA3-256
   'sha3_256.title': 'SHA3-256',
-  'sha3_256.description': 'このSHA3-256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha3_256.description':
+    'このSHA3-256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha3_256_checksum.title': 'SHA3-256 チェックサム',
-  'sha3_256_checksum.description': 'このSHA3-256オンラインツールは、ファイルをアップロードすることなく、SHA3-256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha3_256_checksum.description':
+    'このSHA3-256オンラインツールは、ファイルをアップロードすることなく、SHA3-256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA3-384
   'sha3_384.title': 'SHA3-384',
-  'sha3_384.description': 'このSHA3-384オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha3_384.description':
+    'このSHA3-384オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha3_384_checksum.title': 'SHA3-384 チェックサム',
-  'sha3_384_checksum.description': 'このSHA3-384オンラインツールは、ファイルをアップロードすることなく、SHA3-384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha3_384_checksum.description':
+    'このSHA3-384オンラインツールは、ファイルをアップロードすることなく、SHA3-384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA3-512
   'sha3_512.title': 'SHA3-512',
-  'sha3_512.description': 'このSHA3-512オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'sha3_512.description':
+    'このSHA3-512オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'sha3_512_checksum.title': 'SHA3-512 チェックサム',
-  'sha3_512_checksum.description': 'このSHA3-512オンラインツールは、ファイルをアップロードすることなく、SHA3-512を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'sha3_512_checksum.description':
+    'このSHA3-512オンラインツールは、ファイルをアップロードすることなく、SHA3-512を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHAKE128
   'shake128.title': 'SHAKE128',
-  'shake128.description': 'このSHAKE128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
+  'shake128.description':
+    'このSHAKE128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
   'shake_128_checksum.title': 'SHAKE128 チェックサム',
-  'shake_128_checksum.description': 'このSHAKE128オンラインツールは、ファイルをアップロードすることなく、SHAKE128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
+  'shake_128_checksum.description':
+    'このSHAKE128オンラインツールは、ファイルをアップロードすることなく、SHAKE128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
 
   // SHAKE256
   'shake256.title': 'SHAKE256',
-  'shake256.description': 'このSHAKE256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
+  'shake256.description':
+    'このSHAKE256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
   'shake_256_checksum.title': 'SHAKE256 チェックサム',
-  'shake_256_checksum.description': 'このSHAKE256オンラインツールは、ファイルをアップロードすることなく、SHAKE256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
+  'shake_256_checksum.description':
+    'このSHAKE256オンラインツールは、ファイルをアップロードすることなく、SHAKE256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
 
   // cSHAKE128
   'cshake128.title': 'cSHAKE128',
-  'cshake128.description': 'このcSHAKE128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'cshake128.description':
+    'このcSHAKE128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'cshake128_file_hash.title': 'cSHAKE128 ファイルハッシュ',
-  'cshake128_file_hash.description': 'このcSHAKE128オンラインツールは、ファイルをアップロードすることなく、cSHAKE128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'cshake128_file_hash.description':
+    'このcSHAKE128オンラインツールは、ファイルをアップロードすることなく、cSHAKE128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // cSHAKE256
   'cshake256.title': 'cSHAKE256',
-  'cshake256.description': 'このcSHAKE256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'cshake256.description':
+    'このcSHAKE256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'cshake256_file_hash.title': 'cSHAKE256 ファイルハッシュ',
-  'cshake256_file_hash.description': 'このcSHAKE256オンラインツールは、ファイルをアップロードすることなく、cSHAKE256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'cshake256_file_hash.description':
+    'このcSHAKE256オンラインツールは、ファイルをアップロードすることなく、cSHAKE256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // Keccak-224
   'keccak_224.title': 'Keccak-224',
-  'keccak_224.description': 'このKeccak-224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'keccak_224.description':
+    'このKeccak-224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'keccak_224_checksum.title': 'Keccak-224 チェックサム',
-  'keccak_224_checksum.description': 'このKeccak-224オンラインツールは、ファイルをアップロードすることなく、Keccak-224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'keccak_224_checksum.description':
+    'このKeccak-224オンラインツールは、ファイルをアップロードすることなく、Keccak-224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // Keccak-256
   'keccak_256.title': 'Keccak-256',
-  'keccak_256.description': 'このKeccak-256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'keccak_256.description':
+    'このKeccak-256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'keccak_256_checksum.title': 'Keccak-256 チェックサム',
-  'keccak_256_checksum.description': 'このKeccak-256オンラインツールは、ファイルをアップロードすることなく、Keccak-256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'keccak_256_checksum.description':
+    'このKeccak-256オンラインツールは、ファイルをアップロードすることなく、Keccak-256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // Keccak-384
   'keccak_384.title': 'Keccak-384',
-  'keccak_384.description': 'このKeccak-384オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'keccak_384.description':
+    'このKeccak-384オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'keccak_384_checksum.title': 'Keccak-384 チェックサム',
-  'keccak_384_checksum.description': 'このKeccak-384オンラインツールは、ファイルをアップロードすることなく、Keccak-384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'keccak_384_checksum.description':
+    'このKeccak-384オンラインツールは、ファイルをアップロードすることなく、Keccak-384を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // Keccak-512
   'keccak_512.title': 'Keccak-512',
-  'keccak_512.description': 'このKeccak-512オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'keccak_512.description':
+    'このKeccak-512オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'keccak_512_checksum.title': 'Keccak-512 チェックサム',
-  'keccak_512_checksum.description': 'このKeccak-512オンラインツールは、ファイルをアップロードすることなく、Keccak-512を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'keccak_512_checksum.description':
+    'このKeccak-512オンラインツールは、ファイルをアップロードすることなく、Keccak-512を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // RIPEMD-128
   'ripemd-128.title': 'RIPEMD-128',
-  'ripemd-128.description': 'このRIPEMD-128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'ripemd-128.description':
+    'このRIPEMD-128オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'ripemd_128_checksum.title': 'RIPEMD-128 チェックサム',
-  'ripemd_128_checksum.description': 'このRIPEMD-128オンラインツールは、ファイルをアップロードすることなく、RIPEMD-128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'ripemd_128_checksum.description':
+    'このRIPEMD-128オンラインツールは、ファイルをアップロードすることなく、RIPEMD-128を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // RIPEMD-160
   'ripemd-160.title': 'RIPEMD-160',
-  'ripemd-160.description': 'このRIPEMD-160オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'ripemd-160.description':
+    'このRIPEMD-160オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'ripemd_160_checksum.title': 'RIPEMD-160 チェックサム',
-  'ripemd_160_checksum.description': 'このRIPEMD-160オンラインツールは、ファイルをアップロードすることなく、RIPEMD-160を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'ripemd_160_checksum.description':
+    'このRIPEMD-160オンラインツールは、ファイルをアップロードすることなく、RIPEMD-160を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // RIPEMD-256
   'ripemd-256.title': 'RIPEMD-256',
-  'ripemd-256.description': 'このRIPEMD-256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'ripemd-256.description':
+    'このRIPEMD-256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'ripemd_256_checksum.title': 'RIPEMD-256 チェックサム',
-  'ripemd_256_checksum.description': 'このRIPEMD-256オンラインツールは、ファイルをアップロードすることなく、RIPEMD-256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'ripemd_256_checksum.description':
+    'このRIPEMD-256オンラインツールは、ファイルをアップロードすることなく、RIPEMD-256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // RIPEMD-320
   'ripemd-320.title': 'RIPEMD-320',
-  'ripemd-320.description': 'このRIPEMD-320オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
+  'ripemd-320.description':
+    'このRIPEMD-320オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。HMACもサポートしています。',
   'ripemd_320_checksum.title': 'RIPEMD-320 チェックサム',
-  'ripemd_320_checksum.description': 'このRIPEMD-320オンラインツールは、ファイルをアップロードすることなく、RIPEMD-320を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
+  'ripemd_320_checksum.description':
+    'このRIPEMD-320オンラインツールは、ファイルをアップロードすることなく、RIPEMD-320を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。HMACもサポートしています。',
 
   // SHA512/224
   'sha512_224.title': 'SHA512/224',
-  'sha512_224.description': 'このSHA512/224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
+  'sha512_224.description':
+    'このSHA512/224オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
   'sha512_224_file_hash.title': 'SHA512/224 ファイルハッシュ',
-  'sha512_224_file_hash.description': 'このSHA512/224オンラインツールは、ファイルをアップロードすることなく、SHA512/224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
+  'sha512_224_file_hash.description':
+    'このSHA512/224オンラインツールは、ファイルをアップロードすることなく、SHA512/224を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
 
   // SHA512/256
   'sha512_256_file_hash.title': 'SHA512/256 ファイルハッシュ',
-  'sha512_256_file_hash.description': 'このSHA512/256オンラインツールは、ファイルをアップロードすることなく、SHA512/256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
+  'sha512_256_file_hash.description':
+    'このSHA512/256オンラインツールは、ファイルをアップロードすることなく、SHA512/256を使用してローカルまたはURLからファイルのハッシュを計算するのに役立ちます。',
 
   // Double SHA256
   'double_sha256.title': 'Double SHA256',
-  'double_sha256.description': 'このDouble SHA256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
+  'double_sha256.description':
+    'このDouble SHA256オンラインツールは、文字列からハッシュを計算するのに役立ちます。UTF-8、UTF-16、Hex、Base64、またはその他のエンコーディングを入力できます。',
 
   // Kebab Case
   'kebab.title': 'kebab-caseに変換',
@@ -346,7 +413,8 @@ export const ja = {
 
   // SQL Formatter
   'sql_formatter.title': 'SQL フォーマッタ',
-  'sql_formatter.description': 'この無料のオンライン SQL フォーマッタは、SQL クエリを美しくし、読みやすくするのに役立ちます。インデントレベルと大文字のキーワードオプションを選択できます。',
+  'sql_formatter.description':
+    'この無料のオンライン SQL フォーマッタは、SQL クエリを美しくし、読みやすくするのに役立ちます。インデントレベルと大文字のキーワードオプションを選択できます。',
   'sql_formatter.enter_query': 'ここに SQL クエリを入力してください...',
   'sql_formatter.uppercase_keywords': 'キーワードを大文字にする',
   'sql_formatter.indent_type': 'インデントの種類',
@@ -354,125 +422,166 @@ export const ja = {
 
   // XML Formatter
   'xml_formatter.title': 'XML フォーマッタ',
-  'xml_formatter.description': 'この無料のオンライン XML フォーマッタは、XML 文字列を美しくし、読みやすくするのに役立ちます。インデントレベルと文字を選択できます。',
+  'xml_formatter.description':
+    'この無料のオンライン XML フォーマッタは、XML 文字列を美しくし、読みやすくするのに役立ちます。インデントレベルと文字を選択できます。',
 
   // XML Minifier
   'xml_minifier.title': 'XML 圧縮',
-  'xml_minifier.description': 'この無料のオンライン XML 圧縮ツールは、XML 文字列を圧縮してよりクリーンにします。サイズを縮小するために、インデント、改行、コメントを削除できます。',
+  'xml_minifier.description':
+    'この無料のオンライン XML 圧縮ツールは、XML 文字列を圧縮してよりクリーンにします。サイズを縮小するために、インデント、改行、コメントを削除できます。',
 
   // XML Validator
   'xml_validator.title': 'XML 検証',
-  'xml_validator.description': 'この無料のオンライン XML 検証ツールは、XML 文字列を検証するのに役立ちます。',
+  'xml_validator.description':
+    'この無料のオンライン XML 検証ツールは、XML 文字列を検証するのに役立ちます。',
 
   // JSON Formatter
   'json_formatter.title': 'JSON フォーマッタ',
-  'json_formatter.description': 'この無料のオンライン JSON フォーマッタは、JSON 文字列を美しくし、読みやすくするのに役立ちます。インデントレベルと文字を選択できます。',
+  'json_formatter.description':
+    'この無料のオンライン JSON フォーマッタは、JSON 文字列を美しくし、読みやすくするのに役立ちます。インデントレベルと文字を選択できます。',
 
   // JSON Minifier
   'json_minifier.title': 'JSON 圧縮',
-  'json_minifier.description': 'この無料のオンライン JSON 圧縮ツールは、JSON 文字列を圧縮してよりクリーンにします。サイズを縮小するために、インデントと改行を削除して 1 行にすることができます。',
+  'json_minifier.description':
+    'この無料のオンライン JSON 圧縮ツールは、JSON 文字列を圧縮してよりクリーンにします。サイズを縮小するために、インデントと改行を削除して 1 行にすることができます。',
 
   // JSON Viewer
   'json_viewer.title': 'JSON ビューア',
-  'json_viewer.description': 'この JSON ビューア オンライン ツールは、JSON オブジェクトを読み取り可能な方法で表示するのに役立ちます。',
+  'json_viewer.description':
+    'この JSON ビューア オンライン ツールは、JSON オブジェクトを読み取り可能な方法で表示するのに役立ちます。',
 
   // Base64
   'base64_encode.title': 'Base64 エンコード',
-  'base64_encode.description': 'このオンライン Base64 エンコード ツールは、テキストまたはバイナリを Base64 にエンコードするのに役立ちます。UTF-8、UTF-16、Hex、またはその他のエンコーディングを入力できます。RFC 4648 (標準および URL セーフ)、RFC 2045 (MIME)、RFC 2152 (UTF-7)、および RFC 3501 (IMAP) などのさまざまな形式もサポートしています。',
+  'base64_encode.description':
+    'このオンライン Base64 エンコード ツールは、テキストまたはバイナリを Base64 にエンコードするのに役立ちます。UTF-8、UTF-16、Hex、またはその他のエンコーディングを入力できます。RFC 4648 (標準および URL セーフ)、RFC 2045 (MIME)、RFC 2152 (UTF-7)、および RFC 3501 (IMAP) などのさまざまな形式もサポートしています。',
   'base64_decode.title': 'Base64 デコード',
-  'base64_decode.description': 'このオンライン Base64 デコード ツールは、Base64 をテキストまたはバイナリにデコードするのに役立ちます。UTF-8、UTF-16、Hex、またはその他のエンコーディングを出力できます。RFC 4648 (標準および URL セーフ)、RFC 2045 (MIME)、RFC 2152 (UTF-7)、および RFC 3501 (IMAP) などのさまざまな形式もサポートしています。',
+  'base64_decode.description':
+    'このオンライン Base64 デコード ツールは、Base64 をテキストまたはバイナリにデコードするのに役立ちます。UTF-8、UTF-16、Hex、またはその他のエンコーディングを出力できます。RFC 4648 (標準および URL セーフ)、RFC 2045 (MIME)、RFC 2152 (UTF-7)、および RFC 3501 (IMAP) などのさまざまな形式もサポートしています。',
   'base64_encode_file.title': 'ファイルを Base64 にエンコード',
-  'base64_encode_file.description': 'このオンライン Base64 エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Base64 にエンコードするのに役立ちます。',
+  'base64_encode_file.description':
+    'このオンライン Base64 エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Base64 にエンコードするのに役立ちます。',
   'base64_decode_file.title': 'Base64 ファイルをデコード',
-  'base64_decode_file.description': 'このオンライン Base64 デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Base64 をファイルにデコードするのに役立ちます。',
+  'base64_decode_file.description':
+    'このオンライン Base64 デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Base64 をファイルにデコードするのに役立ちます。',
 
   // Base32
   'base32_encode.title': 'Base32 エンコード',
-  'base32_encode.description': 'このオンライン Base32 エンコード ツールは、テキストまたはバイナリを Base32 にエンコードするのに役立ちます。',
+  'base32_encode.description':
+    'このオンライン Base32 エンコード ツールは、テキストまたはバイナリを Base32 にエンコードするのに役立ちます。',
   'base32_decode.title': 'Base32 デコード',
-  'base32_decode.description': 'このオンライン Base32 デコード ツールは、Base32 をテキストまたはバイナリにデコードするのに役立ちます。',
+  'base32_decode.description':
+    'このオンライン Base32 デコード ツールは、Base32 をテキストまたはバイナリにデコードするのに役立ちます。',
   'base32_encode_file.title': 'ファイルを Base32 にエンコード',
-  'base32_encode_file.description': 'このオンライン Base32 エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Base32 にエンコードするのに役立ちます。',
+  'base32_encode_file.description':
+    'このオンライン Base32 エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Base32 にエンコードするのに役立ちます。',
   'base32_decode_file.title': 'Base32 ファイルをデコード',
-  'base32_decode_file.description': 'このオンライン Base32 デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Base32 をファイルにデコードするのに役立ちます。',
+  'base32_decode_file.description':
+    'このオンライン Base32 デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Base32 をファイルにデコードするのに役立ちます。',
 
   // Base58
   'base58_encode.title': 'Base58 エンコード',
-  'base58_encode.description': 'このオンライン Base58 エンコード ツールは、テキストまたはバイナリを Base58 にエンコードするのに役立ちます。',
+  'base58_encode.description':
+    'このオンライン Base58 エンコード ツールは、テキストまたはバイナリを Base58 にエンコードするのに役立ちます。',
   'base58_decode.title': 'Base58 デコード',
-  'base58_decode.description': 'このオンライン Base58 デコード ツールは、Base58 をテキストまたはバイナリにデコードするのに役立ちます。',
+  'base58_decode.description':
+    'このオンライン Base58 デコード ツールは、Base58 をテキストまたはバイナリにデコードするのに役立ちます。',
   'base58_encode_file.title': 'ファイルを Base58 にエンコード',
-  'base58_encode_file.description': 'このオンライン Base58 エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Base58 にエンコードするのに役立ちます。',
+  'base58_encode_file.description':
+    'このオンライン Base58 エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Base58 にエンコードするのに役立ちます。',
   'base58_decode_file.title': 'Base58 ファイルをデコード',
-  'base58_decode_file.description': 'このオンライン Base58 デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Base58 をファイルにデコードするのに役立ちます。',
+  'base58_decode_file.description':
+    'このオンライン Base58 デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Base58 をファイルにデコードするのに役立ちます。',
 
   // Hex
   'hex_encode.title': 'Hex エンコード',
-  'hex_encode.description': 'このオンライン Hex エンコード ツールは、テキストまたはバイナリを Hex にエンコードするのに役立ちます。',
+  'hex_encode.description':
+    'このオンライン Hex エンコード ツールは、テキストまたはバイナリを Hex にエンコードするのに役立ちます。',
   'hex_decode.title': 'Hex デコード',
-  'hex_decode.description': 'このオンライン Hex デコード ツールは、Hex をテキストまたはバイナリにデコードするのに役立ちます。',
+  'hex_decode.description':
+    'このオンライン Hex デコード ツールは、Hex をテキストまたはバイナリにデコードするのに役立ちます。',
   'hex_encode_file.title': 'ファイルを Hex にエンコード',
-  'hex_encode_file.description': 'このオンライン Hex エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Hex にエンコードするのに役立ちます。',
+  'hex_encode_file.description':
+    'このオンライン Hex エンコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL からファイルを Hex にエンコードするのに役立ちます。',
   'hex_decode_file.title': 'Hex ファイルをデコード',
-  'hex_decode_file.description': 'このオンライン Hex デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Hex をファイルにデコードするのに役立ちます。',
+  'hex_decode_file.description':
+    'このオンライン Hex デコード ツールは、ファイルをアップロードすることなく、ローカルまたは URL から Hex をファイルにデコードするのに役立ちます。',
 
   // URL
   'url_encode.title': 'URL エンコード',
-  'url_encode.description': 'このオンライン URL エンコード ツールは、テキストを URL セーフな形式にエンコードするのに役立ちます。',
+  'url_encode.description':
+    'このオンライン URL エンコード ツールは、テキストを URL セーフな形式にエンコードするのに役立ちます。',
   'url_decode.title': 'URL デコード',
-  'url_decode.description': 'このオンライン URL デコード ツールは、URL エンコードされたテキストをデコードするのに役立ちます。',
+  'url_decode.description':
+    'このオンライン URL デコード ツールは、URL エンコードされたテキストをデコードするのに役立ちます。',
 
   // HTML
   'html_encode.title': 'HTML エンコード',
-  'html_encode.description': 'このオンライン HTML エンコード ツールは、テキストを HTML エンティティにエンコードするのに役立ちます。',
+  'html_encode.description':
+    'このオンライン HTML エンコード ツールは、テキストを HTML エンティティにエンコードするのに役立ちます。',
   'html_decode.title': 'HTML デコード',
-  'html_decode.description': 'このオンライン HTML デコード ツールは、HTML エンティティをデコードするのに役立ちます。',
+  'html_decode.description':
+    'このオンライン HTML デコード ツールは、HTML エンティティをデコードするのに役立ちます。',
 
   // QR Code
   'qr_code_generator.title': 'QRコードジェネレーター',
-  'qr_code_generator.description': 'このオンラインQRコードツールは、QRコードを生成し、そのデザインをカスタマイズするのに役立ちます。画像をダウンロードしたり、リンクを共有したり、埋め込みスクリプトを使用したりできます。迅速かつ無料です。',
+  'qr_code_generator.description':
+    'このオンラインQRコードツールは、QRコードを生成し、そのデザインをカスタマイズするのに役立ちます。画像をダウンロードしたり、リンクを共有したり、埋め込みスクリプトを使用したりできます。迅速かつ無料です。',
 
   // AES
   'aes_encrypt.title': 'AES 暗号化',
-  'aes_encrypt.description': 'このオンライン ツールは、AES を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。さまざまなモードとパディング スキームをサポートしています。また、カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF もサポートしています。',
+  'aes_encrypt.description':
+    'このオンライン ツールは、AES を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。さまざまなモードとパディング スキームをサポートしています。また、カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF もサポートしています。',
   'aes_decrypt.title': 'AES 復号',
-  'aes_decrypt.description': 'このオンライン ツールは、AES を使用してローカル ストレージまたは URL からのテキストまたはファイルを復号するのに役立ちます。',
+  'aes_decrypt.description':
+    'このオンライン ツールは、AES を使用してローカル ストレージまたは URL からのテキストまたはファイルを復号するのに役立ちます。',
 
   // DES
   'des_encrypt.title': 'DES 暗号化',
-  'des_encrypt.description': 'このオンライン ツールは、DES を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。さまざまなモードとパディング スキームをサポートしています。また、カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF もサポートしています。',
+  'des_encrypt.description':
+    'このオンライン ツールは、DES を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。さまざまなモードとパディング スキームをサポートしています。また、カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF もサポートしています。',
   'des_decrypt.title': 'DES 復号',
-  'des_decrypt.description': 'このオンライン ツールは、DES を使用してローカル ストレージまたは URL からのテキストまたはファイルを復号するのに役立ちます。',
+  'des_decrypt.description':
+    'このオンライン ツールは、DES を使用してローカル ストレージまたは URL からのテキストまたはファイルを復号するのに役立ちます。',
 
   // RC4
   'rc4_encrypt.title': 'RC4 暗号化',
-  'rc4_encrypt.description': 'このオンライン ツールは、RC4 を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF をサポートしています。',
+  'rc4_encrypt.description':
+    'このオンライン ツールは、RC4 を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF をサポートしています。',
   'rc4_decrypt.title': 'RC4 復号',
-  'rc4_decrypt.description': 'このオンライン ツールは、RC4 を使用してローカル ストレージまたは URL からのテキストまたはファイルを復号するのに役立ちます。',
+  'rc4_decrypt.description':
+    'このオンライン ツールは、RC4 を使用してローカル ストレージまたは URL からのテキストまたはファイルを復号するのに役立ちます。',
 
   // Triple DES
   'triple_des_encrypt.title': 'Triple DES 暗号化',
-  'triple_des_encrypt.description': 'このオンライン ツールは、Triple DES を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。さまざまなモードとパディング スキームをサポートしています。また、カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF もサポートしています。',
+  'triple_des_encrypt.description':
+    'このオンライン ツールは、Triple DES を使用してローカル ストレージまたは URL からのテキストまたはファイルを暗号化するのに役立ちます。さまざまなモードとパディング スキームをサポートしています。また、カスタマイズ可能なソルト、イテレーション、およびハッシュ設定を備えた PBKDF2 または EvpKDF もサポートしています。',
   'triple_des_decrypt.title': 'Triple DES 復号',
-  'triple_des_decrypt.description': 'このオンライン ツールは、Triple DES を使用してローカル ストレージ or URL からのテキストまたはファイルを復号するのに役立ちます。',
+  'triple_des_decrypt.description':
+    'このオンライン ツールは、Triple DES を使用してローカル ストレージ or URL からのテキストまたはファイルを復号するのに役立ちます。',
 
   // RSA
   'rsa_encrypt.title': 'RSA 暗号化',
-  'rsa_encrypt.description': 'このオンライン ツールは、RSA を使用してメッセージを暗号化するのに役立ちます。さまざまなハッシュ アルゴリズムを備えた PKCS#1 および OAEP をサポートしています。',
+  'rsa_encrypt.description':
+    'このオンライン ツールは、RSA を使用してメッセージを暗号化するのに役立ちます。さまざまなハッシュ アルゴリズムを備えた PKCS#1 および OAEP をサポートしています。',
   'rsa_decrypt.title': 'RSA 復号',
-  'rsa_decrypt.description': 'このオンライン ツールは、RSA を使用してメッセージを復号するのに役立ちます。',
+  'rsa_decrypt.description':
+    'このオンライン ツールは、RSA を使用してメッセージを復号するのに役立ちます。',
   'rsa_sign.title': 'RSA 署名',
-  'rsa_sign.description': 'このオンライン ツールは、RSA を使用してメッセージに署名するのに役立ちます。さまざまな署名アルゴリズムをサポートしています。また、パスフレーズ付きの PEM も使用できます。',
+  'rsa_sign.description':
+    'このオンライン ツールは、RSA を使用してメッセージに署名するのに役立ちます。さまざまな署名アルゴリズムをサポートしています。また、パスフレーズ付きの PEM も使用できます。',
   'rsa_verify.title': 'RSA 検証',
   'rsa_verify.description': 'このオンライン ツールは、RSA 署名を検証するのに役立ちます。',
   'rsa_key_generator.title': 'RSA 密钥生成器',
-  'rsa_key_generator.description': 'このオンライン ツールは、RSA 公開鍵と秘密鍵を生成するのに役立ちます。',
+  'rsa_key_generator.description':
+    'このオンライン ツールは、RSA 公開鍵と秘密鍵を生成するのに役立ちます。',
 
   // ECDSA
   'ecdsa_sign.title': 'ECDSA 署名',
-  'ecdsa_sign.description': 'このオンライン ツールは、ECDSA を使用してメッセージに署名するのに役立ちます。さまざまな曲線と署名アルゴリズムをサポートしています。',
+  'ecdsa_sign.description':
+    'このオンライン ツールは、ECDSA を使用してメッセージに署名するのに役立ちます。さまざまな曲線と署名アルゴリズムをサポートしています。',
   'ecdsa_verify.title': 'ECDSA 検証',
   'ecdsa_verify.description': 'このオンライン ツールは、ECDSA 署名を検証するのに役立ちます。',
   'ecdsa_key_generator.title': 'ECDSA 鍵生成器',
-  'ecdsa_key_generator.description': 'このオンライン ツールは、ECDSA 鍵のペアを生成するのに役立ちます。PEM、HEX、Base64 形式、およびさまざまな曲線をサポートしています。PEM 形式は PKCS#1、PKCS#5、および PKCS#8 をサポートしています。',
+  'ecdsa_key_generator.description':
+    'このオンライン ツールは、ECDSA 鍵のペアを生成するのに役立ちます。PEM、HEX、Base64 形式、およびさまざまな曲線をサポートしています。PEM 形式は PKCS#1、PKCS#5、および PKCS#8 をサポートしています。',
 };

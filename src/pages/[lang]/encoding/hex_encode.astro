@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,33 +15,41 @@ const t = useTranslations(lang as any);
 const title = t('hex_encode.title');
 const description = t('hex_encode.description');
 const toolName = t('encode');
-const jsFile = "hex.js?v=6";
-const extraJsFile = "encoding.js?v=8";
-const activePage = "encoding/hex_encode";
-const reverseLink = "encoding/hex_decode";
+const jsFile = 'hex.js?v=6';
+const extraJsFile = 'encoding.js?v=8';
+const activePage = 'encoding/hex_encode';
+const reverseLink = 'encoding/hex_decode';
 const initScript = `
     window.method = withOptions(hexEncode, ['upper-case']);
     methodLoad();
 `;
 ---
-<EncodingPage 
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    extraJsFile={extraJsFile}
-    activePage={activePage}
-    reverseLink={reverseLink}
-    hasInputSettings={true}
-    hasOutputSettings={false}
-    hasFormatSettings={false}
-    initScript={initScript}
+
+<EncodingPage
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  extraJsFile={extraJsFile}
+  activePage={activePage}
+  reverseLink={reverseLink}
+  hasInputSettings={true}
+  hasOutputSettings={false}
+  hasFormatSettings={false}
+  initScript={initScript}
 >
-    <div slot="settings" class="setting">
-        <label class="switcher">
-            <input type="checkbox" value="1" id="upper-case" data-option="upper-case" data-remember="upper-case" data-share="upper_case">
-            <div class="toggle"></div>
-            <span>{t('upper_case')}</span>
-        </label>
-    </div>
+  <div slot="settings" class="setting">
+    <label class="switcher">
+      <input
+        type="checkbox"
+        value="1"
+        id="upper-case"
+        data-option="upper-case"
+        data-remember="upper-case"
+        data-share="upper_case"
+      />
+      <div class="toggle"></div>
+      <span>{t('upper_case')}</span>
+    </label>
+  </div>
 </EncodingPage>

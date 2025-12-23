@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,19 +15,20 @@ const t = useTranslations(lang as any);
 const title = t('base32_decode_file.title');
 const description = t('base32_decode_file.description');
 const toolName = t('decode');
-const jsFile = "base32.js?v=3";
-const activePage = "encoding/base32_decode_file";
-const reverseLink = "encoding/base32_encode_file";
+const jsFile = 'base32.js?v=3';
+const activePage = 'encoding/base32_decode_file';
+const reverseLink = 'encoding/base32_encode_file';
 ---
+
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink={reverseLink}
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFormatSettings={false}
-    showOutputDownload={true}
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink={reverseLink}
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFormatSettings={false}
+  showOutputDownload={true}
 />

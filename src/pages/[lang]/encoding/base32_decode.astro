@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,26 +15,29 @@ const t = useTranslations(lang as any);
 const title = t('base32_decode.title');
 const description = t('base32_decode.description');
 const toolName = t('decode');
-const jsFile = "base32.min.js";
-const activePage = "encoding/base32_decode";
+const jsFile = 'base32.min.js';
+const activePage = 'encoding/base32_decode';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink="encoding/base32_encode"
-    hasInputSettings={false}
-    hasOutputSettings={true}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink="encoding/base32_encode"
+  hasInputSettings={false}
+  hasOutputSettings={true}
+  initScript={`
         window.method = base32.decode.asBytes;
         methodLoad();
     `}
-    extraJsFile="encoding.js?v=8"
+  extraJsFile="encoding.js?v=8"
 >
-    <script is:inline slot="scripts" set:html={`
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         delayScripts.push({
             src: '/js/clipboard.min.js',
             onload: function () {
@@ -45,5 +48,6 @@ const activePage = "encoding/base32_decode";
             },
             delay: 100
         });
-    `}></script>
+    `}
+  />
 </EncodingPage>

@@ -64,6 +64,7 @@ This project uses several third-party libraries for cryptographic operations:
 - BLAKE2/BLAKE3 implementations
 
 These libraries are well-established but users should:
+
 - Keep dependencies updated
 - Review library code for critical operations
 - Use official releases only

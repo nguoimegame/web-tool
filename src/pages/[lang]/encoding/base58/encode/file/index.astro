@@ -5,7 +5,7 @@ import { useTranslations } from '../../../../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,38 +15,41 @@ const t = useTranslations(lang as any);
 const title = t('base58_encode_file.title');
 const description = t('base58_encode_file.description');
 const toolName = t('encode');
-const jsFile = "base58.js?v=3";
-const activePage = "encoding/base58/encode/file";
+const jsFile = 'base58.js?v=3';
+const activePage = 'encoding/base58/encode/file';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink=""
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFileInput={true}
-    inputFileUrlPlaceholder={t('url_placeholder')}
-    inputFileDropText={t('file_drop_text')}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink=""
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFileInput={true}
+  inputFileUrlPlaceholder={t('url_placeholder')}
+  inputFileDropText={t('file_drop_text')}
+  initScript={`
         window.method = base58EncodeFile;
         methodLoad();
     `}
 >
-    <div slot="settings">
-        <div class="setting">
-            <label for="file-type">{t('input_type')}</label>
-            <select id="file-type" data-remember="file-type" data-auto-update>
-                <option value="file">{t('file')}</option>
-                <option value="url">{t('url')}</option>
-            </select>
-        </div>
+  <div slot="settings">
+    <div class="setting">
+      <label for="file-type">{t('input_type')}</label>
+      <select id="file-type" data-remember="file-type" data-auto-update>
+        <option value="file">{t('file')}</option>
+        <option value="url">{t('url')}</option>
+      </select>
     </div>
+  </div>
 
-    <script is:inline slot="scripts" set:html={`
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/base-x.min.js',
@@ -86,5 +89,6 @@ const activePage = "encoding/base58/encode/file";
             }
         });
         window.PROCESSING_MESSAGE = 'encoding...';
-    `}></script>
+    `}
+  />
 </EncodingPage>

@@ -1,22 +1,14 @@
 ---
 interface Props {
-    id?: string;
-    dataRemember?: string;
-    dataAutoUpdate?: boolean;
+  id?: string;
+  dataRemember?: string;
+  dataAutoUpdate?: boolean;
 }
 
-const { 
-    id = "file-type",
-    dataRemember,
-    dataAutoUpdate = false
-} = Astro.props;
+const { id = 'file-type', dataRemember, dataAutoUpdate = false } = Astro.props;
 ---
 
-<select 
-    id={id}
-    data-remember={dataRemember}
-    data-auto-update={dataAutoUpdate ? '' : undefined}
->
-    <option value="file">File</option>
-    <option value="url">URL</option>
+<select id={id} data-remember={dataRemember} data-auto-update={dataAutoUpdate ? '' : undefined}>
+  <option value="file">File</option>
+  <option value="url">URL</option>
 </select>

@@ -3,23 +3,22 @@ import { languages } from '../i18n/ui';
 const supportedLangs = Object.keys(languages);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redirecting...</title>
     <script is:inline define:vars={{ supportedLangs }}>
-        const defaultLang = 'en';
-        const userLang = navigator.language || navigator.userLanguage;
-        const langCode = userLang ? userLang.split('-')[0].toLowerCase() : defaultLang;
-        if (supportedLangs.includes(langCode)) {
-            window.location.replace(`/${langCode}`);
-        } else {
-            window.location.replace(`/${defaultLang}`);
-        }
+      const defaultLang = 'en';
+      const userLang = navigator.language || navigator.userLanguage;
+      const langCode = userLang ? userLang.split('-')[0].toLowerCase() : defaultLang;
+      if (supportedLangs.includes(langCode)) {
+        window.location.replace(`/${langCode}`);
+      } else {
+        window.location.replace(`/${defaultLang}`);
+      }
     </script>
-</head>
-<body>
-</body>
+  </head>
+  <body> </body>
 </html>

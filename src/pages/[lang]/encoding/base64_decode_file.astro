@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,43 +15,52 @@ const t = useTranslations(lang as any);
 const title = t('base64_decode_file.title');
 const description = t('base64_decode_file.description');
 const toolName = t('decode');
-const jsFile = "base64.js?v=6";
-const activePage = "encoding/base64_decode_file";
+const jsFile = 'base64.js?v=6';
+const activePage = 'encoding/base64_decode_file';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink=""
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFileInput={true}
-    inputFileUrlPlaceholder={t('enter_here')}
-    showOutputDownload={true}
-    inputFileDropText={t('drag_drop')}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink=""
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFileInput={true}
+  inputFileUrlPlaceholder={t('enter_here')}
+  showOutputDownload={true}
+  inputFileDropText={t('drag_drop')}
+  initScript={`
         window.method = download;
         methodLoad();
     `}
 >
-    <div slot="settings">
-        <div class="setting">
-            <label for="file-type">{t('input_type')}</label>
-            <select id="file-type" data-remember="file-type" data-auto-update>
-                <option value="text">Encoded Text</option>
-                <option value="file">Encoded File</option>
-            </select>
-        </div>
-        <div class="setting">
-            <label for="download-file-name">{t('file_name')}</label>
-            <input type="text" id="download-file-name" data-remember="download-file-name" value="download.txt" placeholder={t('file_name')}>
-        </div>
+  <div slot="settings">
+    <div class="setting">
+      <label for="file-type">{t('input_type')}</label>
+      <select id="file-type" data-remember="file-type" data-auto-update>
+        <option value="text">Encoded Text</option>
+        <option value="file">Encoded File</option>
+      </select>
     </div>
+    <div class="setting">
+      <label for="download-file-name">{t('file_name')}</label>
+      <input
+        type="text"
+        id="download-file-name"
+        data-remember="download-file-name"
+        value="download.txt"
+        placeholder={t('file_name')}
+      />
+    </div>
+  </div>
 
-    <script is:inline slot="scripts" set:html={`
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/base64.min.js?v=0.4.1',
@@ -81,5 +90,6 @@ const activePage = "encoding/base64_decode_file";
             }
         });
         window.PROCESSING_MESSAGE = 'decoding...';
-    `}></script>
+    `}
+  />
 </EncodingPage>

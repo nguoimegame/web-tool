@@ -10,7 +10,13 @@ const { title, description } = Astro.props;
       <i data-lucide="message-square-plus"></i>
     </button>
     <div class="feedback-dropdown" id="feedback-dropdown">
-      <a class="feedback-link" href="https://github.com/quangit/web-tool/issues" target="_blank" rel="noopener noreferrer" title="Report on GitHub">
+      <a
+        class="feedback-link"
+        href="https://github.com/quangit/web-tool/issues"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Report on GitHub"
+      >
         <i data-lucide="github"></i>
       </a>
       <a class="feedback-link" href="mailto:quang49a9@gmail.com" title="Send an Email">
@@ -55,7 +61,7 @@ const { title, description } = Astro.props;
     background-color: var(--bg-color, white);
     border: 1px solid var(--border-color, #ddd);
     border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1002;
     overflow: hidden; /* Ensures children conform to border-radius */
   }

@@ -5,7 +5,7 @@ import { useTranslations } from '../../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,34 +15,41 @@ const t = useTranslations(lang as any);
 const title = t('xml_minifier.title');
 const description = t('xml_minifier.description');
 const toolName = t('minify');
-const jsFile = "xml.js?v=2";
-const activePage = "xml/minifier";
-const reverseLink = "";
+const jsFile = 'xml.js?v=2';
+const activePage = 'xml/minifier';
+const reverseLink = '';
 const initScript = `window.method = withOptions(xml.minify, ['remove-comments']); methodLoad();`;
-const extraJsFile = "xml-formatter-singleton.min.js";
+const extraJsFile = 'xml-formatter-singleton.min.js';
 ---
 
-<EncodingPage 
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink={reverseLink}
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFormatSettings={false}
-    initScript={initScript}
-    extraJsFile={extraJsFile}
-    editorLanguage="xml"
+<EncodingPage
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink={reverseLink}
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFormatSettings={false}
+  initScript={initScript}
+  extraJsFile={extraJsFile}
+  editorLanguage="xml"
 >
-    <div slot="settings">
-        <div class="setting">
-            <label class="switcher">
-                <input type="checkbox" value="1" id="remove-comments" data-option="remove-comments" data-remember="remove-comments" checked>
-                <div class="toggle"></div>
-                <span>{t('remove_comments')}</span>
-            </label>
-        </div>
+  <div slot="settings">
+    <div class="setting">
+      <label class="switcher">
+        <input
+          type="checkbox"
+          value="1"
+          id="remove-comments"
+          data-option="remove-comments"
+          data-remember="remove-comments"
+          checked
+        />
+        <div class="toggle"></div>
+        <span>{t('remove_comments')}</span>
+      </label>
     </div>
+  </div>
 </EncodingPage>

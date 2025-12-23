@@ -24,7 +24,7 @@
     "astro-eslint-parser": "^0.16.0",
     "eslint": "^8.0.0",
     "prettier": "^3.0.0",
-    "prettier-plugin-astro": "^0.12.3",
+    "prettier-plugin-astro": "^0.14.1",
     "terser": "^5.44.1"
   }
 }

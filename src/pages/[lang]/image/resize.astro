@@ -1,11 +1,11 @@
 ---
-import BasePage from "../../../components/BasePage.astro";
+import BasePage from '../../../components/BasePage.astro';
 import { languages } from '../../../i18n/ui';
 import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -14,7 +14,7 @@ const t = useTranslations(lang as any);
 
 const title = t('image_resize.title');
 const description = t('image_resize.description');
-const activePage = "image/resize";
+const activePage = 'image/resize';
 ---
 
 <BasePage title={title} description={description} activePage={activePage}>
@@ -59,7 +59,7 @@ const activePage = "image/resize";
           <div class="setting">
             <a class="btn" id="reset-btn">{t('reset')}</a>
           </div>
-          
+
           <details class="setting-group" open>
             <summary>{t('image_resize.resize_mode')}</summary>
             <div class="setting">
@@ -127,21 +127,23 @@ const activePage = "image/resize";
       const originalDimensions = document.getElementById('original-dimensions');
       const fileSize = document.getElementById('file-size');
       const imageInfo = document.getElementById('image-info');
-      
+
       const widthInput = document.getElementById('width-input') as HTMLInputElement;
       const heightInput = document.getElementById('height-input') as HTMLInputElement;
-      const maintainAspectRatio = document.getElementById('maintain-aspect-ratio') as HTMLInputElement;
-      
+      const maintainAspectRatio = document.getElementById(
+        'maintain-aspect-ratio'
+      ) as HTMLInputElement;
+
       const percentageControls = document.getElementById('percentage-controls');
       const dimensionsControls = document.getElementById('dimensions-controls');
       const resizeModeSelect = document.getElementById('resize-mode') as HTMLSelectElement;
-      
+
       const percentageSlider = document.getElementById('percentage-slider') as HTMLInputElement;
       const percentageInput = document.getElementById('percentage-input') as HTMLInputElement;
-      
+
       const qualitySlider = document.getElementById('quality-slider') as HTMLInputElement;
       const qualityInput = document.getElementById('quality-input') as HTMLInputElement;
-      
+
       const resetBtn = document.getElementById('reset-btn');
       const uploadBtn = document.getElementById('upload-btn');
       const downloadBtn = document.getElementById('download-btn');
@@ -154,10 +156,10 @@ const activePage = "image/resize";
       dropZone?.addEventListener('click', (e) => {
         // Only trigger file input if clicking on the drop zone background or content, not the image itself
         if (e.target === dropZone || dropZoneContent?.contains(e.target as Node)) {
-             fileInput?.click();
+          fileInput?.click();
         }
       });
-      
+
       dropZone?.addEventListener('dragover', (e) => {
         e.preventDefault();
         dropZone.classList.add('drag-over');
@@ -196,19 +198,28 @@ const activePage = "image/resize";
         reader.onload = (e) => {
           originalImage = new Image();
           originalImage.onload = () => {
-            if (previewImage && originalDimensions && fileSize && widthInput && heightInput && imageInfo && downloadBtn && dropZoneContent) {
+            if (
+              previewImage &&
+              originalDimensions &&
+              fileSize &&
+              widthInput &&
+              heightInput &&
+              imageInfo &&
+              downloadBtn &&
+              dropZoneContent
+            ) {
               previewImage.src = originalImage!.src;
               previewImage.style.display = 'block';
               dropZoneContent.style.display = 'none';
-              
+
               originalDimensions.textContent = `${originalImage!.width} x ${originalImage!.height} px`;
               fileSize.textContent = formatFileSize(file.size);
               imageInfo.style.display = 'flex';
-              
+
               aspectRatio = originalImage!.width / originalImage!.height;
               widthInput.value = originalImage!.width.toString();
               heightInput.value = originalImage!.height.toString();
-              
+
               downloadBtn.style.display = 'inline-flex';
             }
           };
@@ -279,22 +290,33 @@ const activePage = "image/resize";
 
       // Reset
       resetBtn?.addEventListener('click', () => {
-        if (originalImage && widthInput && heightInput && percentageInput && percentageSlider && previewImage && dropZoneContent && imageInfo && downloadBtn && resizeModeSelect) {
+        if (
+          originalImage &&
+          widthInput &&
+          heightInput &&
+          percentageInput &&
+          percentageSlider &&
+          previewImage &&
+          dropZoneContent &&
+          imageInfo &&
+          downloadBtn &&
+          resizeModeSelect
+        ) {
           // Clear image
           originalImage = null;
           originalFile = null;
-          previewImage.src = "";
+          previewImage.src = '';
           previewImage.style.display = 'none';
           dropZoneContent.style.display = 'flex';
           imageInfo.style.display = 'none';
           downloadBtn.style.display = 'none';
 
           // Reset inputs
-          widthInput.value = "";
-          heightInput.value = "";
-          percentageInput.value = "100";
-          percentageSlider.value = "100";
-          
+          widthInput.value = '';
+          heightInput.value = '';
+          percentageInput.value = '100';
+          percentageSlider.value = '100';
+
           // Reset to dimensions mode
           resizeModeSelect.value = 'dimensions';
           percentageControls!.style.display = 'none';
@@ -317,9 +339,9 @@ const activePage = "image/resize";
 
         // Better image smoothing
         if (ctx) {
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            ctx.drawImage(originalImage, 0, 0, width, height);
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+          ctx.drawImage(originalImage, 0, 0, width, height);
         }
 
         const link = document.createElement('a');
@@ -387,7 +409,7 @@ const activePage = "image/resize";
       max-height: 500px;
       object-fit: contain;
       border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .image-info {
@@ -404,11 +426,11 @@ const activePage = "image/resize";
       gap: 12px;
     }
 
-    .range-wrapper input[type="range"] {
+    .range-wrapper input[type='range'] {
       flex: 1;
     }
 
-    .range-wrapper input[type="number"] {
+    .range-wrapper input[type='number'] {
       width: 60px;
       padding: 4px;
       border: 1px solid var(--border-color);
@@ -419,7 +441,7 @@ const activePage = "image/resize";
       .layout {
         flex-direction: column;
       }
-      
+
       .settings {
         flex: auto;
         order: -1;

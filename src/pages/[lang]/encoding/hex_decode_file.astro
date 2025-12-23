@@ -8,7 +8,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -18,50 +18,58 @@ const t = useTranslations(lang as any);
 const title = t('hex_decode_file.title');
 const description = t('hex_decode_file.description');
 const toolName = t('decode');
-const jsFile = "hex.js?v=3";
-const activePage = "encoding/hex_decode_file";
+const jsFile = 'hex.js?v=3';
+const activePage = 'encoding/hex_decode_file';
 ---
 
 <BasePage title={title} description={description} activePage={activePage}>
-    <div class="layout">
-        <div class="layout-block">
-            <InputFileBlock
-                title={t('input')}
-                urlPlaceholder={t('enter_here')}
-                dropText={t('drag_drop')}
-                dataRemember="input"
-                dataShare="input"
-                dataAutoUpdate={true}
-            />
-            
-            <OutputBlock 
-                title={t('output')}
-                placeholder={t('output_placeholder')}
-                dataEncodingFrom="#output-type"
-                isReadonly={true}
-                showDownload={true}
-                showCopy={false}
-                showShareLink={false}
-            />
-        </div>
-        
-        <SettingBlock executeLabel={toolName}>
-            <div class="setting">
-                <label for="file-type">{t('input_type')}</label>
-                <select id="file-type" data-remember="file-type" data-auto-update>
-                    <option value="text">Encoded Text</option>
-                    <option value="file">Encoded File</option>
-                </select>
-            </div>
-            
-            <div class="setting">
-                <label for="download-file-name">{t('file_name')}</label>
-                <input type="text" id="download-file-name" data-remember="download-file-name" value="download.txt" placeholder={t('file_name')}>
-            </div>
-        </SettingBlock>
+  <div class="layout">
+    <div class="layout-block">
+      <InputFileBlock
+        title={t('input')}
+        urlPlaceholder={t('enter_here')}
+        dropText={t('drag_drop')}
+        dataRemember="input"
+        dataShare="input"
+        dataAutoUpdate={true}
+      />
+
+      <OutputBlock
+        title={t('output')}
+        placeholder={t('output_placeholder')}
+        dataEncodingFrom="#output-type"
+        isReadonly={true}
+        showDownload={true}
+        showCopy={false}
+        showShareLink={false}
+      />
     </div>
-    
-    <script is:inline set:html={`
+
+    <SettingBlock executeLabel={toolName}>
+      <div class="setting">
+        <label for="file-type">{t('input_type')}</label>
+        <select id="file-type" data-remember="file-type" data-auto-update>
+          <option value="text">Encoded Text</option>
+          <option value="file">Encoded File</option>
+        </select>
+      </div>
+
+      <div class="setting">
+        <label for="download-file-name">{t('file_name')}</label>
+        <input
+          type="text"
+          id="download-file-name"
+          data-remember="download-file-name"
+          value="download.txt"
+          placeholder={t('file_name')}
+        />
+      </div>
+    </SettingBlock>
+  </div>
+
+  <script
+    is:inline
+    set:html={`
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/${jsFile}',
@@ -99,5 +107,6 @@ const activePage = "encoding/hex_decode_file";
             }
         });
         window.PROCESSING_MESSAGE = 'decoding...';
-    `}></script>
+    `}
+  />
 </BasePage>

@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -13,7 +13,7 @@ const { lang = 'en' } = Astro.params;
 const t = useTranslations(lang as any);
 ---
 
-<HashPage 
+<HashPage
   title={t('keccak_256.title')}
   description={t('keccak_256.description')}
   algorithmName="keccak_256"

@@ -7,15 +7,18 @@ Web Tools is a privacy-focused web toolkit built with Astro framework. All opera
 ## Technology Stack
 
 ### Core Framework
+
 - **Astro 4.x**: Static site generator with excellent performance
 - **TypeScript**: Type-safe development
 - **jQuery 1.10.1**: Legacy support (consider migration to vanilla JS)
 
 ### Build Tools
+
 - **Vite**: Fast build tool and dev server
 - **pnpm**: Efficient package manager
 
 ### Code Quality
+
 - **ESLint**: JavaScript/TypeScript linting (excludes `public/js/**` directory)
 - **Prettier**: Code formatting (excludes `public/js/**` directory)
 - **TypeScript Strict Mode**: Enhanced type safety
@@ -71,6 +74,7 @@ All cryptographic and encoding operations happen in the browser:
 ### Component Architecture
 
 #### Base Components
+
 - `BaseLayout.astro`: Main layout with meta tags, scripts
 - `BasePage.astro`: Generic page wrapper
 - `BaseHashPage.astro`: Hash tool pages
@@ -78,6 +82,7 @@ All cryptographic and encoding operations happen in the browser:
 - `EncodingPage.astro`: Encoding/decoding pages
 
 #### Functional Components
+
 - `Sidebar.astro`: Navigation sidebar
 - `PageHeader.astro`: Page title and description
 - `InputBlock.astro`: Input text area
@@ -137,18 +142,21 @@ LocalStorage (optional)
 ## Performance Optimization
 
 ### Build Optimization
+
 - Static site generation
 - CSS minification
 - JavaScript bundling
 - Image optimization
 
 ### Runtime Optimization
+
 - Lazy loading of scripts
 - Deferred script loading
 - Resource hints (preconnect, dns-prefetch)
 - Event listener optimization (passive, once)
 
 ### Analytics
+
 - Google Analytics (delayed initialization)
 - Loads only on user interaction
 - Can be disabled for localhost
@@ -186,6 +194,7 @@ astro build
 ## Future Improvements
 
 ### Code Quality
+
 1. **Migrate from jQuery to Vanilla JS**
    - Reduce bundle size
    - Modern JavaScript features
@@ -202,6 +211,7 @@ astro build
    - Add unit tests
 
 ### Performance
+
 1. **Code Splitting**
    - Load tools on demand
    - Reduce initial bundle size
@@ -216,6 +226,7 @@ astro build
    - Service worker caching
 
 ### Features
+
 1. **Additional Tools**
    - More hash algorithms
    - More encoding formats

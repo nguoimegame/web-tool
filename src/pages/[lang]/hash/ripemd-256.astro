@@ -1,14 +1,14 @@
 ---
 import BaseHashPage from '../../../components/BaseHashPage.astro';
 import OutputEncodingSelect from '../../../components/OutputEncodingSelect.astro';
-import InputEncodingSelect from "../../../components/InputEncodingSelect.astro";
+import InputEncodingSelect from '../../../components/InputEncodingSelect.astro';
 import HMACSettings from '../../../components/HMACSettings.astro';
 import { languages } from '../../../i18n/ui';
 import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -38,7 +38,7 @@ const t = useTranslations(lang as any);
   <script is:inline slot="scripts">
     ++waitLoadCount;
     delayScripts.push({
-      src: '/js/hmac.js?v=2'
+      src: '/js/hmac.js?v=2',
     });
   </script>
 
@@ -50,7 +50,7 @@ const t = useTranslations(lang as any);
       onload: function () {
         window.method = ripemd256;
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -61,7 +61,7 @@ const t = useTranslations(lang as any);
       src: 'https://nf404.github.io/crypto-api/crypto-api.min.js',
       onload: function () {
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -72,7 +72,7 @@ const t = useTranslations(lang as any);
       src: '/js/encoding.js?v=8',
       onload: function () {
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -86,7 +86,7 @@ const t = useTranslations(lang as any);
           gtag('event', 'copy');
         });
       },
-      delay: 100
+      delay: 100,
     });
   </script>
 </BaseHashPage>

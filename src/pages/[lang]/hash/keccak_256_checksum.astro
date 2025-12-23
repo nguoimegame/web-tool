@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -14,14 +14,15 @@ const t = useTranslations(lang as any);
 
 const title = t('keccak_256_checksum.title');
 const description = t('keccak_256_checksum.description');
-const algorithmName = "keccak_256";
-const jsFile = "https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js";
-const activePage = "hash/keccak_256_checksum";
+const algorithmName = 'keccak_256';
+const jsFile = 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js';
+const activePage = 'hash/keccak_256_checksum';
 ---
-<FileHashPage 
-    title={title}
-    description={description}
-    algorithmName={algorithmName}
-    jsFile={jsFile}
-    activePage={activePage}
+
+<FileHashPage
+  title={title}
+  description={description}
+  algorithmName={algorithmName}
+  jsFile={jsFile}
+  activePage={activePage}
 />

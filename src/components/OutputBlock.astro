@@ -1,81 +1,115 @@
 ---
 import { useTranslations } from '../i18n/utils';
 const {
-    id = "output",
-    title = "Output",
-    placeholder = "Output here...",
-    copyMessage = "Output copied",
-    showFullscreen = true,
-    showCopy = true,
-    showDownload = false,
-    // Data attributes
-    dataEncodingFrom = null,
-    dataToggleMonaco = true,
-    dataLanguage = null,
-    // Share link
-    showShareLink = true,
-    isReadonly = true,
-    textareaStyle = "",
-    hasTextarea = true,
+  id = 'output',
+  title = 'Output',
+  placeholder = 'Output here...',
+  copyMessage = 'Output copied',
+  showFullscreen = true,
+  showCopy = true,
+  showDownload = false,
+  // Data attributes
+  dataEncodingFrom = null,
+  dataToggleMonaco = true,
+  dataLanguage = null,
+  // Share link
+  showShareLink = true,
+  isReadonly = true,
+  textareaStyle = '',
+  hasTextarea = true,
 } = Astro.props;
 
 // Build data attributes object
 const dataAttrs: Record<string, any> = {};
-if (dataEncodingFrom) {dataAttrs["data-encoding-from"] = dataEncodingFrom;}
-if (dataToggleMonaco) {dataAttrs["data-toggle"] = "monacoEditor";}
-if (dataLanguage) {dataAttrs["data-language"] = dataLanguage;}
+if (dataEncodingFrom) {
+  dataAttrs['data-encoding-from'] = dataEncodingFrom;
+}
+if (dataToggleMonaco) {
+  dataAttrs['data-toggle'] = 'monacoEditor';
+}
+if (dataLanguage) {
+  dataAttrs['data-language'] = dataLanguage;
+}
 
 const { lang = 'en' } = Astro.params;
 const t = useTranslations(lang as any);
 ---
 
 <div class="output">
-    <div class="block block-fill">
-        <div class="block-title">
-            {title}
-            <div class="toolbar">
-                <slot name="toolbar" />
-                {
-                    showDownload && (
-                        <a class="icon" id="download-image" download="download" style="display:none" onclick="gtag('event', 'download');">
-                            <i data-lucide="download" title="Download"></i>
-                        </a>
-                    )
-                }
-                {
-                    showCopy && (
-                        <button class="icon" data-toggle="copy" data-clipboard-target={`#${id}`} data-message={copyMessage}>
-                            <i data-lucide="copy" title="Copy"></i>
-                        </button>
-                    )
-                }
-                {
-                    showFullscreen && (
-                        <button class="icon" data-toggle="fullscreen">
-                            <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
-                            <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
-                        </button>
-                    )
-                }
-            </div>
-        </div>
-        <slot name="before-textarea" />
-        {hasTextarea && <textarea class="container" id={id} spellcheck="false" placeholder={placeholder} readonly={isReadonly ? "readonly" : undefined} style={textareaStyle} {...dataAttrs}></textarea>}
-        <slot name="after-textarea" />
+  <div class="block block-fill">
+    <div class="block-title">
+      {title}
+      <div class="toolbar">
+        <slot name="toolbar" />
+        {
+          showDownload && (
+            <a
+              class="icon"
+              id="download-image"
+              download="download"
+              style="display:none"
+              onclick="gtag('event', 'download');"
+            >
+              <i data-lucide="download" title="Download" />
+            </a>
+          )
+        }
+        {
+          showCopy && (
+            <button
+              class="icon"
+              data-toggle="copy"
+              data-clipboard-target={`#${id}`}
+              data-message={copyMessage}
+            >
+              <i data-lucide="copy" title="Copy" />
+            </button>
+          )
+        }
+        {
+          showFullscreen && (
+            <button class="icon" data-toggle="fullscreen">
+              <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen" />
+              <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen" />
+            </button>
+          )
+        }
+      </div>
     </div>
+    <slot name="before-textarea" />
     {
-        showShareLink && (
-            <details class="block text-only" data-toggle="copyblock">
-                <summary class="block-title">
-                    {t('share_link')}
-                    <div class="toolbar">
-                        <button class="icon" data-toggle="copy" data-clipboard-target="#share-link" data-message="Share link copied">
-                            <i data-lucide="copy" title="Copy"></i>
-                        </button>
-                    </div>
-                </summary>
-                <input id="share-link" type="text" placeholder={t('share_link')} readonly="readonly" />
-            </details>
-        )
+      hasTextarea && (
+        <textarea
+          class="container"
+          id={id}
+          spellcheck="false"
+          placeholder={placeholder}
+          readonly={isReadonly ? 'readonly' : undefined}
+          style={textareaStyle}
+          {...dataAttrs}
+        />
+      )
     }
+    <slot name="after-textarea" />
+  </div>
+  {
+    showShareLink && (
+      <details class="block text-only" data-toggle="copyblock">
+        <summary class="block-title">
+          {t('share_link')}
+          <div class="toolbar">
+            <button
+              class="icon"
+              data-toggle="copy"
+              data-clipboard-target="#share-link"
+              data-message="Share link copied"
+            >
+              <i data-lucide="copy" title="Copy" />
+            </button>
+          </div>
+        </summary>
+        <input id="share-link" type="text" placeholder={t('share_link')} readonly="readonly" />
+      </details>
+    )
+  }
 </div>

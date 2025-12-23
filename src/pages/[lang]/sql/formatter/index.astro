@@ -8,7 +8,7 @@ import { useTranslations } from '../../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -17,148 +17,177 @@ const t = useTranslations(lang as any);
 
 const title = t('sql_formatter.title');
 const description = t('sql_formatter.description');
-const activePage = "sql/formatter/";
+const activePage = 'sql/formatter/';
 ---
 
 <BasePage title={title} description={description} activePage={activePage}>
-    <div class="layout">
-        <div class="layout-block">
-            <BaseInputBlock title={t('input')} >
-                <textarea class="container" id="input" spellcheck="false" placeholder={t('sql_formatter.enter_query')} 
-                    data-remember="input" data-share="input" data-auto-update 
-                    data-toggle="monacoEditor" data-language="mysql"></textarea>
-            </BaseInputBlock>
-            
-            <BaseOutputBlock title={t('output')} showCopy={true}>
-                <div class="toolbar" slot="toolbar">
-                    <button class="icon" data-toggle="copy" data-clipboard-target="#output" data-message="Output copied">
-                        <i data-lucide="copy" title="Copy"></i>
-                    </button>
-                </div>
-                <pre class="container syntax-highlight" id="output"><code class="sql"></code></pre>
-            </BaseOutputBlock>
+  <div class="layout">
+    <div class="layout-block">
+      <BaseInputBlock title={t('input')}>
+        <textarea
+          class="container"
+          id="input"
+          spellcheck="false"
+          placeholder={t('sql_formatter.enter_query')}
+          data-remember="input"
+          data-share="input"
+          data-auto-update
+          data-toggle="monacoEditor"
+          data-language="mysql"></textarea>
+      </BaseInputBlock>
+
+      <BaseOutputBlock title={t('output')} showCopy={true}>
+        <div class="toolbar" slot="toolbar">
+          <button
+            class="icon"
+            data-toggle="copy"
+            data-clipboard-target="#output"
+            data-message="Output copied"
+          >
+            <i data-lucide="copy" title="Copy"></i>
+          </button>
         </div>
-        
-        <BaseSettingBlock title={t('settings')}>
-            <div class="setting">
-                <a class="btn" id="execute">{t('format')}</a>
-            </div>
-            
-            <div class="setting">
-                <label class="switcher">
-                    <input type="checkbox" value="1" id="auto-update" checked>
-                    <div class="toggle"></div>
-                    <span>{t('auto_update')}</span>
-                </label>
-            </div>
-            
-            <div class="setting">
-                <label class="switcher">
-                    <input type="checkbox" value="1" id="remember-input">
-                    <div class="toggle"></div>
-                    <span>{t('remember_input')}</span>
-                </label>
-            </div>
-            
-            <div class="setting">
-                <label class="switcher">
-                    <input type="checkbox" value="1" id="uppercase-keywords" checked data-remember="uppercase-keywords">
-                    <div class="toggle"></div>
-                    <span>{t('sql_formatter.uppercase_keywords')}</span>
-                </label>
-            </div>
-            
-            <div class="setting">
-                <label for="indent-type">{t('sql_formatter.indent_type')}</label>
-                <select id="indent-type" data-remember="indent-type">
-                    <option value="space" selected>Space</option>
-                    <option value="tab">Tab</option>
-                </select>
-            </div>
-            
-            <div class="setting">
-                <label for="indent">{t('sql_formatter.indent')}</label>
-                <input id="indent" type="number" value="2" step="1" min="1" max="10" data-remember="indent">
-            </div>
-        </BaseSettingBlock>
+        <pre class="container syntax-highlight" id="output"><code class="sql" /></pre>
+      </BaseOutputBlock>
     </div>
-    
-    <script is:inline>
-        // SQL Formatter using sql-formatter library
-        (function() {
-            window.method = function(input) {
-                if (!input || typeof input !== 'string') {
-                    var codeElement = document.querySelector('#output code');
-                    if (codeElement) codeElement.textContent = '';
-                    return '';
-                }
-                
-                try {
-                    var indent = parseInt(document.getElementById('indent').value) || 2;
-                    var indentType = document.getElementById('indent-type').value;
-                    var uppercaseKeywords = document.getElementById('uppercase-keywords').checked;
-                    
-                    // Configure sql-formatter options
-                    var options = {
-                        language: 'sql',
-                        tabWidth: indentType === 'tab' ? 1 : indent,
-                        useTabs: indentType === 'tab',
-                        keywordCase: uppercaseKeywords ? 'upper' : 'preserve',
-                        indentStyle: 'standard',
-                        logicalOperatorNewline: 'before',
-                        expressionWidth: 50
-                    };
-                    
-                    // Format SQL using sql-formatter library
-                    var formatted = '';
-                    if (typeof sqlFormatter !== 'undefined' && sqlFormatter.format) {
-                        formatted = sqlFormatter.format(input, options);
-                    } else {
-                        formatted = input; // Fallback to original if library not loaded
-                    }
-                    
-                    // Update code element and apply highlighting
-                    var codeElement = document.querySelector('#output code');
-                    if (codeElement) {
-                        codeElement.textContent = formatted;
-                        codeElement.className = 'sql';
-                        if (typeof hljs !== 'undefined') {
-                            hljs.highlightBlock(codeElement);
-                        }
-                    }
-                    
-                    return formatted;
-                } catch(e) {
-                    console.error('SQL formatting error:', e);
-                    return input; // Return original on error
-                }
-            };
-            
-            if (typeof methodLoad === 'function') {
-                methodLoad();
+
+    <BaseSettingBlock title={t('settings')}>
+      <div class="setting">
+        <a class="btn" id="execute">{t('format')}</a>
+      </div>
+
+      <div class="setting">
+        <label class="switcher">
+          <input type="checkbox" value="1" id="auto-update" checked />
+          <div class="toggle"></div>
+          <span>{t('auto_update')}</span>
+        </label>
+      </div>
+
+      <div class="setting">
+        <label class="switcher">
+          <input type="checkbox" value="1" id="remember-input" />
+          <div class="toggle"></div>
+          <span>{t('remember_input')}</span>
+        </label>
+      </div>
+
+      <div class="setting">
+        <label class="switcher">
+          <input
+            type="checkbox"
+            value="1"
+            id="uppercase-keywords"
+            checked
+            data-remember="uppercase-keywords"
+          />
+          <div class="toggle"></div>
+          <span>{t('sql_formatter.uppercase_keywords')}</span>
+        </label>
+      </div>
+
+      <div class="setting">
+        <label for="indent-type">{t('sql_formatter.indent_type')}</label>
+        <select id="indent-type" data-remember="indent-type">
+          <option value="space" selected>Space</option>
+          <option value="tab">Tab</option>
+        </select>
+      </div>
+
+      <div class="setting">
+        <label for="indent">{t('sql_formatter.indent')}</label>
+        <input
+          id="indent"
+          type="number"
+          value="2"
+          step="1"
+          min="1"
+          max="10"
+          data-remember="indent"
+        />
+      </div>
+    </BaseSettingBlock>
+  </div>
+
+  <script is:inline>
+    // SQL Formatter using sql-formatter library
+    (function () {
+      window.method = function (input) {
+        if (!input || typeof input !== 'string') {
+          var codeElement = document.querySelector('#output code');
+          if (codeElement) codeElement.textContent = '';
+          return '';
+        }
+
+        try {
+          var indent = parseInt(document.getElementById('indent').value) || 2;
+          var indentType = document.getElementById('indent-type').value;
+          var uppercaseKeywords = document.getElementById('uppercase-keywords').checked;
+
+          // Configure sql-formatter options
+          var options = {
+            language: 'sql',
+            tabWidth: indentType === 'tab' ? 1 : indent,
+            useTabs: indentType === 'tab',
+            keywordCase: uppercaseKeywords ? 'upper' : 'preserve',
+            indentStyle: 'standard',
+            logicalOperatorNewline: 'before',
+            expressionWidth: 50,
+          };
+
+          // Format SQL using sql-formatter library
+          var formatted = '';
+          if (typeof sqlFormatter !== 'undefined' && sqlFormatter.format) {
+            formatted = sqlFormatter.format(input, options);
+          } else {
+            formatted = input; // Fallback to original if library not loaded
+          }
+
+          // Update code element and apply highlighting
+          var codeElement = document.querySelector('#output code');
+          if (codeElement) {
+            codeElement.textContent = formatted;
+            codeElement.className = 'sql';
+            if (typeof hljs !== 'undefined') {
+              hljs.highlightBlock(codeElement);
             }
-        })();
-    </script>
-    
-    <script is:inline>
-        ++waitLoadCount;
-        delayScripts.push({
-            src: 'https://cdn.jsdelivr.net/npm/sql-formatter@15.4.7/dist/sql-formatter.min.js',
-            onload: function () {
-                methodLoad();
-            }
-        });
-    </script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-    
-    <script is:inline>
-        ++waitLoadCount;
-        delayScripts.push({
-            src: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js',
-            onload: function () {
-                methodLoad();
-            }
-        });
-    </script>
+          }
+
+          return formatted;
+        } catch (e) {
+          console.error('SQL formatting error:', e);
+          return input; // Return original on error
+        }
+      };
+
+      if (typeof methodLoad === 'function') {
+        methodLoad();
+      }
+    })();
+  </script>
+
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/sql-formatter@15.4.7/dist/sql-formatter.min.js',
+      onload: function () {
+        methodLoad();
+      },
+    });
+  </script>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+  />
+
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js',
+      onload: function () {
+        methodLoad();
+      },
+    });
+  </script>
 </BasePage>

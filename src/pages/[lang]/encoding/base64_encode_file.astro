@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,39 +15,42 @@ const t = useTranslations(lang as any);
 const title = t('base64_encode_file.title');
 const description = t('base64_encode_file.description');
 const toolName = t('encode');
-const jsFile = "base64.js?v=6";
-const activePage = "encoding/base64_encode_file";
+const jsFile = 'base64.js?v=6';
+const activePage = 'encoding/base64_encode_file';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink=""
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFormatSettings={true}
-    hasFileInput={true}
-    inputFileUrlPlaceholder={t('url_placeholder')}
-    inputFileDropText={t('drag_drop')}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink=""
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFormatSettings={true}
+  hasFileInput={true}
+  inputFileUrlPlaceholder={t('url_placeholder')}
+  inputFileDropText={t('drag_drop')}
+  initScript={`
         window.method = withOptions(base64Encode, ['format']);
         methodLoad();
     `}
 >
-    <div slot="settings">
-        <div class="setting">
-            <label for="file-type">{t('input_type')}</label>
-            <select id="file-type" data-remember="file-type" data-auto-update>
-                <option value="file">File</option>
-                <option value="url">URL</option>
-            </select>
-        </div>
+  <div slot="settings">
+    <div class="setting">
+      <label for="file-type">{t('input_type')}</label>
+      <select id="file-type" data-remember="file-type" data-auto-update>
+        <option value="file">File</option>
+        <option value="url">URL</option>
+      </select>
     </div>
+  </div>
 
-    <script is:inline slot="scripts" set:html={`
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/base64.min.js?v=0.4.1',
@@ -87,5 +90,6 @@ const activePage = "encoding/base64_encode_file";
             }
         });
         window.PROCESSING_MESSAGE = 'encoding...';
-    `}></script>
+    `}
+  />
 </EncodingPage>

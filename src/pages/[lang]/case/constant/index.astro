@@ -5,7 +5,7 @@ import { useTranslations } from '../../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,21 +15,21 @@ const t = useTranslations(lang as any);
 const title = t('constant.title');
 const description = t('constant.description');
 const toolName = t('convert');
-const jsFile = "change-case.min.js";
-const initScript = "window.method = ChangeCase.constantCase; methodLoad();";
-const activePage = "case/constant/";
-const reverseLink = "";
+const jsFile = 'change-case.min.js';
+const initScript = 'window.method = ChangeCase.constantCase; methodLoad();';
+const activePage = 'case/constant/';
+const reverseLink = '';
 ---
 
-<EncodingPage 
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    initScript={initScript}
-    activePage={activePage}
-    reverseLink={reverseLink}
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFormatSettings={false}
+<EncodingPage
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  initScript={initScript}
+  activePage={activePage}
+  reverseLink={reverseLink}
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFormatSettings={false}
 />

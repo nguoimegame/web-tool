@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -14,12 +14,12 @@ const t = useTranslations(lang as any);
 
 const title = t('sha256.title');
 const description = t('sha256.description');
-const algorithmName = "sha256";
-const jsFile = "https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.11.0/sha256.min.js";
-const activePage = "hash/sha256";
+const algorithmName = 'sha256';
+const jsFile = 'https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.11.0/sha256.min.js';
+const activePage = 'hash/sha256';
 ---
 
-<HashPage 
+<HashPage
   title={title}
   description={description}
   algorithmName={algorithmName}

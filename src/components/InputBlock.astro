@@ -1,70 +1,95 @@
 ---
 import { useTranslations } from '../i18n/utils';
 const {
-    id = "input",
-    title = "Input",
-    placeholder = "Enter here...",
-    readonly = false,
-    showFullscreen = true,
-    showCopy = false,
-    copyMessage = "Copied",
-    // File upload support
-    showFileUpload = false,
-    fileId = "file",
-    // Data attributes
-    dataRemember = null,
-    dataShare = null,
+  id = 'input',
+  title = 'Input',
+  placeholder = 'Enter here...',
+  readonly = false,
+  showFullscreen = true,
+  showCopy = false,
+  copyMessage = 'Copied',
+  // File upload support
+  showFileUpload = false,
+  fileId = 'file',
+  // Data attributes
+  dataRemember = null,
+  dataShare = null,
 
-    dataEncodingFrom = null,
-    dataAutoUpdate = false,
-    dataToggleMonaco = true,
-    dataLanguage = null,
+  dataEncodingFrom = null,
+  dataAutoUpdate = false,
+  dataToggleMonaco = true,
+  dataLanguage = null,
 } = Astro.props;
 
 // Build data attributes object
 const dataAttrs: Record<string, any> = {};
-if (dataRemember) {dataAttrs["data-remember"] = dataRemember;}
-if (dataShare) {dataAttrs["data-share"] = dataShare;}
-if (dataEncodingFrom) {dataAttrs["data-encoding-from"] = dataEncodingFrom;}
-if (dataAutoUpdate) {dataAttrs["data-auto-update"] = true;}
-if (dataToggleMonaco) {dataAttrs["data-toggle"] = "monacoEditor";}
-if (dataLanguage) {dataAttrs["data-language"] = dataLanguage;}
+if (dataRemember) {
+  dataAttrs['data-remember'] = dataRemember;
+}
+if (dataShare) {
+  dataAttrs['data-share'] = dataShare;
+}
+if (dataEncodingFrom) {
+  dataAttrs['data-encoding-from'] = dataEncodingFrom;
+}
+if (dataAutoUpdate) {
+  dataAttrs['data-auto-update'] = true;
+}
+if (dataToggleMonaco) {
+  dataAttrs['data-toggle'] = 'monacoEditor';
+}
+if (dataLanguage) {
+  dataAttrs['data-language'] = dataLanguage;
+}
 
 const { lang = 'en' } = Astro.params;
 const t = useTranslations(lang as any);
 ---
 
 <div class="input">
-    <div class="block block-fill">
-        <div class="block-title">
-            {title}
-            <div class="toolbar">
-                {
-                    showCopy && (
-                        <button class="icon" data-toggle="copy" data-clipboard-target={`#${id}`} data-message={copyMessage}>
-                            <i data-lucide="copy" title="Copy"></i>
-                        </button>
-                    )
-                }
-                {
-                    showFullscreen && (
-                        <button class="icon" data-toggle="fullscreen">
-                            <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
-                            <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
-                        </button>
-                    )
-                }
-            </div>
-        </div>
-        <textarea class="container" id={id} spellcheck="false" placeholder={placeholder} readonly={readonly ? "readonly" : undefined} {...dataAttrs}></textarea>
-        {showFileUpload && (
-            <div class="droppable-zone container" id="droppable-zone" style="display:none;">
-                <input class="droppable-file" type="file" id={fileId} data-auto-update />
-                <div class="droppable-zone-wrapper">
-                    <i class="droppable-zone-icon" data-lucide="file-up"></i>
-                    <div class="droppable-zone-text">{t('drag_drop')}</div>
-                </div>
-            </div>
-        )}
+  <div class="block block-fill">
+    <div class="block-title">
+      {title}
+      <div class="toolbar">
+        {
+          showCopy && (
+            <button
+              class="icon"
+              data-toggle="copy"
+              data-clipboard-target={`#${id}`}
+              data-message={copyMessage}
+            >
+              <i data-lucide="copy" title="Copy" />
+            </button>
+          )
+        }
+        {
+          showFullscreen && (
+            <button class="icon" data-toggle="fullscreen">
+              <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen" />
+              <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen" />
+            </button>
+          )
+        }
+      </div>
     </div>
+    <textarea
+      class="container"
+      id={id}
+      spellcheck="false"
+      placeholder={placeholder}
+      readonly={readonly ? 'readonly' : undefined}
+      {...dataAttrs}></textarea>
+    {
+      showFileUpload && (
+        <div class="droppable-zone container" id="droppable-zone" style="display:none;">
+          <input class="droppable-file" type="file" id={fileId} data-auto-update />
+          <div class="droppable-zone-wrapper">
+            <i class="droppable-zone-icon" data-lucide="file-up" />
+            <div class="droppable-zone-text">{t('drag_drop')}</div>
+          </div>
+        </div>
+      )
+    }
+  </div>
 </div>

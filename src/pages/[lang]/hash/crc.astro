@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,14 +15,14 @@ const t = useTranslations(lang as any);
 const title = t('crc.title');
 const description = t('crc.description');
 const toolName = t('crc.tool_name');
-const jsFile = "crc.js?v=1";
-const activePage = "hash/crc";
+const jsFile = 'crc.js?v=1';
+const activePage = 'hash/crc';
 ---
 
-<CRCPage 
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
+<CRCPage
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
 />

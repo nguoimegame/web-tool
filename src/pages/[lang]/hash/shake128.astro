@@ -1,13 +1,13 @@
 ---
-import BaseHashPage from "../../../components/BaseHashPage.astro";
-import InputEncodingSelect from "../../../components/InputEncodingSelect.astro";
-import OutputEncodingSelect from "../../../components/OutputEncodingSelect.astro";
+import BaseHashPage from '../../../components/BaseHashPage.astro';
+import InputEncodingSelect from '../../../components/InputEncodingSelect.astro';
+import OutputEncodingSelect from '../../../components/OutputEncodingSelect.astro';
 import { languages } from '../../../i18n/ui';
 import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,7 +15,7 @@ const { lang = 'en' } = Astro.params;
 const t = useTranslations(lang as any);
 const title = t('shake128.title');
 const description = t('shake128.description');
-const activePage = "hash/shake128";
+const activePage = 'hash/shake128';
 ---
 
 <BaseHashPage title={title} description={description} activePage={activePage}>
@@ -29,15 +29,24 @@ const activePage = "hash/shake128";
   </div>
   <div class="setting">
     <label for="bits">{t('bits')}</label>
-    <input type="number" id="bits" data-option="bits" data-remember="bits-256" data-share="bits" value="256" step="8" min="8" />
+    <input
+      type="number"
+      id="bits"
+      data-option="bits"
+      data-remember="bits-256"
+      data-share="bits"
+      value="256"
+      step="8"
+      min="8"
+    />
   </div>
 
   <script is:inline>
     ++waitLoadCount;
     delayScripts.push({
-      src: "https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js",
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.9.3/sha3.min.js',
       onload: function () {
-        window.method = withOptions(shake_128, ["bits"]);
+        window.method = withOptions(shake_128, ['bits']);
         methodLoad();
       },
     });
@@ -46,7 +55,7 @@ const activePage = "hash/shake128";
   <script is:inline>
     // Encoding script already increments waitLoadCount internally
     delayScripts.push({
-      src: "/js/encoding.js?v=8",
+      src: '/js/encoding.js?v=8',
     });
   </script>
 </BaseHashPage>

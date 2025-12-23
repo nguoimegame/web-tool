@@ -9,13 +9,7 @@ interface Props {
   dataType?: string;
 }
 
-const {
-  id,
-  dataRemember = id,
-  dataShare,
-  dataAutoUpdate = false,
-  dataType = "hex",
-} = Astro.props;
+const { id, dataRemember = id, dataShare, dataAutoUpdate = false, dataType = 'hex' } = Astro.props;
 
 const { lang = 'en' } = Astro.params;
 const t = useTranslations(lang as any);

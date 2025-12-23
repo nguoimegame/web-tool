@@ -1,14 +1,14 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Sidebar from "../../components/Sidebar.astro";
-import PageHeader from "../../components/PageHeader.astro";
-import { toolSections } from "../../data/toolSections";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { toolSections } from '../../data/toolSections';
 import { languages } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -20,7 +20,14 @@ const t = useTranslations(lang as any);
   <div id="app">
     <Sidebar />
     <div id="content">
-      <div class="top-nav"><button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}><i data-lucide="menu"></i></button></div>
+      <div class="top-nav">
+        <button
+          id="sidebar-toggler"
+          aria-controls="sidebar"
+          aria-expanded="false"
+          aria-label={t('sidebar.toggle_menu')}><i data-lucide="menu"></i></button
+        >
+      </div>
       <PageHeader title={t('sidebar.title')} description={t('sidebar.description')} />
       <main>
         <div id="index">
@@ -32,11 +39,16 @@ const t = useTranslations(lang as any);
             </ol>
           </div>
 
-          <hr/>
+          <hr />
           <!-- Search Box -->
           <div class="section" id="search-section">
             <div class="search-container">
-              <input type="text" id="tool-search" placeholder={t('sidebar.search')} autocomplete="off" />
+              <input
+                type="text"
+                id="tool-search"
+                placeholder={t('sidebar.search')}
+                autocomplete="off"
+              />
               <div id="search-results-count"></div>
             </div>
           </div>
@@ -46,8 +58,21 @@ const t = useTranslations(lang as any);
               <div class="section" data-section={section.title.toLowerCase().replace(/\s+/g, '-')}>
                 <h2 class="section-title">
                   <button class="section-toggle" aria-expanded="true">
-                    <svg class="section-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <svg
+                      class="section-arrow"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3 5L6 8L9 5"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
                     </svg>
                     <span>{section.title}</span>
                   </button>
@@ -62,7 +87,7 @@ const t = useTranslations(lang as any);
                             {block.items.map((item) => (
                               <li>
                                 <a href={`/${lang}/${item.url}`}>
-                                  {item.icon && <i data-lucide={item.icon} class="tool-icon"></i>}
+                                  {item.icon && <i data-lucide={item.icon} class="tool-icon" />}
                                   <span>{item.name}</span>
                                 </a>
                               </li>
@@ -82,12 +107,14 @@ const t = useTranslations(lang as any);
     <div id="message"></div>
 
     <!-- Hidden element to pass i18n data to script -->
-    <div id="i18n-data"
+    <div
+      id="i18n-data"
       data-no-result={t('sidebar.search.no_result')}
       data-found={t('sidebar.search.found')}
       data-empty={t('sidebar.my_tools.empty')}
       data-lang={lang}
-      style="display: none;">
+      style="display: none;"
+    >
     </div>
   </div>
 
@@ -95,14 +122,16 @@ const t = useTranslations(lang as any);
     // Favorites Management
     (function () {
       const i18nData = document.getElementById('i18n-data');
-      const emptyFavoritesText = i18nData ? i18nData.getAttribute('data-empty') : 'Click the heart icon next to any tool to add it to your favorites!';
+      const emptyFavoritesText = i18nData
+        ? i18nData.getAttribute('data-empty')
+        : 'Click the heart icon next to any tool to add it to your favorites!';
       const currentLang = i18nData ? i18nData.getAttribute('data-lang') : 'en';
 
-      const FAVORITES_KEY = "favorite-tools";
+      const FAVORITES_KEY = 'favorite-tools';
 
       function getFavorites() {
         try {
-          return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+          return JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
         } catch (e) {
           return [];
         }
@@ -129,14 +158,16 @@ const t = useTranslations(lang as any);
 
       function updateFavoritesList() {
         const favorites = getFavorites();
-        const list = document.getElementById("favorite-tools-list");
+        const list = document.getElementById('favorite-tools-list');
 
         if (!list) return;
 
         if (favorites.length === 0) {
           list.innerHTML = `<li class="empty-state">${emptyFavoritesText}</li>`;
         } else {
-          list.innerHTML = favorites.map((fav) => `
+          list.innerHTML = favorites
+            .map(
+              (fav) => `
             <li>
               <a href="/${currentLang}/${fav.url}">
                 ${fav.icon ? `<i data-lucide="${fav.icon}" class="tool-icon"></i>` : ''}
@@ -144,16 +175,18 @@ const t = useTranslations(lang as any);
               </a>
               <span class="favorite-toggle active" data-url="${fav.url}" data-title="${fav.title}" data-icon="${fav.icon || ''}"></span>
             </li>
-          `).join("");
-          
+          `
+            )
+            .join('');
+
           if (window.lucide) {
             window.lucide.createIcons();
           }
         }
 
         // Attach event listeners to favorite toggles in My Tools
-        list.querySelectorAll(".favorite-toggle").forEach((toggle) => {
-          toggle.addEventListener("click", function (e) {
+        list.querySelectorAll('.favorite-toggle').forEach((toggle) => {
+          toggle.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             toggleFavorite(this.dataset.url, this.dataset.title, this.dataset.icon);
@@ -165,39 +198,41 @@ const t = useTranslations(lang as any);
         const favorites = getFavorites();
         const favoriteUrls = favorites.map((f) => f.url);
 
-        document.querySelectorAll("#index .favorite-toggle").forEach((toggle) => {
+        document.querySelectorAll('#index .favorite-toggle').forEach((toggle) => {
           const isFavorite = favoriteUrls.includes(toggle.dataset.url);
-          toggle.classList.toggle("active", isFavorite);
+          toggle.classList.toggle('active', isFavorite);
         });
       }
 
       function initFavorites() {
         // Add heart icons to all tool links (except in My Tools card)
-        document.querySelectorAll("#index .section:not(#my-tools-card) li").forEach((li) => {
-          const link = li.querySelector("a");
+        document.querySelectorAll('#index .section:not(#my-tools-card) li').forEach((li) => {
+          const link = li.querySelector('a');
           if (!link) return;
 
           const rawUrl = new URL(link.href).pathname;
           // Remove the language prefix to get the base URL
-          const url = rawUrl.startsWith(`/${currentLang}/`) ? rawUrl.substring(`/${currentLang}/`.length) : rawUrl.substring(1);
-          const itemName = link.querySelector("span")?.textContent || link.textContent;
-          const iconElement = link.querySelector("i[data-lucide]");
-          const icon = iconElement ? iconElement.getAttribute("data-lucide") : "";
+          const url = rawUrl.startsWith(`/${currentLang}/`)
+            ? rawUrl.substring(`/${currentLang}/`.length)
+            : rawUrl.substring(1);
+          const itemName = link.querySelector('span')?.textContent || link.textContent;
+          const iconElement = link.querySelector('i[data-lucide]');
+          const icon = iconElement ? iconElement.getAttribute('data-lucide') : '';
 
           // Get category from the block's h3 element
-          const block = li.closest(".block");
-          const category = block ? block.querySelector("h3")?.textContent : "";
+          const block = li.closest('.block');
+          const category = block ? block.querySelector('h3')?.textContent : '';
 
           // Format title as "Category: Item Name"
           const title = category ? `${category}: ${itemName}` : itemName;
 
-          const heart = document.createElement("span");
-          heart.className = "favorite-toggle";
+          const heart = document.createElement('span');
+          heart.className = 'favorite-toggle';
           heart.dataset.url = url;
           heart.dataset.title = title;
           heart.dataset.icon = icon;
 
-          heart.addEventListener("click", function (e) {
+          heart.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             toggleFavorite(url, title, icon);
@@ -211,8 +246,8 @@ const t = useTranslations(lang as any);
       }
 
       // Initialize when DOM is ready
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initFavorites);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFavorites);
       } else {
         initFavorites();
       }
@@ -224,93 +259,100 @@ const t = useTranslations(lang as any);
       const noResultText = i18nData ? i18nData.getAttribute('data-no-result') : 'No tools found';
       const foundText = i18nData ? i18nData.getAttribute('data-found') : 'Found {0} tool{1}';
 
-      const searchInput = document.getElementById("tool-search");
-      const resultsCount = document.getElementById("search-results-count");
-      const allSections = document.querySelectorAll("#index .section:not(#my-tools-card):not(#search-section)");
+      const searchInput = document.getElementById('tool-search');
+      const resultsCount = document.getElementById('search-results-count');
+      const allSections = document.querySelectorAll(
+        '#index .section:not(#my-tools-card):not(#search-section)'
+      );
 
       function performSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
         let totalVisible = 0;
         let totalTools = 0;
 
-        if (searchTerm === "") {
+        if (searchTerm === '') {
           // Show all sections, blocks, and items
           allSections.forEach((section) => {
-            section.style.display = "";
-            const blocks = section.querySelectorAll(".block");
+            section.style.display = '';
+            const blocks = section.querySelectorAll('.block');
             blocks.forEach((block) => {
-              block.style.display = "";
-              const items = block.querySelectorAll("li");
+              block.style.display = '';
+              const items = block.querySelectorAll('li');
               items.forEach((item) => {
-                item.style.display = "";
+                item.style.display = '';
                 totalTools++;
               });
             });
           });
-          resultsCount.textContent = "";
+          resultsCount.textContent = '';
           return;
         }
 
         // Filter sections and items
         allSections.forEach((section) => {
-          const sectionTitle = section.querySelector("h2")?.textContent.toLowerCase() || "";
-          const blocks = section.querySelectorAll(".block");
+          const sectionTitle = section.querySelector('h2')?.textContent.toLowerCase() || '';
+          const blocks = section.querySelectorAll('.block');
           let sectionHasVisibleItems = false;
 
           blocks.forEach((block) => {
-            const blockTitle = block.querySelector("h3")?.textContent.toLowerCase() || "";
-            const items = block.querySelectorAll("li");
+            const blockTitle = block.querySelector('h3')?.textContent.toLowerCase() || '';
+            const items = block.querySelectorAll('li');
             let blockHasVisibleItems = false;
 
             items.forEach((item) => {
               totalTools++;
-              const link = item.querySelector("a");
+              const link = item.querySelector('a');
               if (!link) return;
 
               const toolName = link.textContent.toLowerCase();
-              const isMatch = toolName.includes(searchTerm) || blockTitle.includes(searchTerm) || sectionTitle.includes(searchTerm);
+              const isMatch =
+                toolName.includes(searchTerm) ||
+                blockTitle.includes(searchTerm) ||
+                sectionTitle.includes(searchTerm);
 
               if (isMatch) {
-                item.style.display = "";
+                item.style.display = '';
                 blockHasVisibleItems = true;
                 sectionHasVisibleItems = true;
                 totalVisible++;
               } else {
-                item.style.display = "none";
+                item.style.display = 'none';
               }
             });
 
             // Hide block if no visible items
-            block.style.display = blockHasVisibleItems ? "" : "none";
+            block.style.display = blockHasVisibleItems ? '' : 'none';
           });
 
           // Hide section if no visible items
-          section.style.display = sectionHasVisibleItems ? "" : "none";
+          section.style.display = sectionHasVisibleItems ? '' : 'none';
         });
 
         // Update results count
         if (totalVisible === 0) {
           resultsCount.innerHTML = `<span style="color: var(--var-red);">${noResultText}</span>`;
         } else {
-          const text = foundText.replace('{0}', totalVisible).replace('{1}', totalVisible !== 1 ? "s" : "");
+          const text = foundText
+            .replace('{0}', totalVisible)
+            .replace('{1}', totalVisible !== 1 ? 's' : '');
           resultsCount.innerHTML = `<span style="color: var(--var-primary);">${text}</span>`;
         }
       }
 
       // Add event listener for realtime search
       if (searchInput) {
-        searchInput.addEventListener("input", performSearch);
+        searchInput.addEventListener('input', performSearch);
 
         // Focus search on Ctrl+K or Cmd+K
-        document.addEventListener("keydown", function (e) {
-          if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        document.addEventListener('keydown', function (e) {
+          if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
             searchInput.focus();
           }
 
           // Clear search on Escape
-          if (e.key === "Escape" && document.activeElement === searchInput) {
-            searchInput.value = "";
+          if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.value = '';
             performSearch();
             searchInput.blur();
           }
@@ -320,8 +362,8 @@ const t = useTranslations(lang as any);
 
     // Section Collapse/Expand Toggle
     (function () {
-      const sections = document.querySelectorAll("#index .section[data-section]");
-      const STORAGE_KEY = "index-sections-state";
+      const sections = document.querySelectorAll('#index .section[data-section]');
+      const STORAGE_KEY = 'index-sections-state';
 
       // Load saved state from localStorage
       function loadSectionStates() {
@@ -347,26 +389,26 @@ const t = useTranslations(lang as any);
       // Initialize sections with saved states
       const savedStates = loadSectionStates();
       sections.forEach(function (section) {
-        const sectionId = section.getAttribute("data-section");
-        const toggleBtn = section.querySelector(".section-toggle");
-        const content = section.querySelector(".section-content");
+        const sectionId = section.getAttribute('data-section');
+        const toggleBtn = section.querySelector('.section-toggle');
+        const content = section.querySelector('.section-content');
 
         if (!toggleBtn || !content) return;
 
         // Apply saved state or default to expanded
         const isExpanded = savedStates[sectionId] !== false;
-        toggleBtn.setAttribute("aria-expanded", isExpanded);
+        toggleBtn.setAttribute('aria-expanded', isExpanded);
         if (!isExpanded) {
-          content.style.display = "none";
+          content.style.display = 'none';
         }
 
         // Add click handler
-        toggleBtn.addEventListener("click", function () {
-          const currentState = toggleBtn.getAttribute("aria-expanded") === "true";
+        toggleBtn.addEventListener('click', function () {
+          const currentState = toggleBtn.getAttribute('aria-expanded') === 'true';
           const newState = !currentState;
 
-          toggleBtn.setAttribute("aria-expanded", newState);
-          content.style.display = newState ? "" : "none";
+          toggleBtn.setAttribute('aria-expanded', newState);
+          content.style.display = newState ? '' : 'none';
           saveSectionState(sectionId, newState);
         });
       });
@@ -405,7 +447,7 @@ const t = useTranslations(lang as any);
       transition: transform 0.2s;
     }
 
-    #index .section-toggle[aria-expanded="false"] .section-arrow {
+    #index .section-toggle[aria-expanded='false'] .section-arrow {
       transform: rotate(-90deg);
     }
 
@@ -421,7 +463,7 @@ const t = useTranslations(lang as any);
       vertical-align: middle;
       display: inline-block;
     }
-    
+
     #index li a {
       display: flex;
       align-items: center;

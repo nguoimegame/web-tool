@@ -5,7 +5,7 @@ import { useTranslations } from '../../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,35 +15,35 @@ const t = useTranslations(lang as any);
 const title = t('json_viewer.title');
 const description = t('json_viewer.description');
 const toolName = t('view');
-const jsFile = "json.js?v=6";
-const activePage = "json/viewer";
-const reverseLink = "";
+const jsFile = 'json.js?v=6';
+const activePage = 'json/viewer';
+const reverseLink = '';
 const initScript = `window.method = json.view; methodLoad();`;
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink={reverseLink}
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFormatSettings={false}
-    initScript={initScript}
-    editorLanguage="json"
-    hasOutputTextarea={false}
-    outputToggleMonaco={false}
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink={reverseLink}
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFormatSettings={false}
+  initScript={initScript}
+  editorLanguage="json"
+  hasOutputTextarea={false}
+  outputToggleMonaco={false}
 >
-    <script slot="scripts" is:inline>
-        ++waitLoadCount;
-        delayScripts.push({
-            src: 'https://pfau-software.de/json-viewer/dist/iife/index.js',
-            onload: function () {
-                methodLoad();
-            }
-        });
-    </script>
-    <div slot="after-output-textarea" class="container json-viewer" id="output"></div>
+  <script slot="scripts" is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://pfau-software.de/json-viewer/dist/iife/index.js',
+      onload: function () {
+        methodLoad();
+      },
+    });
+  </script>
+  <div slot="after-output-textarea" class="container json-viewer" id="output"></div>
 </EncodingPage>

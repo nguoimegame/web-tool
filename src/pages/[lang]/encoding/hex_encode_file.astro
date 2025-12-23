@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,47 +15,57 @@ const t = useTranslations(lang as any);
 const title = t('hex_encode_file.title');
 const description = t('hex_encode_file.description');
 const toolName = t('encode');
-const jsFile = "hex.js?v=3";
-const activePage = "encoding/hex_encode_file";
+const jsFile = 'hex.js?v=3';
+const activePage = 'encoding/hex_encode_file';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink=""
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFileInput={true}
-    inputFileUrlPlaceholder={t('url_placeholder')}
-    inputFileDropText={t('drag_drop')}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink=""
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFileInput={true}
+  inputFileUrlPlaceholder={t('url_placeholder')}
+  inputFileDropText={t('drag_drop')}
+  initScript={`
         window.method = withOptions(hexEncode, ['upper-case']);
         methodLoad();
     `}
-    extraJsFile="encoding.js?v=8"
+  extraJsFile="encoding.js?v=8"
 >
-    <div slot="settings">
-        <div class="setting">
-            <label for="file-type">{t('input_type')}</label>
-            <select id="file-type" data-remember="file-type" data-auto-update>
-                <option value="file">File</option>
-                <option value="url">URL</option>
-            </select>
-        </div>
-
-        <div class="setting">
-            <label class="switcher">
-                <input type="checkbox" value="1" id="upper-case" data-option="upper-case" data-remember="upper-case" data-share="upper_case" />
-                <div class="toggle"></div>
-                <span>{t('upper_case')}</span>
-            </label>
-        </div>
+  <div slot="settings">
+    <div class="setting">
+      <label for="file-type">{t('input_type')}</label>
+      <select id="file-type" data-remember="file-type" data-auto-update>
+        <option value="file">File</option>
+        <option value="url">URL</option>
+      </select>
     </div>
-    
-    <script is:inline slot="scripts" set:html={`
+
+    <div class="setting">
+      <label class="switcher">
+        <input
+          type="checkbox"
+          value="1"
+          id="upper-case"
+          data-option="upper-case"
+          data-remember="upper-case"
+          data-share="upper_case"
+        />
+        <div class="toggle"></div>
+        <span>{t('upper_case')}</span>
+      </label>
+    </div>
+  </div>
+
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         delayScripts.push({
             src: '/js/clipboard.min.js',
             onload: function () {
@@ -88,5 +98,6 @@ const activePage = "encoding/hex_encode_file";
             }
         });
         window.PROCESSING_MESSAGE = 'encoding...';
-    `}></script>
+    `}
+  />
 </EncodingPage>

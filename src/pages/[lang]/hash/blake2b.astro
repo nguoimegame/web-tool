@@ -1,13 +1,13 @@
 ---
 import BaseHashPage from '../../../components/BaseHashPage.astro';
 import OutputEncodingSelect from '../../../components/OutputEncodingSelect.astro';
-import InputEncodingSelect from "../../../components/InputEncodingSelect.astro";
+import InputEncodingSelect from '../../../components/InputEncodingSelect.astro';
 import { languages } from '../../../i18n/ui';
 import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -33,14 +33,29 @@ const t = useTranslations(lang as any);
 
   <div class="setting">
     <label for="bits">{t('bits')}</label>
-    <input type="number" id="bits" data-option="bits" data-remember="bits-512" data-share="bits" value="512" step="8" min="8" />
+    <input
+      type="number"
+      id="bits"
+      data-option="bits"
+      data-remember="bits-512"
+      data-share="bits"
+      value="512"
+      step="8"
+      min="8"
+    />
   </div>
-  
+
   <details class="setting-group" open>
     <summary>{t('hmac_key')}</summary>
     <div class="setting">
       <label for="key-input-type">{t('type')}</label>
-      <select data-toggle="encoding" id="key-input-type" data-remember="key-input-type" data-share="key_input_type" data-auto-update>
+      <select
+        data-toggle="encoding"
+        id="key-input-type"
+        data-remember="key-input-type"
+        data-share="key_input_type"
+        data-auto-update
+      >
         <optgroup label="Binary">
           <option value="hex">Hex</option>
           <option value="base64" data-load-encoding="base64">Base64</option>
@@ -54,7 +69,15 @@ const t = useTranslations(lang as any);
     </div>
     <div class="setting">
       <label for="key">{t('data')}</label>
-      <input type="text" id="key" data-option="key" data-remember="key" data-share="key" data-option-type="encoding" data-encoding-from="#key-input-type" />
+      <input
+        type="text"
+        id="key"
+        data-option="key"
+        data-remember="key"
+        data-share="key"
+        data-option-type="encoding"
+        data-encoding-from="#key-input-type"
+      />
     </div>
   </details>
 
@@ -66,7 +89,7 @@ const t = useTranslations(lang as any);
       onload: function () {
         window.method = withOptions(hashwasm_blake2b, ['bits', 'key']);
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -77,7 +100,7 @@ const t = useTranslations(lang as any);
       src: '/js/blake2b.umd.min.js',
       onload: function () {
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -88,7 +111,7 @@ const t = useTranslations(lang as any);
       src: '/js/hmac.umd.min.js',
       onload: function () {
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -99,7 +122,7 @@ const t = useTranslations(lang as any);
       src: '/js/encoding.js?v=8',
       onload: function () {
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -113,7 +136,7 @@ const t = useTranslations(lang as any);
           gtag('event', 'copy');
         });
       },
-      delay: 100
+      delay: 100,
     });
   </script>
 </BaseHashPage>

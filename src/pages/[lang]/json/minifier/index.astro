@@ -5,7 +5,7 @@ import { useTranslations } from '../../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,22 +15,22 @@ const t = useTranslations(lang as any);
 const title = t('json_minifier.title');
 const description = t('json_minifier.description');
 const toolName = t('minify');
-const jsFile = "json.js?v=6";
-const activePage = "json/minifier";
-const reverseLink = "";
+const jsFile = 'json.js?v=6';
+const activePage = 'json/minifier';
+const reverseLink = '';
 const initScript = `window.method = json.minify; methodLoad();`;
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink={reverseLink}
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    hasFormatSettings={false}
-    initScript={initScript}
-    editorLanguage="json"
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink={reverseLink}
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  hasFormatSettings={false}
+  initScript={initScript}
+  editorLanguage="json"
 />

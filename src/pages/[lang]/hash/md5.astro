@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -14,12 +14,12 @@ const t = useTranslations(lang as any);
 
 const title = t('md5.title');
 const description = t('md5.description');
-const algorithmName = "md5";
-const jsFile = "md5.min.js";
-const activePage = "hash/md5";
+const algorithmName = 'md5';
+const jsFile = 'md5.min.js';
+const activePage = 'hash/md5';
 ---
 
-<HashPage 
+<HashPage
   title={title}
   description={description}
   algorithmName={algorithmName}

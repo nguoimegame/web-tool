@@ -1,8 +1,8 @@
 ---
-import BaseHashPage from "../components/BaseHashPage.astro";
-import InputEncodingSelect from "../components/InputEncodingSelect.astro";
-import OutputEncodingSelect from "../components/OutputEncodingSelect.astro";
-import HMACSettings from "../components/HMACSettings.astro";
+import BaseHashPage from '../components/BaseHashPage.astro';
+import InputEncodingSelect from '../components/InputEncodingSelect.astro';
+import OutputEncodingSelect from '../components/OutputEncodingSelect.astro';
+import HMACSettings from '../components/HMACSettings.astro';
 import { useTranslations } from '../i18n/utils';
 
 interface Props {
@@ -14,12 +14,19 @@ interface Props {
   methodWrapper?: string;
 }
 
-const { title, description, algorithmName, jsFile = "crypto-js.js", activePage, methodWrapper } = Astro.props;
+const {
+  title,
+  description,
+  algorithmName,
+  jsFile = 'crypto-js.js',
+  activePage,
+  methodWrapper,
+} = Astro.props;
 const { lang = 'en' } = Astro.params;
 const t = useTranslations(lang as any);
 
 // Pre-calculate the script source path
-const scriptSrc = jsFile.startsWith("http") ? jsFile : `/js/${jsFile}`;
+const scriptSrc = jsFile.startsWith('http') ? jsFile : `/js/${jsFile}`;
 const methodCode = methodWrapper || `window['${algorithmName}']`;
 ---
 
@@ -37,7 +44,11 @@ const methodCode = methodWrapper || `window['${algorithmName}']`;
   <!-- Hash Page Loader -->
   <script is:inline slot="scripts" src="/js/hash-page-loader.js"></script>
 
-  <script is:inline slot="scripts" define:vars={{ scriptSrc, algorithmName, methodCode, methodWrapper }}>
+  <script
+    is:inline
+    slot="scripts"
+    define:vars={{ scriptSrc, algorithmName, methodCode, methodWrapper }}
+  >
     // Initialize hash page loader
     const loader = new HashPageLoader({
       scriptSrc,

@@ -11,53 +11,53 @@ import SettingBlock from './SettingBlock.astro';
 import { useTranslations } from '../i18n/utils';
 
 interface Props {
-    title: string;
-    description: string;
-    toolName: string;
-    jsFile?: string;
-    activePage: string;
-    reverseLink: string;
-    hasInputSettings?: boolean;
-    hasOutputSettings?: boolean;
-    hasFormatSettings?: boolean;
-    initScript?: string;
-    extraJsFile?: string;
-    outputDataType?: string;
-    // File input support
-    hasFileInput?: boolean;
-    inputFileUrlPlaceholder?: string;
-    inputFileDropText?: string;
-    // Editor language
-    editorLanguage?: string;
-    hasOutputTextarea?: boolean;
-    outputToggleMonaco?: boolean;
-    loadMonaco?: boolean;
-    outputPlaceholder?: string;
-    showOutputDownload?: boolean;
+  title: string;
+  description: string;
+  toolName: string;
+  jsFile?: string;
+  activePage: string;
+  reverseLink: string;
+  hasInputSettings?: boolean;
+  hasOutputSettings?: boolean;
+  hasFormatSettings?: boolean;
+  initScript?: string;
+  extraJsFile?: string;
+  outputDataType?: string;
+  // File input support
+  hasFileInput?: boolean;
+  inputFileUrlPlaceholder?: string;
+  inputFileDropText?: string;
+  // Editor language
+  editorLanguage?: string;
+  hasOutputTextarea?: boolean;
+  outputToggleMonaco?: boolean;
+  loadMonaco?: boolean;
+  outputPlaceholder?: string;
+  showOutputDownload?: boolean;
 }
 
-const { 
-    title, 
-    description, 
-    toolName, 
-    jsFile, 
-    activePage, 
-    reverseLink, 
-    hasInputSettings = true, 
-    hasOutputSettings = false, 
-    hasFormatSettings = false, 
-    initScript, 
-    extraJsFile, 
-    outputDataType,
-    hasFileInput = false,
-    inputFileUrlPlaceholder,
-    inputFileDropText,
-    editorLanguage,
-    hasOutputTextarea = true,
-    outputToggleMonaco = true,
-    loadMonaco = true,
-    outputPlaceholder,
-    showOutputDownload = false
+const {
+  title,
+  description,
+  toolName,
+  jsFile,
+  activePage,
+  reverseLink,
+  hasInputSettings = true,
+  hasOutputSettings = false,
+  hasFormatSettings = false,
+  initScript,
+  extraJsFile,
+  outputDataType,
+  hasFileInput = false,
+  inputFileUrlPlaceholder,
+  inputFileDropText,
+  editorLanguage,
+  hasOutputTextarea = true,
+  outputToggleMonaco = true,
+  loadMonaco = true,
+  outputPlaceholder,
+  showOutputDownload = false,
 } = Astro.props;
 
 const { lang = 'en' } = Astro.params;
@@ -65,103 +65,141 @@ const t = useTranslations(lang as any);
 ---
 
 <BaseLayout title={title} description={description}>
-    <div id="app">
-        <Sidebar activePage={activePage} />
-        
-        <div id="content">
-            <div class="top-nav">
-                <button id="sidebar-toggler" aria-controls="sidebar" aria-expanded="false" aria-label={t('sidebar.toggle_menu')}>
-                    <i data-lucide="menu"></i>
-                </button>
-            </div>
-            
-            <PageHeader title={title} description={description} />
-            
-            <main>
-                <div class="layout">
-                    <div class="layout-block">
-                        {hasFileInput ? (
-                            <InputFileBlock
-                                title={t('input')}
-                                urlPlaceholder={inputFileUrlPlaceholder}
-                                dropText={inputFileDropText}
-                                dataRemember="input"
-                                dataShare="input"
-                                dataAutoUpdate={true}
-                            />
-                        ) : (
-                            <InputBlock 
-                                id="input" 
-                                title={t('input')} 
-                                placeholder={t('enter_here')} 
-                                dataRemember="input" 
-                                dataShare="input" 
-                                dataEncodingFrom="#input-type" 
-                                dataAutoUpdate={true} 
-                                dataToggleMonaco={true} 
-                                dataLanguage={editorLanguage}
-                            />
-                        )}
-                        
-                        <OutputBlock 
-                            id="output" 
-                            title={t('output')} 
-                            placeholder={outputPlaceholder || t('output_placeholder')}
-                            dataEncodingFrom="#output-type" 
-                            dataToggleMonaco={outputToggleMonaco} 
-                            dataLanguage={editorLanguage}
-                            isReadonly={true}
-                            textareaStyle="word-break:break-all;"
-                            hasTextarea={hasOutputTextarea}
-                            showDownload={showOutputDownload}
-                        >
-                            {!hasFileInput && (
-                                <button slot="toolbar" class="icon" id="swap" onclick={`swap('${reverseLink}', [['#output', '#input'], ['#input-type', '#output-type']])`}>
-                                    <i data-lucide="arrow-left-right" title="Swap"></i>
-                                </button>
-                            )}
-                            <slot name="before-output-textarea" slot="before-textarea" />
-                            <slot name="after-output-textarea" slot="after-textarea" />
-                        </OutputBlock>
-                    </div>
-                    
-                    <SettingBlock executeLabel={toolName}>
-                        {hasInputSettings && (
-                            <div class="setting">
-                                <label for="input-type">{t('input_encoding')}</label>
-                                <InputEncodingSelect id="input-type" dataShare="input_type" dataAutoUpdate={true} />
-                            </div>
-                        )}
-                        
-                        {hasOutputSettings && (
-                            <div class="setting">
-                                <label for="output-type">{t('output_encoding')}</label>
-                                <OutputEncodingSelect id="output-type" dataShare="output_type" dataAutoUpdate={true} dataType={outputDataType} />
-                            </div>
-                        )}
-                        
-                        {hasFormatSettings && (
-                            <div class="setting">
-                                <label for="format">Format</label>
-                                <select id="format" data-remember="format" data-option="format" data-share="format">
-                                    <option value="rfc_4648">RFC 4648</option>
-                                    <option value="rfc_4648_url_safe">RFC 4648 URL Safe</option>
-                                    <option value="rfc_2045">RFC 2045 (MIME)</option>
-                                    <option value="rfc_2152">RFC 2152 (UTF-7)</option>
-                                    <option value="rfc_3501">RFC 3501 (IMAP)</option>
-                                </select>
-                            </div>
-                        )}
+  <div id="app">
+    <Sidebar activePage={activePage} />
 
-                        <slot name="settings" />
-                    </SettingBlock>
+    <div id="content">
+      <div class="top-nav">
+        <button
+          id="sidebar-toggler"
+          aria-controls="sidebar"
+          aria-expanded="false"
+          aria-label={t('sidebar.toggle_menu')}
+        >
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+
+      <PageHeader title={title} description={description} />
+
+      <main>
+        <div class="layout">
+          <div class="layout-block">
+            {
+              hasFileInput ? (
+                <InputFileBlock
+                  title={t('input')}
+                  urlPlaceholder={inputFileUrlPlaceholder}
+                  dropText={inputFileDropText}
+                  dataRemember="input"
+                  dataShare="input"
+                  dataAutoUpdate={true}
+                />
+              ) : (
+                <InputBlock
+                  id="input"
+                  title={t('input')}
+                  placeholder={t('enter_here')}
+                  dataRemember="input"
+                  dataShare="input"
+                  dataEncodingFrom="#input-type"
+                  dataAutoUpdate={true}
+                  dataToggleMonaco={true}
+                  dataLanguage={editorLanguage}
+                />
+              )
+            }
+
+            <OutputBlock
+              id="output"
+              title={t('output')}
+              placeholder={outputPlaceholder || t('output_placeholder')}
+              dataEncodingFrom="#output-type"
+              dataToggleMonaco={outputToggleMonaco}
+              dataLanguage={editorLanguage}
+              isReadonly={true}
+              textareaStyle="word-break:break-all;"
+              hasTextarea={hasOutputTextarea}
+              showDownload={showOutputDownload}
+            >
+              {
+                !hasFileInput && (
+                  <button
+                    slot="toolbar"
+                    class="icon"
+                    id="swap"
+                    onclick={`swap('${reverseLink}', [['#output', '#input'], ['#input-type', '#output-type']])`}
+                  >
+                    <i data-lucide="arrow-left-right" title="Swap" />
+                  </button>
+                )
+              }
+              <slot name="before-output-textarea" slot="before-textarea" />
+              <slot name="after-output-textarea" slot="after-textarea" />
+            </OutputBlock>
+          </div>
+
+          <SettingBlock executeLabel={toolName}>
+            {
+              hasInputSettings && (
+                <div class="setting">
+                  <label for="input-type">{t('input_encoding')}</label>
+                  <InputEncodingSelect
+                    id="input-type"
+                    dataShare="input_type"
+                    dataAutoUpdate={true}
+                  />
                 </div>
-            </main>
+              )
+            }
+
+            {
+              hasOutputSettings && (
+                <div class="setting">
+                  <label for="output-type">{t('output_encoding')}</label>
+                  <OutputEncodingSelect
+                    id="output-type"
+                    dataShare="output_type"
+                    dataAutoUpdate={true}
+                    dataType={outputDataType}
+                  />
+                </div>
+              )
+            }
+
+            {
+              hasFormatSettings && (
+                <div class="setting">
+                  <label for="format">Format</label>
+                  <select
+                    id="format"
+                    data-remember="format"
+                    data-option="format"
+                    data-share="format"
+                  >
+                    <option value="rfc_4648">RFC 4648</option>
+                    <option value="rfc_4648_url_safe">RFC 4648 URL Safe</option>
+                    <option value="rfc_2045">RFC 2045 (MIME)</option>
+                    <option value="rfc_2152">RFC 2152 (UTF-7)</option>
+                    <option value="rfc_3501">RFC 3501 (IMAP)</option>
+                  </select>
+                </div>
+              )
+            }
+
+            <slot name="settings" />
+          </SettingBlock>
         </div>
+      </main>
     </div>
-    
-    <script is:inline set:html={`
-        ${jsFile ? `
+  </div>
+
+  <script
+    is:inline
+    set:html={`
+        ${
+          jsFile
+            ? `
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/${jsFile}',
@@ -169,8 +207,11 @@ const t = useTranslations(lang as any);
                 ${initScript || `console.log('Loaded ${jsFile}');`}
             }
         });
-        ` : `
-        ${initScript ? `
+        `
+            : `
+        ${
+          initScript
+            ? `
         ++waitLoadCount;
         delayScripts.push({
             src: '',
@@ -178,9 +219,14 @@ const t = useTranslations(lang as any);
                 ${initScript}
             }
         });
-        ` : ''}
-        `}
-        ${extraJsFile ? `
+        `
+            : ''
+        }
+        `
+        }
+        ${
+          extraJsFile
+            ? `
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/${extraJsFile}',
@@ -188,8 +234,12 @@ const t = useTranslations(lang as any);
                 methodLoad();
             }
         });
-        ` : ''}
-        ${loadMonaco ? `
+        `
+            : ''
+        }
+        ${
+          loadMonaco
+            ? `
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/monaco-editor.js?v=1',
@@ -197,7 +247,10 @@ const t = useTranslations(lang as any);
                 methodLoad();
             }
         });
-        ` : ''}
-    `}></script>
-    <slot name="scripts" />
+        `
+            : ''
+        }
+    `}
+  />
+  <slot name="scripts" />
 </BaseLayout>

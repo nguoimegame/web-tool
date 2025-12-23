@@ -1,12 +1,12 @@
 ---
-import BaseHashPage from "./BaseHashPage.astro";
-import OutputEncodingSelect from "./OutputEncodingSelect.astro";
-import FileTypeSelect from "./FileTypeSelect.astro";
+import BaseHashPage from './BaseHashPage.astro';
+import OutputEncodingSelect from './OutputEncodingSelect.astro';
+import FileTypeSelect from './FileTypeSelect.astro';
 
 interface Props {
-    title: string;
-    description: string;
-    activePage: string;
+  title: string;
+  description: string;
+  activePage: string;
 }
 
 const { title, description, activePage } = Astro.props;
@@ -30,28 +30,28 @@ const { title, description, activePage } = Astro.props;
   <script is:inline slot="scripts">
     // Encoding script already increments waitLoadCount internally
     delayScripts.push({
-      src: "/js/encoding.js?v=8",
+      src: '/js/encoding.js?v=8',
     });
   </script>
 
   <script is:inline slot="scripts">
     ++waitLoadCount;
     delayScripts.push({
-      src: "/js/url-blob.js?v=1",
+      src: '/js/url-blob.js?v=1',
       onload: function () {
         methodLoad();
       },
     });
     ++waitLoadCount;
     delayScripts.push({
-      src: "/js/droppable-file.js",
+      src: '/js/droppable-file.js',
       onload: function () {
         methodLoad();
       },
     });
     ++waitLoadCount;
     delayScripts.push({
-      src: "/js/file.js?v=10",
+      src: '/js/file.js?v=10',
       onload: function () {
         methodLoad();
       },

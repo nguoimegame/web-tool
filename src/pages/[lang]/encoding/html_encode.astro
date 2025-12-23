@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,35 +15,44 @@ const t = useTranslations(lang as any);
 const title = t('html_encode.title');
 const description = t('html_encode.description');
 const toolName = t('encode');
-const jsFile = "htmlencode.min.js";
-const activePage = "encoding/html_encode";
+const jsFile = 'htmlencode.min.js';
+const activePage = 'encoding/html_encode';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink="encoding/html_decode"
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink="encoding/html_decode"
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  initScript={`
         window.method = htmlEncode;
         methodLoad();
     `}
 >
-    <div slot="settings">
-        <div class="setting">
-            <label class="switcher">
-                <input type="checkbox" value="1" id="pretty-display" data-option="pretty-display" data-remember="pretty-display" />
-                <div class="toggle"></div>
-                <span>{t('pretty_display')}</span>
-            </label>
-        </div>
+  <div slot="settings">
+    <div class="setting">
+      <label class="switcher">
+        <input
+          type="checkbox"
+          value="1"
+          id="pretty-display"
+          data-option="pretty-display"
+          data-remember="pretty-display"
+        />
+        <div class="toggle"></div>
+        <span>{t('pretty_display')}</span>
+      </label>
     </div>
+  </div>
 
-    <script is:inline slot="scripts" set:html={`
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         delayScripts.push({
             src: '/js/clipboard.min.js',
             onload: function () {
@@ -61,5 +70,6 @@ const activePage = "encoding/html_encode";
                 methodLoad();
             }
         });
-    `}></script>
+    `}
+  />
 </EncodingPage>

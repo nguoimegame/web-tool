@@ -23,6 +23,7 @@ Whether you need to hash a file, encrypt sensitive data, process images, compare
 ## ✨ Features & Tools
 
 ### 🔐 Cryptography & Hashing
+
 - **Hash Functions**: MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256
 - **SHA-3 Family**: SHA3-224, SHA3-256, SHA3-384, SHA3-512, SHAKE-128, SHAKE-256, cSHAKE-128, cSHAKE-256
 - **BLAKE Family**: BLAKE2b, BLAKE2s, BLAKE3
@@ -33,16 +34,19 @@ Whether you need to hash a file, encrypt sensitive data, process images, compare
 - **Special**: Double SHA-256
 
 ### 🔑 Encryption & Digital Signatures
+
 - **Symmetric Encryption**: AES, DES, Triple DES, RC4
 - **Asymmetric Encryption**: RSA, ECDSA (Digital Signatures)
 
 ### 📝 Encoding & Decoding
+
 - **Base Encoding**: Base32, Base58, Base64 (Text & File)
 - **Hex Encoding**: Hexadecimal encode/decode (Text & File)
 - **URL Encoding**: URL encode/decode
 - **HTML Encoding**: HTML encode/decode
 
 ### 🛠️ Data & Text Tools
+
 - **Case Conversion**: Various text case transformations
 - **JSON Tools**: JSON formatting and validation
 - **XML Tools**: XML formatting and validation
@@ -51,12 +55,14 @@ Whether you need to hash a file, encrypt sensitive data, process images, compare
 - **Syntax Highlighting**: Code syntax highlighter
 
 ### 🖼️ Productivity & Utilities
+
 - **Image Tools**: Image processing utilities
 - **Note Taking**: Simple and secure note taking
 - **JWT**: JWT debugging and decoding
 - **File Comparison**: Compare files for differences
 
 ### 📁 File Processing
+
 - Support for file hash calculation for all hash algorithms
 - File encoding/decoding for Base32, Base58, Base64, Hex
 - Drag-and-drop file support
@@ -83,33 +89,36 @@ Whether you need to hash a file, encrypt sensitive data, process images, compare
 
 All commands are run from the root of the project (Astro folder):
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:4321`  |
+| `npm run build`   | Build your production site to `./dist/`      |
+| `npm run preview` | Preview your build locally, before deploying |
 
 ## 📦 Installation
 
 1. Navigate to the Astro folder:
+
    ```bash
    cd Astro
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Copy assets from the parent directory:
+
    ```bash
    # Copy CSS files
    xcopy /E /I ..\css public\css
-   
+
    # Copy JS files
    xcopy /E /I ..\js public\js
-   
+
    # Copy images
    xcopy /E /I ..\images public\images
    ```
@@ -124,6 +133,7 @@ All commands are run from the root of the project (Astro folder):
 We believe in the power of community! This project is open source and we welcome contributions from developers of all skill levels. Whether you want to add a new tool, improve existing ones, fix bugs, or enhance documentation, your help is appreciated.
 
 Join us in building the most comprehensive web tool collection:
+
 - 🐛 Report bugs and issues
 - 💡 Suggest new features and tools
 - 🔧 Submit pull requests

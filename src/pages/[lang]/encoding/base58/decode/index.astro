@@ -5,7 +5,7 @@ import { useTranslations } from '../../../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,26 +15,29 @@ const t = useTranslations(lang as any);
 const title = t('base58_decode.title');
 const description = t('base58_decode.description');
 const toolName = t('decode');
-const jsFile = "base58.js?v=3";
-const activePage = "encoding/base58/decode";
+const jsFile = 'base58.js?v=3';
+const activePage = 'encoding/base58/decode';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink="base58/encode"
-    hasInputSettings={false}
-    hasOutputSettings={true}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink="base58/encode"
+  hasInputSettings={false}
+  hasOutputSettings={true}
+  initScript={`
         window.method = base58Decode;
         methodLoad();
     `}
-    extraJsFile="encoding.js?v=8"
+  extraJsFile="encoding.js?v=8"
 >
-    <script is:inline slot="scripts" set:html={`
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         ++waitLoadCount;
         delayScripts.push({
             src: '/js/base-x.min.js',
@@ -52,5 +55,6 @@ const activePage = "encoding/base58/decode";
             },
             delay: 100
         });
-    `}></script>
+    `}
+  />
 </EncodingPage>

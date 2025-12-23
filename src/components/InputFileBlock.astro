@@ -1,16 +1,16 @@
 ---
 import { useTranslations } from '../i18n/utils';
-const { 
-  id = "input",
-  fileId = "file",
-  title = "Input",
-  urlPlaceholder = "Enter the URL here, and it will attempt to download. If it cannot be downloaded programmatically, you may need to download it manually.",
+const {
+  id = 'input',
+  fileId = 'file',
+  title = 'Input',
+  urlPlaceholder = 'Enter the URL here, and it will attempt to download. If it cannot be downloaded programmatically, you may need to download it manually.',
   showFullscreen = true,
   // Data attributes for textarea
   dataRemember = null,
   dataShare = null,
   // Data attributes for file input
-  dataAutoUpdate = true
+  dataAutoUpdate = true,
 } = Astro.props;
 
 const { lang = 'en' } = Astro.params;
@@ -19,32 +19,34 @@ const t = useTranslations(lang as any);
 
 <div class="input">
   <div class="block block-fill">
-    <div class="block-title">{title}
+    <div class="block-title">
+      {title}
       <div class="toolbar">
-        {showFullscreen && (
-          <button class="icon" data-toggle="fullscreen">
-            <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen"></i>
-            <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen"></i>
-          </button>
-        )}
+        {
+          showFullscreen && (
+            <button class="icon" data-toggle="fullscreen">
+              <i class="fullscreen-icon" data-lucide="maximize" title="Full Screen" />
+              <i class="fullscreen-icon-exit" data-lucide="minimize" title="Full Screen" />
+            </button>
+          )
+        }
       </div>
     </div>
-    <textarea 
-      class="container" 
-      id={id} 
-      spellcheck="false" 
+    <textarea
+      class="container"
+      id={id}
+      spellcheck="false"
       placeholder={urlPlaceholder}
       data-remember={dataRemember}
       data-share={dataShare}
-      style="display:none"
-    ></textarea>
+      style="display:none"></textarea>
     <div class="droppable-zone container" id="droppable-zone">
-      <input 
-        class="droppable-file" 
-        type="file" 
+      <input
+        class="droppable-file"
+        type="file"
         id={fileId}
         data-auto-update={dataAutoUpdate ? true : undefined}
-      >
+      />
       <div class="droppable-zone-wrapper">
         <i class="droppable-zone-icon" data-lucide="file-up"></i>
         <div class="droppable-zone-text">{t('drag_drop')}</div>

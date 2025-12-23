@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -14,16 +14,17 @@ const t = useTranslations(lang as any);
 
 const title = t('sha512_256_file_hash.title');
 const description = t('sha512_256_file_hash.description');
-const algorithmName = "sha512_256";
-const jsFile = "https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.9.0/sha512.min.js";
-const activePage = "hash/sha512_256_file_hash";
-const methodWrapper = "window.sha512.sha512_256";
+const algorithmName = 'sha512_256';
+const jsFile = 'https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.9.0/sha512.min.js';
+const activePage = 'hash/sha512_256_file_hash';
+const methodWrapper = 'window.sha512.sha512_256';
 ---
-<FileHashPage 
-    title={title}
-    description={description}
-    algorithmName={algorithmName}
-    jsFile={jsFile}
-    activePage={activePage}
-    methodWrapper={methodWrapper}
+
+<FileHashPage
+  title={title}
+  description={description}
+  algorithmName={algorithmName}
+  jsFile={jsFile}
+  activePage={activePage}
+  methodWrapper={methodWrapper}
 />

@@ -5,7 +5,7 @@ import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -15,25 +15,28 @@ const t = useTranslations(lang as any);
 const title = t('url_encode.title');
 const description = t('url_encode.description');
 const toolName = t('encode');
-const jsFile = ""; // No external JS file needed for encodeURIComponent
-const activePage = "encoding/url_encode";
+const jsFile = ''; // No external JS file needed for encodeURIComponent
+const activePage = 'encoding/url_encode';
 ---
 
 <EncodingPage
-    title={title}
-    description={description}
-    toolName={toolName}
-    jsFile={jsFile}
-    activePage={activePage}
-    reverseLink="encoding/url_decode"
-    hasInputSettings={false}
-    hasOutputSettings={false}
-    initScript={`
+  title={title}
+  description={description}
+  toolName={toolName}
+  jsFile={jsFile}
+  activePage={activePage}
+  reverseLink="encoding/url_decode"
+  hasInputSettings={false}
+  hasOutputSettings={false}
+  initScript={`
         window.method = encodeURIComponent;
         methodLoad();
     `}
 >
-    <script is:inline slot="scripts" set:html={`
+  <script
+    is:inline
+    slot="scripts"
+    set:html={`
         delayScripts.push({
             src: '/js/clipboard.min.js',
             onload: function () {
@@ -44,5 +47,6 @@ const activePage = "encoding/url_encode";
             },
             delay: 100
         });
-    `}></script>
+    `}
+  />
 </EncodingPage>

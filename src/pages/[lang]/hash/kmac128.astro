@@ -1,13 +1,13 @@
 ---
 import BaseHashPage from '../../../components/BaseHashPage.astro';
 import OutputEncodingSelect from '../../../components/OutputEncodingSelect.astro';
-import InputEncodingSelect from "../../../components/InputEncodingSelect.astro";
+import InputEncodingSelect from '../../../components/InputEncodingSelect.astro';
 import { languages } from '../../../i18n/ui';
 import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
-      return { params: { lang } };
+    return { params: { lang } };
   });
 }
 
@@ -33,14 +33,29 @@ const t = useTranslations(lang as any);
 
   <div class="setting">
     <label for="bits">{t('bits')}</label>
-    <input type="number" id="bits" data-option="bits" data-remember="bits-256" data-share="bits" value="256" step="8" min="8" />
+    <input
+      type="number"
+      id="bits"
+      data-option="bits"
+      data-remember="bits-256"
+      data-share="bits"
+      value="256"
+      step="8"
+      min="8"
+    />
   </div>
 
   <details class="setting-group" open>
     <summary>{t('hmac_key')}</summary>
     <div class="setting">
       <label for="kmac-input-type">{t('type')}</label>
-      <select data-toggle="encoding" id="kmac-input-type" data-remember="kmac-input-type" data-share="kmac_input_type" data-auto-update>
+      <select
+        data-toggle="encoding"
+        id="kmac-input-type"
+        data-remember="kmac-input-type"
+        data-share="kmac_input_type"
+        data-auto-update
+      >
         <optgroup label="Binary">
           <option value="hex">Hex</option>
           <option value="base64" data-load-encoding="base64">Base64</option>
@@ -54,7 +69,15 @@ const t = useTranslations(lang as any);
     </div>
     <div class="setting">
       <label for="kmac">{t('data')}</label>
-      <input type="text" id="kmac" data-option="kmac" data-remember="kmac" data-share="kmac" data-option-type="encoding" data-encoding-from="#kmac-input-type" />
+      <input
+        type="text"
+        id="kmac"
+        data-option="kmac"
+        data-remember="kmac"
+        data-share="kmac"
+        data-option-type="encoding"
+        data-encoding-from="#kmac-input-type"
+      />
     </div>
   </details>
 
@@ -62,7 +85,13 @@ const t = useTranslations(lang as any);
     <summary>{t('customization')}</summary>
     <div class="setting">
       <label for="customization-input-type">{t('type')}</label>
-      <select data-toggle="encoding" id="customization-input-type" data-remember="customization-input-type" data-share="customization_input_type" data-auto-update>
+      <select
+        data-toggle="encoding"
+        id="customization-input-type"
+        data-remember="customization-input-type"
+        data-share="customization_input_type"
+        data-auto-update
+      >
         <optgroup label="Binary">
           <option value="hex">Hex</option>
           <option value="base64" data-load-encoding="base64">Base64</option>
@@ -76,7 +105,15 @@ const t = useTranslations(lang as any);
     </div>
     <div class="setting">
       <label for="customization">{t('data')}</label>
-      <input type="text" id="customization" data-option="customization" data-remember="customization" data-share="customization" data-option-type="encoding" data-encoding-from="#customization-input-type" />
+      <input
+        type="text"
+        id="customization"
+        data-option="customization"
+        data-remember="customization"
+        data-share="customization"
+        data-option-type="encoding"
+        data-encoding-from="#customization-input-type"
+      />
     </div>
   </details>
 
@@ -88,7 +125,7 @@ const t = useTranslations(lang as any);
       onload: function () {
         window.method = withOptions(kmac128, ['kmac', 'bits', 'customization'], 1);
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -99,7 +136,7 @@ const t = useTranslations(lang as any);
       src: '/js/encoding.js?v=8',
       onload: function () {
         methodLoad();
-      }
+      },
     });
   </script>
 
@@ -113,7 +150,7 @@ const t = useTranslations(lang as any);
           gtag('event', 'copy');
         });
       },
-      delay: 100
+      delay: 100,
     });
   </script>
 </BaseHashPage>
