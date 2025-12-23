@@ -51,9 +51,6 @@
     "dist",
     "node_modules",
     ".astro",
-    "public/js/**/*.min.js",
-    "public/js/bootstrap.min.js",
-    "public/js/clipboard.min.js",
-    "public/js/encoding-indexes.min.js"
+    "public/js/**"
   ]
 }
