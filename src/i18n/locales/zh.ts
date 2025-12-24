@@ -633,4 +633,11 @@ export const zh = {
   's_notes.editor_placeholder': '开始输入或使用 / 查看命令...',
   's_notes.last_modified': '最后修改',
   's_notes.created': '创建时间',
+  's_notes.delete': '删除',
+  's_notes.cancel': '取消',
+  's_notes.add': '添加',
+  's_notes.create': '创建',
+  's_notes.tag_name': '标签名称',
+  's_notes.folder_name': '文件夹名称',
+  's_notes.parent_folder': '父文件夹',
 };

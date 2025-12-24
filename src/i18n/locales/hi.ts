@@ -644,4 +644,11 @@ export const hi = {
   's_notes.editor_placeholder': 'टाइप करना शुरू करें या कमांड के लिए / का उपयोग करें...',
   's_notes.last_modified': 'अंतिम संशोधित',
   's_notes.created': 'बनाया गया',
+  's_notes.delete': 'हटाएं',
+  's_notes.cancel': 'रद्द करें',
+  's_notes.add': 'जोड़ें',
+  's_notes.create': 'बनाएं',
+  's_notes.tag_name': 'टैग का नाम',
+  's_notes.folder_name': 'फ़ोल्डर का नाम',
+  's_notes.parent_folder': 'पैरेंट फ़ोल्डर',
 };

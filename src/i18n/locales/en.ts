@@ -653,4 +653,11 @@ export const en = {
   's_notes.editor_placeholder': 'Start typing or use / for commands...',
   's_notes.last_modified': 'Last modified',
   's_notes.created': 'Created',
+  's_notes.delete': 'Delete',
+  's_notes.cancel': 'Cancel',
+  's_notes.add': 'Add',
+  's_notes.create': 'Create',
+  's_notes.tag_name': 'Tag name',
+  's_notes.folder_name': 'Folder name',
+  's_notes.parent_folder': 'Parent folder',
 };

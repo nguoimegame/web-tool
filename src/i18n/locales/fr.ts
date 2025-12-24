@@ -644,4 +644,11 @@ export const fr = {
   's_notes.editor_placeholder': 'Commencez à taper ou utilisez / pour les commandes...',
   's_notes.last_modified': 'Dernière modification',
   's_notes.created': 'Créé',
+  's_notes.delete': 'Supprimer',
+  's_notes.cancel': 'Annuler',
+  's_notes.add': 'Ajouter',
+  's_notes.create': 'Créer',
+  's_notes.tag_name': 'Nom du tag',
+  's_notes.folder_name': 'Nom du dossier',
+  's_notes.parent_folder': 'Dossier parent',
 };

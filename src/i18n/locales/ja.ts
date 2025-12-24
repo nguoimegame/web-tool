@@ -643,4 +643,11 @@ export const ja = {
   's_notes.editor_placeholder': '入力を開始するか、/ を使用してコマンドを表示...',
   's_notes.last_modified': '最終更新',
   's_notes.created': '作成日',
+  's_notes.delete': '削除',
+  's_notes.cancel': 'キャンセル',
+  's_notes.add': '追加',
+  's_notes.create': '作成',
+  's_notes.tag_name': 'タグ名',
+  's_notes.folder_name': 'フォルダー名',
+  's_notes.parent_folder': '親フォルダー',
 };

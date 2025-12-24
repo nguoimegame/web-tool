@@ -101,7 +101,7 @@ const t = useTranslations(lang as any);
           <button id="detach-btn" class="btn btn-icon" title={t('s_notes.detach')}>
             <i data-lucide="external-link"></i>
           </button>
-          <button id="delete-note-btn" class="btn btn-icon btn-danger" title="Delete">
+          <button id="delete-note-btn" class="btn btn-icon btn-danger" title={t('s_notes.delete')}>
             <i data-lucide="trash-2"></i>
           </button>
         </div>
@@ -134,10 +134,10 @@ const t = useTranslations(lang as any);
   <dialog id="tag-dialog" class="s-notes-dialog">
     <form method="dialog">
       <h3>{t('s_notes.add_tag')}</h3>
-      <input type="text" id="tag-input" placeholder="Tag name" />
+      <input type="text" id="tag-input" placeholder={t('s_notes.tag_name')} />
       <div class="s-notes-dialog-actions">
-        <button type="button" class="btn" id="tag-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary" id="tag-submit">Add</button>
+        <button type="button" class="btn" id="tag-cancel">{t('s_notes.cancel')}</button>
+        <button type="submit" class="btn btn-primary" id="tag-submit">{t('s_notes.add')}</button>
       </div>
     </form>
   </dialog>
@@ -146,14 +146,14 @@ const t = useTranslations(lang as any);
   <dialog id="folder-dialog" class="s-notes-dialog">
     <form method="dialog">
       <h3>{t('s_notes.new_folder')}</h3>
-      <input type="text" id="folder-input" placeholder="Folder name" />
+      <input type="text" id="folder-input" placeholder={t('s_notes.folder_name')} />
       <label>
-        <span>Parent folder:</span>
+        <span>{t('s_notes.parent_folder')}:</span>
         <select id="parent-folder-select"></select>
       </label>
       <div class="s-notes-dialog-actions">
-        <button type="button" class="btn" id="folder-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary" id="folder-submit">Create</button>
+        <button type="button" class="btn" id="folder-cancel">{t('s_notes.cancel')}</button>
+        <button type="submit" class="btn btn-primary" id="folder-submit">{t('s_notes.create')}</button>
       </div>
     </form>
   </dialog>

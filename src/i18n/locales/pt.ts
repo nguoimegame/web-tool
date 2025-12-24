@@ -645,4 +645,11 @@ export const pt = {
   's_notes.editor_placeholder': 'Comece a digitar ou use / para comandos...',
   's_notes.last_modified': 'Última modificação',
   's_notes.created': 'Criado',
+  's_notes.delete': 'Excluir',
+  's_notes.cancel': 'Cancelar',
+  's_notes.add': 'Adicionar',
+  's_notes.create': 'Criar',
+  's_notes.tag_name': 'Nome da tag',
+  's_notes.folder_name': 'Nome da pasta',
+  's_notes.parent_folder': 'Pasta pai',
 };

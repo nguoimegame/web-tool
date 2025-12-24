@@ -655,4 +655,11 @@ export const vi = {
   's_notes.editor_placeholder': 'Bắt đầu gõ hoặc sử dụng / để xem lệnh...',
   's_notes.last_modified': 'Sửa đổi lần cuối',
   's_notes.created': 'Ngày tạo',
+  's_notes.delete': 'Xóa',
+  's_notes.cancel': 'Hủy',
+  's_notes.add': 'Thêm',
+  's_notes.create': 'Tạo',
+  's_notes.tag_name': 'Tên nhãn',
+  's_notes.folder_name': 'Tên thư mục',
+  's_notes.parent_folder': 'Thư mục cha',
 };

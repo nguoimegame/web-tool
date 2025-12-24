@@ -645,4 +645,11 @@ export const es = {
   's_notes.editor_placeholder': 'Empieza a escribir o usa / para comandos...',
   's_notes.last_modified': 'Última modificación',
   's_notes.created': 'Creado',
+  's_notes.delete': 'Eliminar',
+  's_notes.cancel': 'Cancelar',
+  's_notes.add': 'Agregar',
+  's_notes.create': 'Crear',
+  's_notes.tag_name': 'Nombre de etiqueta',
+  's_notes.folder_name': 'Nombre de carpeta',
+  's_notes.parent_folder': 'Carpeta principal',
 };
