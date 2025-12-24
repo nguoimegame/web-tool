@@ -1,0 +1,367 @@
+---
+import BasePage from '../../../../../components/BasePage.astro';
+import { languages } from '../../../../../i18n/ui';
+import { useTranslations } from '../../../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+    return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<BasePage
+  title={t('jwt_decoder.title')}
+  description={t('jwt_decoder.description')}
+  activePage="cryptography/jwt/decoder"
+>
+  <link rel="stylesheet" href="/css/jwt.css" />
+  <div class="layout">
+    <div class="layout-block">
+      <div class="input">
+        <div class="block block-fill">
+          <div class="block-title">
+            {t('input')}
+            <div class="toolbar">
+              <button class="btn" id="generate-example">
+                {t('jwt_decoder.generate_example')}
+              </button>
+            </div>
+          </div>
+          <div class="container" style="padding: 10px;">
+            
+            <div class="setting">
+              <label for="secret-encoding">{t('jwt_decoder.encoding_format')}</label>
+              <select
+                id="secret-encoding"
+                data-option="secret-encoding"
+                data-remember="secret-encoding"
+                data-share="secret_encoding"
+              >
+                <option value="utf-8" selected>UTF-8</option>
+                <option value="base64">Base64</option>
+              </select>
+            </div>
+            <details class="setting-group" open>
+              <summary>{t('jwt_decoder.json_web_token')}</summary>
+              <div class="setting">
+                <div id="jwt-status" class="jwt-status" style="display: none;"></div>
+                <textarea
+                  id="jwt-input"
+                  spellcheck="false"
+                  data-option="jwt-input"
+                  data-remember="jwt-input"
+                  data-share="jwt"
+                  style="min-height: 120px; font-family: monospace;"></textarea>
+              </div>
+            </details>
+            <details class="setting-group" open>
+              <summary>{t('jwt_decoder.secret')} ({t('jwt_decoder.optional')})</summary>
+              <div class="setting">
+                <div id="secret-status" class="jwt-status" style="display: none;"></div>
+                <textarea
+                  id="jwt-secret"
+                  spellcheck="false"
+                  data-option="jwt-secret"
+                  data-remember="jwt-secret"
+                  data-share="secret"
+                  style="min-height: 60px; height: 60px; font-family: monospace;"></textarea>
+              </div>
+            </details>
+            <div class="setting">
+              <label class="switcher"
+                ><input type="checkbox" id="remember-input" /><div class="toggle"></div>
+                <span>{t('remember_input')}</span></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="output">
+        <div class="block block-fill" style="max-height: 200px;">
+          <div class="block-title">
+            {t('jwt_decoder.decoded_header')}
+            <div class="toolbar">
+              <div class="jwt-tabs">
+                <button class="jwt-tab active" data-tab="header-json">JSON</button>
+                <button class="jwt-tab" data-tab="header-claims">{t('jwt_decoder.claims_table')}</button>
+              </div>
+              <button
+                class="icon"
+                data-toggle="copy"
+                data-clipboard-target="#header-json-text"
+                data-message="Header copied"
+              >
+                <i data-lucide="copy" title="Copy"></i>
+              </button>
+            </div>
+          </div>
+          <div class="jwt-tab-content active" id="header-json-content">
+            <pre class="container jwt-json-display" id="header-json" style="min-height: 100px;"></pre>
+            <textarea id="header-json-text" style="display: none;"></textarea>
+          </div>
+          <div class="jwt-tab-content" id="header-claims-content">
+            <div class="container" style="overflow-x: auto;">
+              <table class="jwt-claims-table" id="header-claims-table">
+                <thead>
+                  <tr>
+                    <th>{t('jwt_decoder.claim')}</th>
+                    <th>{t('jwt_decoder.value')}</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="block block-fill">
+          <div class="block-title">
+            {t('jwt_decoder.decoded_payload')}
+            <div class="toolbar">
+              <div class="jwt-tabs">
+                <button class="jwt-tab active" data-tab="payload-json">JSON</button>
+                <button class="jwt-tab" data-tab="payload-claims">{t('jwt_decoder.claims_table')}</button>
+              </div>
+              <button
+                class="icon"
+                data-toggle="copy"
+                data-clipboard-target="#payload-json-text"
+                data-message="Payload copied"
+              >
+                <i data-lucide="copy" title="Copy"></i>
+              </button>
+            </div>
+          </div>
+          <div class="jwt-tab-content active" id="payload-json-content">
+            <pre class="container jwt-json-display" id="payload-json" style="min-height: 120px;"></pre>
+            <textarea id="payload-json-text" style="display: none;"></textarea>
+          </div>
+          <div class="jwt-tab-content" id="payload-claims-content">
+            <div class="container" style="overflow-x: auto;">
+              <table class="jwt-claims-table" id="payload-claims-table">
+                <thead>
+                  <tr>
+                    <th>{t('jwt_decoder.claim')}</th>
+                    <th>{t('jwt_decoder.value')}</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: '/js/jwt.js?v=1',
+      onload: function() {
+        initJwtDecoder();
+        methodLoad();
+      }
+    });
+    delayScripts.push({
+      src: '/js/clipboard.min.js',
+      onload: function () {
+        new ClipboardJS('[data-toggle="copy"]', {
+          text: function(trigger) {
+            const targetId = trigger.getAttribute('data-clipboard-target');
+            if (targetId) {
+              const target = document.querySelector(targetId);
+              return target ? target.value : '';
+            }
+            return '';
+          }
+        }).on('success', function (e) {
+          showMessage(e.trigger.getAttribute('data-message') || 'Copied');
+          gtag('event', 'copy');
+        });
+      },
+      delay: 100
+    });
+
+    function initJwtDecoder() {
+      const jwtInput = document.getElementById('jwt-input');
+      const jwtSecret = document.getElementById('jwt-secret');
+      const secretEncoding = document.getElementById('secret-encoding');
+      const jwtStatus = document.getElementById('jwt-status');
+      const secretStatus = document.getElementById('secret-status');
+      const headerJson = document.getElementById('header-json');
+      const payloadJson = document.getElementById('payload-json');
+      const headerJsonText = document.getElementById('header-json-text');
+      const payloadJsonText = document.getElementById('payload-json-text');
+      const generateExampleBtn = document.getElementById('generate-example');
+
+      // Set default example if empty
+      if (!jwtInput.value.trim()) {
+        const example = generateJwtExample();
+        jwtEncode(example.header, example.payload, example.secret, 'utf-8').then(result => {
+          if (result.success) {
+            jwtInput.value = result.token;
+            jwtSecret.value = example.secret;
+            decodeAndDisplay();
+          }
+        });
+      }
+
+      // Tab switching
+      document.querySelectorAll('.jwt-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          const tabGroup = this.closest('.jwt-tabs');
+          const parent = this.closest('.block');
+          const tabId = this.getAttribute('data-tab');
+          
+          // Update active tab
+          tabGroup.querySelectorAll('.jwt-tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update active content
+          parent.querySelectorAll('.jwt-tab-content').forEach(content => {
+            content.classList.remove('active');
+            if (content.id === tabId + '-content') {
+              content.classList.add('active');
+            }
+          });
+        });
+      });
+
+      // Decode JWT on input
+      function decodeAndDisplay() {
+        const token = jwtInput.value.trim();
+        
+        if (!token) {
+          jwtStatus.style.display = 'none';
+          headerJson.textContent = '';
+          payloadJson.textContent = '';
+          headerJsonText.value = '';
+          payloadJsonText.value = '';
+          secretStatus.style.display = 'none';
+          updateClaimsTable('header-claims-table', []);
+          updateClaimsTable('payload-claims-table', []);
+          return;
+        }
+
+        const decoded = jwtDecode(token);
+        
+        if (decoded.valid) {
+          jwtStatus.textContent = 'Valid JWT';
+          jwtStatus.className = 'jwt-status valid';
+          jwtStatus.style.display = 'block';
+          
+          const headerFormatted = formatJson(decoded.header);
+          const payloadFormatted = formatJson(decoded.payload);
+          
+          headerJson.textContent = headerFormatted;
+          payloadJson.textContent = payloadFormatted;
+          headerJsonText.value = headerFormatted;
+          payloadJsonText.value = payloadFormatted;
+          
+          // Syntax highlight
+          highlightJson(headerJson);
+          highlightJson(payloadJson);
+          
+          // Update claims tables
+          updateClaimsTable('header-claims-table', parseClaimsToTable(decoded.header));
+          updateClaimsTable('payload-claims-table', parseClaimsToTable(decoded.payload));
+          
+          // Verify signature if secret is provided
+          verifySignature();
+        } else {
+          jwtStatus.textContent = decoded.error;
+          jwtStatus.className = 'jwt-status invalid';
+          jwtStatus.style.display = 'block';
+          headerJson.textContent = '';
+          payloadJson.textContent = '';
+          headerJsonText.value = '';
+          payloadJsonText.value = '';
+          secretStatus.style.display = 'none';
+          updateClaimsTable('header-claims-table', []);
+          updateClaimsTable('payload-claims-table', []);
+        }
+      }
+
+      // Verify signature
+      async function verifySignature() {
+        const token = jwtInput.value.trim();
+        const secret = jwtSecret.value.trim();
+        const encoding = secretEncoding.value;
+
+        if (!token || !secret) {
+          secretStatus.style.display = 'none';
+          if (jwtStatus.classList.contains('valid')) {
+            jwtStatus.textContent = 'Valid JWT';
+          }
+          return;
+        }
+
+        const result = await jwtVerify(token, secret, encoding);
+        
+        if (result.verified) {
+          secretStatus.textContent = 'Valid secret';
+          secretStatus.className = 'jwt-status valid';
+          secretStatus.style.display = 'block';
+          jwtStatus.innerHTML = 'Valid JWT<br>Signature Verified';
+        } else {
+          secretStatus.textContent = result.error || 'Invalid signature';
+          secretStatus.className = 'jwt-status invalid';
+          secretStatus.style.display = 'block';
+          if (jwtStatus.classList.contains('valid')) {
+            jwtStatus.textContent = 'Valid JWT';
+          }
+        }
+      }
+
+      // Highlight JSON
+      function highlightJson(element) {
+        const text = element.textContent;
+        const highlighted = text
+          .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
+          .replace(/: "([^"]+)"/g, ': <span class="json-string">"$1"</span>')
+          .replace(/: (\d+)/g, ': <span class="json-number">$1</span>')
+          .replace(/: (true|false)/g, ': <span class="json-boolean">$1</span>');
+        element.innerHTML = highlighted;
+      }
+
+      // Update claims table
+      function updateClaimsTable(tableId, claims) {
+        const table = document.getElementById(tableId);
+        const tbody = table.querySelector('tbody');
+        tbody.innerHTML = '';
+        
+        claims.forEach(claim => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${claim.claim}</td><td>${claim.value}</td>`;
+          tbody.appendChild(row);
+        });
+      }
+
+      // Generate example
+      generateExampleBtn.addEventListener('click', async function() {
+        const example = generateJwtExample();
+        const result = await jwtEncode(example.header, example.payload, example.secret, 'utf-8');
+        
+        if (result.success) {
+          jwtInput.value = result.token;
+          jwtSecret.value = example.secret;
+          decodeAndDisplay();
+        }
+      });
+
+      // Event listeners
+      jwtInput.addEventListener('input', decodeAndDisplay);
+      jwtSecret.addEventListener('input', verifySignature);
+      secretEncoding.addEventListener('change', verifySignature);
+
+      // Initial decode if value exists
+      if (jwtInput.value) {
+        decodeAndDisplay();
+      }
+    }
+  </script>
+</BasePage>

@@ -185,7 +185,82 @@ const t = useTranslations(lang as any);
   <script is:inline>
     ++waitLoadCount;
     delayScripts.push({
-      src: '/js/s-notes.js?v=1',
+      src: 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/sql-wasm.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.30.7/dist/editorjs.umd.min.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.1/dist/header.umd.min.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/@editorjs/list@1.9.0/dist/list.umd.min.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/@editorjs/code@2.8.0/dist/code.umd.min.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: 'https://cdn.jsdelivr.net/npm/@editorjs/image@2.9.0/dist/image.umd.min.js',
+      onload: function() {
+        methodLoad();
+      }
+    });
+  </script>
+
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: '/js/s-notes.js?v=2',
       onload: function() {
         window.method = function() {}; // S Notes doesn't use the standard method pattern
         if (window.SNotesApp) {

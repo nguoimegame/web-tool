@@ -652,4 +652,42 @@ export const pt = {
   's_notes.tag_name': 'Nome da tag',
   's_notes.folder_name': 'Nome da pasta',
   's_notes.parent_folder': 'Pasta pai',
+
+  // JWT Decoder
+  'jwt_decoder.title': 'Decodificador JWT',
+  'jwt_decoder.description':
+    'Esta ferramenta online de decodificação JWT ajuda você a decodificar, validar e verificar JSON Web Tokens. Cole um JWT abaixo para decodificar seu cabeçalho e payload. Opcionalmente, verifique a assinatura com uma chave secreta.',
+  'jwt_decoder.paste_instruction': 'Cole abaixo um JWT que você gostaria de decodificar, validar e verificar.',
+  'jwt_decoder.generate_example': 'Gerar exemplo',
+  'jwt_decoder.encoded_value': 'Valor Codificado',
+  'jwt_decoder.json_web_token': 'JSON Web Token (JWT)',
+  'jwt_decoder.enable_auto_focus': 'Ativar foco automático',
+  'jwt_decoder.jwt_placeholder': 'Cole seu JWT aqui...',
+  'jwt_decoder.decoded_header': 'Cabeçalho Decodificado',
+  'jwt_decoder.decoded_payload': 'Payload Decodificado',
+  'jwt_decoder.claims_table': 'Tabela de Claims',
+  'jwt_decoder.claim': 'Claim',
+  'jwt_decoder.value': 'Valor',
+  'jwt_decoder.signature_verification': 'Verificação de Assinatura JWT',
+  'jwt_decoder.optional': 'opcional',
+  'jwt_decoder.secret_instruction': 'Digite o segredo usado para assinar o JWT abaixo:',
+  'jwt_decoder.secret': 'Segredo',
+  'jwt_decoder.secret_placeholder': 'Digite a chave secreta...',
+  'jwt_decoder.encoding_format': 'Formato de Codificação',
+
+  // JWT Encoder
+  'jwt_encoder.title': 'Codificador JWT',
+  'jwt_encoder.description':
+    'Esta ferramenta online de codificação JWT ajuda você a criar e assinar JSON Web Tokens. Preencha o cabeçalho, payload e segredo para gerar um JWT assinado.',
+  'jwt_encoder.fill_instruction': 'Preencha os campos abaixo para gerar um JWT assinado.',
+  'jwt_encoder.generate_example': 'Gerar exemplo',
+  'jwt_encoder.header': 'Cabeçalho',
+  'jwt_encoder.algorithm_token_type': 'Algoritmo e Tipo de Token',
+  'jwt_encoder.payload': 'Payload',
+  'jwt_encoder.data': 'Dados',
+  'jwt_encoder.sign_jwt': 'Assinar JWT',
+  'jwt_encoder.secret': 'Segredo',
+  'jwt_encoder.secret_placeholder': 'Digite sua chave secreta...',
+  'jwt_encoder.encoding_format': 'Formato de Codificação',
+  'jwt_encoder.json_web_token': 'JSON Web Token',
 };

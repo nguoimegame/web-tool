@@ -66,7 +66,7 @@ select,
 textarea {
   font-family: inherit;
   font-size: 100%;
-  line-height: 1.15;
+  line-height: 1;
   margin: 0;
 }
 button,
@@ -902,12 +902,12 @@ summary:hover {
 
 /* Settings Panel Enhanced */
 .settings .container {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .setting label {
   display: block;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.2rem;
   font-size: 14px;
   font-weight: 500;
   color: var(--var-gray-700);
@@ -925,7 +925,7 @@ summary:hover {
 
 .setting + .setting,
 .setting + .setting-group {
-  margin-top: 1.25rem;
+  margin-top: 0.7rem;
 }
 
 .setting .btn {
@@ -938,7 +938,7 @@ summary:hover {
   border-radius: 1rem;
   position: relative;
   margin-top: 1rem;
-  padding: 1.5rem 1rem 1rem;
+  padding: 0.8rem 0.8rem 0.8rem;
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(147, 51, 234, 0.02) 100%);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -980,7 +980,7 @@ textarea {
   padding: 1rem;
   font-size: 13px;
   line-height: 1.65;
-  border-radius: 0.75rem;
+  border-radius: 0.0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -1004,10 +1004,10 @@ input {
   color: var(--var-input-color);
   -webkit-appearance: none;
   appearance: none;
-  padding: 0.875rem 1.125rem;
+  padding: 0.5rem 0.75rem;
   border: 2px solid var(--var-border-color);
   font-size: 14px;
-  border-radius: 0.75rem;
+  border-radius: 0.3rem;
   outline: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -1544,7 +1544,7 @@ input[type='range']::-moz-range-thumb:hover {
 }
 
 #index nav {
-  padding: 1.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
 }
 
 #index ol {
@@ -1823,7 +1823,7 @@ input[type='range']::-moz-range-thumb:hover {
   }
 
   #content header {
-    padding: 0.5rem 2.5rem;
+    padding: 0.4rem 1.5rem;
   }
 
   #message {
@@ -1846,6 +1846,7 @@ input[type='range']::-moz-range-thumb:hover {
   .output {
     height: initial;
     flex: 1;
+    border-left: 1px solid var(--var-border-color);
   }
 
   #swap {

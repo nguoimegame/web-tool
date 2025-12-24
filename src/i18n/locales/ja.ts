@@ -650,4 +650,42 @@ export const ja = {
   's_notes.tag_name': 'タグ名',
   's_notes.folder_name': 'フォルダー名',
   's_notes.parent_folder': '親フォルダー',
+
+  // JWT Decoder
+  'jwt_decoder.title': 'JWTデコーダー',
+  'jwt_decoder.description':
+    'このオンラインJWTデコードツールは、JSON Web Tokenのデコード、検証、署名の確認を支援します。以下にJWTを貼り付けて、ヘッダーとペイロードをデコードします。オプションで秘密鍵を使用して署名を検証できます。',
+  'jwt_decoder.paste_instruction': '以下にデコード、検証、確認したいJWTを貼り付けてください。',
+  'jwt_decoder.generate_example': '例を生成',
+  'jwt_decoder.encoded_value': 'エンコード値',
+  'jwt_decoder.json_web_token': 'JSON Web Token (JWT)',
+  'jwt_decoder.enable_auto_focus': '自動フォーカスを有効化',
+  'jwt_decoder.jwt_placeholder': 'JWTをここに貼り付け...',
+  'jwt_decoder.decoded_header': 'デコードされたヘッダー',
+  'jwt_decoder.decoded_payload': 'デコードされたペイロード',
+  'jwt_decoder.claims_table': 'クレームテーブル',
+  'jwt_decoder.claim': 'クレーム',
+  'jwt_decoder.value': '値',
+  'jwt_decoder.signature_verification': 'JWT署名検証',
+  'jwt_decoder.optional': 'オプション',
+  'jwt_decoder.secret_instruction': '以下にJWTの署名に使用した秘密鍵を入力してください：',
+  'jwt_decoder.secret': '秘密鍵',
+  'jwt_decoder.secret_placeholder': '秘密鍵を入力...',
+  'jwt_decoder.encoding_format': 'エンコード形式',
+
+  // JWT Encoder
+  'jwt_encoder.title': 'JWTエンコーダー',
+  'jwt_encoder.description':
+    'このオンラインJWTエンコードツールは、JSON Web Tokenの作成と署名を支援します。ヘッダー、ペイロード、秘密鍵を入力して署名付きJWTを生成します。',
+  'jwt_encoder.fill_instruction': '以下のフィールドに入力して署名付きJWTを生成します。',
+  'jwt_encoder.generate_example': '例を生成',
+  'jwt_encoder.header': 'ヘッダー',
+  'jwt_encoder.algorithm_token_type': 'アルゴリズムとトークンタイプ',
+  'jwt_encoder.payload': 'ペイロード',
+  'jwt_encoder.data': 'データ',
+  'jwt_encoder.sign_jwt': 'JWTに署名',
+  'jwt_encoder.secret': '秘密鍵',
+  'jwt_encoder.secret_placeholder': '秘密鍵を入力...',
+  'jwt_encoder.encoding_format': 'エンコード形式',
+  'jwt_encoder.json_web_token': 'JSON Web Token',
 };

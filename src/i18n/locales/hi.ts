@@ -651,4 +651,42 @@ export const hi = {
   's_notes.tag_name': 'टैग का नाम',
   's_notes.folder_name': 'फ़ोल्डर का नाम',
   's_notes.parent_folder': 'पैरेंट फ़ोल्डर',
+
+  // JWT Decoder
+  'jwt_decoder.title': 'JWT डिकोडर',
+  'jwt_decoder.description':
+    'यह ऑनलाइन JWT डिकोड टूल आपको JSON Web Token को डिकोड, मान्य और सत्यापित करने में मदद करता है। इसके हेडर और पेलोड को डिकोड करने के लिए नीचे एक JWT पेस्ट करें। वैकल्पिक रूप से एक सीक्रेट की के साथ सिग्नेचर सत्यापित करें।',
+  'jwt_decoder.paste_instruction': 'नीचे एक JWT पेस्ट करें जिसे आप डिकोड, मान्य और सत्यापित करना चाहते हैं।',
+  'jwt_decoder.generate_example': 'उदाहरण बनाएं',
+  'jwt_decoder.encoded_value': 'एन्कोडेड मान',
+  'jwt_decoder.json_web_token': 'JSON Web Token (JWT)',
+  'jwt_decoder.enable_auto_focus': 'ऑटो-फोकस सक्षम करें',
+  'jwt_decoder.jwt_placeholder': 'अपना JWT यहां पेस्ट करें...',
+  'jwt_decoder.decoded_header': 'डिकोडेड हेडर',
+  'jwt_decoder.decoded_payload': 'डिकोडेड पेलोड',
+  'jwt_decoder.claims_table': 'क्लेम्स टेबल',
+  'jwt_decoder.claim': 'क्लेम',
+  'jwt_decoder.value': 'मान',
+  'jwt_decoder.signature_verification': 'JWT सिग्नेचर सत्यापन',
+  'jwt_decoder.optional': 'वैकल्पिक',
+  'jwt_decoder.secret_instruction': 'नीचे JWT पर हस्ताक्षर करने के लिए उपयोग की जाने वाली सीक्रेट की दर्ज करें:',
+  'jwt_decoder.secret': 'सीक्रेट',
+  'jwt_decoder.secret_placeholder': 'सीक्रेट की दर्ज करें...',
+  'jwt_decoder.encoding_format': 'एन्कोडिंग फॉर्मेट',
+
+  // JWT Encoder
+  'jwt_encoder.title': 'JWT एनकोडर',
+  'jwt_encoder.description':
+    'यह ऑनलाइन JWT एनकोड टूल आपको JSON Web Token बनाने और साइन करने में मदद करता है। एक साइन किया हुआ JWT बनाने के लिए हेडर, पेलोड और सीक्रेट भरें।',
+  'jwt_encoder.fill_instruction': 'एक साइन किया हुआ JWT बनाने के लिए नीचे के फील्ड भरें।',
+  'jwt_encoder.generate_example': 'उदाहरण बनाएं',
+  'jwt_encoder.header': 'हेडर',
+  'jwt_encoder.algorithm_token_type': 'एल्गोरिथम और टोकन प्रकार',
+  'jwt_encoder.payload': 'पेलोड',
+  'jwt_encoder.data': 'डेटा',
+  'jwt_encoder.sign_jwt': 'JWT साइन करें',
+  'jwt_encoder.secret': 'सीक्रेट',
+  'jwt_encoder.secret_placeholder': 'अपनी सीक्रेट की दर्ज करें...',
+  'jwt_encoder.encoding_format': 'एन्कोडिंग फॉर्मेट',
+  'jwt_encoder.json_web_token': 'JSON Web Token',
 };

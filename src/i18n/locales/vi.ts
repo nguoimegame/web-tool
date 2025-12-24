@@ -662,4 +662,42 @@ export const vi = {
   's_notes.tag_name': 'Tên nhãn',
   's_notes.folder_name': 'Tên thư mục',
   's_notes.parent_folder': 'Thư mục cha',
+
+  // JWT Decoder
+  'jwt_decoder.title': 'Giải mã JWT',
+  'jwt_decoder.description':
+    'Công cụ giải mã JWT trực tuyến này giúp bạn giải mã, xác thực và xác minh JSON Web Token. Dán JWT bên dưới để giải mã header và payload. Tùy chọn xác minh chữ ký với khóa bí mật.',
+  'jwt_decoder.paste_instruction': 'Dán JWT bên dưới mà bạn muốn giải mã, xác thực và xác minh.',
+  'jwt_decoder.generate_example': 'Tạo ví dụ',
+  'jwt_decoder.encoded_value': 'Giá trị đã mã hóa',
+  'jwt_decoder.json_web_token': 'JSON Web Token (JWT)',
+  'jwt_decoder.enable_auto_focus': 'Bật tự động focus',
+  'jwt_decoder.jwt_placeholder': 'Dán JWT của bạn vào đây...',
+  'jwt_decoder.decoded_header': 'Header đã giải mã',
+  'jwt_decoder.decoded_payload': 'Payload đã giải mã',
+  'jwt_decoder.claims_table': 'Bảng Claims',
+  'jwt_decoder.claim': 'Claim',
+  'jwt_decoder.value': 'Giá trị',
+  'jwt_decoder.signature_verification': 'Xác minh chữ ký JWT',
+  'jwt_decoder.optional': 'tùy chọn',
+  'jwt_decoder.secret_instruction': 'Nhập khóa bí mật được sử dụng để ký JWT bên dưới:',
+  'jwt_decoder.secret': 'Khóa bí mật',
+  'jwt_decoder.secret_placeholder': 'Nhập khóa bí mật...',
+  'jwt_decoder.encoding_format': 'Định dạng mã hóa',
+
+  // JWT Encoder
+  'jwt_encoder.title': 'Mã hóa JWT',
+  'jwt_encoder.description':
+    'Công cụ mã hóa JWT trực tuyến này giúp bạn tạo và ký JSON Web Token. Điền header, payload và khóa bí mật để tạo JWT đã ký.',
+  'jwt_encoder.fill_instruction': 'Điền các trường bên dưới để tạo JWT đã ký.',
+  'jwt_encoder.generate_example': 'Tạo ví dụ',
+  'jwt_encoder.header': 'Header',
+  'jwt_encoder.algorithm_token_type': 'Thuật toán & Loại Token',
+  'jwt_encoder.payload': 'Payload',
+  'jwt_encoder.data': 'Dữ liệu',
+  'jwt_encoder.sign_jwt': 'Ký JWT',
+  'jwt_encoder.secret': 'Khóa bí mật',
+  'jwt_encoder.secret_placeholder': 'Nhập khóa bí mật của bạn...',
+  'jwt_encoder.encoding_format': 'Định dạng mã hóa',
+  'jwt_encoder.json_web_token': 'JSON Web Token',
 };

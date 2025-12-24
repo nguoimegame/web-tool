@@ -640,4 +640,42 @@ export const zh = {
   's_notes.tag_name': '标签名称',
   's_notes.folder_name': '文件夹名称',
   's_notes.parent_folder': '父文件夹',
+
+  // JWT Decoder
+  'jwt_decoder.title': 'JWT 解码器',
+  'jwt_decoder.description':
+    '此在线 JWT 解码工具可帮助您解码、验证和校验 JSON Web Token。粘贴 JWT 以解码其标头和有效负载。可选择使用密钥验证签名。',
+  'jwt_decoder.paste_instruction': '在下方粘贴您要解码、验证和校验的 JWT。',
+  'jwt_decoder.generate_example': '生成示例',
+  'jwt_decoder.encoded_value': '编码值',
+  'jwt_decoder.json_web_token': 'JSON Web Token (JWT)',
+  'jwt_decoder.enable_auto_focus': '启用自动聚焦',
+  'jwt_decoder.jwt_placeholder': '在此粘贴您的 JWT...',
+  'jwt_decoder.decoded_header': '解码后的标头',
+  'jwt_decoder.decoded_payload': '解码后的有效负载',
+  'jwt_decoder.claims_table': '声明表',
+  'jwt_decoder.claim': '声明',
+  'jwt_decoder.value': '值',
+  'jwt_decoder.signature_verification': 'JWT 签名验证',
+  'jwt_decoder.optional': '可选',
+  'jwt_decoder.secret_instruction': '在下方输入用于签名 JWT 的密钥：',
+  'jwt_decoder.secret': '密钥',
+  'jwt_decoder.secret_placeholder': '输入密钥...',
+  'jwt_decoder.encoding_format': '编码格式',
+
+  // JWT Encoder
+  'jwt_encoder.title': 'JWT 编码器',
+  'jwt_encoder.description':
+    '此在线 JWT 编码工具可帮助您创建和签名 JSON Web Token。填写标头、有效负载和密钥以生成签名的 JWT。',
+  'jwt_encoder.fill_instruction': '填写以下字段以生成签名的 JWT。',
+  'jwt_encoder.generate_example': '生成示例',
+  'jwt_encoder.header': '标头',
+  'jwt_encoder.algorithm_token_type': '算法和令牌类型',
+  'jwt_encoder.payload': '有效负载',
+  'jwt_encoder.data': '数据',
+  'jwt_encoder.sign_jwt': '签名 JWT',
+  'jwt_encoder.secret': '密钥',
+  'jwt_encoder.secret_placeholder': '输入您的密钥...',
+  'jwt_encoder.encoding_format': '编码格式',
+  'jwt_encoder.json_web_token': 'JSON Web Token',
 };

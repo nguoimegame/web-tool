@@ -660,4 +660,42 @@ export const en = {
   's_notes.tag_name': 'Tag name',
   's_notes.folder_name': 'Folder name',
   's_notes.parent_folder': 'Parent folder',
+
+  // JWT Decoder
+  'jwt_decoder.title': 'JWT Decoder',
+  'jwt_decoder.description':
+    'This online JWT decoder tool helps you decode, validate, and verify JSON Web Tokens. Paste a JWT below to decode its header and payload. Optionally verify the signature with a secret key.',
+  'jwt_decoder.paste_instruction': 'Paste a JWT below that you would like to decode, validate, and verify.',
+  'jwt_decoder.generate_example': 'Generate example',
+  'jwt_decoder.encoded_value': 'Encoded Value',
+  'jwt_decoder.json_web_token': 'JSON Web Token (JWT)',
+  'jwt_decoder.enable_auto_focus': 'Enable auto-focus',
+  'jwt_decoder.jwt_placeholder': 'Paste your JWT here...',
+  'jwt_decoder.decoded_header': 'Decoded Header',
+  'jwt_decoder.decoded_payload': 'Decoded Payload',
+  'jwt_decoder.claims_table': 'Claims Table',
+  'jwt_decoder.claim': 'Claim',
+  'jwt_decoder.value': 'Value',
+  'jwt_decoder.signature_verification': 'JWT Signature Verification',
+  'jwt_decoder.optional': 'optional',
+  'jwt_decoder.secret_instruction': 'Enter the secret used to sign the JWT below:',
+  'jwt_decoder.secret': 'Secret',
+  'jwt_decoder.secret_placeholder': 'Enter secret key...',
+  'jwt_decoder.encoding_format': 'Encoding Format',
+
+  // JWT Encoder
+  'jwt_encoder.title': 'JWT Encoder',
+  'jwt_encoder.description':
+    'This online JWT encoder tool helps you create and sign JSON Web Tokens. Fill in the header, payload, and secret to generate a signed JWT.',
+  'jwt_encoder.fill_instruction': 'Fill in the fields below to generate a signed JWT.',
+  'jwt_encoder.generate_example': 'Generate example',
+  'jwt_encoder.header': 'Header',
+  'jwt_encoder.algorithm_token_type': 'Algorithm & Token Type',
+  'jwt_encoder.payload': 'Payload',
+  'jwt_encoder.data': 'Data',
+  'jwt_encoder.sign_jwt': 'Sign JWT',
+  'jwt_encoder.secret': 'Secret',
+  'jwt_encoder.secret_placeholder': 'Enter your secret key...',
+  'jwt_encoder.encoding_format': 'Encoding Format',
+  'jwt_encoder.json_web_token': 'JSON Web Token',
 };

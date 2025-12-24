@@ -1,0 +1,270 @@
+---
+import BasePage from '../../../../../components/BasePage.astro';
+import { languages } from '../../../../../i18n/ui';
+import { useTranslations } from '../../../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+    return { params: { lang } };
+  });
+}
+
+const { lang = 'en' } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<BasePage
+  title={t('jwt_encoder.title')}
+  description={t('jwt_encoder.description')}
+  activePage="cryptography/jwt/encoder"
+>
+  <link rel="stylesheet" href="/css/jwt.css" />
+  <div class="layout">
+    <div class="layout-block">
+      <div class="input">
+        <div class="block block-fill">
+          <div class="block-title">
+            {t('input')}
+            <div class="toolbar">
+              <button class="btn" id="generate-example">
+                {t('jwt_encoder.generate_example')}
+              </button>
+            </div>
+          </div>
+          <div class="container" style="padding: 10px;">
+            <input type="checkbox" id="auto-update" checked style="display: none;" />
+
+            <div class="setting">
+              <label for="secret-encoding">{t('jwt_encoder.encoding_format')}</label>
+              <select
+                id="secret-encoding"
+                data-option="secret-encoding"
+                data-remember="secret-encoding"
+                data-share="secret_encoding"
+                data-auto-update
+              >
+                <option value="utf-8" selected>UTF-8</option>
+                <option value="base64">Base64</option>
+              </select>
+            </div>
+            <details class="setting-group" open>
+              <summary>{t('jwt_encoder.header')}</summary>
+              <div class="setting">
+                <div id="header-status" class="jwt-status" style="display: none;"></div>
+                <textarea
+                  id="jwt-header"
+                  spellcheck="false"
+                  data-option="jwt-header"
+                  data-remember="jwt-header"
+                  data-share="header"
+                  data-auto-update
+                  style="min-height: 100px; font-family: monospace;"></textarea>
+              </div>
+            </details>
+            <details class="setting-group" open>
+              <summary>{t('jwt_encoder.payload')}</summary>
+              <div class="setting">
+                <div id="payload-status" class="jwt-status" style="display: none;"></div>
+                <textarea
+                  id="jwt-payload"
+                  spellcheck="false"
+                  data-option="jwt-payload"
+                  data-remember="jwt-payload"
+                  data-share="payload"
+                  data-auto-update
+                  style="min-height: 120px; font-family: monospace;"></textarea>
+              </div>
+            </details>
+            <details class="setting-group" open>
+              <summary>{t('jwt_encoder.secret')}</summary>
+              <div class="setting">
+                <div id="secret-status" class="jwt-status" style="display: none;"></div>
+                <textarea
+                  id="jwt-secret"
+                  spellcheck="false"
+                  data-option="jwt-secret"
+                  data-remember="jwt-secret"
+                  data-share="secret"
+                  data-auto-update
+                  style="min-height: 60px; height: 60px; font-family: monospace;"></textarea>
+              </div>
+            </details>
+            <div class="setting">
+              <label class="switcher"
+                ><input type="checkbox" id="remember-input" /><div class="toggle"></div>
+                <span>{t('remember_input')}</span></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="output">
+        <div class="block block-fill">
+          <div class="block-title">
+            {t('jwt_encoder.json_web_token')}
+            <div class="toolbar">
+              <button
+                class="icon"
+                data-toggle="copy"
+                data-clipboard-target="#jwt-output-text"
+                data-message="Token copied"
+              >
+                <i data-lucide="copy" title="Copy"></i>
+              </button>
+            </div>
+          </div>
+          <div id="jwt-output" class="container jwt-token-display" style="min-height: 150px;"></div>
+          <textarea id="jwt-output-text" data-share="output" style="display: none;"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    ++waitLoadCount;
+    delayScripts.push({
+      src: '/js/jwt.js?v=1',
+      onload: function () {
+        initJwtEncoder();
+        methodLoad();
+      },
+    });
+    delayScripts.push({
+      src: '/js/clipboard.min.js',
+      onload: function () {
+        new ClipboardJS('[data-toggle="copy"]', {
+          text: function (trigger) {
+            const targetId = trigger.getAttribute('data-clipboard-target');
+            if (targetId) {
+              const target = document.querySelector(targetId);
+              return target ? target.value : '';
+            }
+            return '';
+          },
+        }).on('success', function (e) {
+          showMessage(e.trigger.getAttribute('data-message') || 'Copied');
+          gtag('event', 'copy');
+        });
+      },
+      delay: 100,
+    });
+
+    function initJwtEncoder() {
+      const headerInput = document.getElementById('jwt-header');
+      const payloadInput = document.getElementById('jwt-payload');
+      const secretInput = document.getElementById('jwt-secret');
+      const secretEncoding = document.getElementById('secret-encoding');
+      const headerStatus = document.getElementById('header-status');
+      const payloadStatus = document.getElementById('payload-status');
+      const secretStatus = document.getElementById('secret-status');
+      const jwtOutput = document.getElementById('jwt-output');
+      const jwtOutputText = document.getElementById('jwt-output-text');
+      const generateExampleBtn = document.getElementById('generate-example');
+
+      // Set default values if empty
+      if (!headerInput.value.trim()) {
+        headerInput.value = JSON.stringify({ alg: 'HS256', typ: 'JWT' }, null, 2);
+      }
+      if (!payloadInput.value.trim()) {
+        payloadInput.value = JSON.stringify(
+          { sub: '1234567890', name: 'John Doe', iat: 1516239022 },
+          null,
+          2
+        );
+      }
+      if (!secretInput.value.trim()) {
+        secretInput.value = 'a-string-secret-at-least-256-bits-long';
+      }
+
+      // Validate JSON input
+      function validateJson(input, statusElement, label) {
+        const value = input.value.trim();
+        if (!value) {
+          statusElement.style.display = 'none';
+          return null;
+        }
+
+        try {
+          const parsed = JSON.parse(value);
+          statusElement.textContent = 'Valid ' + label.toLowerCase();
+          statusElement.className = 'jwt-status valid';
+          statusElement.style.display = 'block';
+          return parsed;
+        } catch (e) {
+          statusElement.textContent = 'Invalid JSON';
+          statusElement.className = 'jwt-status invalid';
+          statusElement.style.display = 'block';
+          return null;
+        }
+      }
+
+      // Encode JWT - this is the main method
+      window.method = async function () {
+        await encodeJwt();
+        return '';
+      };
+
+      async function encodeJwt() {
+        const header = validateJson(headerInput, headerStatus, 'Header');
+        const payload = validateJson(payloadInput, payloadStatus, 'Payload');
+        const secret = secretInput.value.trim();
+        const encoding = secretEncoding.value;
+
+        // Validate secret
+        if (secret) {
+          secretStatus.textContent = 'Valid secret';
+          secretStatus.className = 'jwt-status valid';
+          secretStatus.style.display = 'block';
+        } else {
+          secretStatus.style.display = 'none';
+        }
+
+        if (!header || !payload) {
+          jwtOutput.innerHTML =
+            '<span style="color: var(--text-secondary);">Please enter valid header and payload JSON</span>';
+          jwtOutputText.value = '';
+          return;
+        }
+
+        if (!secret) {
+          jwtOutput.innerHTML =
+            '<span style="color: var(--text-secondary);">Enter a secret to generate the JWT</span>';
+          jwtOutputText.value = '';
+          return;
+        }
+
+        const result = await jwtEncode(header, payload, secret, encoding);
+
+        if (result.success) {
+          const parts = result.token.split('.');
+          jwtOutput.innerHTML =
+            '<span class="jwt-header">' +
+            parts[0] +
+            '</span><span class="jwt-dot">.</span><span class="jwt-payload">' +
+            parts[1] +
+            '</span><span class="jwt-dot">.</span><span class="jwt-signature">' +
+            parts[2] +
+            '</span>';
+          jwtOutputText.value = result.token;
+        } else {
+          jwtOutput.innerHTML = '<span style="color: #c62828;">' + result.error + '</span>';
+          jwtOutputText.value = '';
+        }
+      }
+
+      // Generate example
+      generateExampleBtn.addEventListener('click', function () {
+        const example = generateJwtExample();
+        headerInput.value = JSON.stringify(example.header, null, 2);
+        payloadInput.value = JSON.stringify(example.payload, null, 2);
+        secretInput.value = example.secret;
+        encodeJwt();
+      });
+
+      // Initial encode if values exist
+      if (headerInput.value || payloadInput.value || secretInput.value) {
+        encodeJwt();
+      }
+    }
+  </script>
+</BasePage>

@@ -209,6 +209,13 @@ export const toolSections: ToolSection[] = [
           { url: 'cryptography/rsa/decrypt', name: 'Decryption', icon: 'unlock' },
         ],
       },
+      {
+        title: 'JWT',
+        items: [
+          { url: 'cryptography/jwt/decoder', name: 'JWT Decoder', icon: 'scan-search' },
+          { url: 'cryptography/jwt/encoder', name: 'JWT Encoder', icon: 'file-key' },
+        ],
+      },
     ],
   },
   {
