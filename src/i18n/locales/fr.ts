@@ -132,7 +132,7 @@ export const fr = {
   // Image Crop & Rotate
   'image_crop_rotate.title': 'Recadrer et Pivoter Image',
   'image_crop_rotate.description':
-    'Recadrez et pivotez vos images facilement. Outil gratuit de recadrage et rotation d\'images en ligne.',
+    "Recadrez et pivotez vos images facilement. Outil gratuit de recadrage et rotation d'images en ligne.",
   'image_crop_rotate.crop': 'Recadrer',
   'image_crop_rotate.rotate': 'Pivoter',
   'image_crop_rotate.flip': 'Retourner',
@@ -141,19 +141,19 @@ export const fr = {
   'image_crop_rotate.rotate_left': 'Pivoter Gauche 90°',
   'image_crop_rotate.rotate_right': 'Pivoter Droite 90°',
   'image_crop_rotate.free_crop': 'Recadrage Libre',
-  'image_crop_rotate.aspect_ratio': 'Ratio d\'Aspect',
+  'image_crop_rotate.aspect_ratio': "Ratio d'Aspect",
   'image_crop_rotate.original': 'Original',
   'image_crop_rotate.square': 'Carré (1:1)',
   'image_crop_rotate.apply_crop': 'Appliquer Recadrage',
   'image_crop_rotate.reset_crop': 'Réinitialiser Recadrage',
   'image_crop_rotate.quality': 'Qualité',
   'image_crop_rotate.error_invalid_file': 'Veuillez télécharger un fichier image',
-  'image_crop_rotate.error_no_crop_area': 'Veuillez d\'abord sélectionner une zone de recadrage',
+  'image_crop_rotate.error_no_crop_area': "Veuillez d'abord sélectionner une zone de recadrage",
 
   // Image Optimize
   'image_optimize.title': 'Optimiser Image',
   'image_optimize.description':
-    'Compressez et optimisez vos images pour réduire la taille du fichier tout en maintenant la qualité. Outil gratuit d\'optimisation d\'images en ligne.',
+    "Compressez et optimisez vos images pour réduire la taille du fichier tout en maintenant la qualité. Outil gratuit d'optimisation d'images en ligne.",
   'image_optimize.format': 'Format',
   'image_optimize.output_format': 'Format de Sortie',
   'image_optimize.auto': 'Auto',

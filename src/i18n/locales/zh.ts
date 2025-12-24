@@ -157,7 +157,8 @@ export const zh = {
 
   // Image Optimize
   'image_optimize.title': '优化图像',
-  'image_optimize.description': '压缩和优化图像以减小文件大小，同时保持质量。免费在线图像优化工具。',
+  'image_optimize.description':
+    '压缩和优化图像以减小文件大小，同时保持质量。免费在线图像优化工具。',
   'image_optimize.format': '格式',
   'image_optimize.output_format': '输出格式',
   'image_optimize.auto': '自动',

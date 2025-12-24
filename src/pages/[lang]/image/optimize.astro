@@ -259,7 +259,10 @@ const activePage = 'image/optimize';
         );
       }
 
-      function checkTransparency(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D | null): boolean {
+      function checkTransparency(
+        canvas: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D | null
+      ): boolean {
         if (!ctx) return false;
         try {
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -328,14 +331,14 @@ const activePage = 'image/optimize';
 
         const link = document.createElement('a');
         const fileName = originalFile.name.replace(/\.[^/.]+$/, '');
-        
+
         // Get correct extension based on blob type
         let fileExt = 'jpg';
         if (optimizedBlob.type === 'image/png') fileExt = 'png';
         else if (optimizedBlob.type === 'image/webp') fileExt = 'webp';
         else if (optimizedBlob.type === 'image/jpeg') fileExt = 'jpg';
         else fileExt = originalFile.name.split('.').pop() || 'jpg';
-        
+
         link.download = `optimized_${fileName}.${fileExt}`;
         link.href = URL.createObjectURL(optimizedBlob);
         link.click();

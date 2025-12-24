@@ -137,8 +137,10 @@ const activePage = 'image/crop-rotate';
     // Image Crop & Rotate Logic
     document.addEventListener('DOMContentLoaded', () => {
       const layout = document.querySelector('.layout') as HTMLElement;
-      const errorInvalidFile = layout?.getAttribute('data-error-invalid-file') || 'Please upload an image file';
-      const errorNoCropArea = layout?.getAttribute('data-error-no-crop-area') || 'Please select a crop area first';
+      const errorInvalidFile =
+        layout?.getAttribute('data-error-invalid-file') || 'Please upload an image file';
+      const errorNoCropArea =
+        layout?.getAttribute('data-error-no-crop-area') || 'Please select a crop area first';
 
       const dropZone = document.getElementById('drop-zone');
       const dropZoneContent = document.getElementById('drop-zone-content');
@@ -224,7 +226,7 @@ const activePage = 'image/crop-rotate';
               flipHorizontal = false;
               flipVertical = false;
               cropArea = null;
-              
+
               // Store original aspect ratio
               originalAspectRatio = originalImage!.width / originalImage!.height;
 
@@ -305,13 +307,13 @@ const activePage = 'image/crop-rotate';
           ctx.strokeStyle = '#3b82f6';
           ctx.lineWidth = 2;
           ctx.setLineDash([5, 5]);
-          
+
           // Normalize crop area for drawing (handle negative dimensions)
           const normalizedX = cropArea.width >= 0 ? cropArea.x : cropArea.x + cropArea.width;
           const normalizedY = cropArea.height >= 0 ? cropArea.y : cropArea.y + cropArea.height;
           const normalizedWidth = Math.abs(cropArea.width);
           const normalizedHeight = Math.abs(cropArea.height);
-          
+
           ctx.strokeRect(
             normalizedX * scale,
             normalizedY * scale,

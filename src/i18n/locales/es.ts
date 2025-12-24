@@ -153,9 +153,11 @@ export const es = {
   // Image Optimize
   'image_optimize.title': 'Optimizar Imagen',
   'image_optimize.description':
-    'Comprime y optimiza tus imágenes para reducir el tamaño del archivo manteniendo la calidad. Herramienta gratuita de optimización de imágenes en línea.',  'image_optimize.format': 'Formato',
+    'Comprime y optimiza tus imágenes para reducir el tamaño del archivo manteniendo la calidad. Herramienta gratuita de optimización de imágenes en línea.',
+  'image_optimize.format': 'Formato',
   'image_optimize.output_format': 'Formato de Salida',
-  'image_optimize.auto': 'Auto',  'image_optimize.quality': 'Calidad',
+  'image_optimize.auto': 'Auto',
+  'image_optimize.quality': 'Calidad',
   'image_optimize.original_size': 'Tamaño Original',
   'image_optimize.optimized_size': 'Tamaño Optimizado',
   'image_optimize.compression_ratio': 'Ratio de Compresión',
