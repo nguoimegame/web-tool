@@ -145,6 +145,9 @@ export const vi = {
   'image_optimize.title': 'Tối ưu hóa ảnh',
   'image_optimize.description':
     'Nén và tối ưu hóa ảnh của bạn để giảm kích thước tệp trong khi vẫn duy trì chất lượng. Công cụ tối ưu hóa ảnh trực tuyến miễn phí.',
+  'image_optimize.format': 'Định dạng',
+  'image_optimize.output_format': 'Định dạng đầu ra',
+  'image_optimize.auto': 'Tự động',
   'image_optimize.quality': 'Chất lượng',
   'image_optimize.original_size': 'Kích thước gốc',
   'image_optimize.optimized_size': 'Kích thước đã tối ưu',

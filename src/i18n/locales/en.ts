@@ -144,6 +144,9 @@ export const en = {
   'image_optimize.title': 'Optimize Image',
   'image_optimize.description':
     'Compress and optimize your images to reduce file size while maintaining quality. Free online image optimizer tool.',
+  'image_optimize.format': 'Format',
+  'image_optimize.output_format': 'Output Format',
+  'image_optimize.auto': 'Auto',
   'image_optimize.quality': 'Quality',
   'image_optimize.original_size': 'Original Size',
   'image_optimize.optimized_size': 'Optimized Size',

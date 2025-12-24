@@ -133,6 +133,9 @@ export const pt = {
   'image_optimize.title': 'Otimizar Imagem',
   'image_optimize.description':
     'Comprima e otimize suas imagens para reduzir o tamanho do arquivo mantendo a qualidade. Ferramenta gratuita de otimização de imagens online.',
+  'image_optimize.format': 'Formato',
+  'image_optimize.output_format': 'Formato de Saída',
+  'image_optimize.auto': 'Auto',
   'image_optimize.quality': 'Qualidade',
   'image_optimize.original_size': 'Tamanho Original',
   'image_optimize.optimized_size': 'Tamanho Otimizado',

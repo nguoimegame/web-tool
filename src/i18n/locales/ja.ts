@@ -133,6 +133,9 @@ export const ja = {
   'image_optimize.title': '画像最適化',
   'image_optimize.description':
     '品質を維持しながらファイルサイズを削減するために画像を圧縮および最適化します。無料のオンライン画像最適化ツール。',
+  'image_optimize.format': 'フォーマット',
+  'image_optimize.output_format': '出力フォーマット',
+  'image_optimize.auto': '自動',
   'image_optimize.quality': '品質',
   'image_optimize.original_size': '元のサイズ',
   'image_optimize.optimized_size': '最適化されたサイズ',

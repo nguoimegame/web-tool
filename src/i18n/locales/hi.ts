@@ -133,6 +133,9 @@ export const hi = {
   'image_optimize.title': 'इमेज ऑप्टिमाइज़ करें',
   'image_optimize.description':
     'गुणवत्ता बनाए रखते हुए फ़ाइल का आकार कम करने के लिए अपनी छवियों को संपीड़ित और अनुकूलित करें। मुफ्त ऑनलाइन इमेज ऑप्टिमाइज़र टूल।',
+  'image_optimize.format': 'प्रारूप',
+  'image_optimize.output_format': 'आउटपुट प्रारूप',
+  'image_optimize.auto': 'स्वचालित',
   'image_optimize.quality': 'गुणवत्ता',
   'image_optimize.original_size': 'मूल आकार',
   'image_optimize.optimized_size': 'अनुकूलित आकार',

@@ -71,6 +71,19 @@ const activePage = 'image/optimize';
           </div>
 
           <details class="setting-group" open>
+            <summary>{t('image_optimize.format')}</summary>
+            <div class="setting">
+              <label for="format-select">{t('image_optimize.output_format')}</label>
+              <select id="format-select">
+                <option value="auto">{t('image_optimize.auto')}</option>
+                <option value="image/jpeg">JPEG</option>
+                <option value="image/png">PNG</option>
+                <option value="image/webp">WebP</option>
+              </select>
+            </div>
+          </details>
+
+          <details class="setting-group" open>
             <summary>{t('image_optimize.quality')}</summary>
             <div class="setting">
               <label for="quality-input">{t('image_optimize.quality')}</label>
@@ -102,6 +115,7 @@ const activePage = 'image/optimize';
 
       const qualitySlider = document.getElementById('quality-slider') as HTMLInputElement;
       const qualityInput = document.getElementById('quality-input') as HTMLInputElement;
+      const formatSelect = document.getElementById('format-select') as HTMLSelectElement;
 
       const resetBtn = document.getElementById('reset-btn');
       const uploadBtn = document.getElementById('upload-btn');
@@ -209,25 +223,62 @@ const activePage = 'image/optimize';
           ctx.drawImage(originalImage, 0, 0);
         }
 
+        // Determine output format
+        let outputFormat = formatSelect.value;
+        if (outputFormat === 'auto') {
+          // Check if image has transparency
+          const hasTransparency = checkTransparency(canvas, ctx);
+          outputFormat = hasTransparency ? 'image/png' : 'image/jpeg';
+        }
+
         canvas.toBlob(
           (blob) => {
             if (blob && optimizedSizeEl && compressionRatioEl && optimizationInfo) {
-              optimizedBlob = blob;
-              const optimizedSize = blob.size;
-              const ratio = ((1 - optimizedSize / originalFile!.size) * 100).toFixed(1);
+              // Use original file if it's smaller than optimized
+              if (blob.size >= originalFile!.size) {
+                optimizedBlob = originalFile!;
+                optimizedSizeEl.textContent = formatFileSize(originalFile!.size);
+                compressionRatioEl.textContent = '0%';
+                compressionRatioEl.style.color = 'var(--text-secondary)';
+              } else {
+                optimizedBlob = blob;
+                const optimizedSize = blob.size;
+                const ratio = ((1 - optimizedSize / originalFile!.size) * 100).toFixed(1);
 
-              optimizedSizeEl.textContent = formatFileSize(optimizedSize);
-              compressionRatioEl.textContent = `${ratio}%`;
-              compressionRatioEl.style.color =
-                parseFloat(ratio) > 0 ? 'var(--success-color, #10b981)' : 'var(--text-secondary)';
+                optimizedSizeEl.textContent = formatFileSize(optimizedSize);
+                compressionRatioEl.textContent = `${ratio}%`;
+                compressionRatioEl.style.color =
+                  parseFloat(ratio) > 0 ? 'var(--success-color, #10b981)' : 'var(--text-secondary)';
+              }
 
               optimizationInfo.style.display = 'flex';
             }
           },
-          originalFile.type,
+          outputFormat,
           quality
         );
       }
+
+      function checkTransparency(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D | null): boolean {
+        if (!ctx) return false;
+        try {
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imageData.data;
+          // Check alpha channel
+          for (let i = 3; i < data.length; i += 4) {
+            if (data[i] < 255) return true;
+          }
+          return false;
+        } catch (e) {
+          // If we can't check (CORS), assume PNG
+          return true;
+        }
+      }
+
+      // Format selector
+      formatSelect?.addEventListener('change', () => {
+        optimizeImage();
+      });
 
       // Quality Inputs
       qualitySlider?.addEventListener('input', (e: any) => {
@@ -250,7 +301,8 @@ const activePage = 'image/optimize';
           optimizationInfo &&
           downloadBtn &&
           qualitySlider &&
-          qualityInput
+          qualityInput &&
+          formatSelect
         ) {
           // Clear image
           originalImage = null;
@@ -263,9 +315,10 @@ const activePage = 'image/optimize';
           optimizationInfo.style.display = 'none';
           downloadBtn.style.display = 'none';
 
-          // Reset quality
+          // Reset quality and format
           qualitySlider.value = '80';
           qualityInput.value = '80';
+          formatSelect.value = 'auto';
         }
       });
 
@@ -275,7 +328,14 @@ const activePage = 'image/optimize';
 
         const link = document.createElement('a');
         const fileName = originalFile.name.replace(/\.[^/.]+$/, '');
-        const fileExt = originalFile.name.split('.').pop();
+        
+        // Get correct extension based on blob type
+        let fileExt = 'jpg';
+        if (optimizedBlob.type === 'image/png') fileExt = 'png';
+        else if (optimizedBlob.type === 'image/webp') fileExt = 'webp';
+        else if (optimizedBlob.type === 'image/jpeg') fileExt = 'jpg';
+        else fileExt = originalFile.name.split('.').pop() || 'jpg';
+        
         link.download = `optimized_${fileName}.${fileExt}`;
         link.href = URL.createObjectURL(optimizedBlob);
         link.click();

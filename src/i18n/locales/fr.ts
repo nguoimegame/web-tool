@@ -133,6 +133,9 @@ export const fr = {
   'image_optimize.title': 'Optimiser Image',
   'image_optimize.description':
     'Compressez et optimisez vos images pour réduire la taille du fichier tout en maintenant la qualité. Outil gratuit d\'optimisation d\'images en ligne.',
+  'image_optimize.format': 'Format',
+  'image_optimize.output_format': 'Format de Sortie',
+  'image_optimize.auto': 'Auto',
   'image_optimize.quality': 'Qualité',
   'image_optimize.original_size': 'Taille Originale',
   'image_optimize.optimized_size': 'Taille Optimisée',
