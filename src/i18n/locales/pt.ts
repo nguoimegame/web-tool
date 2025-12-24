@@ -129,6 +129,39 @@ export const pt = {
   'syntax_highlight.description':
     'Esta ferramenta online de realce de sintaxe ajuda você a realçar seu código. Suporta muitas linguagens como JavaScript, C++, C#, Java... e assim por diante.',
 
+  // Image Crop & Rotate
+  'image_crop_rotate.title': 'Recortar e Girar Imagem',
+  'image_crop_rotate.description':
+    'Recorte e gire suas imagens com facilidade. Ferramenta gratuita de recorte e rotação de imagens online.',
+  'image_crop_rotate.crop': 'Recortar',
+  'image_crop_rotate.rotate': 'Girar',
+  'image_crop_rotate.flip': 'Virar',
+  'image_crop_rotate.flip_horizontal': 'Virar Horizontalmente',
+  'image_crop_rotate.flip_vertical': 'Virar Verticalmente',
+  'image_crop_rotate.rotate_left': 'Girar Esquerda 90°',
+  'image_crop_rotate.rotate_right': 'Girar Direita 90°',
+  'image_crop_rotate.free_crop': 'Recorte Livre',
+  'image_crop_rotate.aspect_ratio': 'Proporção',
+  'image_crop_rotate.original': 'Original',
+  'image_crop_rotate.square': 'Quadrado (1:1)',
+  'image_crop_rotate.apply_crop': 'Aplicar Recorte',
+  'image_crop_rotate.reset_crop': 'Redefinir Recorte',
+  'image_crop_rotate.quality': 'Qualidade',
+  'image_crop_rotate.error_invalid_file': 'Por favor, faça upload de um arquivo de imagem',
+  'image_crop_rotate.error_no_crop_area': 'Por favor, selecione uma área de recorte primeiro',
+
+  // Image Optimize
+  'image_optimize.title': 'Otimizar Imagem',
+  'image_optimize.description':
+    'Comprima e otimize suas imagens para reduzir o tamanho do arquivo mantendo a qualidade. Ferramenta gratuita de otimização de imagens online.',
+  'image_optimize.format': 'Formato',
+  'image_optimize.output_format': 'Formato de Saída',
+  'image_optimize.auto': 'Auto',
+  'image_optimize.quality': 'Qualidade',
+  'image_optimize.original_size': 'Tamanho Original',
+  'image_optimize.optimized_size': 'Tamanho Otimizado',
+  'image_optimize.compression_ratio': 'Taxa de Compressão',
+
   // CRC
   'crc.title': 'Calculadora CRC',
   'crc.description':
