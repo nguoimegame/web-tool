@@ -140,6 +140,39 @@ export const en = {
   'image_resize.scale_percentage': 'Scale Percentage',
   'image_resize.quality': 'Quality',
 
+  // Image Crop & Rotate
+  'image_crop_rotate.title': 'Crop & Rotate Image',
+  'image_crop_rotate.description':
+    'Crop and rotate your images with ease. Free online image crop and rotate tool.',
+  'image_crop_rotate.crop': 'Crop',
+  'image_crop_rotate.rotate': 'Rotate',
+  'image_crop_rotate.flip': 'Flip',
+  'image_crop_rotate.flip_horizontal': 'Flip Horizontal',
+  'image_crop_rotate.flip_vertical': 'Flip Vertical',
+  'image_crop_rotate.rotate_left': 'Rotate Left 90°',
+  'image_crop_rotate.rotate_right': 'Rotate Right 90°',
+  'image_crop_rotate.free_crop': 'Free Crop',
+  'image_crop_rotate.aspect_ratio': 'Aspect Ratio',
+  'image_crop_rotate.original': 'Original',
+  'image_crop_rotate.square': 'Square (1:1)',
+  'image_crop_rotate.apply_crop': 'Apply Crop',
+  'image_crop_rotate.reset_crop': 'Reset Crop',
+  'image_crop_rotate.quality': 'Quality',
+  'image_crop_rotate.error_invalid_file': 'Please upload an image file',
+  'image_crop_rotate.error_no_crop_area': 'Please select a crop area first',
+
+  // Image Optimize
+  'image_optimize.title': 'Optimize Image',
+  'image_optimize.description':
+    'Compress and optimize your images to reduce file size while maintaining quality. Free online image optimizer tool.',
+  'image_optimize.format': 'Format',
+  'image_optimize.output_format': 'Output Format',
+  'image_optimize.auto': 'Auto',
+  'image_optimize.quality': 'Quality',
+  'image_optimize.original_size': 'Original Size',
+  'image_optimize.optimized_size': 'Optimized Size',
+  'image_optimize.compression_ratio': 'Compression Ratio',
+
   // CRC
   'crc.title': 'CRC Calculator',
   'crc.description': 'Calculate CRC checksums. Free online CRC calculator tool.',

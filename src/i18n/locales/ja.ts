@@ -129,6 +129,39 @@ export const ja = {
   'syntax_highlight.description':
     'このオンラインシンタックスハイライトツールは、コードをハイライトするのに役立ちます。JavaScript、C++、C#、Javaなどの多くの言語をサポートしています。',
 
+  // Image Crop & Rotate
+  'image_crop_rotate.title': '画像の切り抜きと回転',
+  'image_crop_rotate.description':
+    '画像を簡単に切り抜いて回転できます。無料のオンライン画像切り抜き・回転ツール。',
+  'image_crop_rotate.crop': '切り抜き',
+  'image_crop_rotate.rotate': '回転',
+  'image_crop_rotate.flip': '反転',
+  'image_crop_rotate.flip_horizontal': '水平反転',
+  'image_crop_rotate.flip_vertical': '垂直反転',
+  'image_crop_rotate.rotate_left': '左に90°回転',
+  'image_crop_rotate.rotate_right': '右に90°回転',
+  'image_crop_rotate.free_crop': '自由切り抜き',
+  'image_crop_rotate.aspect_ratio': 'アスペクト比',
+  'image_crop_rotate.original': 'オリジナル',
+  'image_crop_rotate.square': '正方形 (1:1)',
+  'image_crop_rotate.apply_crop': '切り抜きを適用',
+  'image_crop_rotate.reset_crop': '切り抜きをリセット',
+  'image_crop_rotate.quality': '品質',
+  'image_crop_rotate.error_invalid_file': '画像ファイルをアップロードしてください',
+  'image_crop_rotate.error_no_crop_area': 'まず切り抜き領域を選択してください',
+
+  // Image Optimize
+  'image_optimize.title': '画像最適化',
+  'image_optimize.description':
+    '品質を維持しながらファイルサイズを削減するために画像を圧縮および最適化します。無料のオンライン画像最適化ツール。',
+  'image_optimize.format': 'フォーマット',
+  'image_optimize.output_format': '出力フォーマット',
+  'image_optimize.auto': '自動',
+  'image_optimize.quality': '品質',
+  'image_optimize.original_size': '元のサイズ',
+  'image_optimize.optimized_size': '最適化されたサイズ',
+  'image_optimize.compression_ratio': '圧縮率',
+
   // CRC
   'crc.title': 'CRC 計算機',
   'crc.description': 'CRC チェックサムを計算します。無料のオンライン CRC 計算ツール。',

@@ -129,6 +129,39 @@ export const hi = {
   'syntax_highlight.description':
     'यह सिंटैक्स हाइलाइट ऑनलाइन टूल आपको अपने कोड को हाइलाइट करने में मदद करता है। जावास्क्रिप्ट, सी++, सी#, जावा... आदि जैसी कई भाषाओं का समर्थन करता है।',
 
+  // Image Crop & Rotate
+  'image_crop_rotate.title': 'इमेज क्रॉप और रोटेट करें',
+  'image_crop_rotate.description':
+    'अपनी छवियों को आसानी से क्रॉप और घुमाएं। मुफ्त ऑनलाइन इमेज क्रॉप और रोटेट टूल।',
+  'image_crop_rotate.crop': 'क्रॉप',
+  'image_crop_rotate.rotate': 'रोटेट',
+  'image_crop_rotate.flip': 'फ्लिप',
+  'image_crop_rotate.flip_horizontal': 'क्षैतिज फ्लिप',
+  'image_crop_rotate.flip_vertical': 'लंबवत फ्लिप',
+  'image_crop_rotate.rotate_left': 'बाएं 90° घुमाएं',
+  'image_crop_rotate.rotate_right': 'दाएं 90° घुमाएं',
+  'image_crop_rotate.free_crop': 'मुक्त क्रॉप',
+  'image_crop_rotate.aspect_ratio': 'आस्पेक्ट रेशियो',
+  'image_crop_rotate.original': 'मूल',
+  'image_crop_rotate.square': 'वर्ग (1:1)',
+  'image_crop_rotate.apply_crop': 'क्रॉप लागू करें',
+  'image_crop_rotate.reset_crop': 'क्रॉप रीसेट करें',
+  'image_crop_rotate.quality': 'गुणवत्ता',
+  'image_crop_rotate.error_invalid_file': 'कृपया एक छवि फ़ाइल अपलोड करें',
+  'image_crop_rotate.error_no_crop_area': 'कृपया पहले एक क्रॉप क्षेत्र चुनें',
+
+  // Image Optimize
+  'image_optimize.title': 'इमेज ऑप्टिमाइज़ करें',
+  'image_optimize.description':
+    'गुणवत्ता बनाए रखते हुए फ़ाइल का आकार कम करने के लिए अपनी छवियों को संपीड़ित और अनुकूलित करें। मुफ्त ऑनलाइन इमेज ऑप्टिमाइज़र टूल।',
+  'image_optimize.format': 'प्रारूप',
+  'image_optimize.output_format': 'आउटपुट प्रारूप',
+  'image_optimize.auto': 'स्वचालित',
+  'image_optimize.quality': 'गुणवत्ता',
+  'image_optimize.original_size': 'मूल आकार',
+  'image_optimize.optimized_size': 'अनुकूलित आकार',
+  'image_optimize.compression_ratio': 'संपीड़न अनुपात',
+
   // CRC
   'crc.title': 'CRC कैलकुलेटर',
   'crc.description': 'CRC चेकसम की गणना करें। मुफ्त ऑनलाइन CRC कैलकुलेटर टूल।',
