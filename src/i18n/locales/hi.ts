@@ -618,4 +618,78 @@ export const hi = {
   'ecdsa_key_generator.title': 'ECDSA कुंजी जनरेटर',
   'ecdsa_key_generator.description':
     'यह online tool आपको ECDSA कुंजियों की एक जोड़ी उत्पन्न करने में मदद करता है। यह PEM, HEX और Base64 प्रारूपों के साथ-साथ विभिन्न वक्रों का समर्थन करता है। PEM प्रारूप PKCS#1, PKCS#5 और PKCS#8 का समर्थन करता है।',
+
+  // S Notes
+  's_notes.title': 'S Notes',
+  's_notes.description':
+    'उच्च-प्रदर्शन, स्थानीय-पहले नोट-टेकिंग ऐप जिसमें ब्लॉक-आधारित संपादन, Markdown समर्थन, नेस्टेड फ़ोल्डर, टैग और तत्काल पूर्ण-टेक्स्ट खोज है। सभी डेटा आपके ब्राउज़र में स्थानीय रूप से संग्रहीत है।',
+  's_notes.new_note': 'नया नोट',
+  's_notes.new_folder': 'नया फ़ोल्डर',
+  's_notes.search_placeholder': 'नोट्स खोजें...',
+  's_notes.all_notes': 'सभी नोट्स',
+  's_notes.folders': 'फ़ोल्डर्स',
+  's_notes.tags': 'टैग्स',
+  's_notes.no_notes': 'अभी तक कोई नोट नहीं। अपना पहला नोट बनाएं!',
+  's_notes.no_results': 'कोई मेल खाने वाले नोट नहीं मिले',
+  's_notes.untitled': 'बिना शीर्षक',
+  's_notes.delete_confirm': 'क्या आप वाकई इस नोट को हटाना चाहते हैं?',
+  's_notes.delete_folder_confirm':
+    'क्या आप वाकई इस फ़ोल्डर और इसकी सभी सामग्री को हटाना चाहते हैं?',
+  's_notes.export': 'निर्यात',
+  's_notes.import': 'आयात',
+  's_notes.settings': 'सेटिंग्स',
+  's_notes.add_tag': 'टैग जोड़ें',
+  's_notes.remove_tag': 'टैग हटाएं',
+  's_notes.move_to': 'में ले जाएं',
+  's_notes.detach': 'नई विंडो में खोलें',
+  's_notes.editor_placeholder': 'टाइप करना शुरू करें या कमांड के लिए / का उपयोग करें...',
+  's_notes.last_modified': 'अंतिम संशोधित',
+  's_notes.created': 'बनाया गया',
+  's_notes.delete': 'हटाएं',
+  's_notes.cancel': 'रद्द करें',
+  's_notes.add': 'जोड़ें',
+  's_notes.create': 'बनाएं',
+  's_notes.tag_name': 'टैग का नाम',
+  's_notes.folder_name': 'फ़ोल्डर का नाम',
+  's_notes.parent_folder': 'पैरेंट फ़ोल्डर',
+
+  // JWT Decoder
+  'jwt_decoder.title': 'JWT डिकोडर',
+  'jwt_decoder.description':
+    'यह ऑनलाइन JWT डिकोड टूल आपको JSON Web Token को डिकोड, मान्य और सत्यापित करने में मदद करता है। इसके हेडर और पेलोड को डिकोड करने के लिए नीचे एक JWT पेस्ट करें। वैकल्पिक रूप से एक सीक्रेट की के साथ सिग्नेचर सत्यापित करें।',
+  'jwt_decoder.paste_instruction':
+    'नीचे एक JWT पेस्ट करें जिसे आप डिकोड, मान्य और सत्यापित करना चाहते हैं।',
+  'jwt_decoder.generate_example': 'उदाहरण बनाएं',
+  'jwt_decoder.encoded_value': 'एन्कोडेड मान',
+  'jwt_decoder.json_web_token': 'JSON Web Token (JWT)',
+  'jwt_decoder.enable_auto_focus': 'ऑटो-फोकस सक्षम करें',
+  'jwt_decoder.jwt_placeholder': 'अपना JWT यहां पेस्ट करें...',
+  'jwt_decoder.decoded_header': 'डिकोडेड हेडर',
+  'jwt_decoder.decoded_payload': 'डिकोडेड पेलोड',
+  'jwt_decoder.claims_table': 'क्लेम्स टेबल',
+  'jwt_decoder.claim': 'क्लेम',
+  'jwt_decoder.value': 'मान',
+  'jwt_decoder.signature_verification': 'JWT सिग्नेचर सत्यापन',
+  'jwt_decoder.optional': 'वैकल्पिक',
+  'jwt_decoder.secret_instruction':
+    'नीचे JWT पर हस्ताक्षर करने के लिए उपयोग की जाने वाली सीक्रेट की दर्ज करें:',
+  'jwt_decoder.secret': 'सीक्रेट',
+  'jwt_decoder.secret_placeholder': 'सीक्रेट की दर्ज करें...',
+  'jwt_decoder.encoding_format': 'एन्कोडिंग फॉर्मेट',
+
+  // JWT Encoder
+  'jwt_encoder.title': 'JWT एनकोडर',
+  'jwt_encoder.description':
+    'यह ऑनलाइन JWT एनकोड टूल आपको JSON Web Token बनाने और साइन करने में मदद करता है। एक साइन किया हुआ JWT बनाने के लिए हेडर, पेलोड और सीक्रेट भरें।',
+  'jwt_encoder.fill_instruction': 'एक साइन किया हुआ JWT बनाने के लिए नीचे के फील्ड भरें।',
+  'jwt_encoder.generate_example': 'उदाहरण बनाएं',
+  'jwt_encoder.header': 'हेडर',
+  'jwt_encoder.algorithm_token_type': 'एल्गोरिथम और टोकन प्रकार',
+  'jwt_encoder.payload': 'पेलोड',
+  'jwt_encoder.data': 'डेटा',
+  'jwt_encoder.sign_jwt': 'JWT साइन करें',
+  'jwt_encoder.secret': 'सीक्रेट',
+  'jwt_encoder.secret_placeholder': 'अपनी सीक्रेट की दर्ज करें...',
+  'jwt_encoder.encoding_format': 'एन्कोडिंग फॉर्मेट',
+  'jwt_encoder.json_web_token': 'JSON Web Token',
 };
