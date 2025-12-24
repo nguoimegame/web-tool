@@ -163,9 +163,6 @@ const activePage = 'image/crop-rotate';
       let flipVertical = false;
       let cropArea: { x: number; y: number; width: number; height: number } | null = null;
       let isDragging = false;
-      let isResizing = false;
-      let dragStart = { x: 0, y: 0 };
-      let resizeHandle: string | null = null;
 
       // Drag and Drop handlers
       dropZone?.addEventListener('click', (e) => {
@@ -388,7 +385,6 @@ const activePage = 'image/crop-rotate';
           // Start new crop area
           cropArea = { x, y, width: 0, height: 0 };
           isDragging = true;
-          dragStart = { x, y };
         }
       });
 
