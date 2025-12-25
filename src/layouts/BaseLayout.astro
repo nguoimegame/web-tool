@@ -132,6 +132,9 @@ const pageDescription = description || defaultDescription;
       },
     })} />
 
+    <!-- Additional head content from child components -->
+    <slot name="head-extra" />
+
     <script is:inline>
       var delayScripts = [];
       var waitLoadCount = 0;
