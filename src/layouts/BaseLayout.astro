@@ -55,8 +55,11 @@ const pageDescription = description || defaultDescription;
     <meta name="author" content="webtool" />
     <meta name="copyright" content="webtool" />
     <meta name="description" content={pageDescription} />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
@@ -68,7 +71,10 @@ const pageDescription = description || defaultDescription;
       languages
         .filter((lang) => lang !== currentLang)
         .map((lang) => (
-          <meta property="og:locale:alternate" content={langNames[lang as keyof typeof langNames]} />
+          <meta
+            property="og:locale:alternate"
+            content={langNames[lang as keyof typeof langNames]}
+          />
         ))
     }
     <meta property="og:image" content="https://webtool.center/images/logo.png" />
@@ -76,23 +82,23 @@ const pageDescription = description || defaultDescription;
     <meta property="og:image:height" content="512" />
     <meta property="og:image:type" content="image/png" />
     <meta property="article:author" content="webtool" />
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content="https://webtool.center/images/logo.png" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Alternate language versions -->
     {alternateUrls.map(({ lang, url }) => <link rel="alternate" hreflang={lang} href={url} />)}
     <link rel="alternate" hreflang="x-default" href={alternateUrls[0].url} />
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
-    
+
     <!-- Favicon -->
     <link rel="icon" href="/images/logo.png" />
     <link rel="apple-touch-icon" href="/images/logo.png" />
@@ -101,36 +107,39 @@ const pageDescription = description || defaultDescription;
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
     <link rel="dns-prefetch" href="https://code.jquery.com" />
-    
+
     <!-- Preload critical resources (version must match actual resource links below) -->
     <link rel="preload" href="/css/style.css?v=27" as="style" />
     <link rel="preload" href="https://unpkg.com/lucide@latest" as="script" crossorigin />
 
     <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Web Tools',
-      description: pageDescription,
-      url: 'https://webtool.center',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: 'https://webtool.center/?search={search_term_string}',
-        },
-        'query-input': 'required name=search_term_string',
-      },
-      inLanguage: languages,
-      publisher: {
-        '@type': 'Organization',
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
         name: 'Web Tools',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://webtool.center/images/logo.png',
+        description: pageDescription,
+        url: 'https://webtool.center',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: 'https://webtool.center/?search={search_term_string}',
+          },
+          'query-input': 'required name=search_term_string',
         },
-      },
-    })} />
+        inLanguage: languages,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Web Tools',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://webtool.center/images/logo.png',
+          },
+        },
+      })}
+    />
 
     <!-- Additional head content from child components -->
     <slot name="head-extra" />

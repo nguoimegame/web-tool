@@ -8,18 +8,23 @@ const supportedLangs = Object.keys(languages);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Online tools for hashing, encoding, decoding, encryption, decryption, formatting, and more. Privacy-focused client-side processing." />
+    <meta
+      name="description"
+      content="Online tools for hashing, encoding, decoding, encryption, decryption, formatting, and more. Privacy-focused client-side processing."
+    />
     <meta name="robots" content="index, follow" />
     <title>Web Tools - Online Cryptography & Utilities</title>
     <link rel="canonical" href="https://webtool.center/" />
     <link rel="icon" href="/images/logo.png" />
-    
+
     <!-- Language alternates -->
-    {supportedLangs.map((lang) => (
-      <link rel="alternate" hreflang={lang} href={`https://webtool.center/${lang}`} />
-    ))}
+    {
+      supportedLangs.map((lang) => (
+        <link rel="alternate" hreflang={lang} href={`https://webtool.center/${lang}`} />
+      ))
+    }
     <link rel="alternate" hreflang="x-default" href="https://webtool.center/en" />
-    
+
     <script is:inline define:vars={{ supportedLangs }}>
       const defaultLang = 'en';
       const userLang = navigator.language || navigator.userLanguage;

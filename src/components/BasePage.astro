@@ -49,8 +49,12 @@ const breadcrumbStructuredData = {
 
 <BaseLayout title={`${title} - Web Tools`} description={description}>
   <!-- Breadcrumb Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbStructuredData)} slot="head-extra" />
-  
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumbStructuredData)}
+    slot="head-extra"
+  />
+
   <div id="app">
     <Sidebar activePage={activePage} />
     <div id="content">

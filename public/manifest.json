@@ -15,11 +15,7 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": [
-    "utilities",
-    "productivity",
-    "developer tools"
-  ],
+  "categories": ["utilities", "productivity", "developer tools"],
   "screenshots": [],
   "shortcuts": [
     {
