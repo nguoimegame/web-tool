@@ -128,6 +128,7 @@ const t = useTranslations(lang as any);
         methodLoad();
       },
     });
+    ++waitLoadCount;
     delayScripts.push({
       src: '/js/jwt.js?v=1',
       onload: function () {
@@ -197,7 +198,7 @@ const t = useTranslations(lang as any);
         secretInput.value = 'a-string-secret-at-least-256-bits-long';
       }
 
-      if (sharedData.encoding) {
+      if (sharedData.encoding && secretEncoding) {
         secretEncoding.value = sharedData.encoding;
       }
 

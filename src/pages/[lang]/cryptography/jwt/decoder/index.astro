@@ -170,6 +170,7 @@ const t = useTranslations(lang as any);
         methodLoad();
       },
     });
+    ++waitLoadCount;
     delayScripts.push({
       src: '/js/jwt.js?v=1',
       onload: function () {
@@ -224,7 +225,7 @@ const t = useTranslations(lang as any);
         loadedFromShared = true;
       }
 
-      if (sharedData.encoding) {
+      if (sharedData.encoding && secretEncoding) {
         secretEncoding.value = sharedData.encoding;
       }
 
