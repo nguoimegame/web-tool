@@ -165,6 +165,12 @@ const t = useTranslations(lang as any);
   <script is:inline>
     ++waitLoadCount;
     delayScripts.push({
+      src: '/js/jwt-sync.js',
+      onload: function () {
+        methodLoad();
+      },
+    });
+    delayScripts.push({
       src: '/js/jwt.js?v=1',
       onload: function () {
         initJwtDecoder();
@@ -203,8 +209,27 @@ const t = useTranslations(lang as any);
       const payloadJsonText = document.getElementById('payload-json-text');
       const generateExampleBtn = document.getElementById('generate-example');
 
-      // Set default example if empty
-      if (!jwtInput.value.trim()) {
+      // Load data from shared storage
+      const sharedData = loadJwtFromSharedStorage();
+      let loadedFromShared = false;
+
+      // Set values from shared storage or generate example
+      if (sharedData.token && !jwtInput.value.trim()) {
+        jwtInput.value = sharedData.token;
+        loadedFromShared = true;
+      }
+
+      if (sharedData.secret && !jwtSecret.value.trim()) {
+        jwtSecret.value = sharedData.secret;
+        loadedFromShared = true;
+      }
+
+      if (sharedData.encoding) {
+        secretEncoding.value = sharedData.encoding;
+      }
+
+      // Set default example if empty and no shared data
+      if (!jwtInput.value.trim() && !loadedFromShared) {
         const example = generateJwtExample();
         jwtEncode(example.header, example.payload, example.secret, 'utf-8').then((result) => {
           if (result.success) {
@@ -274,6 +299,15 @@ const t = useTranslations(lang as any);
           // Update claims tables
           updateClaimsTable('header-claims-table', parseClaimsToTable(decoded.header));
           updateClaimsTable('payload-claims-table', parseClaimsToTable(decoded.payload));
+
+          // Save decoded data to shared storage
+          saveJwtToSharedStorage({
+            token: token,
+            header: decoded.header,
+            payload: decoded.payload,
+            secret: jwtSecret.value.trim(),
+            encoding: secretEncoding.value,
+          });
 
           // Verify signature if secret is provided
           verifySignature();
@@ -367,6 +401,29 @@ const t = useTranslations(lang as any);
       if (jwtInput.value) {
         decodeAndDisplay();
       }
+
+      // Listen for sync updates from encoder page
+      window.addEventListener('jwtSyncUpdate', function (e) {
+        const sharedData = loadJwtFromSharedStorage();
+
+        // Update JWT input if available and different
+        if (sharedData.token && jwtInput.value !== sharedData.token) {
+          jwtInput.value = sharedData.token;
+          decodeAndDisplay();
+        }
+
+        // Update secret if available and different
+        if (sharedData.secret !== undefined && jwtSecret.value !== sharedData.secret) {
+          jwtSecret.value = sharedData.secret;
+          verifySignature();
+        }
+
+        // Update encoding if available and different
+        if (sharedData.encoding && secretEncoding.value !== sharedData.encoding) {
+          secretEncoding.value = sharedData.encoding;
+          verifySignature();
+        }
+      });
     }
   </script>
 </BasePage>

@@ -123,6 +123,12 @@ const t = useTranslations(lang as any);
   <script is:inline>
     ++waitLoadCount;
     delayScripts.push({
+      src: '/js/jwt-sync.js',
+      onload: function () {
+        methodLoad();
+      },
+    });
+    delayScripts.push({
       src: '/js/jwt.js?v=1',
       onload: function () {
         initJwtEncoder();
@@ -161,19 +167,38 @@ const t = useTranslations(lang as any);
       const jwtOutputText = document.getElementById('jwt-output-text');
       const generateExampleBtn = document.getElementById('generate-example');
 
-      // Set default values if empty
-      if (!headerInput.value.trim()) {
+      // Load data from shared storage
+      const sharedData = loadJwtFromSharedStorage();
+      let loadedFromShared = false;
+
+      // Set values from shared storage or defaults
+      if (sharedData.header && !headerInput.value.trim()) {
+        headerInput.value = JSON.stringify(sharedData.header, null, 2);
+        loadedFromShared = true;
+      } else if (!headerInput.value.trim()) {
         headerInput.value = JSON.stringify({ alg: 'HS256', typ: 'JWT' }, null, 2);
       }
-      if (!payloadInput.value.trim()) {
+
+      if (sharedData.payload && !payloadInput.value.trim()) {
+        payloadInput.value = JSON.stringify(sharedData.payload, null, 2);
+        loadedFromShared = true;
+      } else if (!payloadInput.value.trim()) {
         payloadInput.value = JSON.stringify(
           { sub: '1234567890', name: 'John Doe', iat: 1516239022 },
           null,
           2
         );
       }
-      if (!secretInput.value.trim()) {
+
+      if (sharedData.secret && !secretInput.value.trim()) {
+        secretInput.value = sharedData.secret;
+        loadedFromShared = true;
+      } else if (!secretInput.value.trim()) {
         secretInput.value = 'a-string-secret-at-least-256-bits-long';
+      }
+
+      if (sharedData.encoding) {
+        secretEncoding.value = sharedData.encoding;
       }
 
       // Validate JSON input
@@ -246,6 +271,15 @@ const t = useTranslations(lang as any);
             parts[2] +
             '</span>';
           jwtOutputText.value = result.token;
+
+          // Save to shared storage
+          saveJwtToSharedStorage({
+            token: result.token,
+            header: header,
+            payload: payload,
+            secret: secret,
+            encoding: encoding,
+          });
         } else {
           jwtOutput.innerHTML = '<span style="color: #c62828;">' + result.error + '</span>';
           jwtOutputText.value = '';
@@ -265,6 +299,37 @@ const t = useTranslations(lang as any);
       if (headerInput.value || payloadInput.value || secretInput.value) {
         encodeJwt();
       }
+
+      // Listen for sync updates from decoder page
+      window.addEventListener('jwtSyncUpdate', function (e) {
+        const sharedData = loadJwtFromSharedStorage();
+
+        // Update inputs if data is available and different from current values
+        if (sharedData.header) {
+          const newHeaderStr = JSON.stringify(sharedData.header, null, 2);
+          if (headerInput.value !== newHeaderStr) {
+            headerInput.value = newHeaderStr;
+          }
+        }
+
+        if (sharedData.payload) {
+          const newPayloadStr = JSON.stringify(sharedData.payload, null, 2);
+          if (payloadInput.value !== newPayloadStr) {
+            payloadInput.value = newPayloadStr;
+          }
+        }
+
+        if (sharedData.secret !== undefined && secretInput.value !== sharedData.secret) {
+          secretInput.value = sharedData.secret;
+        }
+
+        if (sharedData.encoding && secretEncoding.value !== sharedData.encoding) {
+          secretEncoding.value = sharedData.encoding;
+        }
+
+        // Re-encode with updated data
+        encodeJwt();
+      });
     }
   </script>
 </BasePage>
