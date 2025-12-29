@@ -67,6 +67,7 @@ const t = useTranslations(lang as any);
       untitled: ${JSON.stringify(t('s_notes.untitled'))},
       category: ${JSON.stringify(t('s_notes.category'))},
       confirmDelete: ${JSON.stringify(t('s_notes.confirm_delete'))},
+      delete: ${JSON.stringify(t('s_notes.delete'))},
       noNotes: ${JSON.stringify(t('s_notes.no_notes'))},
       loading: ${JSON.stringify(t('s_notes.loading') || 'Loading...')},
       ready: ${JSON.stringify(t('s_notes.ready') || 'Ready')},
@@ -461,5 +462,49 @@ const t = useTranslations(lang as any);
   [data-theme='dark'] .delete-note-btn::before,
   [data-theme='dark'] .open-window-btn::before {
     background: var(--var-border-color);
+  }
+
+  /* Context Menu */
+  .note-context-menu {
+    position: fixed;
+    background: var(--var-main-bg-color);
+    border: 1px solid var(--var-border-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0.25rem 0;
+    z-index: 10000;
+    min-width: 150px;
+    display: none;
+  }
+
+  .note-context-menu.show {
+    display: block;
+  }
+
+  .note-context-menu-item {
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: var(--var-font-color);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .note-context-menu-item:hover {
+    background: var(--var-title-bg-color);
+  }
+
+  .note-context-menu-item.delete {
+    color: #ef4444;
+  }
+
+  .note-context-menu-item.delete:hover {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  [data-theme='dark'] .note-context-menu {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 </style>

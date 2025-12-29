@@ -110,6 +110,8 @@
   }
 
   async function deleteNote(id) {
+    console.log('Deleting note from database:', id);
+    
     // Clear caches before deleting
     cleanupNote();
     
@@ -124,8 +126,23 @@
       const store = transaction.objectStore(NOTES_STORE);
       const request = store.delete(id);
       
-      request.onsuccess = () => resolve();
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+        console.log('Note deleted from database successfully:', id);
+        resolve();
+      };
+      request.onerror = () => {
+        console.error('Failed to delete note from database:', id, request.error);
+        reject(request.error);
+      };
+      
+      // Wait for transaction to complete
+      transaction.oncomplete = () => {
+        console.log('Delete transaction completed for note:', id);
+      };
+      transaction.onerror = () => {
+        console.error('Delete transaction failed for note:', id, transaction.error);
+        reject(transaction.error);
+      };
     });
   }
 
@@ -993,6 +1010,173 @@
     }
   }
 
+  // Context Menu
+  let contextMenu = null;
+  let contextMenuNoteId = null;
+
+  function createContextMenu() {
+    if (contextMenu) return contextMenu;
+    
+    contextMenu = document.createElement('div');
+    contextMenu.className = 'note-context-menu';
+    contextMenu.innerHTML = `
+      <div class="note-context-menu-item delete" data-action="delete">
+        <span>🗑️</span>
+        <span>${t.delete || 'Delete'}</span>
+      </div>
+    `;
+    
+    document.body.appendChild(contextMenu);
+    
+    // Handle menu item clicks
+    contextMenu.addEventListener('click', async (e) => {
+      const item = e.target.closest('.note-context-menu-item');
+      if (!item) return;
+      
+      const action = item.dataset.action;
+      const noteIdToDelete = contextMenuNoteId;
+      hideContextMenu();
+      
+      if (action === 'delete' && noteIdToDelete) {
+        console.log('Context menu delete clicked for note:', noteIdToDelete);
+        try {
+          // Select the note first if it's not already active
+          if (noteIdToDelete !== activeNoteId) {
+            console.log('Selecting note before delete:', noteIdToDelete);
+            await selectNote(noteIdToDelete);
+          }
+          
+          // Now delete the active note
+          if (!activeNoteId) {
+            console.error('No active note after selection');
+            return;
+          }
+
+          const note = await getNote(activeNoteId);
+          if (!note) {
+            console.error('Note not found:', activeNoteId);
+            return;
+          }
+
+          console.log('About to show confirm dialog for note:', note.title);
+          const confirmMsg = `${t.confirmDelete || 'Are you sure you want to delete this note?'}\n\n"${note.title}"`;
+          
+          if (confirm(confirmMsg)) {
+            console.log('User confirmed deletion');
+            const deletedId = activeNoteId;
+            
+            // Find next note to select
+            let nextNote = null;
+            const currentIndex = notes.findIndex(n => n.id === deletedId);
+            
+            if (notes.length > 1) {
+              // Try next note, if not available then previous
+              nextNote = notes[currentIndex + 1] || notes[currentIndex - 1];
+            }
+            
+            updateStatus('syncing', t.syncing || 'Deleting...');
+            
+            console.log('Calling deleteNote for:', deletedId);
+            // Delete the note
+            await deleteNote(deletedId);
+            console.log('deleteNote completed, updating UI');
+            
+            // Remove from notes array
+            const noteIndex = notes.findIndex(n => n.id === deletedId);
+            if (noteIndex !== -1) {
+              notes.splice(noteIndex, 1);
+              console.log('Removed from notes array, remaining notes:', notes.length);
+            }
+            
+            // Clear active note
+            activeNoteId = null;
+            localStorage.removeItem('snotes-active');
+            
+            // Select next note or show empty state
+            if (nextNote) {
+              await selectNote(nextNote.id);
+            } else {
+              // No notes left
+              if (editor) {
+                editor.setMarkdown('');
+              }
+              showEmptyState();
+            }
+            
+            // Always refresh the notes list
+            renderNotesList();
+            
+            updateStatus('ready', t.ready);
+            
+            console.log(`Deleted note: ${note.title}`);
+          } else {
+            console.log('User cancelled deletion');
+          }
+        } catch (e) {
+          console.error('Failed to delete note:', e);
+          updateStatus('error', t.error);
+          alert('Failed to delete note. Please try again.');
+        }
+      }
+    });
+    
+    // Hide menu on click outside
+    document.addEventListener('click', (e) => {
+      if (contextMenu && !contextMenu.contains(e.target)) {
+        hideContextMenu();
+      }
+    });
+    
+    // Hide menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hideContextMenu();
+      }
+    });
+    
+    // Hide menu on scroll
+    notesList.addEventListener('scroll', () => {
+      hideContextMenu();
+    });
+    
+    return contextMenu;
+  }
+
+  function showContextMenu(event, noteId) {
+    const menu = createContextMenu();
+    contextMenuNoteId = noteId;
+    
+    // Position menu at mouse cursor
+    const x = event.clientX;
+    const y = event.clientY;
+    
+    menu.style.left = x + 'px';
+    menu.style.top = y + 'px';
+    menu.classList.add('show');
+    
+    // Adjust position if menu goes off screen
+    requestAnimationFrame(() => {
+      const rect = menu.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      if (rect.right > viewportWidth) {
+        menu.style.left = (x - rect.width) + 'px';
+      }
+      
+      if (rect.bottom > viewportHeight) {
+        menu.style.top = (y - rect.height) + 'px';
+      }
+    });
+  }
+
+  function hideContextMenu() {
+    if (contextMenu) {
+      contextMenu.classList.remove('show');
+      contextMenuNoteId = null;
+    }
+  }
+
   // Render notes list
   async function renderNotesList(filter = '') {
     let displayNotes = filter ? await searchNotes(filter) : notes;
@@ -1021,12 +1205,10 @@
 
       noteItem.addEventListener('click', () => selectNote(note.id));
       
-      // Right click to delete
-      noteItem.addEventListener('contextmenu', async (e) => {
+      // Right click to show context menu
+      noteItem.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        if (confirm(t.confirmDelete)) {
-          await deleteNoteById(note.id);
-        }
+        showContextMenu(e, note.id);
       });
 
       notesList.appendChild(noteItem);
