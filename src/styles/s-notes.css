@@ -1,4 +1,5 @@
-/* S-Notes Styles */
+/* S-Notes Styles - Non-critical styles loaded asynchronously */
+/* Critical above-the-fold styles are inlined in the Astro page */
 
 /* Notes Sidebar in Settings Block */
 .notes-sidebar-wrapper {
@@ -60,21 +61,16 @@
 
 .storage-status.syncing .status-dot {
   background: #f59e0b;
-  animation: pulse 1s ease-in-out infinite;
+  animation: snotes-pulse 1s ease-in-out infinite;
 }
 
 .storage-status.error .status-dot {
   background: #ef4444;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+@keyframes snotes-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 /* Notes Tabs */
@@ -284,7 +280,7 @@
 
 /* Empty notes list */
 .notes-list:empty::after {
-  content: 'No notes';
+  content: attr(data-empty-text, 'No notes');
   display: block;
   text-align: center;
   padding: 2rem 1rem;
@@ -299,28 +295,8 @@
   font-size: 0.9rem;
 }
 
-/* Note Content in Input Block */
-.notes-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 500px;
-}
-
-.note-editor {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.note-editor.hidden {
-  display: none;
-}
-
-#editor-container {
-  flex: 1;
-  min-height: 450px;
-}
+/* Note Content in Input Block - extended styles */
+/* Critical layout styles are inlined in the Astro page */
 
 /* Toast UI Editor Theme Override */
 .toastui-editor-defaultUI {
@@ -361,7 +337,7 @@
   color: var(--var-font-color) !important;
 }
 
-/* Dark mode adjustments */
+/* Dark mode adjustments for Toast UI Editor */
 [data-theme='dark'] .toastui-editor-defaultUI {
   border-color: var(--var-border-color) !important;
 }
@@ -376,22 +352,6 @@
 [data-theme='dark'] .toastui-editor-md-code-block-line-background,
 [data-theme='dark'] .toastui-editor-contents pre {
   background: var(--var-bg-color) !important;
-}
-
-.empty-state {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--var-sidebar-link-color);
-  font-size: 1.1rem;
-  text-align: center;
-  padding: 2rem;
-  min-height: 400px;
-}
-
-.empty-state.hidden {
-  display: none;
 }
 
 /* Scrollbar styling */
