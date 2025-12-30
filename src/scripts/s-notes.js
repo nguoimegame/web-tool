@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Editor from '@toast-ui/editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
@@ -245,7 +246,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
   // Find all image references in markdown content
   function findImageReferencesInContent(content) {
-    if (!content) return new Set();
+    if (!content) {return new Set();}
     
     const references = new Set();
     const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g;
@@ -255,7 +256,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
       const [, altText, url] = match;
       
       // Extract filename from alt text or URL
-      if (altText) references.add(altText);
+      if (altText) {references.add(altText);}
       
       // Extract filename from blob URL or direct filename
       if (url.includes('blob:')) {
@@ -264,7 +265,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
       } else {
         // Direct filename reference
         const filename = url.split('/').pop();
-        if (filename) references.add(filename);
+        if (filename) {references.add(filename);}
       }
     }
     
@@ -283,7 +284,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
         allAttachments.push(...noteAttachments.map(att => ({...att, noteId: note.id})));
       }
       
-      if (allAttachments.length === 0) return [];
+      if (allAttachments.length === 0) {return [];}
       
       // Find all image references across all note contents
       const usedFilenames = new Set();
@@ -416,7 +417,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
   function clearImageCaches() {
     // Revoke old blob URLs
     imageUrlCache.forEach(url => {
-      try { URL.revokeObjectURL(url); } catch (e) {}
+      try { URL.revokeObjectURL(url); } catch { /* ignore revoke errors */ }
     });
     imageUrlCache.clear();
     attachmentBlobCache.clear();
@@ -424,17 +425,17 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
   // Optimized restore image URLs with caching
   async function restoreImageUrls(noteId, content) {
-    if (!content || !content.includes('![')) return content;
+    if (!content || !content.includes('![')) {return content;}
     
     const attachments = await getAttachmentsForNote(noteId);
-    if (attachments.length === 0) return content;
+    if (attachments.length === 0) {return content;}
     
     // Filter only image attachments upfront
     const imageAttachments = attachments.filter(att => 
       att.type && att.type.startsWith('image/')
     );
     
-    if (imageAttachments.length === 0) return content;
+    if (imageAttachments.length === 0) {return content;}
     
     // Pre-load all image blobs in parallel for better performance
     const blobPromises = imageAttachments.map(async (attachment) => {
@@ -456,7 +457,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     
     const loadedBlobs = (await Promise.all(blobPromises)).filter(Boolean);
     
-    if (loadedBlobs.length === 0) return content;
+    if (loadedBlobs.length === 0) {return content;}
     
     let updatedContent = content;
     
@@ -637,7 +638,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
   }
 
   function getTitleFromContent(content) {
-    if (!content) return t.untitled;
+    if (!content) {return t.untitled;}
     // Try to get first heading or first line
     const lines = content.split('\n');
     for (const line of lines) {
@@ -655,10 +656,10 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     const now = new Date();
     const diff = now - date;
     
-    if (diff < 60000) return 'Just now';
-    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
-    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
-    if (diff < 604800000) return `${Math.floor(diff / 86400000)}d ago`;
+    if (diff < 60000) {return 'Just now';}
+    if (diff < 3600000) {return `${Math.floor(diff / 60000)}m ago`;}
+    if (diff < 86400000) {return `${Math.floor(diff / 3600000)}h ago`;}
+    if (diff < 604800000) {return `${Math.floor(diff / 86400000)}d ago`;}
     
     return date.toLocaleDateString();
   }
@@ -716,7 +717,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     if (storageStatus) {
       storageStatus.className = 'storage-status ' + status;
       const statusText = storageStatus.querySelector('.status-text');
-      if (statusText) statusText.textContent = text || t[status] || status;
+      if (statusText) {statusText.textContent = text || t[status] || status;}
     }
   }
 
@@ -831,10 +832,10 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
   // Toggle favorite status for current note
   async function toggleFavorite(noteId = null) {
     const targetId = noteId || activeNoteId;
-    if (!targetId) return;
+    if (!targetId) {return;}
     
     const note = await getNote(targetId);
-    if (!note) return;
+    if (!note) {return;}
     
     note.isFavorite = !note.isFavorite;
     await saveNote(note);
@@ -851,7 +852,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
   // Update favorite button appearance
   function updateFavoriteButton(isFavorite) {
-    if (!favoriteButton) return;
+    if (!favoriteButton) {return;}
     
     if (isFavorite) {
       favoriteButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>';
@@ -870,7 +871,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     }
 
     const note = await getNote(activeNoteId);
-    if (!note) return;
+    if (!note) {return;}
 
     const hasChildNotes = hasChildren(activeNoteId, notes);
     const confirmMsg = hasChildNotes
@@ -934,7 +935,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     }
 
     const note = await getNote(activeNoteId);
-    if (!note) return;
+    if (!note) {return;}
 
     try {
       // Create a new window with the note content
@@ -1116,8 +1117,8 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
-          const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
           // Toast UI doesn't have dynamic theme switch, so we need to handle via CSS
+          // Theme changes are applied via CSS selectors in the stylesheet
         }
       });
     });
@@ -1137,15 +1138,15 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
   // Save current note
   async function saveCurrentNote() {
-    if (!activeNoteId || !editor) return;
+    if (!activeNoteId || !editor) {return;}
 
     const note = await getNote(activeNoteId);
-    if (!note) return;
+    if (!note) {return;}
 
     const content = editor.getMarkdown();
     
     // Only update if content actually changed
-    if (note.content === content) return;
+    if (note.content === content) {return;}
     
     note.content = content;
     note.title = getTitleFromContent(content);
@@ -1170,10 +1171,10 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
   async function updateNoteAttachments(noteId = null) {
     const targetNoteId = noteId || activeNoteId;
-    if (!targetNoteId) return;
+    if (!targetNoteId) {return;}
     
     const note = await getNote(targetNoteId);
-    if (!note) return;
+    if (!note) {return;}
     
     const attachments = await getAttachmentsForNote(targetNoteId);
     note.attachmentCount = attachments.length;
@@ -1191,7 +1192,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
   let contextMenuNoteId = null;
 
   function createContextMenu() {
-    if (contextMenu) return contextMenu;
+    if (contextMenu) {return contextMenu;}
     
     contextMenu = document.createElement('div');
     contextMenu.className = 'note-context-menu';
@@ -1215,7 +1216,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     // Handle menu item clicks
     contextMenu.addEventListener('click', async (e) => {
       const item = e.target.closest('.note-context-menu-item');
-      if (!item) return;
+      if (!item) {return;}
       
       const action = item.dataset.action;
       const targetNoteId = contextMenuNoteId;
@@ -1542,7 +1543,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     }
 
     const note = await getNote(id);
-    if (!note) return;
+    if (!note) {return;}
 
     activeNoteId = id;
     localStorage.setItem('snotes-active', id);
@@ -1588,7 +1589,8 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     }
   }
 
-  // Delete note
+  // Delete note (kept for potential future use)
+  // eslint-disable-next-line no-unused-vars
   async function deleteNoteById(id) {
     updateStatus('syncing', t.syncing);
     
@@ -1691,7 +1693,7 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
   // Migrate from localStorage (old format) to IndexedDB
   async function migrateFromLocalStorage() {
     const oldData = localStorage.getItem('simple-notes-data');
-    if (!oldData) return;
+    if (!oldData) {return;}
 
     try {
       const oldNotes = JSON.parse(oldData);
@@ -1835,7 +1837,7 @@ function hello() {
     clearImageCaches();
     if (window.snotesImageUrls) {
       window.snotesImageUrls.forEach(url => {
-        try { URL.revokeObjectURL(url); } catch (e) {}
+        try { URL.revokeObjectURL(url); } catch { /* ignore revoke errors */ }
       });
     }
   });
