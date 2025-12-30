@@ -2,707 +2,36 @@
 import Editor from '@toast-ui/editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
+import {
+  cancelGarbageCollection,
+  cleanupOrphanedAttachments,
+  clearImageCaches,
+  deleteNote,
+  deleteNoteWithDescendants,
+  findOrphanedAttachments,
+  generateId,
+  getAllNotes,
+  getAttachmentBlob,
+  getAttachmentsForNote,
+  getNote,
+  hasChildren,
+  initDatabase,
+  initOPFS,
+  restoreImageUrls,
+  saveAttachment,
+  saveNote,
+  scheduleGarbageCollection,
+  searchNotes,
+  setAttachmentUpdater,
+  buildNotesTree,
+} from './s-notes/storage.js';
+import { escapeHtml, formatDate } from './s-notes/utils.js';
 
 // S-Notes - Advanced Note Taking App with Toast UI Editor
 // Storage: IndexedDB for metadata + OPFS for attachments
 (function () {
   'use strict';
 
-  // ============================================
-  // DATABASE & STORAGE LAYER
-  // ============================================
-
-  const DB_NAME = 'snotes-db';
-  const DB_VERSION = 2;
-  const NOTES_STORE = 'notes';
-  const ATTACHMENTS_STORE = 'attachments';
-  const OPFS_DIR = 'snotes-files';
-
-  let db = null;
-  let opfsRoot = null;
-  let opfsDir = null;
-
-  // Initialize IndexedDB
-  async function initDatabase() {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open(DB_NAME, DB_VERSION);
-
-      request.onerror = () => reject(request.error);
-      request.onsuccess = () => {
-        db = request.result;
-        resolve(db);
-      };
-
-      request.onupgradeneeded = (event) => {
-        const database = event.target.result;
-        const oldVersion = event.oldVersion;
-
-        // Notes store with indexes for fast querying
-        if (!database.objectStoreNames.contains(NOTES_STORE)) {
-          const notesStore = database.createObjectStore(NOTES_STORE, { keyPath: 'id' });
-          notesStore.createIndex('title', 'title', { unique: false });
-          notesStore.createIndex('createdAt', 'createdAt', { unique: false });
-          notesStore.createIndex('updatedAt', 'updatedAt', { unique: false });
-          notesStore.createIndex('tags', 'tags', { unique: false, multiEntry: true });
-          notesStore.createIndex('parentId', 'parentId', { unique: false });
-        } else if (oldVersion < 2) {
-          // Upgrade from version 1: add parentId index
-          const transaction = event.target.transaction;
-          const notesStore = transaction.objectStore(NOTES_STORE);
-          if (!notesStore.indexNames.contains('parentId')) {
-            notesStore.createIndex('parentId', 'parentId', { unique: false });
-          }
-        }
-
-        // Attachments metadata store (file stored in OPFS)
-        if (!database.objectStoreNames.contains(ATTACHMENTS_STORE)) {
-          const attachStore = database.createObjectStore(ATTACHMENTS_STORE, { keyPath: 'id' });
-          attachStore.createIndex('noteId', 'noteId', { unique: false });
-          attachStore.createIndex('type', 'type', { unique: false });
-        }
-      };
-    });
-  }
-
-  // Initialize OPFS for file storage
-  async function initOPFS() {
-    try {
-      opfsRoot = await navigator.storage.getDirectory();
-      opfsDir = await opfsRoot.getDirectoryHandle(OPFS_DIR, { create: true });
-      return true;
-    } catch (e) {
-      console.warn('OPFS not available, falling back to IndexedDB for attachments:', e);
-      return false;
-    }
-  }
-
-  // ============================================
-  // NOTE OPERATIONS
-  // ============================================
-
-  async function getAllNotes() {
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([NOTES_STORE], 'readonly');
-      const store = transaction.objectStore(NOTES_STORE);
-      const index = store.index('updatedAt');
-      const request = index.openCursor(null, 'prev'); // Sort by updatedAt DESC
-
-      const notes = [];
-      request.onsuccess = (event) => {
-        const cursor = event.target.result;
-        if (cursor) {
-          notes.push(cursor.value);
-          cursor.continue();
-        } else {
-          resolve(notes);
-        }
-      };
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function getNote(id) {
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([NOTES_STORE], 'readonly');
-      const store = transaction.objectStore(NOTES_STORE);
-      const request = store.get(id);
-
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function saveNote(note) {
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([NOTES_STORE], 'readwrite');
-      const store = transaction.objectStore(NOTES_STORE);
-      const request = store.put(note);
-
-      request.onsuccess = () => resolve(note);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function deleteNote(id) {
-    console.log('Deleting note from database:', id);
-
-    // Clear caches before deleting
-    cleanupNote();
-
-    // First delete all attachments for this note
-    const attachments = await getAttachmentsForNote(id);
-    for (const attachment of attachments) {
-      await deleteAttachment(attachment.id);
-    }
-
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([NOTES_STORE], 'readwrite');
-      const store = transaction.objectStore(NOTES_STORE);
-      const request = store.delete(id);
-
-      request.onsuccess = () => {
-        console.log('Note deleted from database successfully:', id);
-        resolve();
-      };
-      request.onerror = () => {
-        console.error('Failed to delete note from database:', id, request.error);
-        reject(request.error);
-      };
-
-      // Wait for transaction to complete
-      transaction.oncomplete = () => {
-        console.log('Delete transaction completed for note:', id);
-      };
-      transaction.onerror = () => {
-        console.error('Delete transaction failed for note:', id, transaction.error);
-        reject(transaction.error);
-      };
-    });
-  }
-
-  async function searchNotes(query) {
-    const allNotes = await getAllNotes();
-    const lowerQuery = query.toLowerCase();
-
-    return allNotes.filter(
-      (note) =>
-        note.title.toLowerCase().includes(lowerQuery) ||
-        note.content.toLowerCase().includes(lowerQuery) ||
-        (note.tags && note.tags.some((tag) => tag.toLowerCase().includes(lowerQuery)))
-    );
-  }
-
-  // Get all descendant note IDs (children, grandchildren, etc.)
-  async function getDescendantIds(noteId, allNotes = null) {
-    if (!allNotes) {
-      allNotes = await getAllNotes();
-    }
-    const descendants = [];
-    const stack = [noteId];
-
-    while (stack.length > 0) {
-      const currentId = stack.pop();
-      const children = allNotes.filter((n) => n.parentId === currentId);
-      for (const child of children) {
-        descendants.push(child.id);
-        stack.push(child.id);
-      }
-    }
-
-    return descendants;
-  }
-
-  // Delete note and all its descendants
-  async function deleteNoteWithDescendants(id) {
-    const allNotes = await getAllNotes();
-    const descendantIds = await getDescendantIds(id, allNotes);
-    const idsToDelete = [id, ...descendantIds];
-
-    for (const noteId of idsToDelete) {
-      await deleteNote(noteId);
-    }
-
-    return idsToDelete;
-  }
-
-  // Build tree structure from flat notes array
-  function buildNotesTree(notesArray) {
-    const noteMap = new Map();
-    const rootNotes = [];
-
-    // First pass: create map
-    notesArray.forEach((note) => {
-      noteMap.set(note.id, { ...note, children: [] });
-    });
-
-    // Second pass: build tree
-    notesArray.forEach((note) => {
-      const noteNode = noteMap.get(note.id);
-      if (note.parentId && noteMap.has(note.parentId)) {
-        noteMap.get(note.parentId).children.push(noteNode);
-      } else {
-        rootNotes.push(noteNode);
-      }
-    });
-
-    // Sort children by updatedAt DESC
-    const sortChildren = (node) => {
-      node.children.sort((a, b) => b.updatedAt - a.updatedAt);
-      node.children.forEach(sortChildren);
-    };
-
-    rootNotes.sort((a, b) => b.updatedAt - a.updatedAt);
-    rootNotes.forEach(sortChildren);
-
-    return rootNotes;
-  }
-
-  // Check if a note has children
-  function hasChildren(noteId, notesArray) {
-    return notesArray.some((n) => n.parentId === noteId);
-  }
-
-  // ============================================  // GARBAGE COLLECTION & AUTO CLEANUP
-  // ============================================
-
-  // Find all image references in markdown content
-  function findImageReferencesInContent(content) {
-    if (!content) {
-      return new Set();
-    }
-
-    const references = new Set();
-    const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g;
-    let match;
-
-    while ((match = imagePattern.exec(content)) !== null) {
-      const [, altText, url] = match;
-
-      // Extract filename from alt text or URL
-      if (altText) {
-        references.add(altText);
-      }
-
-      // Extract filename from blob URL or direct filename
-      if (url.includes('blob:')) {
-        // For blob URLs, we'll rely on alt text
-        continue;
-      } else {
-        // Direct filename reference
-        const filename = url.split('/').pop();
-        if (filename) {
-          references.add(filename);
-        }
-      }
-    }
-
-    return references;
-  }
-
-  // Scan all notes and find orphaned attachments
-  async function findOrphanedAttachments() {
-    try {
-      const allNotes = await getAllNotes();
-      const allAttachments = [];
-
-      // Collect all attachments from all notes
-      for (const note of allNotes) {
-        const noteAttachments = await getAttachmentsForNote(note.id);
-        allAttachments.push(...noteAttachments.map((att) => ({ ...att, noteId: note.id })));
-      }
-
-      if (allAttachments.length === 0) {
-        return [];
-      }
-
-      // Find all image references across all note contents
-      const usedFilenames = new Set();
-      const usedAttachmentIds = new Set();
-
-      for (const note of allNotes) {
-        const references = findImageReferencesInContent(note.content);
-        references.forEach((ref) => usedFilenames.add(ref));
-
-        // Also check for attachment ID references in content
-        allAttachments.forEach((att) => {
-          if (
-            note.content &&
-            (note.content.includes(att.id) || note.content.includes(att.fileName))
-          ) {
-            usedAttachmentIds.add(att.id);
-          }
-        });
-      }
-
-      // Find orphaned attachments
-      const orphaned = allAttachments.filter((attachment) => {
-        return !usedFilenames.has(attachment.fileName) && !usedAttachmentIds.has(attachment.id);
-      });
-
-      console.log(
-        `Garbage Collection: Found ${orphaned.length} orphaned attachments out of ${allAttachments.length} total`
-      );
-      return orphaned;
-    } catch (e) {
-      console.error('Error finding orphaned attachments:', e);
-      return [];
-    }
-  }
-
-  // Delete orphaned attachments
-  async function cleanupOrphanedAttachments() {
-    try {
-      const orphaned = await findOrphanedAttachments();
-
-      if (orphaned.length === 0) {
-        console.log('Garbage Collection: No orphaned attachments found');
-        return { deleted: 0, errors: 0 };
-      }
-
-      let deleted = 0;
-      let errors = 0;
-
-      for (const attachment of orphaned) {
-        try {
-          await deleteAttachment(attachment.id);
-          deleted++;
-          console.log(`Deleted orphaned attachment: ${attachment.fileName}`);
-        } catch (e) {
-          console.error(`Failed to delete orphaned attachment ${attachment.id}:`, e);
-          errors++;
-        }
-      }
-
-      // Update attachment counts for affected notes
-      const affectedNoteIds = new Set(orphaned.map((att) => att.noteId));
-      for (const noteId of affectedNoteIds) {
-        try {
-          await updateNoteAttachments(noteId);
-        } catch (e) {
-          console.warn(`Failed to update attachment count for note ${noteId}:`, e);
-        }
-      }
-
-      console.log(
-        `Garbage Collection Complete: Deleted ${deleted} orphaned attachments, ${errors} errors`
-      );
-      return { deleted, errors };
-    } catch (e) {
-      console.error('Error during cleanup:', e);
-      return { deleted: 0, errors: 1 };
-    }
-  }
-
-  // Schedule garbage collection
-  let gcTimeout = null;
-  function scheduleGarbageCollection(delay = 30000) {
-    // 30 seconds default
-    if (gcTimeout) {
-      clearTimeout(gcTimeout);
-    }
-
-    gcTimeout = setTimeout(async () => {
-      console.log('Running scheduled garbage collection...');
-      await cleanupOrphanedAttachments();
-
-      // Schedule next cleanup (every 5 minutes)
-      scheduleGarbageCollection(300000);
-    }, delay);
-  }
-
-  // Manual garbage collection trigger
-  async function runManualGarbageCollection() {
-    updateStatus('syncing', t.syncing || 'Cleaning up...');
-
-    try {
-      const result = await cleanupOrphanedAttachments();
-
-      if (result.deleted > 0) {
-        // Refresh UI if attachments were deleted
-        await renderNotesList(searchInput?.value || '');
-      }
-
-      updateStatus('ready', t.ready);
-
-      // Show result to user (could be enhanced with a toast notification)
-      console.log(`Cleanup completed: ${result.deleted} files deleted`);
-
-      return result;
-    } catch (e) {
-      console.error('Manual garbage collection failed:', e);
-      updateStatus('error', t.error);
-      throw e;
-    }
-  }
-
-  // ============================================  // ATTACHMENT OPERATIONS (OPFS + IndexedDB)
-  // ============================================
-
-  // Cache for blob URLs to avoid recreation
-  const imageUrlCache = new Map(); // attachmentId -> blob URL
-
-  // Cache for attachment blobs
-  const attachmentBlobCache = new Map(); // attachmentId -> blob
-
-  // Clear caches when needed
-  function clearImageCaches() {
-    // Revoke old blob URLs
-    imageUrlCache.forEach((url) => {
-      try {
-        URL.revokeObjectURL(url);
-      } catch {
-        /* ignore revoke errors */
-      }
-    });
-    imageUrlCache.clear();
-    attachmentBlobCache.clear();
-  }
-
-  // Optimized restore image URLs with caching
-  async function restoreImageUrls(noteId, content) {
-    if (!content || !content.includes('![')) {
-      return content;
-    }
-
-    const attachments = await getAttachmentsForNote(noteId);
-    if (attachments.length === 0) {
-      return content;
-    }
-
-    // Filter only image attachments upfront
-    const imageAttachments = attachments.filter((att) => att.type && att.type.startsWith('image/'));
-
-    if (imageAttachments.length === 0) {
-      return content;
-    }
-
-    // Pre-load all image blobs in parallel for better performance
-    const blobPromises = imageAttachments.map(async (attachment) => {
-      if (attachmentBlobCache.has(attachment.id)) {
-        return { attachment, blob: attachmentBlobCache.get(attachment.id) };
-      }
-
-      try {
-        const blob = await getAttachmentBlob(attachment);
-        if (blob) {
-          attachmentBlobCache.set(attachment.id, blob);
-          return { attachment, blob };
-        }
-      } catch (e) {
-        console.warn('Failed to load blob for attachment:', attachment.id, e);
-      }
-      return null;
-    });
-
-    const loadedBlobs = (await Promise.all(blobPromises)).filter(Boolean);
-
-    if (loadedBlobs.length === 0) {
-      return content;
-    }
-
-    let updatedContent = content;
-
-    // Simple and fast regex for image patterns
-    const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g;
-
-    // Replace images efficiently
-    updatedContent = updatedContent.replace(imagePattern, (match, altText, currentUrl) => {
-      // Skip if it's already a valid blob URL that's cached
-      if (
-        currentUrl.startsWith('blob:') &&
-        Array.from(imageUrlCache.values()).includes(currentUrl)
-      ) {
-        return match;
-      }
-
-      // Find matching attachment - simple string matching first
-      let matchedBlob = null;
-
-      // Priority 1: Exact filename match in alt text
-      matchedBlob = loadedBlobs.find(({ attachment }) => altText === attachment.fileName);
-
-      // Priority 2: Filename substring match
-      if (!matchedBlob) {
-        matchedBlob = loadedBlobs.find(
-          ({ attachment }) =>
-            altText.includes(attachment.fileName) ||
-            currentUrl.includes(attachment.fileName) ||
-            currentUrl.includes(attachment.id)
-        );
-      }
-
-      // Priority 3: Use first available image (fallback)
-      if (!matchedBlob && loadedBlobs.length > 0) {
-        matchedBlob = loadedBlobs[0];
-        loadedBlobs.shift(); // Remove from array to avoid reuse
-      }
-
-      if (matchedBlob) {
-        const { attachment, blob } = matchedBlob;
-
-        // Use cached URL or create new one
-        let blobUrl = imageUrlCache.get(attachment.id);
-        if (!blobUrl) {
-          blobUrl = URL.createObjectURL(blob);
-          imageUrlCache.set(attachment.id, blobUrl);
-        }
-
-        return `![${attachment.fileName}](${blobUrl})`;
-      }
-
-      return match; // No changes if no match found
-    });
-
-    return updatedContent;
-  }
-
-  async function saveAttachment(noteId, file) {
-    const id = generateId();
-    const fileName = `${id}_${file.name}`;
-
-    let filePath = null;
-    let blobData = null;
-
-    // Try to save to OPFS first
-    if (opfsDir) {
-      try {
-        const fileHandle = await opfsDir.getFileHandle(fileName, { create: true });
-        const writable = await fileHandle.createWritable();
-        await writable.write(file);
-        await writable.close();
-        filePath = fileName;
-      } catch (e) {
-        console.warn('OPFS write failed, storing in IndexedDB:', e);
-        blobData = await fileToArrayBuffer(file);
-      }
-    } else {
-      blobData = await fileToArrayBuffer(file);
-    }
-
-    const attachmentMeta = {
-      id,
-      noteId,
-      fileName: file.name,
-      type: file.type,
-      size: file.size,
-      filePath, // OPFS path
-      blobData, // Fallback: ArrayBuffer in IndexedDB
-      createdAt: Date.now(),
-    };
-
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([ATTACHMENTS_STORE], 'readwrite');
-      const store = transaction.objectStore(ATTACHMENTS_STORE);
-      const request = store.put(attachmentMeta);
-
-      request.onsuccess = () => resolve(attachmentMeta);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function getAttachment(id) {
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([ATTACHMENTS_STORE], 'readonly');
-      const store = transaction.objectStore(ATTACHMENTS_STORE);
-      const request = store.get(id);
-
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function getAttachmentBlob(attachment) {
-    if (attachment.filePath && opfsDir) {
-      try {
-        const fileHandle = await opfsDir.getFileHandle(attachment.filePath);
-        return await fileHandle.getFile();
-      } catch (e) {
-        console.warn('OPFS read failed:', e);
-      }
-    }
-
-    if (attachment.blobData) {
-      return new Blob([attachment.blobData], { type: attachment.type });
-    }
-
-    return null;
-  }
-
-  async function getAttachmentsForNote(noteId) {
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([ATTACHMENTS_STORE], 'readonly');
-      const store = transaction.objectStore(ATTACHMENTS_STORE);
-      const index = store.index('noteId');
-      const request = index.getAll(noteId);
-
-      request.onsuccess = () => resolve(request.result || []);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function deleteAttachment(id) {
-    const attachment = await getAttachment(id);
-
-    // Delete from OPFS if exists
-    if (attachment && attachment.filePath && opfsDir) {
-      try {
-        await opfsDir.removeEntry(attachment.filePath);
-      } catch (e) {
-        console.warn('OPFS delete failed:', e);
-      }
-    }
-
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction([ATTACHMENTS_STORE], 'readwrite');
-      const store = transaction.objectStore(ATTACHMENTS_STORE);
-      const request = store.delete(id);
-
-      request.onsuccess = () => resolve();
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  // ============================================
-  // UTILITY FUNCTIONS
-  // ============================================
-
-  function generateId() {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
-  }
-
-  function fileToArrayBuffer(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = () => reject(reader.error);
-      reader.readAsArrayBuffer(file);
-    });
-  }
-
-  function getTitleFromContent(content) {
-    if (!content) {
-      return t.untitled;
-    }
-    // Try to get first heading or first line
-    const lines = content.split('\n');
-    for (const line of lines) {
-      const trimmed = line.trim();
-      if (trimmed) {
-        // Remove markdown heading syntax
-        return trimmed.replace(/^#+\s*/, '').substring(0, 50) || t.untitled;
-      }
-    }
-    return t.untitled;
-  }
-
-  function formatDate(timestamp) {
-    const date = new Date(timestamp);
-    const now = new Date();
-    const diff = now - date;
-
-    if (diff < 60000) {
-      return 'Just now';
-    }
-    if (diff < 3600000) {
-      return `${Math.floor(diff / 60000)}m ago`;
-    }
-    if (diff < 86400000) {
-      return `${Math.floor(diff / 3600000)}h ago`;
-    }
-    if (diff < 604800000) {
-      return `${Math.floor(diff / 86400000)}d ago`;
-    }
-
-    return date.toLocaleDateString();
-  }
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  // ============================================
   // UI & EDITOR
   // ============================================
 
@@ -739,6 +68,20 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     removeFromFavorites: 'Remove from Favorites',
   };
 
+  function getTitleFromContent(content) {
+    if (!content) {
+      return t.untitled;
+    }
+    const lines = content.split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed) {
+        return trimmed.replace(/^#+\s*/, '').substring(0, 50) || t.untitled;
+      }
+    }
+    return t.untitled;
+  }
+
   // Track expanded state for nested notes
   const expandedNotes = new Set();
 
@@ -752,6 +95,27 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
       if (statusText) {
         statusText.textContent = text || t[status] || status;
       }
+    }
+  }
+
+  async function runManualGarbageCollection() {
+    updateStatus('syncing', t.syncing || 'Cleaning up...');
+
+    try {
+      const result = await cleanupOrphanedAttachments();
+
+      if (result.deleted > 0) {
+        await renderNotesList(searchInput?.value || '');
+      }
+
+      updateStatus('ready', t.ready);
+      console.log(`Cleanup completed: ${result.deleted} files deleted`);
+
+      return result;
+    } catch (e) {
+      console.error('Manual garbage collection failed:', e);
+      updateStatus('error', t.error);
+      throw e;
     }
   }
 
@@ -1255,6 +619,8 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
     }
   }
 
+  setAttachmentUpdater(updateNoteAttachments);
+
   // Context Menu
   let contextMenu = null;
   let contextMenuNoteId = null;
@@ -1634,11 +1000,6 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
   }
 
   // Clean up when switching notes or deleting
-  function cleanupNote() {
-    // Clear caches to free memory
-    clearImageCaches();
-  }
-
   // Create new note
   async function createNewNote() {
     const newNote = {
@@ -1902,11 +1263,7 @@ function hello() {
 
   // Cleanup blob URLs when page unloads
   window.addEventListener('beforeunload', () => {
-    // Clear timeout to prevent running GC during unload
-    if (gcTimeout) {
-      clearTimeout(gcTimeout);
-    }
-
+    cancelGarbageCollection();
     clearImageCaches();
     if (window.snotesImageUrls) {
       window.snotesImageUrls.forEach((url) => {
