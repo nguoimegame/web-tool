@@ -78,15 +78,13 @@ const t = useTranslations(lang as any);
   </div>
 </div>
 
-{
-  showFileUpload && (
-    <div id="file-upload-scripts" data-file-upload="true" style="display:none;"></div>
-  )
-}
+{showFileUpload && <div id="file-upload-scripts" data-file-upload="true" style="display:none;" />}
 
 {
   showFileUpload && (
-    <script is:inline>
+    <script
+      is:inline
+      set:html={`
       ++waitLoadCount;
       delayScripts.push({
         src: '/js/file-loader.js?v=10',
@@ -94,6 +92,7 @@ const t = useTranslations(lang as any);
           methodLoad();
         },
       });
-    </script>
+    `}
+    />
   )
 }
