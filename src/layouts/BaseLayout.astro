@@ -42,6 +42,18 @@ const pageDescription = description || defaultDescription;
 <!doctype html>
 <html lang={currentLang}>
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-17852180684"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17852180684');
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="content-language" content={currentLang} />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
