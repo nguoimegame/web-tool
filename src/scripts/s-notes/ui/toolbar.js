@@ -57,6 +57,20 @@ export function createOpenWindowButton(onOpenWindow) {
 }
 
 /**
+ * Create share link button
+ */
+export function createShareLinkButton(onShareLink) {
+  const t = getTranslations();
+  return createToolbarButton(
+    'share-link-btn',
+    ICONS.shareLink,
+    t.shareLink || 'Share link',
+    'rgba(34, 197, 94, 0.1)',
+    onShareLink
+  );
+}
+
+/**
  * Create favorite star button
  */
 export function createFavoriteButton(onToggleFavorite) {
@@ -103,6 +117,11 @@ export function getToolbarItems(handlers) {
         el: createOpenWindowButton(handlers.onOpenWindow),
         name: 'openWindow',
         tooltip: 'Open in new window',
+      },
+      {
+        el: createShareLinkButton(handlers.onShareLink),
+        name: 'shareLink',
+        tooltip: 'Share link',
       },
       {
         el: createFavoriteButton(handlers.onToggleFavorite),

@@ -25,6 +25,7 @@ export function initEditor(editorContainer, handlers) {
     usageStatistics: false,
     toolbarItems: getToolbarItems({
       onOpenWindow: handlers.onOpenWindow,
+      onShareLink: handlers.onShareLink,
       onToggleFavorite: handlers.onToggleFavorite,
       onDelete: handlers.onDelete,
     }),

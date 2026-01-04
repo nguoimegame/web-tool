@@ -14,6 +14,7 @@ export const hi = {
   'sidebar.dark_mode': 'डार्क मोड',
 
   // Common
+  feedback: 'प्रतिक्रिया',
   input: 'इनपुट',
   output: 'आउटपुट',
   text: 'टेक्स्ट',
@@ -653,6 +654,8 @@ export const hi = {
   's_notes.remove_tag': 'टैग हटाएं',
   's_notes.move_to': 'में ले जाएं',
   's_notes.detach': 'नई विंडो में खोलें',
+  's_notes.share_link': 'लिंक साझा करें',
+  's_notes.share_link_copied': 'शेयर लिंक क्लिपबोर्ड पर कॉपी हो गया',
   's_notes.editor_placeholder': 'टाइप करना शुरू करें या कमांड के लिए / का उपयोग करें...',
   's_notes.last_modified': 'अंतिम संशोधित',
   's_notes.created': 'बनाया गया',

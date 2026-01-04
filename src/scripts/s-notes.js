@@ -2,6 +2,7 @@
 // S-Notes - Advanced Note Taking App with Toast UI Editor
 // Storage: IndexedDB for metadata + OPFS for attachments
 
+import LZString from 'lz-string';
 import { getTranslations } from './s-notes/constants.js';
 import {
   initEditor,
@@ -355,6 +356,119 @@ import {
   }
 
   // ============================================
+  // SHARE LINK
+  // ============================================
+  async function handleShareLink() {
+    if (!activeNoteId) {
+      alert(t.noNotes || 'No note selected');
+      return;
+    }
+
+    const note = await getNote(activeNoteId);
+    if (!note) {
+      return;
+    }
+
+    try {
+      // Get current content from editor
+      const currentContent = getEditor() ? getMarkdown() : note.content;
+
+      // Compress and encode content using LZ-String
+      const shareData = {
+        t: note.title || t.untitled, // short key for title
+        c: currentContent, // short key for content
+      };
+
+      const jsonString = JSON.stringify(shareData);
+      // Use compressToEncodedURIComponent for URL-safe compression
+      const compressedContent = LZString.compressToEncodedURIComponent(jsonString);
+
+      // Build share URL with fragment (to avoid server logging)
+      const shareUrl = `${window.location.origin}${window.location.pathname}#s=${compressedContent}`;
+
+      // Copy to clipboard
+      await navigator.clipboard.writeText(shareUrl);
+
+      // Show success message
+      const statusText = storageStatus?.querySelector('.status-text');
+      const originalText = statusText?.textContent;
+      updateStatus('ready', t.shareLinkCopied || 'Share link copied to clipboard');
+
+      // Reset status after 2 seconds
+      setTimeout(() => {
+        if (statusText && originalText) {
+          updateStatus('ready', t.ready || 'Ready');
+        }
+      }, 2000);
+    } catch (e) {
+      console.error('Failed to copy share link:', e);
+      alert('Failed to copy share link to clipboard');
+    }
+  }
+
+  // ============================================
+  // LOAD FROM SHARE LINK
+  // ============================================
+  async function loadFromShareLink() {
+    const hash = window.location.hash;
+    if (!hash) {
+      return false;
+    }
+
+    try {
+      let shareData;
+
+      // Support new compressed format (#s=) and legacy format (#share=)
+      if (hash.startsWith('#s=')) {
+        // New LZ-String compressed format
+        const compressedData = hash.substring(3);
+        const jsonString = LZString.decompressFromEncodedURIComponent(compressedData);
+        if (!jsonString) {
+          return false;
+        }
+        const parsed = JSON.parse(jsonString);
+        shareData = {
+          title: parsed.t,
+          content: parsed.c,
+        };
+      } else if (hash.startsWith('#share=')) {
+        // Legacy Base64 format for backward compatibility
+        const encodedData = decodeURIComponent(hash.substring(7));
+        const jsonString = decodeURIComponent(escape(atob(encodedData)));
+        shareData = JSON.parse(jsonString);
+      } else {
+        return false;
+      }
+
+      if (!shareData.content) {
+        return false;
+      }
+
+      // Create a new note from shared content
+      const newNote = {
+        id: generateId(),
+        title: shareData.title || getTitleFromContent(shareData.content),
+        content: shareData.content,
+        tags: [],
+        attachmentCount: 0,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      };
+
+      await saveNote(newNote);
+      notes.unshift(newNote);
+
+      // Clear the hash to avoid loading again on refresh
+      history.replaceState(null, '', window.location.pathname);
+
+      return newNote.id;
+    } catch (e) {
+      console.error('Failed to load shared note:', e);
+      return false;
+    }
+  }
+
+  // ============================================
   // ATTACHMENT HANDLING
   // ============================================
   async function handleSaveAttachment(blob) {
@@ -589,6 +703,7 @@ function hello() {
       // Initialize editor with handlers
       initEditor(editorContainer, {
         onOpenWindow: handleOpenInNewWindow,
+        onShareLink: handleShareLink,
         onToggleFavorite: toggleFavorite,
         onDelete: handleDeleteCurrentNote,
         onSave: saveCurrentNote,
@@ -601,14 +716,22 @@ function hello() {
       doRenderNotesList();
       attachEventListeners();
 
+      // Check for shared note from URL
+      const sharedNoteId = await loadFromShareLink();
+
       // Load active note or first note
-      const savedActiveId = localStorage.getItem('snotes-active');
-      if (savedActiveId && notes.find((n) => n.id === savedActiveId)) {
-        selectNote(savedActiveId);
-      } else if (notes.length > 0) {
-        selectNote(notes[0].id);
+      if (sharedNoteId) {
+        // Load the newly created note from shared link
+        await selectNote(sharedNoteId);
       } else {
-        showEmptyState();
+        const savedActiveId = localStorage.getItem('snotes-active');
+        if (savedActiveId && notes.find((n) => n.id === savedActiveId)) {
+          selectNote(savedActiveId);
+        } else if (notes.length > 0) {
+          selectNote(notes[0].id);
+        } else {
+          showEmptyState();
+        }
       }
 
       updateStatus('ready', t.ready);
