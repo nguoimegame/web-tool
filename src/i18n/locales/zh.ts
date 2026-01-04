@@ -778,4 +778,22 @@ export const zh = {
   'compare.side_by_side': '并排视图',
   'compare.show_diff': '显示差异',
   'compare.edit_mode': '编辑模式',
+
+  // Calculator
+  'calculator.title': '科学计算器',
+  'calculator.description':
+    '免费在线科学计算器，支持三角函数、对数和高级数学函数。执行 sin、cos、tan、log、ln、阶乘、幂运算等计算。',
+  'calculator.expression': '表达式',
+  'calculator.result': '结果',
+  'calculator.clear': '清除',
+  'calculator.clear_all': '全部清除',
+  'calculator.backspace': '退格',
+  'calculator.error': '错误',
+  'calculator.placeholder': '输入表达式或使用按钮...',
+  'calculator.history': '历史记录',
+  'calculator.clear_history': '清除历史记录',
+  'calculator.sound': '声音',
+  'calculator.vibration': '震动',
+  'calculator.no_calculations': '暂无计算记录',
+  'calculator.scientific_mode': '科学模式',
 };

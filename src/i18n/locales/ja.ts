@@ -789,4 +789,22 @@ export const ja = {
   'compare.side_by_side': '並列',
   'compare.show_diff': '差分を表示',
   'compare.edit_mode': '編集モード',
+
+  // Calculator
+  'calculator.title': '関数電卓',
+  'calculator.description':
+    '三角関数、対数関数、高度な数学関数を備えた無料のオンライン関数電卓です。sin、cos、tan、log、ln、階乗、べき乗などの計算ができます。',
+  'calculator.expression': '式',
+  'calculator.result': '結果',
+  'calculator.clear': 'クリア',
+  'calculator.clear_all': 'すべてクリア',
+  'calculator.backspace': 'バックスペース',
+  'calculator.error': 'エラー',
+  'calculator.placeholder': '式を入力するか、ボタンを使用してください...',
+  'calculator.history': '履歴',
+  'calculator.clear_history': '履歴をクリア',
+  'calculator.sound': 'サウンド',
+  'calculator.vibration': 'バイブレーション',
+  'calculator.no_calculations': '計算履歴はありません',
+  'calculator.scientific_mode': '関数電卓モード',
 };
