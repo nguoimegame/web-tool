@@ -681,6 +681,8 @@ export const en = {
   's_notes.remove_tag': 'Remove tag',
   's_notes.move_to': 'Move to',
   's_notes.detach': 'Open in new window',
+  's_notes.share_link': 'Share link',
+  's_notes.share_link_copied': 'Share link copied to clipboard',
   's_notes.editor_placeholder': 'Start typing or use / for commands...',
   's_notes.last_modified': 'Last modified',
   's_notes.created': 'Created',

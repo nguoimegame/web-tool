@@ -654,6 +654,8 @@ export const es = {
   's_notes.remove_tag': 'Eliminar etiqueta',
   's_notes.move_to': 'Mover a',
   's_notes.detach': 'Abrir en nueva ventana',
+  's_notes.share_link': 'Compartir enlace',
+  's_notes.share_link_copied': 'Enlace de compartir copiado al portapapeles',
   's_notes.editor_placeholder': 'Empieza a escribir o usa / para comandos...',
   's_notes.last_modified': 'Última modificación',
   's_notes.created': 'Creado',

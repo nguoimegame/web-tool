@@ -651,6 +651,8 @@ export const ja = {
   's_notes.remove_tag': 'タグを削除',
   's_notes.move_to': '移動先',
   's_notes.detach': '新しいウィンドウで開く',
+  's_notes.share_link': 'リンクを共有',
+  's_notes.share_link_copied': '共有リンクがクリップボードにコピーされました',
   's_notes.editor_placeholder': '入力を開始するか、/ を使用してコマンドを表示...',
   's_notes.last_modified': '最終更新',
   's_notes.created': '作成日',

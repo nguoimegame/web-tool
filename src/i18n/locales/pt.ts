@@ -654,6 +654,8 @@ export const pt = {
   's_notes.remove_tag': 'Remover tag',
   's_notes.move_to': 'Mover para',
   's_notes.detach': 'Abrir em nova janela',
+  's_notes.share_link': 'Compartilhar link',
+  's_notes.share_link_copied': 'Link de compartilhamento copiado para a área de transferência',
   's_notes.editor_placeholder': 'Comece a digitar ou use / para comandos...',
   's_notes.last_modified': 'Última modificação',
   's_notes.created': 'Criado',

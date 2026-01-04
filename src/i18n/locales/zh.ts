@@ -641,6 +641,8 @@ export const zh = {
   's_notes.remove_tag': '移除标签',
   's_notes.move_to': '移动到',
   's_notes.detach': '在新窗口中打开',
+  's_notes.share_link': '分享链接',
+  's_notes.share_link_copied': '分享链接已复制到剪贴板',
   's_notes.editor_placeholder': '开始输入或使用 / 查看命令...',
   's_notes.last_modified': '最后修改',
   's_notes.created': '创建时间',

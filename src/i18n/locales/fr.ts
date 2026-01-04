@@ -653,6 +653,8 @@ export const fr = {
   's_notes.remove_tag': 'Supprimer le tag',
   's_notes.move_to': 'Déplacer vers',
   's_notes.detach': 'Ouvrir dans une nouvelle fenêtre',
+  's_notes.share_link': 'Partager le lien',
+  's_notes.share_link_copied': 'Lien de partage copié dans le presse-papiers',
   's_notes.editor_placeholder': 'Commencez à taper ou utilisez / pour les commandes...',
   's_notes.last_modified': 'Dernière modification',
   's_notes.created': 'Créé',

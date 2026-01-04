@@ -675,6 +675,8 @@ export const vi = {
   's_notes.remove_tag': 'Xóa nhãn',
   's_notes.move_to': 'Di chuyển đến',
   's_notes.detach': 'Mở trong cửa sổ mới',
+  's_notes.share_link': 'Chia sẻ liên kết',
+  's_notes.share_link_copied': 'Đã sao chép liên kết chia sẻ',
   's_notes.editor_placeholder': 'Bắt đầu gõ hoặc sử dụng / để xem lệnh...',
   's_notes.last_modified': 'Sửa đổi lần cuối',
   's_notes.created': 'Ngày tạo',
