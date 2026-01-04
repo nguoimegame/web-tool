@@ -45,6 +45,7 @@ export const toolSections: ToolSection[] = [
           { url: 'syntax-highlight', name: 'Syntax Highlight', icon: 'code-2' },
           { url: 's-notes', name: 'S Notes', icon: 'notebook-pen' },
           { url: 'compare', name: 'Compare Files & Folders', icon: 'git-compare' },
+          { url: 'calculator', name: 'Calculator', icon: 'calculator' },
         ],
       },
       {
@@ -332,14 +333,18 @@ export const toolSections: ToolSection[] = [
       {
         title: 'Case',
         items: [
-          { url: 'case/lower', name: 'lower case', icon: 'type' },
-          { url: 'case/upper', name: 'UPPER CASE', icon: 'type' },
-          { url: 'case/lower-camel', name: 'lowerCamelCase', icon: 'type' },
-          { url: 'case/upper-camel', name: 'UpperCamelCase', icon: 'type' },
-          { url: 'case/snake', name: 'snake_case', icon: 'type' },
-          { url: 'case/kebab', name: 'kebab-case', icon: 'type' },
-          { url: 'case/constant', name: 'CONSTANT_CASE', icon: 'type' },
+          { url: 'convert/case/lower', name: 'lower case', icon: 'type' },
+          { url: 'convert/case/upper', name: 'UPPER CASE', icon: 'type' },
+          { url: 'convert/case/lower-camel', name: 'lowerCamelCase', icon: 'type' },
+          { url: 'convert/case/upper-camel', name: 'UpperCamelCase', icon: 'type' },
+          { url: 'convert/case/snake', name: 'snake_case', icon: 'type' },
+          { url: 'convert/case/kebab', name: 'kebab-case', icon: 'type' },
+          { url: 'convert/case/constant', name: 'CONSTANT_CASE', icon: 'type' },
         ],
+      },
+      {
+        title: 'Unit',
+        items: [{ url: 'convert/unit/weight', name: 'Weight converter', icon: 'scale' }],
       },
     ],
   },
