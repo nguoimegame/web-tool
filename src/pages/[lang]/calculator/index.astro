@@ -26,7 +26,17 @@ const t = useTranslations(lang as any);
         <div class="calculator scientific">
           <div class="display">
             <button class="btn-history" id="toggle-history" title={t('calculator.history')}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
@@ -73,7 +83,9 @@ const t = useTranslations(lang as any);
             <!-- Row 4: Constants and functions + numbers -->
             <button class="btn-calc btn-sci" data-action="pi">π</button>
             <button class="btn-calc btn-sci" data-action="euler">e</button>
-            <button class="btn-calc btn-sci" data-action="power" id="power-btn">x<sup>y</sup></button>
+            <button class="btn-calc btn-sci" data-action="power" id="power-btn"
+              >x<sup>y</sup></button
+            >
             <button class="btn-calc" data-value="1">1</button>
             <button class="btn-calc" data-value="2">2</button>
             <button class="btn-calc" data-value="3">3</button>
@@ -98,7 +110,11 @@ const t = useTranslations(lang as any);
         <div class="history-panel" id="history-panel">
           <div class="history-header">
             <span>{t('calculator.history')}</span>
-            <button class="btn-clear-history" id="clear-history" title={t('calculator.clear_history')}>🗑️</button>
+            <button
+              class="btn-clear-history"
+              id="clear-history"
+              title={t('calculator.clear_history')}>🗑️</button
+            >
           </div>
           <div class="history-list" id="history-list"></div>
         </div>

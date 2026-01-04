@@ -38,9 +38,15 @@ function toDegrees(rad: number): number {
 
 // Factorial function
 function factorial(n: number): number {
-  if (n < 0) throw new Error('Factorial of negative number');
-  if (n === 0 || n === 1) return 1;
-  if (n > 170) throw new Error('Number too large');
+  if (n < 0) {
+    throw new Error('Factorial of negative number');
+  }
+  if (n === 0 || n === 1) {
+    return 1;
+  }
+  if (n > 170) {
+    throw new Error('Number too large');
+  }
   if (!Number.isInteger(n)) {
     // Gamma function approximation for non-integers
     return gamma(n + 1);
@@ -141,21 +147,49 @@ function updateModeButtons(): void {
   const powerBtn = document.getElementById('power-btn');
 
   if (isInverseMode) {
-    if (sinBtn) sinBtn.textContent = 'sin⁻¹';
-    if (cosBtn) cosBtn.textContent = 'cos⁻¹';
-    if (tanBtn) tanBtn.textContent = 'tan⁻¹';
-    if (lnBtn) lnBtn.textContent = 'eˣ';
-    if (logBtn) logBtn.textContent = '10ˣ';
-    if (sqrtBtn) sqrtBtn.textContent = 'x²';
-    if (powerBtn) powerBtn.innerHTML = '<sup>y</sup>√x';
+    if (sinBtn) {
+      sinBtn.textContent = 'sin⁻¹';
+    }
+    if (cosBtn) {
+      cosBtn.textContent = 'cos⁻¹';
+    }
+    if (tanBtn) {
+      tanBtn.textContent = 'tan⁻¹';
+    }
+    if (lnBtn) {
+      lnBtn.textContent = 'eˣ';
+    }
+    if (logBtn) {
+      logBtn.textContent = '10ˣ';
+    }
+    if (sqrtBtn) {
+      sqrtBtn.textContent = 'x²';
+    }
+    if (powerBtn) {
+      powerBtn.innerHTML = '<sup>y</sup>√x';
+    }
   } else {
-    if (sinBtn) sinBtn.textContent = 'sin';
-    if (cosBtn) cosBtn.textContent = 'cos';
-    if (tanBtn) tanBtn.textContent = 'tan';
-    if (lnBtn) lnBtn.textContent = 'ln';
-    if (logBtn) logBtn.textContent = 'log';
-    if (sqrtBtn) sqrtBtn.textContent = '√';
-    if (powerBtn) powerBtn.innerHTML = 'x<sup>y</sup>';
+    if (sinBtn) {
+      sinBtn.textContent = 'sin';
+    }
+    if (cosBtn) {
+      cosBtn.textContent = 'cos';
+    }
+    if (tanBtn) {
+      tanBtn.textContent = 'tan';
+    }
+    if (lnBtn) {
+      lnBtn.textContent = 'ln';
+    }
+    if (logBtn) {
+      logBtn.textContent = 'log';
+    }
+    if (sqrtBtn) {
+      sqrtBtn.textContent = '√';
+    }
+    if (powerBtn) {
+      powerBtn.innerHTML = 'x<sup>y</sup>';
+    }
   }
 }
 
@@ -516,12 +550,7 @@ function handleKeyboard(event: KeyboardEvent): void {
   const key = event.key;
 
   // Prevent default for calculator keys
-  if (
-    /^[\d+\-*/.=()^%]$/.test(key) ||
-    key === 'Enter' ||
-    key === 'Backspace' ||
-    key === 'Escape'
-  ) {
+  if (/^[\d+\-*/.=()^%]$/.test(key) || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
     event.preventDefault();
   }
 
