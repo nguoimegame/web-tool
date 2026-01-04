@@ -188,8 +188,9 @@ function convert() {
   const fromRate = exchangeRates[fromCurrency];
   const toRate = exchangeRates[toCurrency];
 
-  if (fromRate === undefined || toRate === undefined) {
-    // Currency not found in exchange rates - show error
+  // Check if currencies exist and fromRate is valid (non-zero to prevent division by zero)
+  if (fromRate == null || toRate == null || fromRate === 0) {
+    // Currency not found in exchange rates or invalid rate - show error
     resultInput.value = '';
     if (rateDisplay) {
       rateDisplay.textContent = translations.error;
