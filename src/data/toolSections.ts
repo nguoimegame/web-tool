@@ -341,6 +341,10 @@ export const toolSections: ToolSection[] = [
           { url: 'case/constant', name: 'CONSTANT_CASE', icon: 'type' },
         ],
       },
+      {
+        title: 'Currency',
+        items: [{ url: 'convert/currency', name: 'Currency Converter', icon: 'banknote' }],
+      },
     ],
   },
   {

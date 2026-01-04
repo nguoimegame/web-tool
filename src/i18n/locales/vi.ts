@@ -813,4 +813,18 @@ export const vi = {
   'compare.side_by_side': 'Song song',
   'compare.show_diff': 'Xem khác biệt',
   'compare.edit_mode': 'Chế độ sửa',
+
+  // Currency Converter
+  'currency.title': 'Chuyển đổi tiền tệ',
+  'currency.description':
+    'Chuyển đổi giữa các loại tiền tệ khác nhau sử dụng tỷ giá thời gian thực. Công cụ chuyển đổi tiền tệ trực tuyến miễn phí.',
+  'currency.from': 'Từ',
+  'currency.to': 'Sang',
+  'currency.amount': 'Số tiền',
+  'currency.result': 'Kết quả',
+  'currency.rate': 'Tỷ giá',
+  'currency.swap': 'Hoán đổi tiền tệ',
+  'currency.loading': 'Đang tải tỷ giá...',
+  'currency.error': 'Không thể tải tỷ giá. Vui lòng thử lại sau.',
+  'currency.last_updated': 'Cập nhật lần cuối',
 };

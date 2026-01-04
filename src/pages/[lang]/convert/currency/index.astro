@@ -1,0 +1,206 @@
+---
+import BasePage from '../../../../components/BasePage.astro';
+import BaseInputBlock from '../../../../components/BaseInputBlock.astro';
+import BaseOutputBlock from '../../../../components/BaseOutputBlock.astro';
+import BaseSettingBlock from '../../../../components/BaseSettingBlock.astro';
+import { languages } from '../../../../i18n/ui';
+import { useTranslations } from '../../../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+    return { params: { lang } };
+  });
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<BasePage
+  title={t('currency.title')}
+  description={t('currency.description')}
+  activePage="convert/currency"
+>
+  <div class="layout">
+    <div class="layout-block">
+      <BaseInputBlock title={t('currency.from')}>
+        <div class="currency-input-wrapper">
+          <input
+            type="number"
+            class="container currency-amount"
+            id="amount"
+            value="1"
+            min="0"
+            step="any"
+            placeholder={t('currency.amount')}
+            data-auto-update
+          />
+          <select id="from-currency" class="currency-select" data-auto-update>
+            <option value="USD">USD - US Dollar</option>
+          </select>
+        </div>
+      </BaseInputBlock>
+      <BaseOutputBlock title={t('currency.to')} showCopy={true} copyTarget="#result">
+        <div class="currency-output-wrapper">
+          <input
+            type="text"
+            class="container currency-result"
+            id="result"
+            readonly
+            placeholder={t('currency.result')}
+          />
+          <select id="to-currency" class="currency-select" data-auto-update>
+            <option value="EUR">EUR - Euro</option>
+          </select>
+        </div>
+        <div class="exchange-rate-info">
+          <span id="rate-display"></span>
+          <span id="last-updated"></span>
+        </div>
+      </BaseOutputBlock>
+    </div>
+    <BaseSettingBlock title={t('settings')}>
+      <div class="setting"><a class="btn" id="execute">{t('convert')}</a></div>
+      <div class="setting">
+        <a class="btn btn-secondary" id="swap-currencies">
+          <i data-lucide="arrow-left-right"></i>
+          {t('currency.swap')}
+        </a>
+      </div>
+      <div class="setting">
+        <label class="switcher"
+          ><input type="checkbox" id="auto-update" checked /><div class="toggle"></div>
+          <span>{t('auto_update')}</span></label
+        >
+      </div>
+      <div class="setting status-display">
+        <span id="status-message" class="loading">{t('currency.loading')}</span>
+      </div>
+    </BaseSettingBlock>
+  </div>
+
+  <style>
+    .currency-input-wrapper,
+    .currency-output-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+
+    .currency-amount,
+    .currency-result {
+      flex: 1;
+      font-size: 1.5rem !important;
+      padding: 0.75rem !important;
+      min-height: auto !important;
+      height: auto !important;
+    }
+
+    .currency-select {
+      width: 200px;
+      padding: 0.75rem;
+      font-size: 0.875rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    .currency-select:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    .exchange-rate-info {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    #rate-display {
+      font-weight: 500;
+    }
+
+    #last-updated {
+      font-style: italic;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary) !important;
+      color: var(--text-primary) !important;
+      display: flex !important;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-tertiary) !important;
+    }
+
+    .btn-secondary i {
+      width: 16px;
+      height: 16px;
+    }
+
+    .status-display {
+      padding: 0.5rem 0;
+    }
+
+    #status-message {
+      font-size: 0.875rem;
+    }
+
+    #status-message.loading {
+      color: var(--text-secondary);
+    }
+
+    #status-message.error {
+      color: var(--error-color, #e74c3c);
+    }
+
+    #status-message.success {
+      color: var(--success-color, #27ae60);
+    }
+
+    @media (max-width: 600px) {
+      .currency-input-wrapper,
+      .currency-output-wrapper {
+        flex-direction: column;
+      }
+
+      .currency-select {
+        width: 100%;
+      }
+
+      .currency-amount,
+      .currency-result {
+        font-size: 1.25rem !important;
+      }
+    }
+  </style>
+
+  <script
+    is:inline
+    define:vars={{
+      t_loading: t('currency.loading'),
+      t_error: t('currency.error'),
+      t_rate: t('currency.rate'),
+      t_last_updated: t('currency.last_updated'),
+    }}
+  >
+    window.currencyTranslations = {
+      loading: t_loading,
+      error: t_error,
+      rate: t_rate,
+      lastUpdated: t_last_updated,
+    };
+  </script>
+
+  <script>
+    import { initCurrencyConverter } from '../../../../scripts/currency/converter';
+    initCurrencyConverter();
+  </script>
+</BasePage>
