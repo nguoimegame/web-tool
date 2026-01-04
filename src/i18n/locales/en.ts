@@ -1017,4 +1017,17 @@ export const en = {
   'kilogram_to_pound.title': 'Kilogram to Pound Converter',
   'kilogram_to_pound.description':
     'Convert kilograms (kg) to pounds (lb) easily. Free online weight conversion tool.',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': 'Temperature Converter',
+  'temperature_converter.description':
+    'Convert between temperature units: Kelvin, Celsius, Fahrenheit, Rankine, Reaumur, and Triple point of water. Free online temperature conversion tool.',
+
+  // Temperature Units
+  'temperature.K': 'kelvin [K]',
+  'temperature.C': 'Celsius [°C]',
+  'temperature.F': 'Fahrenheit [°F]',
+  'temperature.R': 'Rankine [°R]',
+  'temperature.r': 'Reaumur [°r]',
+  'temperature.Tw': 'Triple point of water',
 };

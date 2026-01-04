@@ -1010,4 +1010,17 @@ export const vi = {
   'kilogram_to_pound.title': 'Chuyển đổi Kilogram sang Pound',
   'kilogram_to_pound.description':
     'Chuyển đổi kilogram (kg) sang pound (lb) dễ dàng. Công cụ chuyển đổi trọng lượng trực tuyến miễn phí.',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': 'Chuyển đổi Nhiệt độ',
+  'temperature_converter.description':
+    'Chuyển đổi giữa các đơn vị nhiệt độ: Kelvin, Celsius, Fahrenheit, Rankine, Réaumur và Điểm ba của nước. Công cụ chuyển đổi nhiệt độ trực tuyến miễn phí.',
+
+  // Temperature Units
+  'temperature.K': 'kelvin [K]',
+  'temperature.C': 'Celsius [°C]',
+  'temperature.F': 'Fahrenheit [°F]',
+  'temperature.R': 'Rankine [°R]',
+  'temperature.r': 'Réaumur [°r]',
+  'temperature.Tw': 'Điểm ba của nước',
 };

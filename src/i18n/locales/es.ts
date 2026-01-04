@@ -989,4 +989,17 @@ export const es = {
   'kilogram_to_pound.title': 'Convertidor de Kilogramos a Libras',
   'kilogram_to_pound.description':
     'Convierte kilogramos (kg) a libras (lb) fácilmente. Herramienta gratuita de conversión de peso en línea.',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': 'Convertidor de Temperatura',
+  'temperature_converter.description':
+    'Convierte entre unidades de temperatura: Kelvin, Celsius, Fahrenheit, Rankine, Réaumur y Punto triple del agua. Herramienta gratuita de conversión de temperatura en línea.',
+
+  // Temperature Units
+  'temperature.K': 'kelvin [K]',
+  'temperature.C': 'Celsius [°C]',
+  'temperature.F': 'Fahrenheit [°F]',
+  'temperature.R': 'Rankine [°R]',
+  'temperature.r': 'Réaumur [°r]',
+  'temperature.Tw': 'Punto triple del agua',
 };

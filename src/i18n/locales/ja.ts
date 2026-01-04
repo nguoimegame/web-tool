@@ -986,4 +986,17 @@ export const ja = {
   'kilogram_to_pound.title': 'キログラムからポンドへの変換',
   'kilogram_to_pound.description':
     'キログラム（kg）をポンド（lb）に簡単に変換できます。無料のオンライン重量変換ツール。',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': '温度変換',
+  'temperature_converter.description':
+    '温度単位間で変換: ケルビン、摂氏、華氏、ランキン、レオミュール、水の三重点。無料のオンライン温度変換ツール。',
+
+  // Temperature Units
+  'temperature.K': 'ケルビン [K]',
+  'temperature.C': '摂氏 [°C]',
+  'temperature.F': '華氏 [°F]',
+  'temperature.R': 'ランキン [°R]',
+  'temperature.r': 'レオミュール [°r]',
+  'temperature.Tw': '水の三重点',
 };
