@@ -38,6 +38,12 @@ const currencies: Record<string, string> = {
   VND: 'Vietnamese Dong',
 };
 
+// Constants for formatting
+const RATE_DISPLAY_PRECISION = 6;
+
+// Valid currency codes (3 uppercase letters)
+const CURRENCY_CODE_REGEX = /^[A-Z]{3}$/;
+
 interface ExchangeRateResponse {
   result: string;
   base_code: string;
@@ -90,12 +96,22 @@ function populateCurrencySelects() {
     return;
   }
 
-  const options = Object.entries(currencies)
-    .map(([code, name]) => `<option value="${code}">${code} - ${name}</option>`)
-    .join('');
+  // Clear existing options
+  fromSelect.innerHTML = '';
+  toSelect.innerHTML = '';
 
-  fromSelect.innerHTML = options;
-  toSelect.innerHTML = options;
+  // Create options safely using DOM methods to avoid XSS
+  Object.entries(currencies).forEach(([code, name]) => {
+    const fromOption = document.createElement('option');
+    fromOption.value = code;
+    fromOption.textContent = `${code} - ${name}`;
+    fromSelect.appendChild(fromOption);
+
+    const toOption = document.createElement('option');
+    toOption.value = code;
+    toOption.textContent = `${code} - ${name}`;
+    toSelect.appendChild(toOption);
+  });
 
   // Set default values
   fromSelect.value = 'USD';
@@ -104,11 +120,19 @@ function populateCurrencySelects() {
 
 async function fetchExchangeRates(base: string = 'USD'): Promise<boolean> {
   const translations = getTranslations();
+
+  // Validate base currency code to prevent URL injection
+  if (!CURRENCY_CODE_REGEX.test(base)) {
+    console.error('Invalid currency code:', base);
+    updateStatus(translations.error, 'error');
+    return false;
+  }
+
   try {
     updateStatus(translations.loading, 'loading');
 
     // Using the free ExchangeRate-API (no API key required)
-    const response = await fetch(`https://open.er-api.com/v6/latest/${base}`);
+    const response = await fetch(`https://open.er-api.com/v6/latest/${encodeURIComponent(base)}`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch exchange rates');
@@ -160,11 +184,21 @@ function convert() {
     return;
   }
 
+  // Validate that both currencies exist in our exchange rates
+  const fromRate = exchangeRates[fromCurrency];
+  const toRate = exchangeRates[toCurrency];
+
+  if (fromRate === undefined || toRate === undefined) {
+    // Currency not found in exchange rates - show error
+    resultInput.value = '';
+    if (rateDisplay) {
+      rateDisplay.textContent = translations.error;
+    }
+    return;
+  }
+
   // Calculate conversion
-  // If base is USD, we need to convert from USD rates
   // rate = toRate / fromRate
-  const fromRate = exchangeRates[fromCurrency] || 1;
-  const toRate = exchangeRates[toCurrency] || 1;
   const rate = toRate / fromRate;
 
   const result = amount * rate;
@@ -184,7 +218,7 @@ function convert() {
   } else {
     formattedResult = result.toLocaleString(undefined, {
       minimumFractionDigits: 2,
-      maximumFractionDigits: 6,
+      maximumFractionDigits: RATE_DISPLAY_PRECISION,
     });
   }
 
@@ -192,7 +226,7 @@ function convert() {
 
   // Display exchange rate
   if (rateDisplay) {
-    rateDisplay.textContent = `${translations.rate}: 1 ${fromCurrency} = ${rate.toFixed(6)} ${toCurrency}`;
+    rateDisplay.textContent = `${translations.rate}: 1 ${fromCurrency} = ${rate.toFixed(RATE_DISPLAY_PRECISION)} ${toCurrency}`;
   }
 }
 
