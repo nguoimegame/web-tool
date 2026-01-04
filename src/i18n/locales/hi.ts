@@ -1003,4 +1003,17 @@ export const hi = {
   'temperature.R': 'रैंकिन [°R]',
   'temperature.r': 'रेयुमर [°Ré]',
   'temperature.De': 'डेलिस्ल [°De]',
+  // Currency Converter
+  'currency.title': 'मुद्रा परिवर्तक',
+  'currency.description':
+    'वास्तविक समय विनिमय दरों का उपयोग करके विभिन्न मुद्राओं के बीच रूपांतरण करें। मुफ्त ऑनलाइन मुद्रा परिवर्तक उपकरण।',
+  'currency.from': 'से',
+  'currency.to': 'को',
+  'currency.amount': 'राशि',
+  'currency.result': 'परिणाम',
+  'currency.rate': 'विनिमय दर',
+  'currency.swap': 'मुद्राएं बदलें',
+  'currency.loading': 'विनिमय दरें लोड हो रही हैं...',
+  'currency.error': 'विनिमय दरें लोड करने में विफल। कृपया बाद में पुनः प्रयास करें।',
+  'currency.last_updated': 'अंतिम अपडेट',
 };

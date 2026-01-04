@@ -999,4 +999,17 @@ export const ja = {
   'temperature.R': 'ランキン [°R]',
   'temperature.r': 'レオミュール [°Ré]',
   'temperature.De': 'ドリール [°De]',
+  // Currency Converter
+  'currency.title': '通貨換算ツール',
+  'currency.description':
+    'リアルタイムの為替レートを使用して異なる通貨間で変換します。無料のオンライン通貨換算ツール。',
+  'currency.from': 'から',
+  'currency.to': 'へ',
+  'currency.amount': '金額',
+  'currency.result': '結果',
+  'currency.rate': '為替レート',
+  'currency.swap': '通貨を入れ替え',
+  'currency.loading': '為替レートを読み込み中...',
+  'currency.error': '為替レートの読み込みに失敗しました。後でもう一度お試しください。',
+  'currency.last_updated': '最終更新',
 };

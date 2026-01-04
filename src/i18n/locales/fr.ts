@@ -1002,4 +1002,17 @@ export const fr = {
   'temperature.R': 'Rankine [°R]',
   'temperature.r': 'Réaumur [°Ré]',
   'temperature.De': 'Delisle [°De]',
+  // Currency Converter
+  'currency.title': 'Convertisseur de Devises',
+  'currency.description':
+    'Convertissez entre différentes devises en utilisant les taux de change en temps réel. Outil gratuit de conversion de devises en ligne.',
+  'currency.from': 'De',
+  'currency.to': 'Vers',
+  'currency.amount': 'Montant',
+  'currency.result': 'Résultat',
+  'currency.rate': 'Taux de Change',
+  'currency.swap': 'Échanger les devises',
+  'currency.loading': 'Chargement des taux de change...',
+  'currency.error': 'Échec du chargement des taux de change. Veuillez réessayer plus tard.',
+  'currency.last_updated': 'Dernière mise à jour',
 };

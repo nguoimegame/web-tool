@@ -1030,4 +1030,17 @@ export const en = {
   'temperature.R': 'Rankine [°R]',
   'temperature.r': 'Réaumur [°Ré]',
   'temperature.De': 'Delisle [°De]',
+  // Currency Converter
+  'currency.title': 'Currency Converter',
+  'currency.description':
+    'Convert between different currencies using real-time exchange rates. Free online currency converter tool.',
+  'currency.from': 'From',
+  'currency.to': 'To',
+  'currency.amount': 'Amount',
+  'currency.result': 'Result',
+  'currency.rate': 'Exchange Rate',
+  'currency.swap': 'Swap currencies',
+  'currency.loading': 'Loading exchange rates...',
+  'currency.error': 'Failed to load exchange rates. Please try again later.',
+  'currency.last_updated': 'Last updated',
 };

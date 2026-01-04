@@ -986,4 +986,16 @@ export const zh = {
   'temperature.R': '兰金 [°R]',
   'temperature.r': '列氏度 [°Ré]',
   'temperature.De': '德利尔 [°De]',
+  // Currency Converter
+  'currency.title': '货币转换器',
+  'currency.description': '使用实时汇率在不同货币之间进行转换。免费的在线货币转换工具。',
+  'currency.from': '从',
+  'currency.to': '到',
+  'currency.amount': '金额',
+  'currency.result': '结果',
+  'currency.rate': '汇率',
+  'currency.swap': '交换货币',
+  'currency.loading': '正在加载汇率...',
+  'currency.error': '无法加载汇率，请稍后重试。',
+  'currency.last_updated': '最后更新',
 };
