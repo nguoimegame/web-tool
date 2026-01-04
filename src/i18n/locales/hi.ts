@@ -990,4 +990,17 @@ export const hi = {
   'kilogram_to_pound.title': 'किलोग्राम से पाउंड कनवर्टर',
   'kilogram_to_pound.description':
     'किलोग्राम (kg) को पाउंड (lb) में आसानी से बदलें। मुफ्त ऑनलाइन वजन रूपांतरण उपकरण।',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': 'तापमान कनवर्टर',
+  'temperature_converter.description':
+    'तापमान इकाइयों के बीच रूपांतरण: केल्विन, सेल्सियस, फ़ारेनहाइट, रैंकिन, रेयुमर और डेलिस्ल। मुफ्त ऑनलाइन तापमान रूपांतरण उपकरण।',
+
+  // Temperature Units
+  'temperature.K': 'केल्विन [K]',
+  'temperature.C': 'सेल्सियस [°C]',
+  'temperature.F': 'फ़ारेनहाइट [°F]',
+  'temperature.R': 'रैंकिन [°R]',
+  'temperature.r': 'रेयुमर [°Ré]',
+  'temperature.De': 'डेलिस्ल [°De]',
 };

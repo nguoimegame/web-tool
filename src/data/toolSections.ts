@@ -347,6 +347,7 @@ export const toolSections: ToolSection[] = [
         items: [
           { url: 'convert/unit/weight', name: 'Weight converter', icon: 'scale' },
           { url: 'convert/unit/length', name: 'Length converter', icon: 'ruler' },
+          { url: 'convert/unit/temperature', name: 'Temperature converter', icon: 'thermometer' },
         ],
       },
     ],

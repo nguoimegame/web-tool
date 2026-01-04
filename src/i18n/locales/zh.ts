@@ -973,4 +973,17 @@ export const zh = {
   'pound_to_kilogram.description': '轻松将磅（lb）转换为千克（kg）。免费在线重量转换工具。',
   'kilogram_to_pound.title': '千克转磅转换器',
   'kilogram_to_pound.description': '轻松将千克（kg）转换为磅（lb）。免费在线重量转换工具。',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': '温度转换器',
+  'temperature_converter.description':
+    '在温度单位之间转换：开尔文、摄氏度、华氏度、兰金、列氏度和德利尔。免费在线温度转换工具。',
+
+  // Temperature Units
+  'temperature.K': '开尔文 [K]',
+  'temperature.C': '摄氏度 [°C]',
+  'temperature.F': '华氏度 [°F]',
+  'temperature.R': '兰金 [°R]',
+  'temperature.r': '列氏度 [°Ré]',
+  'temperature.De': '德利尔 [°De]',
 };

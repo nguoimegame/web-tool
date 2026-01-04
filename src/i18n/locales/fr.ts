@@ -989,4 +989,17 @@ export const fr = {
   'kilogram_to_pound.title': 'Convertisseur Kilogramme en Livre',
   'kilogram_to_pound.description':
     'Convertissez facilement les kilogrammes (kg) en livres (lb). Outil de conversion de poids en ligne gratuit.',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': 'Convertisseur de Température',
+  'temperature_converter.description':
+    'Convertissez entre les unités de température : Kelvin, Celsius, Fahrenheit, Rankine, Réaumur et Delisle. Outil de conversion de température en ligne gratuit.',
+
+  // Temperature Units
+  'temperature.K': 'kelvin [K]',
+  'temperature.C': 'Celsius [°C]',
+  'temperature.F': 'Fahrenheit [°F]',
+  'temperature.R': 'Rankine [°R]',
+  'temperature.r': 'Réaumur [°Ré]',
+  'temperature.De': 'Delisle [°De]',
 };

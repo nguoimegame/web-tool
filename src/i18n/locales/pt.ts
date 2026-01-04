@@ -990,4 +990,17 @@ export const pt = {
   'kilogram_to_pound.title': 'Conversor de Quilograma para Libra',
   'kilogram_to_pound.description':
     'Converta quilogramas (kg) para libras (lb) facilmente. Ferramenta gratuita de conversão de peso online.',
+
+  // Unit Conversion - Temperature
+  'temperature_converter.title': 'Conversor de Temperatura',
+  'temperature_converter.description':
+    'Converta entre unidades de temperatura: Kelvin, Celsius, Fahrenheit, Rankine, Réaumur e Delisle. Ferramenta gratuita de conversão de temperatura online.',
+
+  // Temperature Units
+  'temperature.K': 'kelvin [K]',
+  'temperature.C': 'Celsius [°C]',
+  'temperature.F': 'Fahrenheit [°F]',
+  'temperature.R': 'Rankine [°R]',
+  'temperature.r': 'Réaumur [°Ré]',
+  'temperature.De': 'Delisle [°De]',
 };
