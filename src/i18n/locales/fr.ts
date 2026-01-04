@@ -1023,7 +1023,7 @@ export const fr = {
   'currency.AOA': 'Kwanza angolais',
   'currency.ARS': 'Peso argentin',
   'currency.AUD': 'Dollar australien',
-  'currency.AWG': 'Florin d\'Aruba',
+  'currency.AWG': "Florin d'Aruba",
   'currency.AZN': 'Manat azerbaïdjanais',
   'currency.BAM': 'Mark convertible de Bosnie-Herzégovine',
   'currency.BBD': 'Dollar barbadien',

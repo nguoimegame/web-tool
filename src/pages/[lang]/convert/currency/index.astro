@@ -33,7 +33,13 @@ const activePage = 'convert/currency';
         dataAutoUpdate={true}
         dataToggleMonaco={false}
       >
-        <select slot="toolbar" id="input-currency" class="select" data-auto-update>
+        <select
+          slot="toolbar"
+          id="input-currency"
+          class="select"
+          data-auto-update
+          data-share="from"
+        >
           <!-- Options populated by JavaScript -->
         </select>
       </InputBlock>
@@ -49,7 +55,7 @@ const activePage = 'convert/currency';
         <button slot="toolbar" class="icon" id="swap-currencies" title={t('currency.swap')}>
           <i data-lucide="arrow-left-right"></i>
         </button>
-        <select slot="toolbar" id="output-currency" class="select" data-auto-update>
+        <select slot="toolbar" id="output-currency" class="select" data-auto-update data-share="to">
           <!-- Options populated by JavaScript -->
         </select>
         <div slot="after-textarea" class="exchange-rate-info">
