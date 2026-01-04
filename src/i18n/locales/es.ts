@@ -792,4 +792,18 @@ export const es = {
   'compare.side_by_side': 'Lado a Lado',
   'compare.show_diff': 'Mostrar Diferencias',
   'compare.edit_mode': 'Modo Edición',
+
+  // Currency Converter
+  'currency.title': 'Conversor de Moneda',
+  'currency.description':
+    'Convierta entre diferentes monedas usando tipos de cambio en tiempo real. Herramienta gratuita de conversión de moneda en línea.',
+  'currency.from': 'De',
+  'currency.to': 'A',
+  'currency.amount': 'Cantidad',
+  'currency.result': 'Resultado',
+  'currency.rate': 'Tipo de Cambio',
+  'currency.swap': 'Intercambiar monedas',
+  'currency.loading': 'Cargando tipos de cambio...',
+  'currency.error': 'Error al cargar los tipos de cambio. Por favor, inténtelo de nuevo más tarde.',
+  'currency.last_updated': 'Última actualización',
 };
