@@ -794,6 +794,23 @@ export const pt = {
   'compare.show_diff': 'Mostrar Diferenças',
   'compare.edit_mode': 'Modo Edição',
 
+  // Calculator
+  'calculator.title': 'Calculadora Científica',
+  'calculator.description':
+    'Uma calculadora científica online gratuita com funções trigonométricas, logarítmicas e matemáticas avançadas. Realize cálculos de sin, cos, tan, log, ln, fatorial, potência e mais.',
+  'calculator.expression': 'Expressão',
+  'calculator.result': 'Resultado',
+  'calculator.clear': 'Limpar',
+  'calculator.clear_all': 'Limpar tudo',
+  'calculator.backspace': 'Retroceder',
+  'calculator.error': 'Erro',
+  'calculator.placeholder': 'Digite a expressão ou use os botões...',
+  'calculator.history': 'Histórico',
+  'calculator.clear_history': 'Limpar histórico',
+  'calculator.sound': 'Som',
+  'calculator.vibration': 'Vibração',
+  'calculator.no_calculations': 'Nenhum cálculo ainda',
+  'calculator.scientific_mode': 'Modo Científico',
   // Unit Conversion - Weight
   'weight_converter.title': 'Conversor de Peso',
   'weight_converter.description':

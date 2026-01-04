@@ -793,6 +793,23 @@ export const fr = {
   'compare.show_diff': 'Afficher Diff',
   'compare.edit_mode': 'Mode Édition',
 
+  // Calculator
+  'calculator.title': 'Calculatrice Scientifique',
+  'calculator.description':
+    'Une calculatrice scientifique en ligne gratuite avec des fonctions trigonométriques, logarithmiques et mathématiques avancées. Effectuez des calculs sin, cos, tan, log, ln, factorielle, puissance et plus.',
+  'calculator.expression': 'Expression',
+  'calculator.result': 'Résultat',
+  'calculator.clear': 'Effacer',
+  'calculator.clear_all': 'Tout effacer',
+  'calculator.backspace': 'Retour arrière',
+  'calculator.error': 'Erreur',
+  'calculator.placeholder': "Entrez l'expression ou utilisez les boutons...",
+  'calculator.history': 'Historique',
+  'calculator.clear_history': "Effacer l'historique",
+  'calculator.sound': 'Son',
+  'calculator.vibration': 'Vibration',
+  'calculator.no_calculations': 'Aucun calcul pour le moment',
+  'calculator.scientific_mode': 'Mode Scientifique',
   // Unit Conversion - Weight
   'weight_converter.title': 'Convertisseur de Poids',
   'weight_converter.description':

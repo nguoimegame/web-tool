@@ -1,0 +1,152 @@
+---
+import BasePage from '../../../components/BasePage.astro';
+import BaseSettingBlock from '../../../components/BaseSettingBlock.astro';
+import { languages } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/utils';
+import '../../../styles/calculator.css';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+    return { params: { lang } };
+  });
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+---
+
+<BasePage
+  title={t('calculator.title')}
+  description={t('calculator.description')}
+  activePage="calculator"
+>
+  <div class="layout">
+    <div class="layout-block" style="flex: 1;">
+      <div class="calculator-container">
+        <div class="calculator scientific">
+          <div class="display">
+            <button class="btn-history" id="toggle-history" title={t('calculator.history')}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </button>
+            <div class="display-content">
+              <div class="expression" id="expression"></div>
+              <input
+                type="text"
+                class="result"
+                id="result"
+                placeholder={t('calculator.placeholder')}
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="buttons scientific-buttons">
+            <!-- Row 1: Mode toggles and special functions -->
+            <button class="btn-calc btn-mode" data-action="toggle-deg" id="deg-rad-btn">Deg</button>
+            <button class="btn-calc btn-mode" data-action="toggle-inv" id="inv-btn">Inv</button>
+            <button class="btn-calc btn-sci" data-action="factorial">x!</button>
+            <button class="btn-calc btn-sci" data-value="(">(</button>
+            <button class="btn-calc btn-sci" data-value=")">)</button>
+            <button class="btn-calc btn-sci" data-action="percent">%</button>
+            <button class="btn-calc btn-func" data-action="clear-all">AC</button>
+
+            <!-- Row 2: Scientific functions + numbers -->
+            <button class="btn-calc btn-sci" data-action="sin" id="sin-btn">sin</button>
+            <button class="btn-calc btn-sci" data-action="cos" id="cos-btn">cos</button>
+            <button class="btn-calc btn-sci" data-action="tan" id="tan-btn">tan</button>
+            <button class="btn-calc" data-value="7">7</button>
+            <button class="btn-calc" data-value="8">8</button>
+            <button class="btn-calc" data-value="9">9</button>
+            <button class="btn-calc btn-op" data-value="/">÷</button>
+
+            <!-- Row 3: More scientific functions + numbers -->
+            <button class="btn-calc btn-sci" data-action="ln" id="ln-btn">ln</button>
+            <button class="btn-calc btn-sci" data-action="log" id="log-btn">log</button>
+            <button class="btn-calc btn-sci" data-action="sqrt" id="sqrt-btn">√</button>
+            <button class="btn-calc" data-value="4">4</button>
+            <button class="btn-calc" data-value="5">5</button>
+            <button class="btn-calc" data-value="6">6</button>
+            <button class="btn-calc btn-op" data-value="*">×</button>
+
+            <!-- Row 4: Constants and functions + numbers -->
+            <button class="btn-calc btn-sci" data-action="pi">π</button>
+            <button class="btn-calc btn-sci" data-action="euler">e</button>
+            <button class="btn-calc btn-sci" data-action="power" id="power-btn"
+              >x<sup>y</sup></button
+            >
+            <button class="btn-calc" data-value="1">1</button>
+            <button class="btn-calc" data-value="2">2</button>
+            <button class="btn-calc" data-value="3">3</button>
+            <button class="btn-calc btn-op" data-value="-">−</button>
+
+            <!-- Row 5: Additional functions + numbers -->
+            <button class="btn-calc btn-sci" data-action="ans">Ans</button>
+            <button class="btn-calc btn-sci" data-action="exp">EXP</button>
+            <button class="btn-calc btn-func" data-action="backspace">⌫</button>
+            <button class="btn-calc" data-value="0">0</button>
+            <button class="btn-calc" data-value="00">00</button>
+            <button class="btn-calc" data-value=".">.</button>
+            <button class="btn-calc btn-op" data-value="+">+</button>
+
+            <!-- Row 6: Equals button spanning -->
+            <button class="btn-calc btn-sci" data-action="abs">|x|</button>
+            <button class="btn-calc btn-sci" data-action="reciprocal">1/x</button>
+            <button class="btn-calc btn-sci" data-action="square">x²</button>
+            <button class="btn-calc btn-equals btn-equals-wide" data-action="calculate">=</button>
+          </div>
+        </div>
+        <div class="history-panel" id="history-panel">
+          <div class="history-header">
+            <span>{t('calculator.history')}</span>
+            <button
+              class="btn-clear-history"
+              id="clear-history"
+              title={t('calculator.clear_history')}>🗑️</button
+            >
+          </div>
+          <div class="history-list" id="history-list"></div>
+        </div>
+      </div>
+    </div>
+    <BaseSettingBlock title={t('settings')}>
+      <div class="setting">
+        <label class="switcher">
+          <input type="checkbox" id="sound-enabled" checked />
+          <div class="toggle"></div>
+          <span>{t('calculator.sound')}</span>
+        </label>
+      </div>
+      <div class="setting">
+        <label class="switcher">
+          <input type="checkbox" id="vibration-enabled" checked />
+          <div class="toggle"></div>
+          <span>{t('calculator.vibration')}</span>
+        </label>
+      </div>
+      <div class="setting">
+        <label class="switcher">
+          <input type="checkbox" id="scientific-mode" checked />
+          <div class="toggle"></div>
+          <span>{t('calculator.scientific_mode')}</span>
+        </label>
+      </div>
+    </BaseSettingBlock>
+  </div>
+
+  <script>
+    import { initCalculator } from '../../../scripts/calculator';
+    initCalculator();
+  </script>
+</BasePage>

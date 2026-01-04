@@ -794,6 +794,23 @@ export const hi = {
   'compare.show_diff': 'अंतर दिखाएं',
   'compare.edit_mode': 'संपादन मोड',
 
+  // Calculator
+  'calculator.title': 'वैज्ञानिक कैलकुलेटर',
+  'calculator.description':
+    'त्रिकोणमितीय, लघुगणकीय और उन्नत गणितीय कार्यों के साथ एक मुफ्त ऑनलाइन वैज्ञानिक कैलकुलेटर। sin, cos, tan, log, ln, फैक्टोरियल, पावर और अधिक गणनाएँ करें।',
+  'calculator.expression': 'अभिव्यक्ति',
+  'calculator.result': 'परिणाम',
+  'calculator.clear': 'साफ़ करें',
+  'calculator.clear_all': 'सब साफ़ करें',
+  'calculator.backspace': 'बैकस्पेस',
+  'calculator.error': 'त्रुटि',
+  'calculator.placeholder': 'अभिव्यक्ति दर्ज करें या बटन का उपयोग करें...',
+  'calculator.history': 'इतिहास',
+  'calculator.clear_history': 'इतिहास साफ़ करें',
+  'calculator.sound': 'ध्वनि',
+  'calculator.vibration': 'कंपन',
+  'calculator.no_calculations': 'अभी तक कोई गणना नहीं',
+  'calculator.scientific_mode': 'वैज्ञानिक मोड',
   // Unit Conversion - Weight
   'weight_converter.title': 'वजन कनवर्टर',
   'weight_converter.description':
