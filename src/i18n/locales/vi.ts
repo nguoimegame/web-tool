@@ -813,4 +813,21 @@ export const vi = {
   'compare.side_by_side': 'Song song',
   'compare.show_diff': 'Xem khác biệt',
   'compare.edit_mode': 'Chế độ sửa',
+
+  // Calculator
+  'calculator.title': 'Máy tính',
+  'calculator.description':
+    'Máy tính trực tuyến miễn phí với các phép tính số học cơ bản. Thực hiện phép cộng, trừ, nhân và chia ngay lập tức.',
+  'calculator.expression': 'Biểu thức',
+  'calculator.result': 'Kết quả',
+  'calculator.clear': 'Xóa',
+  'calculator.clear_all': 'Xóa tất cả',
+  'calculator.backspace': 'Xóa ký tự',
+  'calculator.error': 'Lỗi',
+  'calculator.placeholder': 'Nhập biểu thức hoặc sử dụng các nút...',
+  'calculator.history': 'Lịch sử',
+  'calculator.clear_history': 'Xóa lịch sử',
+  'calculator.sound': 'Âm thanh',
+  'calculator.vibration': 'Rung',
+  'calculator.no_calculations': 'Chưa có phép tính nào',
 };

@@ -793,4 +793,21 @@ export const pt = {
   'compare.side_by_side': 'Lado a Lado',
   'compare.show_diff': 'Mostrar Diferenças',
   'compare.edit_mode': 'Modo Edição',
+
+  // Calculator
+  'calculator.title': 'Calculadora',
+  'calculator.description':
+    'Uma calculadora online gratuita com operações aritméticas básicas. Realize cálculos de adição, subtração, multiplicação e divisão instantaneamente.',
+  'calculator.expression': 'Expressão',
+  'calculator.result': 'Resultado',
+  'calculator.clear': 'Limpar',
+  'calculator.clear_all': 'Limpar tudo',
+  'calculator.backspace': 'Retroceder',
+  'calculator.error': 'Erro',
+  'calculator.placeholder': 'Digite a expressão ou use os botões...',
+  'calculator.history': 'Histórico',
+  'calculator.clear_history': 'Limpar histórico',
+  'calculator.sound': 'Som',
+  'calculator.vibration': 'Vibração',
+  'calculator.no_calculations': 'Nenhum cálculo ainda',
 };

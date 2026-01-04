@@ -789,4 +789,21 @@ export const ja = {
   'compare.side_by_side': '並列',
   'compare.show_diff': '差分を表示',
   'compare.edit_mode': '編集モード',
+
+  // Calculator
+  'calculator.title': '電卓',
+  'calculator.description':
+    '基本的な算術演算ができる無料のオンライン電卓です。加算、減算、乗算、除算を即座に実行できます。',
+  'calculator.expression': '式',
+  'calculator.result': '結果',
+  'calculator.clear': 'クリア',
+  'calculator.clear_all': 'すべてクリア',
+  'calculator.backspace': 'バックスペース',
+  'calculator.error': 'エラー',
+  'calculator.placeholder': '式を入力するか、ボタンを使用してください...',
+  'calculator.history': '履歴',
+  'calculator.clear_history': '履歴をクリア',
+  'calculator.sound': 'サウンド',
+  'calculator.vibration': 'バイブレーション',
+  'calculator.no_calculations': 'まだ計算がありません',
 };

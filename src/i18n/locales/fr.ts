@@ -792,4 +792,21 @@ export const fr = {
   'compare.side_by_side': 'Côte à Côte',
   'compare.show_diff': 'Afficher Diff',
   'compare.edit_mode': 'Mode Édition',
+
+  // Calculator
+  'calculator.title': 'Calculatrice',
+  'calculator.description':
+    'Une calculatrice en ligne gratuite avec des opérations arithmétiques de base. Effectuez des additions, soustractions, multiplications et divisions instantanément.',
+  'calculator.expression': 'Expression',
+  'calculator.result': 'Résultat',
+  'calculator.clear': 'Effacer',
+  'calculator.clear_all': 'Tout effacer',
+  'calculator.backspace': 'Retour arrière',
+  'calculator.error': 'Erreur',
+  'calculator.placeholder': "Entrez l'expression ou utilisez les boutons...",
+  'calculator.history': 'Historique',
+  'calculator.clear_history': "Effacer l'historique",
+  'calculator.sound': 'Son',
+  'calculator.vibration': 'Vibration',
+  'calculator.no_calculations': 'Pas encore de calculs',
 };

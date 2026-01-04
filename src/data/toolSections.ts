@@ -45,6 +45,7 @@ export const toolSections: ToolSection[] = [
           { url: 'syntax-highlight', name: 'Syntax Highlight', icon: 'code-2' },
           { url: 's-notes', name: 'S Notes', icon: 'notebook-pen' },
           { url: 'compare', name: 'Compare Files & Folders', icon: 'git-compare' },
+          { url: 'calculator', name: 'Calculator', icon: 'calculator' },
         ],
       },
       {

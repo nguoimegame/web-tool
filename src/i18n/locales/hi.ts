@@ -793,4 +793,21 @@ export const hi = {
   'compare.side_by_side': 'साथ-साथ',
   'compare.show_diff': 'अंतर दिखाएं',
   'compare.edit_mode': 'संपादन मोड',
+
+  // Calculator
+  'calculator.title': 'कैलकुलेटर',
+  'calculator.description':
+    'बुनियादी गणितीय संचालन के साथ एक मुफ्त ऑनलाइन कैलकुलेटर। जोड़, घटाव, गुणा और भाग की गणना तुरंत करें।',
+  'calculator.expression': 'अभिव्यक्ति',
+  'calculator.result': 'परिणाम',
+  'calculator.clear': 'साफ़ करें',
+  'calculator.clear_all': 'सब साफ़ करें',
+  'calculator.backspace': 'बैकस्पेस',
+  'calculator.error': 'त्रुटि',
+  'calculator.placeholder': 'अभिव्यक्ति दर्ज करें या बटन का उपयोग करें...',
+  'calculator.history': 'इतिहास',
+  'calculator.clear_history': 'इतिहास साफ़ करें',
+  'calculator.sound': 'ध्वनि',
+  'calculator.vibration': 'कंपन',
+  'calculator.no_calculations': 'अभी तक कोई गणना नहीं',
 };

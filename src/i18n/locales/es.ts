@@ -792,4 +792,21 @@ export const es = {
   'compare.side_by_side': 'Lado a Lado',
   'compare.show_diff': 'Mostrar Diferencias',
   'compare.edit_mode': 'Modo Edición',
+
+  // Calculator
+  'calculator.title': 'Calculadora',
+  'calculator.description':
+    'Una calculadora en línea gratuita con operaciones aritméticas básicas. Realiza cálculos de suma, resta, multiplicación y división al instante.',
+  'calculator.expression': 'Expresión',
+  'calculator.result': 'Resultado',
+  'calculator.clear': 'Borrar',
+  'calculator.clear_all': 'Borrar todo',
+  'calculator.backspace': 'Retroceso',
+  'calculator.error': 'Error',
+  'calculator.placeholder': 'Ingrese expresión o use los botones...',
+  'calculator.history': 'Historial',
+  'calculator.clear_history': 'Borrar historial',
+  'calculator.sound': 'Sonido',
+  'calculator.vibration': 'Vibración',
+  'calculator.no_calculations': 'Sin cálculos aún',
 };

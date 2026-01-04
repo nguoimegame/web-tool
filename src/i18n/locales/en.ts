@@ -820,4 +820,21 @@ export const en = {
   'compare.side_by_side': 'Side by Side',
   'compare.show_diff': 'Show Diff',
   'compare.edit_mode': 'Edit Mode',
+
+  // Calculator
+  'calculator.title': 'Calculator',
+  'calculator.description':
+    'A free online calculator with basic arithmetic operations. Perform addition, subtraction, multiplication, and division calculations instantly.',
+  'calculator.expression': 'Expression',
+  'calculator.result': 'Result',
+  'calculator.clear': 'Clear',
+  'calculator.clear_all': 'Clear All',
+  'calculator.backspace': 'Backspace',
+  'calculator.error': 'Error',
+  'calculator.placeholder': 'Enter expression or use buttons...',
+  'calculator.history': 'History',
+  'calculator.clear_history': 'Clear history',
+  'calculator.sound': 'Sound',
+  'calculator.vibration': 'Vibration',
+  'calculator.no_calculations': 'No calculations yet',
 };
