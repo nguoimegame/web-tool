@@ -795,9 +795,9 @@ export const hi = {
   'compare.edit_mode': 'संपादन मोड',
 
   // Calculator
-  'calculator.title': 'कैलकुलेटर',
+  'calculator.title': 'वैज्ञानिक कैलकुलेटर',
   'calculator.description':
-    'बुनियादी गणितीय संचालन के साथ एक मुफ्त ऑनलाइन कैलकुलेटर। जोड़, घटाव, गुणा और भाग की गणना तुरंत करें।',
+    'त्रिकोणमितीय, लघुगणकीय और उन्नत गणितीय कार्यों के साथ एक मुफ्त ऑनलाइन वैज्ञानिक कैलकुलेटर। sin, cos, tan, log, ln, फैक्टोरियल, पावर और अधिक गणनाएँ करें।',
   'calculator.expression': 'अभिव्यक्ति',
   'calculator.result': 'परिणाम',
   'calculator.clear': 'साफ़ करें',
@@ -810,4 +810,5 @@ export const hi = {
   'calculator.sound': 'ध्वनि',
   'calculator.vibration': 'कंपन',
   'calculator.no_calculations': 'अभी तक कोई गणना नहीं',
+  'calculator.scientific_mode': 'वैज्ञानिक मोड',
 };

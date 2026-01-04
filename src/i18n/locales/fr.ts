@@ -794,9 +794,9 @@ export const fr = {
   'compare.edit_mode': 'Mode Édition',
 
   // Calculator
-  'calculator.title': 'Calculatrice',
+  'calculator.title': 'Calculatrice Scientifique',
   'calculator.description':
-    'Une calculatrice en ligne gratuite avec des opérations arithmétiques de base. Effectuez des additions, soustractions, multiplications et divisions instantanément.',
+    'Une calculatrice scientifique en ligne gratuite avec des fonctions trigonométriques, logarithmiques et mathématiques avancées. Effectuez des calculs sin, cos, tan, log, ln, factorielle, puissance et plus.',
   'calculator.expression': 'Expression',
   'calculator.result': 'Résultat',
   'calculator.clear': 'Effacer',
@@ -808,5 +808,6 @@ export const fr = {
   'calculator.clear_history': "Effacer l'historique",
   'calculator.sound': 'Son',
   'calculator.vibration': 'Vibration',
-  'calculator.no_calculations': 'Pas encore de calculs',
+  'calculator.no_calculations': 'Aucun calcul pour le moment',
+  'calculator.scientific_mode': 'Mode Scientifique',
 };

@@ -2,7 +2,7 @@
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -15,12 +15,41 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.calculator.scientific {
+  max-width: 520px;
+}
+
 .display {
   background: var(--bg-primary);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
   min-height: 80px;
+  position: relative;
+}
+
+.btn-history {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  padding: 0.25rem;
+  border-radius: 4px;
+  display: none;
+}
+
+.btn-history:hover {
+  opacity: 1;
+  background: var(--bg-hover);
+}
+
+.display-content {
+  padding-top: 0.5rem;
 }
 
 .expression {
@@ -54,9 +83,13 @@
   gap: 0.5rem;
 }
 
+.scientific-buttons {
+  grid-template-columns: repeat(7, 1fr);
+}
+
 .btn-calc {
-  padding: 1rem;
-  font-size: 1.25rem;
+  padding: 0.75rem 0.5rem;
+  font-size: 1rem;
   font-weight: 500;
   border: none;
   border-radius: 8px;
@@ -67,6 +100,7 @@
     background-color 0.15s,
     transform 0.1s;
   user-select: none;
+  min-height: 44px;
 }
 
 .btn-calc:hover {
@@ -75,6 +109,11 @@
 
 .btn-calc:active {
   transform: scale(0.95);
+}
+
+.btn-calc sup {
+  font-size: 0.7em;
+  vertical-align: super;
 }
 
 .btn-op {
@@ -96,6 +135,32 @@
   background: var(--bg-hover);
 }
 
+.btn-sci {
+  background: #2d3748;
+  color: #90cdf4;
+  font-size: 0.9rem;
+}
+
+.btn-sci:hover {
+  background: #3d4a5c;
+}
+
+.btn-mode {
+  background: #374151;
+  color: #a5b4fc;
+  font-size: 0.85rem;
+}
+
+.btn-mode:hover {
+  background: #4b5563;
+}
+
+.btn-mode.active,
+.btn-func.active {
+  background: var(--accent-primary);
+  color: white;
+}
+
 .btn-equals {
   background: var(--accent-primary);
   color: white;
@@ -103,6 +168,10 @@
 
 .btn-equals:hover {
   background: var(--accent-hover);
+}
+
+.btn-equals-wide {
+  grid-column: span 4;
 }
 
 /* History Panel */
@@ -177,7 +246,7 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .calculator-container {
     flex-direction: column;
   }
@@ -186,8 +255,46 @@
     max-width: 100%;
   }
 
+  .calculator.scientific {
+    max-width: 100%;
+  }
+
   .history-panel {
     max-width: 100%;
+    display: none;
+  }
+
+  .history-panel.show {
+    display: flex;
+  }
+
+  .btn-history {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .scientific-buttons {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+  }
+
+  .btn-calc {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
+    min-height: 40px;
+  }
+
+  .btn-sci {
+    font-size: 0.75rem;
+  }
+
+  .result {
+    font-size: 1.5rem;
+  }
+
+  .btn-equals-wide {
+    grid-column: span 4;
   }
 }
 
@@ -200,4 +307,144 @@
 .btn-calc.active {
   background: var(--accent-primary);
   color: white;
+}
+
+/* Large screens - bigger buttons */
+@media (min-width: 1200px) {
+  .calculator-container {
+    max-width: 1100px;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .calculator {
+    max-width: 400px;
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .calculator.scientific {
+    max-width: 650px;
+  }
+
+  .display {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    min-height: 100px;
+    border-radius: 12px;
+  }
+
+  .result {
+    font-size: 2.5rem;
+  }
+
+  .expression {
+    font-size: 1rem;
+  }
+
+  .buttons {
+    gap: 0.75rem;
+  }
+
+  .btn-calc {
+    padding: 1rem 0.75rem;
+    font-size: 1.2rem;
+    min-height: 56px;
+    border-radius: 10px;
+  }
+
+  .btn-sci {
+    font-size: 1rem;
+  }
+
+  .btn-mode {
+    font-size: 0.95rem;
+  }
+
+  .history-panel {
+    max-width: 350px;
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .history-list {
+    max-height: 500px;
+  }
+
+  .history-result {
+    font-size: 1.25rem;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1600px) {
+  .calculator-container {
+    max-width: 1300px;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .calculator {
+    max-width: 480px;
+    padding: 2rem;
+  }
+
+  .calculator.scientific {
+    max-width: 780px;
+  }
+
+  .display {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    min-height: 120px;
+  }
+
+  .result {
+    font-size: 3rem;
+  }
+
+  .expression {
+    font-size: 1.125rem;
+  }
+
+  .buttons {
+    gap: 1rem;
+  }
+
+  .btn-calc {
+    padding: 1.25rem 1rem;
+    font-size: 1.4rem;
+    min-height: 68px;
+    border-radius: 12px;
+  }
+
+  .btn-sci {
+    font-size: 1.1rem;
+  }
+
+  .btn-mode {
+    font-size: 1rem;
+  }
+
+  .history-panel {
+    max-width: 400px;
+    padding: 2rem;
+  }
+
+  .history-list {
+    max-height: 600px;
+  }
+
+  .history-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .history-expression {
+    font-size: 1rem;
+  }
+
+  .history-result {
+    font-size: 1.5rem;
+  }
 }

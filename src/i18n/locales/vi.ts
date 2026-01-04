@@ -815,9 +815,9 @@ export const vi = {
   'compare.edit_mode': 'Chế độ sửa',
 
   // Calculator
-  'calculator.title': 'Máy tính',
+  'calculator.title': 'Máy tính khoa học',
   'calculator.description':
-    'Máy tính trực tuyến miễn phí với các phép tính số học cơ bản. Thực hiện phép cộng, trừ, nhân và chia ngay lập tức.',
+    'Máy tính khoa học trực tuyến miễn phí với các hàm lượng giác, logarit và toán học nâng cao. Thực hiện sin, cos, tan, log, ln, giai thừa, lũy thừa và nhiều hơn nữa.',
   'calculator.expression': 'Biểu thức',
   'calculator.result': 'Kết quả',
   'calculator.clear': 'Xóa',
@@ -830,4 +830,5 @@ export const vi = {
   'calculator.sound': 'Âm thanh',
   'calculator.vibration': 'Rung',
   'calculator.no_calculations': 'Chưa có phép tính nào',
+  'calculator.scientific_mode': 'Chế độ khoa học',
 };

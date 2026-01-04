@@ -794,9 +794,9 @@ export const es = {
   'compare.edit_mode': 'Modo Edición',
 
   // Calculator
-  'calculator.title': 'Calculadora',
+  'calculator.title': 'Calculadora Científica',
   'calculator.description':
-    'Una calculadora en línea gratuita con operaciones aritméticas básicas. Realiza cálculos de suma, resta, multiplicación y división al instante.',
+    'Una calculadora científica en línea gratuita con funciones trigonométricas, logarítmicas y matemáticas avanzadas. Realiza cálculos de sin, cos, tan, log, ln, factorial, potencia y más.',
   'calculator.expression': 'Expresión',
   'calculator.result': 'Resultado',
   'calculator.clear': 'Borrar',
@@ -809,4 +809,5 @@ export const es = {
   'calculator.sound': 'Sonido',
   'calculator.vibration': 'Vibración',
   'calculator.no_calculations': 'Sin cálculos aún',
+  'calculator.scientific_mode': 'Modo Científico',
 };

@@ -822,9 +822,9 @@ export const en = {
   'compare.edit_mode': 'Edit Mode',
 
   // Calculator
-  'calculator.title': 'Calculator',
+  'calculator.title': 'Scientific Calculator',
   'calculator.description':
-    'A free online calculator with basic arithmetic operations. Perform addition, subtraction, multiplication, and division calculations instantly.',
+    'A free online scientific calculator with trigonometric, logarithmic, and advanced mathematical functions. Perform sin, cos, tan, log, ln, factorial, power calculations and more.',
   'calculator.expression': 'Expression',
   'calculator.result': 'Result',
   'calculator.clear': 'Clear',
@@ -837,4 +837,5 @@ export const en = {
   'calculator.sound': 'Sound',
   'calculator.vibration': 'Vibration',
   'calculator.no_calculations': 'No calculations yet',
+  'calculator.scientific_mode': 'Scientific Mode',
 };
