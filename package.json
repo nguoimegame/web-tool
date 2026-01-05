@@ -11,7 +11,9 @@
     "lint": "eslint . --ext .js,.astro,.ts",
     "lint:fix": "eslint . --ext .js,.astro,.ts --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "build:extension": "node scripts/build-extension.mjs",
+    "build:extension:zip": "node scripts/build-extension.mjs && cd chrome-extension-build && tar -a -c -f ../web-tools-extension.zip *"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
