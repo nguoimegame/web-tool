@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Web Tools - Privacy-Focused Toolkit",
+  "short_name": "Web Tools",
+  "version": "1.0.0",
+  "description": "Privacy-focused toolkit: Hash, Encoding, Cryptography, JSON/XML, QR Code & more. All operations run locally in browser.",
+  "homepage_url": "https://webtool.center/",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    },
+    "default_title": "Web Tools"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "clipboardWrite",
+    "clipboardRead",
+    "contextMenus"
+  ],
+  "host_permissions": [],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["app/*", "css/*", "js/*", "images/*", "astro/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "offline_enabled": true
+}
