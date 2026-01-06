@@ -23,7 +23,7 @@
 .local-time-display {
   font-size: 3rem;
   font-weight: 700;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
   color: var(--primary-color, #00d9ff);
   line-height: 1.2;
 }
@@ -133,7 +133,7 @@
 .city-time {
   font-size: 1.5rem;
   font-weight: 700;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
   color: var(--primary-color, #00d9ff);
 }
 

@@ -1193,4 +1193,6 @@ export const pt = {
   'world_clock.hours_ahead': '{0}h à frente',
   'world_clock.hours_behind': '{0}h atrás',
   'world_clock.same_time': 'Mesmo horário',
+  'world_clock.empty_state': 'Clique em uma cidade abaixo para adicioná-la ao seu relógio',
+  'world_clock.help_text': 'Clique em uma cidade para adicioná-la ao seu relógio mundial. Suas seleções são salvas localmente.',
 };

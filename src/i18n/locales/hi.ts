@@ -1193,4 +1193,6 @@ export const hi = {
   'world_clock.hours_ahead': '{0} घंटे आगे',
   'world_clock.hours_behind': '{0} घंटे पीछे',
   'world_clock.same_time': 'समान समय',
+  'world_clock.empty_state': 'अपनी घड़ी में जोड़ने के लिए नीचे किसी शहर पर क्लिक करें',
+  'world_clock.help_text': 'अपनी विश्व घड़ी में जोड़ने के लिए किसी शहर पर क्लिक करें। आपके चयन स्थानीय रूप से सहेजे गए हैं।',
 };

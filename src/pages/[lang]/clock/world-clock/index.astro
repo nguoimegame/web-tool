@@ -76,7 +76,7 @@ const activePage = 'clock/world-clock';
     <BaseSettingBlock title={t('settings')}>
       <div class="setting">
         <p style="font-size: 0.875rem; color: var(--text-secondary);">
-          Click on a city to add it to your world clock. Your selections are saved locally.
+          {t('world_clock.help_text')}
         </p>
       </div>
     </BaseSettingBlock>
@@ -89,6 +89,8 @@ const activePage = 'clock/world-clock';
       t_hoursAhead: t('world_clock.hours_ahead'),
       t_hoursBehind: t('world_clock.hours_behind'),
       t_sameTime: t('world_clock.same_time'),
+      t_emptyState: t('world_clock.empty_state'),
+      t_locale: lang,
     }}
   >
     window.worldClockTranslations = {
@@ -96,6 +98,8 @@ const activePage = 'clock/world-clock';
       hoursAhead: t_hoursAhead,
       hoursBehind: t_hoursBehind,
       sameTime: t_sameTime,
+      emptyState: t_emptyState,
+      locale: t_locale,
     };
   </script>
 
@@ -109,6 +113,8 @@ const activePage = 'clock/world-clock';
           hoursAhead: string;
           hoursBehind: string;
           sameTime: string;
+          emptyState: string;
+          locale: string;
         };
       }
     }

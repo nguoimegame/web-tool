@@ -1213,4 +1213,6 @@ export const vi = {
   'world_clock.hours_ahead': 'Sớm hơn {0} giờ',
   'world_clock.hours_behind': 'Muộn hơn {0} giờ',
   'world_clock.same_time': 'Cùng múi giờ',
+  'world_clock.empty_state': 'Nhấp vào một thành phố bên dưới để thêm vào đồng hồ của bạn',
+  'world_clock.help_text': 'Nhấp vào một thành phố để thêm vào đồng hồ thế giới. Lựa chọn của bạn được lưu trữ cục bộ.',
 };

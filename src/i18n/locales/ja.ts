@@ -1189,4 +1189,6 @@ export const ja = {
   'world_clock.hours_ahead': '{0}時間進んでいます',
   'world_clock.hours_behind': '{0}時間遅れています',
   'world_clock.same_time': '同じ時間',
+  'world_clock.empty_state': '下の都市をクリックして時計に追加してください',
+  'world_clock.help_text': '都市をクリックして世界時計に追加できます。選択内容はローカルに保存されます。',
 };

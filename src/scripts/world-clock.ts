@@ -101,6 +101,8 @@ interface WorldClockTranslations {
   hoursAhead: string;
   hoursBehind: string;
   sameTime: string;
+  emptyState: string;
+  locale: string;
 }
 
 let selectedCities: string[] = [];
@@ -128,7 +130,7 @@ function saveSelectedCities(): void {
 }
 
 function formatTime(date: Date, timezone: string): string {
-  return date.toLocaleTimeString('en-US', {
+  return date.toLocaleTimeString(translations.locale || 'en-US', {
     timeZone: timezone,
     hour: '2-digit',
     minute: '2-digit',
@@ -138,7 +140,7 @@ function formatTime(date: Date, timezone: string): string {
 }
 
 function formatDate(date: Date, timezone: string): string {
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString(translations.locale || 'en-US', {
     timeZone: timezone,
     weekday: 'short',
     month: 'short',
@@ -149,11 +151,30 @@ function formatDate(date: Date, timezone: string): string {
 function getTimeDifference(timezone: string): { hours: number; text: string; className: string } {
   const now = new Date();
 
-  // Get the offset of the target timezone
-  const targetDate = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
-  const localDate = new Date(now.toLocaleString('en-US'));
-  const diffMs = targetDate.getTime() - localDate.getTime();
-  const diffHours = Math.round(diffMs / (1000 * 60 * 60));
+  // Calculate offset using Intl.DateTimeFormat for accuracy
+  const localFormatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    timeZoneName: 'longOffset',
+  });
+  const targetFormatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    timeZoneName: 'longOffset',
+  });
+
+  // Extract offset from formatted string (e.g., "GMT+09:00")
+  const getOffsetMinutes = (formatted: string): number => {
+    const match = formatted.match(/GMT([+-])(\d{2}):(\d{2})/);
+    if (!match) return 0;
+    const sign = match[1] === '+' ? 1 : -1;
+    const hours = parseInt(match[2], 10);
+    const minutes = parseInt(match[3], 10);
+    return sign * (hours * 60 + minutes);
+  };
+
+  const localOffset = getOffsetMinutes(localFormatter.format(now));
+  const targetOffset = getOffsetMinutes(targetFormatter.format(now));
+  const diffMinutes = targetOffset - localOffset;
+  const diffHours = Math.round(diffMinutes / 60);
 
   if (diffHours === 0) {
     return { hours: 0, text: translations.sameTime, className: '' };
@@ -223,7 +244,7 @@ function renderSelectedCities(): void {
   if (selectedCities.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <p>Click on a city below to add it to your clock</p>
+        <p>${translations.emptyState}</p>
       </div>
     `;
     return;

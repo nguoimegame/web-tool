@@ -1220,4 +1220,6 @@ export const en = {
   'world_clock.hours_ahead': '{0}h ahead',
   'world_clock.hours_behind': '{0}h behind',
   'world_clock.same_time': 'Same time',
+  'world_clock.empty_state': 'Click on a city below to add it to your clock',
+  'world_clock.help_text': 'Click on a city to add it to your world clock. Your selections are saved locally.',
 };

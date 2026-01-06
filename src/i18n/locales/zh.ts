@@ -1175,4 +1175,6 @@ export const zh = {
   'world_clock.hours_ahead': '快{0}小时',
   'world_clock.hours_behind': '慢{0}小时',
   'world_clock.same_time': '相同时间',
+  'world_clock.empty_state': '点击下方的城市将其添加到您的时钟',
+  'world_clock.help_text': '点击城市将其添加到世界时钟。您的选择将保存在本地。',
 };
