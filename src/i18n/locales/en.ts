@@ -1221,7 +1221,8 @@ export const en = {
   'world_clock.hours_behind': '{0}h behind',
   'world_clock.same_time': 'Same time',
   'world_clock.empty_state': 'Click on a city below to add it to your clock',
-  'world_clock.help_text': 'Click on a city to add it to your world clock. Your selections are saved locally.',
+  'world_clock.help_text':
+    'Click on a city to add it to your world clock. Your selections are saved locally.',
 
   // Stopwatch
   'stopwatch.title': 'Stopwatch',
@@ -1252,7 +1253,8 @@ export const en = {
   'timer.set_time': 'Set Time',
   'timer.time_up': "Time's Up!",
   'timer.presets': 'Quick Presets',
-  'timer.help_text': 'Set the countdown duration and click Start. An alarm will sound when time is up.',
+  'timer.help_text':
+    'Set the countdown duration and click Start. An alarm will sound when time is up.',
 
   // Alarm
   'alarm.title': 'Alarm',
@@ -1274,7 +1276,8 @@ export const en = {
   'alarm.disabled': 'Disabled',
   'alarm.save': 'Save',
   'alarm.cancel': 'Cancel',
-  'alarm.help_text': 'Set alarms to receive notifications at specific times. Alarms are saved locally.',
+  'alarm.help_text':
+    'Set alarms to receive notifications at specific times. Alarms are saved locally.',
   'alarm.sun': 'Sun',
   'alarm.mon': 'Mon',
   'alarm.tue': 'Tue',

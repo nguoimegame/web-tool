@@ -67,7 +67,9 @@ function updateButtons(): void {
 }
 
 function start(): void {
-  if (isRunning) {return;}
+  if (isRunning) {
+    return;
+  }
 
   isRunning = true;
   startTime = Date.now() - elapsedTime;
@@ -81,7 +83,9 @@ function start(): void {
 }
 
 function stop(): void {
-  if (!isRunning) {return;}
+  if (!isRunning) {
+    return;
+  }
 
   isRunning = false;
   if (intervalId !== null) {
@@ -103,7 +107,9 @@ function reset(): void {
 }
 
 function lap(): void {
-  if (!isRunning) {return;}
+  if (!isRunning) {
+    return;
+  }
 
   const lastLapTotal = laps.length > 0 ? laps[0].totalTime : 0;
   const lapTime = elapsedTime - lastLapTotal;
@@ -118,7 +124,9 @@ function lap(): void {
 }
 
 function renderLaps(): void {
-  if (!lapsList) {return;}
+  if (!lapsList) {
+    return;
+  }
 
   if (laps.length === 0) {
     lapsList.innerHTML = `<div class="no-laps">${translations.noLaps}</div>`;

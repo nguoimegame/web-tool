@@ -20,7 +20,12 @@ export const majorCities: City[] = [
   { name: 'Mexico City', country: 'Mexico', timezone: 'America/Mexico_City', flag: '🇲🇽' },
   { name: 'São Paulo', country: 'Brazil', timezone: 'America/Sao_Paulo', flag: '🇧🇷' },
   { name: 'Rio de Janeiro', country: 'Brazil', timezone: 'America/Sao_Paulo', flag: '🇧🇷' },
-  { name: 'Buenos Aires', country: 'Argentina', timezone: 'America/Argentina/Buenos_Aires', flag: '🇦🇷' },
+  {
+    name: 'Buenos Aires',
+    country: 'Argentina',
+    timezone: 'America/Argentina/Buenos_Aires',
+    flag: '🇦🇷',
+  },
   { name: 'Lima', country: 'Peru', timezone: 'America/Lima', flag: '🇵🇪' },
   { name: 'Bogota', country: 'Colombia', timezone: 'America/Bogota', flag: '🇨🇴' },
   { name: 'Santiago', country: 'Chile', timezone: 'America/Santiago', flag: '🇨🇱' },
@@ -164,7 +169,9 @@ function getTimeDifference(timezone: string): { hours: number; text: string; cla
   // Extract offset from formatted string (e.g., "GMT+09:00")
   const getOffsetMinutes = (formatted: string): number => {
     const match = formatted.match(/GMT([+-])(\d{2}):(\d{2})/);
-    if (!match) {return 0;}
+    if (!match) {
+      return 0;
+    }
     const sign = match[1] === '+' ? 1 : -1;
     const hours = parseInt(match[2], 10);
     const minutes = parseInt(match[3], 10);
@@ -211,13 +218,17 @@ function updateLocalTime(): void {
 function updateSelectedCities(): void {
   const now = new Date();
   const container = document.getElementById('selected-cities-container');
-  if (!container) {return;}
+  if (!container) {
+    return;
+  }
 
   const cards = container.querySelectorAll('.city-card');
   cards.forEach((card) => {
     const cityName = card.getAttribute('data-city');
     const city = majorCities.find((c) => c.name === cityName);
-    if (!city) {return;}
+    if (!city) {
+      return;
+    }
 
     const timeEl = card.querySelector('.city-time');
     const dateEl = card.querySelector('.city-date');
@@ -239,7 +250,9 @@ function updateSelectedCities(): void {
 
 function renderSelectedCities(): void {
   const container = document.getElementById('selected-cities-container');
-  if (!container) {return;}
+  if (!container) {
+    return;
+  }
 
   if (selectedCities.length === 0) {
     container.innerHTML = `
@@ -254,7 +267,9 @@ function renderSelectedCities(): void {
   const html = selectedCities
     .map((cityName) => {
       const city = majorCities.find((c) => c.name === cityName);
-      if (!city) {return '';}
+      if (!city) {
+        return '';
+      }
 
       const diff = getTimeDifference(city.timezone);
       return `
@@ -297,7 +312,9 @@ function renderSelectedCities(): void {
 
 function renderAvailableCities(filter = ''): void {
   const container = document.getElementById('available-cities-container');
-  if (!container) {return;}
+  if (!container) {
+    return;
+  }
 
   const filterLower = filter.toLowerCase();
   const availableCities = majorCities.filter((city) => {
@@ -343,7 +360,9 @@ function addCity(cityName: string): void {
     selectedCities.push(cityName);
     saveSelectedCities();
     renderSelectedCities();
-    renderAvailableCities((document.getElementById('city-search') as HTMLInputElement)?.value || '');
+    renderAvailableCities(
+      (document.getElementById('city-search') as HTMLInputElement)?.value || ''
+    );
   }
 }
 

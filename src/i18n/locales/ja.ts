@@ -1190,7 +1190,8 @@ export const ja = {
   'world_clock.hours_behind': '{0}時間遅れています',
   'world_clock.same_time': '同じ時間',
   'world_clock.empty_state': '下の都市をクリックして時計に追加してください',
-  'world_clock.help_text': '都市をクリックして世界時計に追加できます。選択内容はローカルに保存されます。',
+  'world_clock.help_text':
+    '都市をクリックして世界時計に追加できます。選択内容はローカルに保存されます。',
 
   // Stopwatch
   'stopwatch.title': 'ストップウォッチ',
@@ -1205,7 +1206,8 @@ export const ja = {
   'stopwatch.total_time': '合計時間',
   'stopwatch.no_laps': 'まだラップが記録されていません',
   'stopwatch.clear_laps': 'ラップをクリア',
-  'stopwatch.help_text': 'スタートをクリックして計測を開始します。ラップでスプリットタイムを記録します。',
+  'stopwatch.help_text':
+    'スタートをクリックして計測を開始します。ラップでスプリットタイムを記録します。',
 
   // Timer
   'timer.title': 'タイマー',
@@ -1221,7 +1223,8 @@ export const ja = {
   'timer.set_time': '時間を設定',
   'timer.time_up': '時間です！',
   'timer.presets': 'クイックプリセット',
-  'timer.help_text': 'カウントダウン時間を設定してスタートをクリックしてください。時間になるとアラームが鳴ります。',
+  'timer.help_text':
+    'カウントダウン時間を設定してスタートをクリックしてください。時間になるとアラームが鳴ります。',
 
   // Alarm
   'alarm.title': 'アラーム',
@@ -1243,7 +1246,8 @@ export const ja = {
   'alarm.disabled': '無効',
   'alarm.save': '保存',
   'alarm.cancel': 'キャンセル',
-  'alarm.help_text': '特定の時間に通知を受け取るようにアラームを設定します。アラームはローカルに保存されます。',
+  'alarm.help_text':
+    '特定の時間に通知を受け取るようにアラームを設定します。アラームはローカルに保存されます。',
   'alarm.sun': '日',
   'alarm.mon': '月',
   'alarm.tue': '火',

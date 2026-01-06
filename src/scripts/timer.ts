@@ -81,18 +81,28 @@ function setInputTime(ms: number): void {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  if (hoursInput) {hoursInput.value = hours.toString();}
-  if (minutesInput) {minutesInput.value = minutes.toString();}
-  if (secondsInput) {secondsInput.value = seconds.toString();}
+  if (hoursInput) {
+    hoursInput.value = hours.toString();
+  }
+  if (minutesInput) {
+    minutesInput.value = minutes.toString();
+  }
+  if (secondsInput) {
+    secondsInput.value = seconds.toString();
+  }
 }
 
 function start(): void {
-  if (isRunning && !isPaused) {return;}
+  if (isRunning && !isPaused) {
+    return;
+  }
 
   if (!isRunning) {
     // Starting fresh
     initialTime = getInputTime();
-    if (initialTime <= 0) {return;}
+    if (initialTime <= 0) {
+      return;
+    }
     remainingTime = initialTime;
   }
 
@@ -119,7 +129,9 @@ function start(): void {
 }
 
 function pause(): void {
-  if (!isRunning) {return;}
+  if (!isRunning) {
+    return;
+  }
 
   if (isPaused) {
     // Resume
@@ -284,8 +296,12 @@ function clearState(): void {
 
 function validateInput(input: HTMLInputElement, max: number): void {
   let value = parseInt(input.value, 10) || 0;
-  if (value < 0) {value = 0;}
-  if (value > max) {value = max;}
+  if (value < 0) {
+    value = 0;
+  }
+  if (value > max) {
+    value = max;
+  }
   input.value = value.toString();
 }
 

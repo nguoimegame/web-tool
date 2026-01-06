@@ -79,7 +79,9 @@ function getCurrentDay(): number {
 }
 
 function renderAlarms(): void {
-  if (!alarmsList) {return;}
+  if (!alarmsList) {
+    return;
+  }
 
   if (alarms.length === 0) {
     alarmsList.innerHTML = `<div class="no-alarms">${translations.noAlarms}</div>`;
@@ -127,21 +129,27 @@ function renderAlarms(): void {
   alarmsList.querySelectorAll('.alarm-toggle').forEach((toggle) => {
     toggle.addEventListener('click', () => {
       const id = (toggle as HTMLElement).dataset.id;
-      if (id) {toggleAlarm(id);}
+      if (id) {
+        toggleAlarm(id);
+      }
     });
   });
 
   alarmsList.querySelectorAll('.btn-alarm-action.edit').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = (btn as HTMLElement).dataset.id;
-      if (id) {openEditModal(id);}
+      if (id) {
+        openEditModal(id);
+      }
     });
   });
 
   alarmsList.querySelectorAll('.btn-alarm-action.delete').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = (btn as HTMLElement).dataset.id;
-      if (id) {deleteAlarm(id);}
+      if (id) {
+        deleteAlarm(id);
+      }
     });
   });
 }
@@ -296,23 +304,33 @@ function closeModal(): void {
 }
 
 function checkAlarms(): void {
-  if (ringingAlarm) {return;} // Already ringing
+  if (ringingAlarm) {
+    return;
+  } // Already ringing
 
   const currentTime = getCurrentTime();
   const currentDay = getCurrentDay();
   const now = Date.now();
 
   for (const alarm of alarms) {
-    if (!alarm.enabled) {continue;}
+    if (!alarm.enabled) {
+      continue;
+    }
 
     // Check if snoozed
-    if (alarm.snoozedUntil && alarm.snoozedUntil > now) {continue;}
+    if (alarm.snoozedUntil && alarm.snoozedUntil > now) {
+      continue;
+    }
 
     // Check if time matches
-    if (alarm.time !== currentTime) {continue;}
+    if (alarm.time !== currentTime) {
+      continue;
+    }
 
     // Check if day matches (empty repeatDays = any day)
-    if (alarm.repeatDays.length > 0 && !alarm.repeatDays.includes(currentDay)) {continue;}
+    if (alarm.repeatDays.length > 0 && !alarm.repeatDays.includes(currentDay)) {
+      continue;
+    }
 
     // Trigger alarm
     triggerAlarm(alarm);
@@ -400,7 +418,9 @@ function playAlarmSound(): void {
     alarmGain.gain.setValueAtTime(0, audioContext.currentTime);
 
     const pulseAlarm = () => {
-      if (!audioContext || !alarmGain) {return;}
+      if (!audioContext || !alarmGain) {
+        return;
+      }
 
       const now = audioContext.currentTime;
       alarmGain.gain.cancelScheduledValues(now);

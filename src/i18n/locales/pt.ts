@@ -1194,7 +1194,8 @@ export const pt = {
   'world_clock.hours_behind': '{0}h atrás',
   'world_clock.same_time': 'Mesmo horário',
   'world_clock.empty_state': 'Clique em uma cidade abaixo para adicioná-la ao seu relógio',
-  'world_clock.help_text': 'Clique em uma cidade para adicioná-la ao seu relógio mundial. Suas seleções são salvas localmente.',
+  'world_clock.help_text':
+    'Clique em uma cidade para adicioná-la ao seu relógio mundial. Suas seleções são salvas localmente.',
 
   // Stopwatch
   'stopwatch.title': 'Cronômetro',
@@ -1209,7 +1210,8 @@ export const pt = {
   'stopwatch.total_time': 'Tempo total',
   'stopwatch.no_laps': 'Nenhuma volta registrada ainda',
   'stopwatch.clear_laps': 'Limpar voltas',
-  'stopwatch.help_text': 'Clique em Iniciar para começar a cronometrar. Use Volta para registrar tempos parciais.',
+  'stopwatch.help_text':
+    'Clique em Iniciar para começar a cronometrar. Use Volta para registrar tempos parciais.',
 
   // Timer
   'timer.title': 'Temporizador',
@@ -1225,7 +1227,8 @@ export const pt = {
   'timer.set_time': 'Definir tempo',
   'timer.time_up': 'Tempo esgotado!',
   'timer.presets': 'Predefinições rápidas',
-  'timer.help_text': 'Defina a duração da contagem regressiva e clique em Iniciar. Um alarme soará quando o tempo acabar.',
+  'timer.help_text':
+    'Defina a duração da contagem regressiva e clique em Iniciar. Um alarme soará quando o tempo acabar.',
 
   // Alarm
   'alarm.title': 'Alarme',
@@ -1247,7 +1250,8 @@ export const pt = {
   'alarm.disabled': 'Desativado',
   'alarm.save': 'Salvar',
   'alarm.cancel': 'Cancelar',
-  'alarm.help_text': 'Configure alarmes para receber notificações em horários específicos. Os alarmes são salvos localmente.',
+  'alarm.help_text':
+    'Configure alarmes para receber notificações em horários específicos. Os alarmes são salvos localmente.',
   'alarm.sun': 'Dom',
   'alarm.mon': 'Seg',
   'alarm.tue': 'Ter',

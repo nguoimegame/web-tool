@@ -18,7 +18,8 @@
 .time-display {
   font-size: 4rem;
   font-weight: 700;
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-family:
+    'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
   color: var(--primary-color, #00d9ff);
   line-height: 1.2;
   margin-bottom: 0.5rem;
@@ -30,8 +31,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .time-display-ms {
@@ -323,8 +329,13 @@
 }
 
 @keyframes alarm-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+  }
 }
 
 .alarm-info {
@@ -450,8 +461,14 @@
 }
 
 @keyframes scale-in {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .alarm-ringing-icon {
@@ -461,8 +478,13 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: rotate(-10deg); }
-  50% { transform: rotate(10deg); }
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
 }
 
 .alarm-ringing-time {
@@ -555,8 +577,8 @@
   margin-bottom: 0.5rem;
 }
 
-.alarm-modal-field input[type="time"],
-.alarm-modal-field input[type="text"] {
+.alarm-modal-field input[type='time'],
+.alarm-modal-field input[type='text'] {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--border-color, #333);

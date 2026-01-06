@@ -28,17 +28,38 @@ const activePage = 'clock/timer';
           <div class="timer-input-section" id="timer-input-section">
             <div class="timer-input-group">
               <label for="input-hours">{t('timer.hours')}</label>
-              <input type="number" class="timer-input" id="input-hours" min="0" max="99" value="0" />
+              <input
+                type="number"
+                class="timer-input"
+                id="input-hours"
+                min="0"
+                max="99"
+                value="0"
+              />
             </div>
             <span class="timer-separator">:</span>
             <div class="timer-input-group">
               <label for="input-minutes">{t('timer.minutes')}</label>
-              <input type="number" class="timer-input" id="input-minutes" min="0" max="59" value="5" />
+              <input
+                type="number"
+                class="timer-input"
+                id="input-minutes"
+                min="0"
+                max="59"
+                value="5"
+              />
             </div>
             <span class="timer-separator">:</span>
             <div class="timer-input-group">
               <label for="input-seconds">{t('timer.seconds')}</label>
-              <input type="number" class="timer-input" id="input-seconds" min="0" max="59" value="0" />
+              <input
+                type="number"
+                class="timer-input"
+                id="input-seconds"
+                min="0"
+                max="59"
+                value="0"
+              />
             </div>
           </div>
 
@@ -47,7 +68,9 @@ const activePage = 'clock/timer';
 
           <div class="time-controls">
             <button class="btn-time btn-start" id="btn-start">{t('timer.start')}</button>
-            <button class="btn-time btn-pause" id="btn-pause" style="display: none;">{t('timer.pause')}</button>
+            <button class="btn-time btn-pause" id="btn-pause" style="display: none;"
+              >{t('timer.pause')}</button
+            >
             <button class="btn-time btn-reset" id="btn-reset" disabled>{t('timer.reset')}</button>
           </div>
 

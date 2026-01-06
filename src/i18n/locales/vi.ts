@@ -1214,7 +1214,8 @@ export const vi = {
   'world_clock.hours_behind': 'Muộn hơn {0} giờ',
   'world_clock.same_time': 'Cùng múi giờ',
   'world_clock.empty_state': 'Nhấp vào một thành phố bên dưới để thêm vào đồng hồ của bạn',
-  'world_clock.help_text': 'Nhấp vào một thành phố để thêm vào đồng hồ thế giới. Lựa chọn của bạn được lưu trữ cục bộ.',
+  'world_clock.help_text':
+    'Nhấp vào một thành phố để thêm vào đồng hồ thế giới. Lựa chọn của bạn được lưu trữ cục bộ.',
 
   // Stopwatch
   'stopwatch.title': 'Đồng hồ bấm giờ',
@@ -1267,7 +1268,8 @@ export const vi = {
   'alarm.disabled': 'Đã tắt',
   'alarm.save': 'Lưu',
   'alarm.cancel': 'Hủy',
-  'alarm.help_text': 'Đặt báo thức để nhận thông báo vào thời gian cụ thể. Báo thức được lưu trữ cục bộ.',
+  'alarm.help_text':
+    'Đặt báo thức để nhận thông báo vào thời gian cụ thể. Báo thức được lưu trữ cục bộ.',
   'alarm.sun': 'CN',
   'alarm.mon': 'T2',
   'alarm.tue': 'T3',

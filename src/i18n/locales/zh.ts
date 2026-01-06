@@ -1195,8 +1195,7 @@ export const zh = {
 
   // Timer
   'timer.title': '计时器',
-  'timer.description':
-    '免费在线倒计时器。设置自定义的小时、分钟和秒。计时结束时有音频通知。',
+  'timer.description': '免费在线倒计时器。设置自定义的小时、分钟和秒。计时结束时有音频通知。',
   'timer.start': '开始',
   'timer.pause': '暂停',
   'timer.resume': '继续',
@@ -1211,8 +1210,7 @@ export const zh = {
 
   // Alarm
   'alarm.title': '闹钟',
-  'alarm.description':
-    '免费在线闹钟。设置带有自定义标签和声音的闹钟。支持多个闹钟，具有贪睡功能。',
+  'alarm.description': '免费在线闹钟。设置带有自定义标签和声音的闹钟。支持多个闹钟，具有贪睡功能。',
   'alarm.add_alarm': '添加闹钟',
   'alarm.edit_alarm': '编辑闹钟',
   'alarm.delete_alarm': '删除闹钟',

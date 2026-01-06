@@ -26,13 +26,19 @@ const activePage = 'clock/stopwatch';
         <!-- Main Time Display -->
         <div class="time-display-card">
           <div class="time-display">
-            <span id="stopwatch-time">00:00</span><span class="time-display-ms" id="stopwatch-ms">.00</span>
+            <span id="stopwatch-time">00:00</span><span class="time-display-ms" id="stopwatch-ms"
+              >.00</span
+            >
           </div>
           <div class="time-controls">
             <button class="btn-time btn-start" id="btn-start">{t('stopwatch.start')}</button>
-            <button class="btn-time btn-stop" id="btn-stop" style="display: none;">{t('stopwatch.stop')}</button>
+            <button class="btn-time btn-stop" id="btn-stop" style="display: none;"
+              >{t('stopwatch.stop')}</button
+            >
             <button class="btn-time btn-lap" id="btn-lap" disabled>{t('stopwatch.lap')}</button>
-            <button class="btn-time btn-reset" id="btn-reset" disabled>{t('stopwatch.reset')}</button>
+            <button class="btn-time btn-reset" id="btn-reset" disabled
+              >{t('stopwatch.reset')}</button
+            >
           </div>
         </div>
 
@@ -40,7 +46,9 @@ const activePage = 'clock/stopwatch';
         <div class="laps-section">
           <div class="laps-header">
             <span class="laps-title">{t('stopwatch.laps')}</span>
-            <button class="btn-clear-laps" id="btn-clear-laps" title={t('stopwatch.clear_laps')}>🗑️</button>
+            <button class="btn-clear-laps" id="btn-clear-laps" title={t('stopwatch.clear_laps')}
+              >🗑️</button
+            >
           </div>
           <div class="laps-list" id="laps-list">
             <div class="no-laps">{t('stopwatch.no_laps')}</div>
