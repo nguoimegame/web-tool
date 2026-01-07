@@ -13,9 +13,18 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = useTranslations(lang as any);
 
+// Type for keyboard keys
+interface KeyDef {
+  code: string;
+  label: string;
+  width?: number;
+  height?: number;
+  invisible?: boolean;
+}
+
 // Keyboard layout definition - separated into sections like a real keyboard
 // Function row (F1-F12)
-const functionRow = [
+const functionRow: KeyDef[] = [
   { code: 'Escape', label: 'Esc' },
   { code: 'Spacer', label: '', invisible: true },
   { code: 'F1', label: 'F1' },
@@ -35,14 +44,14 @@ const functionRow = [
 ];
 
 // Navigation keys top row (Print Screen, Scroll Lock, Pause)
-const navTopRow = [
+const navTopRow: KeyDef[] = [
   { code: 'PrintScreen', label: 'PrtSc' },
   { code: 'ScrollLock', label: 'ScrLk' },
   { code: 'Pause', label: 'Pause' },
 ];
 
 // Main keyboard area
-const mainRows = [
+const mainRows: KeyDef[][] = [
   // Number row
   [
     { code: 'Backquote', label: '`' },
@@ -122,7 +131,7 @@ const mainRows = [
 ];
 
 // Navigation cluster rows
-const navRows = [
+const navRows: KeyDef[][] = [
   [
     { code: 'Insert', label: 'Ins' },
     { code: 'Home', label: 'Home' },
@@ -147,7 +156,7 @@ const navRows = [
 ];
 
 // Numpad rows
-const numpadRows = [
+const numpadRows: KeyDef[][] = [
   [
     { code: 'NumLock', label: 'Num' },
     { code: 'NumpadDivide', label: '/' },
@@ -180,13 +189,17 @@ const numpadRows = [
 // Helper to calculate width
 const baseWidth = 40;
 const gap = 4;
-const getKeyStyle = (key: any) => {
-    const w = key.width || 1;
-    const widthPx = baseWidth * w + (w - 1) * gap;
-    let style = `width: ${widthPx}px;`;
-    if (key.height === 2) style += ` height: ${baseWidth * 2 + gap}px;`;
-    if (key.invisible) style += ' visibility: hidden;';
-    return style;
+const getKeyStyle = (key: KeyDef) => {
+  const w = key.width || 1;
+  const widthPx = baseWidth * w + (w - 1) * gap;
+  let style = `width: ${widthPx}px;`;
+  if (key.height === 2) {
+    style += ` height: ${baseWidth * 2 + gap}px;`;
+  }
+  if (key.invisible) {
+    style += ' visibility: hidden;';
+  }
+  return style;
 };
 ---
 
@@ -197,340 +210,348 @@ const getKeyStyle = (key: any) => {
 >
   <div class="layout">
     <div class="layout-block" style="flex: 1; min-width: 0;">
-        <div class="keyboard-wrapper">
-            <div id="keyboard" class="keyboard">
-                <!-- Function row with navigation top -->
-                <div class="keyboard-top-section">
-                    <div class="function-row">
-                        {functionRow.map((key) => (
-                            <div
-                                class={`key ${key.invisible ? 'invisible' : ''}`}
-                                data-code={key.code}
-                                style={getKeyStyle(key)}
-                            >
-                                {key.label}
-                            </div>
-                        ))}
-                    </div>
-                    <div class="nav-top-row">
-                        {navTopRow.map((key) => (
-                            <div
-                                class="key"
-                                data-code={key.code}
-                                style={getKeyStyle(key)}
-                            >
-                                {key.label}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+      <div class="keyboard-wrapper">
+        <div id="keyboard" class="keyboard">
+          <!-- Function row with navigation top -->
+          <div class="keyboard-top-section">
+            <div class="function-row">
+              {
+                functionRow.map((key) => (
+                  <div
+                    class={`key ${key.invisible ? 'invisible' : ''}`}
+                    data-code={key.code}
+                    style={getKeyStyle(key)}
+                  >
+                    {key.label}
+                  </div>
+                ))
+              }
+            </div>
+            <div class="nav-top-row">
+              {
+                navTopRow.map((key) => (
+                  <div class="key" data-code={key.code} style={getKeyStyle(key)}>
+                    {key.label}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
 
-                <!-- Main section: Main keys + Nav cluster + Numpad -->
-                <div class="keyboard-main-section">
-                    <!-- Main keyboard area -->
-                    <div class="main-keys">
-                        {mainRows.map((row) => (
-                            <div class="row">
-                                {row.map((key) => (
-                                    <div
-                                        class={`key ${key.invisible ? 'invisible' : ''}`}
-                                        data-code={key.code}
-                                        style={getKeyStyle(key)}
-                                    >
-                                        {key.label}
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-
-                    <!-- Navigation cluster -->
-                    <div class="nav-cluster">
-                        {navRows.map((row, idx) => (
-                            <div class={`row ${row.length === 0 ? 'empty-row' : ''}`}>
-                                {row.map((key) => (
-                                    <div
-                                        class={`key ${key.invisible ? 'invisible' : ''}`}
-                                        data-code={key.code}
-                                        style={getKeyStyle(key)}
-                                    >
-                                        {key.label}
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-
-                    <!-- Numpad -->
-                    <div class="numpad">
-                        {numpadRows.map((row) => (
-                            <div class="row">
-                                {row.map((key) => (
-                                    <div
-                                        class={`key ${key.height === 2 ? 'tall-key' : ''}`}
-                                        data-code={key.code}
-                                        style={getKeyStyle(key)}
-                                    >
-                                        {key.label}
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+          <!-- Main section: Main keys + Nav cluster + Numpad -->
+          <div class="keyboard-main-section">
+            <!-- Main keyboard area -->
+            <div class="main-keys">
+              {
+                mainRows.map((row) => (
+                  <div class="row">
+                    {row.map((key) => (
+                      <div
+                        class={`key ${key.invisible ? 'invisible' : ''}`}
+                        data-code={key.code}
+                        style={getKeyStyle(key)}
+                      >
+                        {key.label}
+                      </div>
+                    ))}
+                  </div>
+                ))
+              }
             </div>
 
-            <div class="key-info">
-                <div class="info-box">
-                    <span class="label">{t('keyboard_test.key_code')}</span>
-                    <span id="key-code" class="value">-</span>
-                </div>
-                <div class="info-box">
-                    <span class="label">{t('keyboard_test.key_name')}</span>
-                    <span id="key-name" class="value">-</span>
-                </div>
-                <div class="info-box">
-                    <span class="label">{t('keyboard_test.key_location')}</span>
-                    <span id="key-location" class="value">-</span>
-                </div>
+            <!-- Navigation cluster -->
+            <div class="nav-cluster">
+              {
+                navRows.map((row) => (
+                  <div class={`row ${row.length === 0 ? 'empty-row' : ''}`}>
+                    {row.map((key) => (
+                      <div
+                        class={`key ${key.invisible ? 'invisible' : ''}`}
+                        data-code={key.code}
+                        style={getKeyStyle(key)}
+                      >
+                        {key.label}
+                      </div>
+                    ))}
+                  </div>
+                ))
+              }
             </div>
 
-            <div class="actions">
-                 <button id="reset-btn" class="btn-reset">{t('keyboard_test.reset')}</button>
+            <!-- Numpad -->
+            <div class="numpad">
+              {
+                numpadRows.map((row) => (
+                  <div class="row">
+                    {row.map((key) => (
+                      <div
+                        class={`key ${key.height === 2 ? 'tall-key' : ''}`}
+                        data-code={key.code}
+                        style={getKeyStyle(key)}
+                      >
+                        {key.label}
+                      </div>
+                    ))}
+                  </div>
+                ))
+              }
             </div>
+          </div>
         </div>
+
+        <div class="key-info">
+          <div class="info-box">
+            <span class="label">{t('keyboard_test.key_code')}</span>
+            <span id="key-code" class="value">-</span>
+          </div>
+          <div class="info-box">
+            <span class="label">{t('keyboard_test.key_name')}</span>
+            <span id="key-name" class="value">-</span>
+          </div>
+          <div class="info-box">
+            <span class="label">{t('keyboard_test.key_location')}</span>
+            <span id="key-location" class="value">-</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="reset-btn" class="btn-reset">{t('keyboard_test.reset')}</button>
+        </div>
+      </div>
     </div>
 
     <BaseSettingBlock title={t('settings')}>
-         <div class="setting">
-            <label class="switcher">
-              <input type="checkbox" id="sound-enabled" checked />
-              <div class="toggle"></div>
-              <span>{t('calculator.sound')}</span>
-            </label>
-        </div>
+      <div class="setting">
+        <label class="switcher">
+          <input type="checkbox" id="sound-enabled" checked />
+          <div class="toggle"></div>
+          <span>{t('calculator.sound')}</span>
+        </label>
+      </div>
     </BaseSettingBlock>
   </div>
 
   <style>
     .keyboard-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding: 2rem;
-        background: var(--bg-card);
-        border-radius: 8px;
-        box-shadow: var(--shadow-sm);
-        width: 100%;
-        overflow-x: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      width: 100%;
+      overflow-x: auto;
     }
 
     .keyboard {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        padding: 15px;
-        background: #2d3748;
-        border-radius: 12px;
-        user-select: none;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
-        margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 15px;
+      background: #2d3748;
+      border-radius: 12px;
+      user-select: none;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      margin: 0 auto;
     }
 
     /* Top section: Function row + Nav top */
     .keyboard-top-section {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 8px;
+      display: flex;
+      gap: 20px;
+      margin-bottom: 8px;
     }
 
     .function-row {
-        display: flex;
-        gap: 4px;
-        align-items: center;
+      display: flex;
+      gap: 4px;
+      align-items: center;
     }
 
     .nav-top-row {
-        display: flex;
-        gap: 4px;
-        align-items: center;
+      display: flex;
+      gap: 4px;
+      align-items: center;
     }
 
     /* Main section: Main keys + Nav cluster + Numpad */
     .keyboard-main-section {
-        display: flex;
-        gap: 20px;
-        align-items: flex-start;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
 
     .main-keys {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .nav-cluster {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .nav-cluster .empty-row {
-        height: 44px;
+      height: 44px;
     }
 
     .numpad {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .row {
-        display: flex;
-        gap: 4px;
-        flex-wrap: nowrap;
+      display: flex;
+      gap: 4px;
+      flex-wrap: nowrap;
     }
 
     .key {
-        background: linear-gradient(180deg, #5a6578 0%, #4a5568 100%);
-        color: #fff;
-        border-radius: 5px;
-        padding: 0 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: default;
-        transition: all 0.1s ease;
-        font-size: 0.75rem;
-        font-weight: 600;
-        height: 40px;
-        box-shadow: 
-            0 1px 0 rgba(255,255,255,0.1) inset,
-            0 -2px 0 rgba(0,0,0,0.3) inset,
-            0 3px 0 #2d3748;
-        white-space: nowrap;
-        overflow: hidden;
-        flex-shrink: 0;
-        border: 1px solid #3d4859;
+      background: linear-gradient(180deg, #5a6578 0%, #4a5568 100%);
+      color: #fff;
+      border-radius: 5px;
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      transition: all 0.1s ease;
+      font-size: 0.75rem;
+      font-weight: 600;
+      height: 40px;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.1) inset,
+        0 -2px 0 rgba(0, 0, 0, 0.3) inset,
+        0 3px 0 #2d3748;
+      white-space: nowrap;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid #3d4859;
     }
 
     .key.invisible {
-        visibility: hidden;
+      visibility: hidden;
     }
 
     .key.tall-key {
-        position: absolute;
+      position: absolute;
     }
 
     /* Numpad + key positioning for tall keys */
     .numpad .row {
-        position: relative;
+      position: relative;
     }
 
     .numpad .row:nth-child(2) .key:last-child,
     .numpad .row:nth-child(4) .key:last-child {
-        position: absolute;
-        right: 0;
+      position: absolute;
+      right: 0;
     }
 
     /* Active state (currently pressed) */
     .key.active {
-        background: linear-gradient(180deg, #68d391 0%, #48bb78 100%);
-        transform: translateY(2px);
-        box-shadow: 
-            0 1px 0 rgba(255,255,255,0.2) inset,
-            0 -1px 0 rgba(0,0,0,0.2) inset;
-        color: white;
-        border-color: #38a169;
+      background: linear-gradient(180deg, #68d391 0%, #48bb78 100%);
+      transform: translateY(2px);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.2) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+      color: white;
+      border-color: #38a169;
     }
 
     /* Pressed history state (was pressed) */
     .key.pressed {
-        background: linear-gradient(180deg, #48bb78 0%, #38a169 100%);
-        color: white;
-        border: 1px solid #68d391;
+      background: linear-gradient(180deg, #48bb78 0%, #38a169 100%);
+      color: white;
+      border: 1px solid #68d391;
     }
 
     .key.active.pressed {
-        background: linear-gradient(180deg, #68d391 0%, #48bb78 100%);
+      background: linear-gradient(180deg, #68d391 0%, #48bb78 100%);
     }
 
     .key-info {
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
     }
 
     .info-box {
-        background: var(--bg-input);
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        min-width: 140px;
-        text-align: center;
-        border: 1px solid var(--border-color);
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+      background: var(--bg-input);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      min-width: 140px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
     .info-box .label {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
     }
 
     .info-box .value {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-main);
-        font-family: monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: monospace;
     }
 
     .actions {
-        display: flex;
-        justify-content: center;
+      display: flex;
+      justify-content: center;
     }
 
     .btn-reset {
-        padding: 0.75rem 2rem;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.2s, transform 0.1s;
+      padding: 0.75rem 2rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        background-color 0.2s,
+        transform 0.1s;
     }
 
     .btn-reset:hover {
-        background-color: var(--primary-hover);
+      background-color: var(--primary-hover);
     }
 
     .btn-reset:active {
-        transform: translateY(1px);
+      transform: translateY(1px);
     }
 
     /* Responsive adjustments */
     @media (max-width: 1200px) {
-        .keyboard-main-section {
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .numpad {
-            margin-top: 10px;
-        }
+      .keyboard-main-section {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .numpad {
+        margin-top: 10px;
+      }
     }
 
     @media (max-width: 800px) {
-        .keyboard-top-section {
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+      .keyboard-top-section {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   </style>
 
@@ -545,80 +566,80 @@ const getKeyStyle = (key: any) => {
     let audioCtx: AudioContext | null = null;
 
     function getAudioContext() {
-        if (!audioCtx) {
-            const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-            if (AudioContext) {
-                audioCtx = new AudioContext();
-            }
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+        if (AudioContext) {
+          audioCtx = new AudioContext();
         }
-        return audioCtx;
+      }
+      return audioCtx;
     }
 
     function handleKeyDown(e: KeyboardEvent) {
-        e.preventDefault();
-        const code = e.code;
-        const key = e.key;
-        const location = e.location; // 0: Standard, 1: Left, 2: Right, 3: Numpad
+      e.preventDefault();
+      const code = e.code;
+      const key = e.key;
+      const location = e.location; // 0: Standard, 1: Left, 2: Right, 3: Numpad
 
-        // Update Info
-        if (keyCodeEl) keyCodeEl.textContent = code;
-        if (keyNameEl) keyNameEl.textContent = key === ' ' ? 'Space' : key;
+      // Update Info
+      if (keyCodeEl) keyCodeEl.textContent = code;
+      if (keyNameEl) keyNameEl.textContent = key === ' ' ? 'Space' : key;
 
-        let locText = 'Standard';
-        if (location === 1) locText = 'Left';
-        if (location === 2) locText = 'Right';
-        if (location === 3) locText = 'Numpad';
-        if (keyLocationEl) keyLocationEl.textContent = locText;
+      let locText = 'Standard';
+      if (location === 1) locText = 'Left';
+      if (location === 2) locText = 'Right';
+      if (location === 3) locText = 'Numpad';
+      if (keyLocationEl) keyLocationEl.textContent = locText;
 
-        // Visual Feedback
-        const keyEl = document.querySelector(`.key[data-code="${code}"]`);
-        if (keyEl) {
-            keyEl.classList.add('active');
-            keyEl.classList.add('pressed');
-        }
+      // Visual Feedback
+      const keyEl = document.querySelector(`.key[data-code="${code}"]`);
+      if (keyEl) {
+        keyEl.classList.add('active');
+        keyEl.classList.add('pressed');
+      }
 
-        playSound();
+      playSound();
     }
 
     function handleKeyUp(e: KeyboardEvent) {
-        e.preventDefault();
-        const code = e.code;
-        const keyEl = document.querySelector(`.key[data-code="${code}"]`);
-        if (keyEl) {
-            keyEl.classList.remove('active');
-        }
+      e.preventDefault();
+      const code = e.code;
+      const keyEl = document.querySelector(`.key[data-code="${code}"]`);
+      if (keyEl) {
+        keyEl.classList.remove('active');
+      }
     }
 
     function playSound() {
-        if (soundEnabled && soundEnabled.checked) {
-             try {
-                 const ctx = getAudioContext();
-                 if (ctx) {
-                     // Resume context if suspended (browser policy)
-                     if (ctx.state === 'suspended') {
-                         ctx.resume();
-                     }
+      if (soundEnabled && soundEnabled.checked) {
+        try {
+          const ctx = getAudioContext();
+          if (ctx) {
+            // Resume context if suspended (browser policy)
+            if (ctx.state === 'suspended') {
+              ctx.resume();
+            }
 
-                     const osc = ctx.createOscillator();
-                     const gain = ctx.createGain();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
 
-                     osc.type = 'sine';
-                     osc.frequency.setValueAtTime(440, ctx.currentTime);
-                     osc.frequency.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(440, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
 
-                     gain.gain.setValueAtTime(0.1, ctx.currentTime);
-                     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
 
-                     osc.connect(gain);
-                     gain.connect(ctx.destination);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
 
-                     osc.start();
-                     osc.stop(ctx.currentTime + 0.1);
-                 }
-             } catch (err) {
-                 console.error("Audio error", err);
-             }
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1);
+          }
+        } catch (err) {
+          console.error('Audio error', err);
         }
+      }
     }
 
     // Add event listeners
@@ -626,15 +647,15 @@ const getKeyStyle = (key: any) => {
     window.addEventListener('keyup', handleKeyUp);
 
     if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-            document.querySelectorAll('.key').forEach(el => {
-                el.classList.remove('pressed');
-                el.classList.remove('active');
-            });
-            if (keyCodeEl) keyCodeEl.textContent = '-';
-            if (keyNameEl) keyNameEl.textContent = '-';
-            if (keyLocationEl) keyLocationEl.textContent = '-';
+      resetBtn.addEventListener('click', () => {
+        document.querySelectorAll('.key').forEach((el) => {
+          el.classList.remove('pressed');
+          el.classList.remove('active');
         });
+        if (keyCodeEl) keyCodeEl.textContent = '-';
+        if (keyNameEl) keyNameEl.textContent = '-';
+        if (keyLocationEl) keyLocationEl.textContent = '-';
+      });
     }
   </script>
 </BasePage>
