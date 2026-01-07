@@ -859,11 +859,39 @@ function renderAvailableCities(filter = ''): void {
   });
 }
 
+async function addCityCard(city: City): Promise<void> {
+  const container = document.getElementById('weather-cards-container');
+  if (!container) {
+    return;
+  }
+
+  // Create a temporary container to parse the HTML
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = renderWeatherCard(city, null);
+  const newCard = tempDiv.firstElementChild as HTMLElement;
+  
+  // Append the new card
+  container.appendChild(newCard);
+  addRemoveListeners();
+
+  // Fetch weather data for the new card
+  const weather = await fetchWeatherForCity(city);
+  if (weather && newCard) {
+    newCard.outerHTML = renderWeatherCard(city, weather);
+    addRemoveListeners();
+  }
+}
+
 async function addCity(cityName: string): Promise<void> {
   if (!selectedCities.includes(cityName)) {
     selectedCities.push(cityName);
     saveSelectedCities();
-    await loadWeatherForCities();
+    
+    const city = majorCities.find((c) => c.name === cityName);
+    if (city) {
+      await addCityCard(city);
+    }
+    
     renderAvailableCities(
       (document.getElementById('city-search') as HTMLInputElement)?.value || ''
     );
@@ -871,9 +899,23 @@ async function addCity(cityName: string): Promise<void> {
 }
 
 function removeCity(cityName: string): void {
+  const container = document.getElementById('weather-cards-container');
+  if (!container) {
+    return;
+  }
+
+  // Find and remove the specific card
+  const cardToRemove = container.querySelector(`.weather-card[data-city="${cityName}"]:not([data-user-location])`);
+  if (cardToRemove) {
+    // Add fade out animation
+    cardToRemove.classList.add('removing');
+    setTimeout(() => {
+      cardToRemove.remove();
+    }, 200);
+  }
+
   selectedCities = selectedCities.filter((c) => c !== cityName);
   saveSelectedCities();
-  loadWeatherForCities();
   renderAvailableCities((document.getElementById('city-search') as HTMLInputElement)?.value || '');
 }
 

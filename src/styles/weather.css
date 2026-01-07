@@ -135,6 +135,21 @@
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
 }
 
+.weather-card.removing {
+  animation: fadeOutScale 0.2s ease-out forwards;
+}
+
+@keyframes fadeOutScale {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
 .weather-card-header {
   display: flex;
   justify-content: space-between;

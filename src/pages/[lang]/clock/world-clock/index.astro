@@ -30,7 +30,25 @@ const activePage = 'clock/world-clock';
           <div class="local-date-display" id="local-date">---</div>
         </div>
 
-        <!-- Search Input -->
+        <!-- Selected Cities -->
+        <div class="selected-cities-section">
+          <div class="section-title">{t('world_clock.selected_cities')}</div>
+          <div class="city-cards-grid" id="selected-cities-container">
+            <!-- Cities will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <BaseSettingBlock title={t('settings')}>
+      <div class="setting">
+        <p style="font-size: 0.875rem; color: var(--text-secondary);">
+          {t('world_clock.help_text')}
+        </p>
+      </div>
+
+      <!-- Search Input -->
+      <div class="setting">
         <div class="city-search-container">
           <svg
             class="search-icon"
@@ -54,30 +72,16 @@ const activePage = 'clock/world-clock';
             placeholder={t('world_clock.search_placeholder')}
           />
         </div>
+      </div>
 
-        <!-- Selected Cities -->
-        <div class="selected-cities-section">
-          <div class="section-title">{t('world_clock.selected_cities')}</div>
-          <div class="city-cards-grid" id="selected-cities-container">
-            <!-- Cities will be rendered here -->
-          </div>
-        </div>
-
-        <!-- Available Cities -->
+      <!-- Available Cities -->
+      <div class="setting">
         <div class="available-cities-section">
           <div class="section-title">{t('world_clock.available_cities')}</div>
           <div class="available-cities-list" id="available-cities-container">
             <!-- Available cities will be rendered here -->
           </div>
         </div>
-      </div>
-    </div>
-
-    <BaseSettingBlock title={t('settings')}>
-      <div class="setting">
-        <p style="font-size: 0.875rem; color: var(--text-secondary);">
-          {t('world_clock.help_text')}
-        </p>
       </div>
     </BaseSettingBlock>
   </div>

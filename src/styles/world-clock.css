@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 1.5rem;
   padding: 1rem;
+  width: 100%;
+  height: 100%;
 }
 
 .local-time-card {
@@ -11,6 +13,62 @@
   padding: 1.5rem;
   text-align: center;
   border: 1px solid var(--border-color, #333);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.local-time-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.2;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.local-time-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Time of day backgrounds for local time card */
+.local-time-card.time-night::before {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  opacity: 0.3;
+}
+
+.local-time-card.time-dawn::before {
+  background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+  opacity: 0.25;
+}
+
+.local-time-card.time-morning::before {
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  opacity: 0.2;
+}
+
+.local-time-card.time-day::before {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  opacity: 0.15;
+}
+
+.local-time-card.time-afternoon::before {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  opacity: 0.2;
+}
+
+.local-time-card.time-dusk::before {
+  background: linear-gradient(135deg, #ee9ca7 0%, #ffdde1 50%, #2193b0 100%);
+  opacity: 0.25;
+}
+
+.local-time-card.time-evening::before {
+  background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+  opacity: 0.3;
 }
 
 .local-time-card h3 {
@@ -94,12 +152,72 @@
   align-items: center;
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.city-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.2;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.city-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Time of day backgrounds */
+.city-card.time-night::before {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  opacity: 0.3;
+}
+
+.city-card.time-dawn::before {
+  background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+  opacity: 0.25;
+}
+
+.city-card.time-morning::before {
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  opacity: 0.2;
+}
+
+.city-card.time-day::before {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  opacity: 0.15;
+}
+
+.city-card.time-afternoon::before {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  opacity: 0.2;
+}
+
+.city-card.time-dusk::before {
+  background: linear-gradient(135deg, #ee9ca7 0%, #ffdde1 50%, #2193b0 100%);
+  opacity: 0.25;
+}
+
+.city-card.time-evening::before {
+  background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+  opacity: 0.3;
 }
 
 .city-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.city-card:hover::before {
+  opacity: 0.35;
 }
 
 .city-info {
@@ -187,18 +305,23 @@
 
 .available-cities-section {
   margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
 .available-cities-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  max-height: 200px;
+  flex: 1;
   overflow-y: auto;
   padding: 0.5rem;
   background: var(--input-bg, #0d0d1a);
   border-radius: 8px;
   border: 1px solid var(--border-color, #333);
+  align-content: flex-start;
 }
 
 .city-chip {

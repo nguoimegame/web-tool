@@ -153,6 +153,33 @@ function formatDate(date: Date, timezone: string): string {
   });
 }
 
+function getTimeOfDayClass(timezone: string): string {
+  const now = new Date();
+  const hour = parseInt(
+    now.toLocaleTimeString('en-US', {
+      timeZone: timezone,
+      hour: '2-digit',
+      hour12: false,
+    }),
+    10
+  );
+
+  // Night: 0-5 (12am-5am)
+  if (hour >= 0 && hour < 5) return 'time-night';
+  // Dawn: 5-7 (5am-7am)
+  if (hour >= 5 && hour < 7) return 'time-dawn';
+  // Morning: 7-11 (7am-11am)
+  if (hour >= 7 && hour < 11) return 'time-morning';
+  // Day: 11-15 (11am-3pm)
+  if (hour >= 11 && hour < 15) return 'time-day';
+  // Afternoon: 15-17 (3pm-5pm)
+  if (hour >= 15 && hour < 17) return 'time-afternoon';
+  // Dusk: 17-19 (5pm-7pm)
+  if (hour >= 17 && hour < 19) return 'time-dusk';
+  // Evening: 19-24 (7pm-12am)
+  return 'time-evening';
+}
+
 function getTimeDifference(timezone: string): { hours: number; text: string; className: string } {
   const now = new Date();
 
@@ -206,12 +233,29 @@ function updateLocalTime(): void {
 
   const timeDisplay = document.getElementById('local-time');
   const dateDisplay = document.getElementById('local-date');
+  const localCard = document.querySelector('.local-time-card');
 
   if (timeDisplay) {
     timeDisplay.textContent = formatTime(now, localTimezone);
   }
   if (dateDisplay) {
     dateDisplay.textContent = formatDate(now, localTimezone);
+  }
+  if (localCard) {
+    // Update time-of-day background class
+    const timeOfDayClass = getTimeOfDayClass(localTimezone);
+    // Remove all time classes first
+    localCard.classList.remove(
+      'time-night',
+      'time-dawn',
+      'time-morning',
+      'time-day',
+      'time-afternoon',
+      'time-dusk',
+      'time-evening'
+    );
+    // Add the current time class
+    localCard.classList.add(timeOfDayClass);
   }
 }
 
@@ -245,6 +289,21 @@ function updateSelectedCities(): void {
       diffEl.textContent = diff.text;
       diffEl.className = `time-difference ${diff.className}`;
     }
+
+    // Update time-of-day background class
+    const timeOfDayClass = getTimeOfDayClass(city.timezone);
+    // Remove all time classes first
+    card.classList.remove(
+      'time-night',
+      'time-dawn',
+      'time-morning',
+      'time-day',
+      'time-afternoon',
+      'time-dusk',
+      'time-evening'
+    );
+    // Add the current time class
+    card.classList.add(timeOfDayClass);
   });
 }
 
@@ -272,8 +331,9 @@ function renderSelectedCities(): void {
       }
 
       const diff = getTimeDifference(city.timezone);
+      const timeOfDayClass = getTimeOfDayClass(city.timezone);
       return `
-      <div class="city-card" data-city="${city.name}">
+      <div class="city-card ${timeOfDayClass}" data-city="${city.name}">
         <div class="city-info">
           <span class="city-name">${city.flag} ${city.name}</span>
           <span class="city-country">${city.country}</span>
