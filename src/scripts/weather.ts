@@ -107,9 +107,13 @@ export const weatherCodes: Record<number, { description: string; icon: string; i
   99: { description: 'Thunderstorm with heavy hail', icon: '⛈️' },
 };
 
-// Storage key for selected cities
+// Constants
 const STORAGE_KEY = 'weather_selected_cities';
 const DEFAULT_CITIES = ['New York', 'London', 'Tokyo', 'Sydney', 'Ho Chi Minh City'];
+const MAX_CITY_DISTANCE_DEGREES = 5; // Threshold in degrees for user location matching
+const DEGREES_PER_DIRECTION = 45; // Each wind direction covers 45 degrees
+const DIRECTION_COUNT = 8; // Number of cardinal/intercardinal directions
+const REFRESH_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 export interface WeatherTranslations {
   loading: string;
@@ -183,7 +187,7 @@ function getWeatherDescription(code: number): string {
 
 function getWindDirection(degrees: number): string {
   const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-  const index = Math.round(degrees / 45) % 8;
+  const index = Math.round(degrees / DEGREES_PER_DIRECTION) % DIRECTION_COUNT;
   return directions[index];
 }
 
@@ -215,7 +219,8 @@ async function getUserLocation(): Promise<City | null> {
       async (position) => {
         const { latitude, longitude } = position.coords;
         
-        // Find the closest city from our list
+        // Find the closest city from our list using simple Euclidean distance
+        // (adequate for nearby city matching)
         let closestCity: City | null = null;
         let minDistance = Infinity;
         
@@ -230,8 +235,7 @@ async function getUserLocation(): Promise<City | null> {
         }
 
         // If user is far from any major city, create a custom location
-        if (minDistance > 5) {
-          // More than ~5 degrees away from any major city
+        if (minDistance > MAX_CITY_DISTANCE_DEGREES) {
           userLocationCity = {
             name: translations.yourLocation,
             country: '',
@@ -476,6 +480,6 @@ export async function initWeather(t: WeatherTranslations): Promise<void> {
   renderAvailableCities();
   await loadWeatherForCities();
 
-  // Auto-refresh every 5 minutes
-  setInterval(refreshWeather, 5 * 60 * 1000);
+  // Auto-refresh weather data
+  setInterval(refreshWeather, REFRESH_INTERVAL_MS);
 }
