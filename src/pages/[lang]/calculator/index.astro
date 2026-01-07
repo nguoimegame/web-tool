@@ -25,22 +25,6 @@ const t = useTranslations(lang as any);
       <div class="calculator-container">
         <div class="calculator scientific">
           <div class="display">
-            <button class="btn-history" id="toggle-history" title={t('calculator.history')}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-            </button>
             <div class="display-content">
               <div class="expression" id="expression"></div>
               <input
@@ -49,36 +33,37 @@ const t = useTranslations(lang as any);
                 id="result"
                 placeholder={t('calculator.placeholder')}
                 autocomplete="off"
+                inputmode="decimal"
               />
             </div>
           </div>
           <div class="buttons scientific-buttons">
             <!-- Row 1: Mode toggles and special functions -->
-            <button class="btn-calc btn-mode" data-action="toggle-deg" id="deg-rad-btn">Deg</button>
-            <button class="btn-calc btn-mode" data-action="toggle-inv" id="inv-btn">Inv</button>
-            <button class="btn-calc btn-sci" data-action="factorial">x!</button>
-            <button class="btn-calc btn-sci" data-value="(">(</button>
-            <button class="btn-calc btn-sci" data-value=")">)</button>
-            <button class="btn-calc btn-sci" data-action="percent">%</button>
-            <button class="btn-calc btn-func" data-action="clear-all">AC</button>
+            <button class="btn-calc btn-mode" data-action="toggle-deg" id="deg-rad-btn" aria-label="Toggle Degree/Radian">Deg</button>
+            <button class="btn-calc btn-mode" data-action="toggle-inv" id="inv-btn" aria-label="Toggle Inverse">Inv</button>
+            <button class="btn-calc btn-sci" data-action="factorial" aria-label="Factorial">x!</button>
+            <button class="btn-calc btn-sci" data-value="(" aria-label="Open parenthesis">(</button>
+            <button class="btn-calc btn-sci" data-value=")" aria-label="Close parenthesis">)</button>
+            <button class="btn-calc btn-sci" data-action="percent" aria-label="Percent">%</button>
+            <button class="btn-calc btn-func" data-action="clear-all" aria-label="Clear all">AC</button>
 
             <!-- Row 2: Scientific functions + numbers -->
             <button class="btn-calc btn-sci" data-action="sin" id="sin-btn">sin</button>
             <button class="btn-calc btn-sci" data-action="cos" id="cos-btn">cos</button>
             <button class="btn-calc btn-sci" data-action="tan" id="tan-btn">tan</button>
-            <button class="btn-calc" data-value="7">7</button>
-            <button class="btn-calc" data-value="8">8</button>
-            <button class="btn-calc" data-value="9">9</button>
-            <button class="btn-calc btn-op" data-value="/">÷</button>
+            <button class="btn-calc btn-num" data-value="7">7</button>
+            <button class="btn-calc btn-num" data-value="8">8</button>
+            <button class="btn-calc btn-num" data-value="9">9</button>
+            <button class="btn-calc btn-op" data-value="/" aria-label="Divide">÷</button>
 
             <!-- Row 3: More scientific functions + numbers -->
             <button class="btn-calc btn-sci" data-action="ln" id="ln-btn">ln</button>
             <button class="btn-calc btn-sci" data-action="log" id="log-btn">log</button>
             <button class="btn-calc btn-sci" data-action="sqrt" id="sqrt-btn">√</button>
-            <button class="btn-calc" data-value="4">4</button>
-            <button class="btn-calc" data-value="5">5</button>
-            <button class="btn-calc" data-value="6">6</button>
-            <button class="btn-calc btn-op" data-value="*">×</button>
+            <button class="btn-calc btn-num" data-value="4">4</button>
+            <button class="btn-calc btn-num" data-value="5">5</button>
+            <button class="btn-calc btn-num" data-value="6">6</button>
+            <button class="btn-calc btn-op" data-value="*" aria-label="Multiply">×</button>
 
             <!-- Row 4: Constants and functions + numbers -->
             <button class="btn-calc btn-sci" data-action="pi">π</button>
@@ -86,37 +71,26 @@ const t = useTranslations(lang as any);
             <button class="btn-calc btn-sci" data-action="power" id="power-btn"
               >x<sup>y</sup></button
             >
-            <button class="btn-calc" data-value="1">1</button>
-            <button class="btn-calc" data-value="2">2</button>
-            <button class="btn-calc" data-value="3">3</button>
-            <button class="btn-calc btn-op" data-value="-">−</button>
+            <button class="btn-calc btn-num" data-value="1">1</button>
+            <button class="btn-calc btn-num" data-value="2">2</button>
+            <button class="btn-calc btn-num" data-value="3">3</button>
+            <button class="btn-calc btn-op" data-value="-" aria-label="Subtract">−</button>
 
             <!-- Row 5: Additional functions + numbers -->
             <button class="btn-calc btn-sci" data-action="ans">Ans</button>
             <button class="btn-calc btn-sci" data-action="exp">EXP</button>
-            <button class="btn-calc btn-func" data-action="backspace">⌫</button>
-            <button class="btn-calc" data-value="0">0</button>
-            <button class="btn-calc" data-value="00">00</button>
-            <button class="btn-calc" data-value=".">.</button>
-            <button class="btn-calc btn-op" data-value="+">+</button>
+            <button class="btn-calc btn-func" data-action="backspace" aria-label="Backspace">⌫</button>
+            <button class="btn-calc btn-num" data-value="0">0</button>
+            <button class="btn-calc btn-num" data-value="00">00</button>
+            <button class="btn-calc btn-num" data-value=".">.</button>
+            <button class="btn-calc btn-op" data-value="+" aria-label="Add">+</button>
 
-            <!-- Row 6: Equals button spanning -->
+            <!-- Row 6: Equals button -->
             <button class="btn-calc btn-sci" data-action="abs">|x|</button>
             <button class="btn-calc btn-sci" data-action="reciprocal">1/x</button>
             <button class="btn-calc btn-sci" data-action="square">x²</button>
-            <button class="btn-calc btn-equals btn-equals-wide" data-action="calculate">=</button>
+            <button class="btn-calc btn-equals btn-equals-wide" data-action="calculate" aria-label="Calculate">=</button>
           </div>
-        </div>
-        <div class="history-panel" id="history-panel">
-          <div class="history-header">
-            <span>{t('calculator.history')}</span>
-            <button
-              class="btn-clear-history"
-              id="clear-history"
-              title={t('calculator.clear_history')}>🗑️</button
-            >
-          </div>
-          <div class="history-list" id="history-list"></div>
         </div>
       </div>
     </div>
@@ -125,22 +99,34 @@ const t = useTranslations(lang as any);
         <label class="switcher">
           <input type="checkbox" id="sound-enabled" checked />
           <div class="toggle"></div>
-          <span>{t('calculator.sound')}</span>
+          <span>🔊 {t('calculator.sound')}</span>
         </label>
       </div>
       <div class="setting">
         <label class="switcher">
           <input type="checkbox" id="vibration-enabled" checked />
           <div class="toggle"></div>
-          <span>{t('calculator.vibration')}</span>
+          <span>📳 {t('calculator.vibration')}</span>
         </label>
       </div>
       <div class="setting">
         <label class="switcher">
           <input type="checkbox" id="scientific-mode" checked />
           <div class="toggle"></div>
-          <span>{t('calculator.scientific_mode')}</span>
+          <span>🔬 {t('calculator.scientific_mode')}</span>
         </label>
+      </div>
+      <div class="history-panel" id="history-panel">
+        <div class="history-header">
+          <span>📜 {t('calculator.history')}</span>
+          <button
+            class="btn-clear-history"
+            id="clear-history"
+            title={t('calculator.clear_history')}
+            aria-label={t('calculator.clear_history')}>🗑️</button
+          >
+        </div>
+        <div class="history-list" id="history-list"></div>
       </div>
     </BaseSettingBlock>
   </div>
