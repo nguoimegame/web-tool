@@ -598,7 +598,6 @@ summary:hover {
   border-image: linear-gradient(90deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3)) 1;
   animation: fadeIn 0.5s ease;
   position: relative;
-  overflow: hidden;
 }
 
 #content header::before {
