@@ -316,6 +316,7 @@
 .toastui-editor-defaultUI {
   border: none !important;
   border-radius: 0 !important;
+  z-index: 0;
 }
 
 .toastui-editor-defaultUI .toastui-editor-toolbar {
@@ -498,6 +499,10 @@
 
 .note-context-menu-item.delete:hover {
   background: rgba(239, 68, 68, 0.1);
+}
+
+.note-editor {
+  height: 100%;
 }
 
 [data-theme='dark'] .note-context-menu {

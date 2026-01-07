@@ -154,16 +154,8 @@ const structuredData = {
 
     /* Critical above-the-fold styles */
     .notes-content-wrapper {
-      display: flex;
-      flex-direction: column;
+      display: block;
       height: 100%;
-      min-height: 500px;
-    }
-
-    .note-editor {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
     }
 
     .note-editor.hidden {
@@ -172,7 +164,6 @@ const structuredData = {
 
     #editor-container {
       flex: 1;
-      min-height: 450px;
     }
 
     .empty-state {
@@ -189,6 +180,11 @@ const structuredData = {
 
     .empty-state.hidden {
       display: none;
+    }
+    @media (max-width: 1024px) {
+      .notes-content-wrapper {
+        height: 450px;
+      }
     }
   </style>
 

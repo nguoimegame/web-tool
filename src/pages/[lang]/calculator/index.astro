@@ -39,13 +39,28 @@ const t = useTranslations(lang as any);
           </div>
           <div class="buttons scientific-buttons">
             <!-- Row 1: Mode toggles and special functions -->
-            <button class="btn-calc btn-mode" data-action="toggle-deg" id="deg-rad-btn" aria-label="Toggle Degree/Radian">Deg</button>
-            <button class="btn-calc btn-mode" data-action="toggle-inv" id="inv-btn" aria-label="Toggle Inverse">Inv</button>
-            <button class="btn-calc btn-sci" data-action="factorial" aria-label="Factorial">x!</button>
+            <button
+              class="btn-calc btn-mode"
+              data-action="toggle-deg"
+              id="deg-rad-btn"
+              aria-label="Toggle Degree/Radian">Deg</button
+            >
+            <button
+              class="btn-calc btn-mode"
+              data-action="toggle-inv"
+              id="inv-btn"
+              aria-label="Toggle Inverse">Inv</button
+            >
+            <button class="btn-calc btn-sci" data-action="factorial" aria-label="Factorial"
+              >x!</button
+            >
             <button class="btn-calc btn-sci" data-value="(" aria-label="Open parenthesis">(</button>
-            <button class="btn-calc btn-sci" data-value=")" aria-label="Close parenthesis">)</button>
+            <button class="btn-calc btn-sci" data-value=")" aria-label="Close parenthesis">)</button
+            >
             <button class="btn-calc btn-sci" data-action="percent" aria-label="Percent">%</button>
-            <button class="btn-calc btn-func" data-action="clear-all" aria-label="Clear all">AC</button>
+            <button class="btn-calc btn-func" data-action="clear-all" aria-label="Clear all"
+              >AC</button
+            >
 
             <!-- Row 2: Scientific functions + numbers -->
             <button class="btn-calc btn-sci" data-action="sin" id="sin-btn">sin</button>
@@ -79,7 +94,9 @@ const t = useTranslations(lang as any);
             <!-- Row 5: Additional functions + numbers -->
             <button class="btn-calc btn-sci" data-action="ans">Ans</button>
             <button class="btn-calc btn-sci" data-action="exp">EXP</button>
-            <button class="btn-calc btn-func" data-action="backspace" aria-label="Backspace">⌫</button>
+            <button class="btn-calc btn-func" data-action="backspace" aria-label="Backspace"
+              >⌫</button
+            >
             <button class="btn-calc btn-num" data-value="0">0</button>
             <button class="btn-calc btn-num" data-value="00">00</button>
             <button class="btn-calc btn-num" data-value=".">.</button>
@@ -89,7 +106,11 @@ const t = useTranslations(lang as any);
             <button class="btn-calc btn-sci" data-action="abs">|x|</button>
             <button class="btn-calc btn-sci" data-action="reciprocal">1/x</button>
             <button class="btn-calc btn-sci" data-action="square">x²</button>
-            <button class="btn-calc btn-equals btn-equals-wide" data-action="calculate" aria-label="Calculate">=</button>
+            <button
+              class="btn-calc btn-equals btn-equals-wide"
+              data-action="calculate"
+              aria-label="Calculate">=</button
+            >
           </div>
         </div>
       </div>

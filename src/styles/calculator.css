@@ -22,7 +22,11 @@
   --sci-btn-text: #93c5fd;
   --mode-btn-bg: linear-gradient(145deg, #4b5563 0%, #374151 100%);
   --mode-btn-text: #a5b4fc;
-  --op-btn-gradient: linear-gradient(145deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%);
+  --op-btn-gradient: linear-gradient(
+    145deg,
+    rgba(59, 130, 246, 0.15) 0%,
+    rgba(59, 130, 246, 0.08) 100%
+  );
   --equals-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
 }
 
@@ -50,7 +54,11 @@ html.dark-theme {
   --sci-btn-text: #93c5fd;
   --mode-btn-bg: linear-gradient(145deg, #4b5563 0%, #374151 100%);
   --mode-btn-text: #c7d2fe;
-  --op-btn-gradient: linear-gradient(145deg, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.12) 100%);
+  --op-btn-gradient: linear-gradient(
+    145deg,
+    rgba(59, 130, 246, 0.25) 0%,
+    rgba(59, 130, 246, 0.12) 100%
+  );
   --equals-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
 }
 
@@ -75,13 +83,22 @@ html.dark-theme {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(0.97); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.97);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .calculator {
@@ -118,13 +135,17 @@ html.dark-theme {
   margin-bottom: 1rem;
   min-height: 90px;
   position: relative;
-  box-shadow: var(--calc-shadow-sm), inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    var(--calc-shadow-sm),
+    inset 0 2px 4px rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.3s ease;
 }
 
 .display:focus-within {
-  box-shadow: var(--calc-shadow-sm), 0 0 0 3px var(--calc-glow);
+  box-shadow:
+    var(--calc-shadow-sm),
+    0 0 0 3px var(--calc-glow);
 }
 
 .btn-history {
@@ -333,7 +354,6 @@ html.dark-theme {
   left: 100%;
 }
 
-
 /* Wide = button: visible in scientific mode, hidden in basic mode */
 .btn-equals-wide {
   grid-column: span 4;
@@ -517,9 +537,18 @@ html.dark-theme {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-5px); }
-  40%, 80% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
 }
 
 /* Keyboard highlight */
@@ -531,18 +560,18 @@ html.dark-theme {
 }
 
 /* Number buttons special styling */
-.btn-calc[data-value="0"],
-.btn-calc[data-value="1"],
-.btn-calc[data-value="2"],
-.btn-calc[data-value="3"],
-.btn-calc[data-value="4"],
-.btn-calc[data-value="5"],
-.btn-calc[data-value="6"],
-.btn-calc[data-value="7"],
-.btn-calc[data-value="8"],
-.btn-calc[data-value="9"],
-.btn-calc[data-value="00"],
-.btn-calc[data-value="."] {
+.btn-calc[data-value='0'],
+.btn-calc[data-value='1'],
+.btn-calc[data-value='2'],
+.btn-calc[data-value='3'],
+.btn-calc[data-value='4'],
+.btn-calc[data-value='5'],
+.btn-calc[data-value='6'],
+.btn-calc[data-value='7'],
+.btn-calc[data-value='8'],
+.btn-calc[data-value='9'],
+.btn-calc[data-value='00'],
+.btn-calc[data-value='.'] {
   font-weight: 700;
   font-size: 1.15rem;
 }
@@ -635,23 +664,6 @@ html.dark-theme .btn-num:hover {
 
   .history-result {
     font-size: 1.35rem;
-  }
-}
-    font-size: 0.95rem;
-  }
-
-  .history-panel {
-    max-width: 350px;
-    padding: 1.5rem;
-    border-radius: 16px;
-  }
-
-  .history-list {
-    max-height: 500px;
-  }
-
-  .history-result {
-    font-size: 1.25rem;
   }
 }
 

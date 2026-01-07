@@ -17,7 +17,7 @@ export function initEditor(editorContainer, handlers) {
 
   editor = new Editor({
     el: editorContainer,
-    height: '450px',
+    height: '100%',
     initialEditType: 'wysiwyg',
     previewStyle: 'vertical',
     theme: isDark ? 'dark' : 'light',
