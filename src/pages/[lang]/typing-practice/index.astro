@@ -300,6 +300,35 @@ const getKeyStyle = (key: KeyDef) => {
     </BaseSettingBlock>
   </div>
 
+  <!-- Completion Modal -->
+  <div class="completion-modal" id="completion-modal">
+    <div class="completion-content">
+      <h2>{t('typing_practice.lesson_complete')}</h2>
+      <div class="completion-stats">
+        <div class="completion-stat">
+          <div class="label">{t('typing_practice.wpm')}</div>
+          <div class="value" id="modal-wpm">0</div>
+        </div>
+        <div class="completion-stat">
+          <div class="label">{t('typing_practice.accuracy')}</div>
+          <div class="value" id="modal-accuracy">100%</div>
+        </div>
+        <div class="completion-stat">
+          <div class="label">{t('typing_practice.errors')}</div>
+          <div class="value" id="modal-errors">0</div>
+        </div>
+        <div class="completion-stat">
+          <div class="label">{t('typing_practice.time')}</div>
+          <div class="value" id="modal-time">0:00</div>
+        </div>
+      </div>
+      <div class="completion-actions">
+        <button class="btn-action" id="modal-restart">{t('typing_practice.restart')}</button>
+        <button class="btn-action btn-primary" id="modal-next">{t('typing_practice.next_lesson')}</button>
+      </div>
+    </div>
+  </div>
+
   <style>
     .typing-layout {
       gap: 1rem;
@@ -764,6 +793,13 @@ const getKeyStyle = (key: KeyDef) => {
       color: var(--text-main);
     }
 
+    .completion-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
     /* Responsive */
     @media (max-width: 900px) {
       .keyboard-wrapper {
@@ -942,6 +978,15 @@ const getKeyStyle = (key: KeyDef) => {
     const keyboardEl = document.querySelector('.keyboard-wrapper') as HTMLDivElement;
     const handsEl = document.getElementById('hands-guide') as HTMLDivElement;
     const instructionsEl = document.getElementById('instructions') as HTMLDivElement;
+    
+    // Modal elements
+    const completionModal = document.getElementById('completion-modal') as HTMLDivElement;
+    const modalWpm = document.getElementById('modal-wpm') as HTMLDivElement;
+    const modalAccuracy = document.getElementById('modal-accuracy') as HTMLDivElement;
+    const modalErrors = document.getElementById('modal-errors') as HTMLDivElement;
+    const modalTime = document.getElementById('modal-time') as HTMLDivElement;
+    const modalRestart = document.getElementById('modal-restart') as HTMLButtonElement;
+    const modalNext = document.getElementById('modal-next') as HTMLButtonElement;
 
     // AudioContext for sound
     let audioCtx: AudioContext | null = null;
@@ -1190,13 +1235,24 @@ const getKeyStyle = (key: KeyDef) => {
       }
       playSound(523.25, 0.3); // C5 note for completion
 
-      // Show completion message
-      alert(
-        `Lesson Complete!\n\nWPM: ${wpmEl.textContent}\nAccuracy: ${accuracyEl.textContent}\nErrors: ${errorsEl.textContent}\nTime: ${timeEl.textContent}`
-      );
+      // Show completion modal
+      if (completionModal) {
+        modalWpm.textContent = wpmEl.textContent || '0';
+        modalAccuracy.textContent = accuracyEl.textContent || '100%';
+        modalErrors.textContent = errorsEl.textContent || '0';
+        modalTime.textContent = timeEl.textContent || '0:00';
+        completionModal.classList.add('show');
+      }
+    }
+
+    function hideModal() {
+      if (completionModal) {
+        completionModal.classList.remove('show');
+      }
     }
 
     function goToNextLesson() {
+      hideModal();
       const lessonKeys = Object.keys(lessons);
       const currentIdx = lessonKeys.indexOf(currentLesson);
       const nextIdx = (currentIdx + 1) % lessonKeys.length;
@@ -1213,6 +1269,20 @@ const getKeyStyle = (key: KeyDef) => {
 
     restartBtn?.addEventListener('click', initLesson);
     nextBtn?.addEventListener('click', goToNextLesson);
+    
+    // Modal event listeners
+    modalRestart?.addEventListener('click', () => {
+      hideModal();
+      initLesson();
+    });
+    modalNext?.addEventListener('click', goToNextLesson);
+    
+    // Close modal when clicking outside
+    completionModal?.addEventListener('click', (e) => {
+      if (e.target === completionModal) {
+        hideModal();
+      }
+    });
 
     showKeyboard?.addEventListener('change', () => {
       keyboardEl.style.display = showKeyboard.checked ? 'flex' : 'none';
