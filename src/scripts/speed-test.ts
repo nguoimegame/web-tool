@@ -45,16 +45,24 @@ function getElements() {
 
 // Helper to format speed
 function formatSpeed(speed: number): string {
-  if (speed < 0.01) return '0.00';
-  if (speed < 10) return speed.toFixed(2);
-  if (speed < 100) return speed.toFixed(1);
+  if (speed < 0.01) {
+    return '0.00';
+  }
+  if (speed < 10) {
+    return speed.toFixed(2);
+  }
+  if (speed < 100) {
+    return speed.toFixed(1);
+  }
   return Math.round(speed).toString();
 }
 
 // Update progress ring
 function updateProgressRing(progress: number): void {
   const { progressRing } = getElements();
-  if (!progressRing) return;
+  if (!progressRing) {
+    return;
+  }
 
   const circumference = 2 * Math.PI * 90; // radius = 90
   const offset = circumference * (1 - progress / 100);
@@ -112,7 +120,9 @@ async function measureLatency(): Promise<number> {
     }
   }
 
-  if (latencies.length === 0) return 0;
+  if (latencies.length === 0) {
+    return 0;
+  }
 
   // Return median latency
   latencies.sort((a, b) => a - b);
@@ -144,9 +154,7 @@ async function getIpAddress(): Promise<string> {
 }
 
 // Measure download speed
-async function measureDownloadSpeed(
-  onProgress: (speed: number) => void
-): Promise<number> {
+async function measureDownloadSpeed(onProgress: (speed: number) => void): Promise<number> {
   // Use Cloudflare speed test endpoints (100MB chunks)
   const testUrls = [
     'https://speed.cloudflare.com/__down?bytes=10000000', // 10MB
@@ -155,23 +163,27 @@ async function measureDownloadSpeed(
   ];
 
   const measurements: number[] = [];
-  let totalBytes = 0;
-  let totalTime = 0;
 
   for (const url of testUrls) {
     try {
       const startTime = performance.now();
       const response = await fetch(url, { cache: 'no-store' });
 
-      if (!response.ok || !response.body) continue;
+      if (!response.ok || !response.body) {
+        continue;
+      }
 
       const reader = response.body.getReader();
       let receivedBytes = 0;
-      let chunkStartTime = startTime;
+      const chunkStartTime = startTime;
+      let isReading = true;
 
-      while (true) {
+      while (isReading) {
         const { done, value } = await reader.read();
-        if (done) break;
+        if (done) {
+          isReading = false;
+          break;
+        }
 
         receivedBytes += value.length;
         const currentTime = performance.now();
@@ -189,9 +201,6 @@ async function measureDownloadSpeed(
       const durationMs = endTime - startTime;
 
       if (durationMs > 100) {
-        totalBytes += receivedBytes;
-        totalTime += durationMs;
-
         const speedBps = (receivedBytes * 8) / (durationMs / 1000);
         const speedMbps = speedBps / 1000000;
         measurements.push(speedMbps);
@@ -224,9 +233,7 @@ async function measureDownloadSpeed(
 }
 
 // Measure upload speed
-async function measureUploadSpeed(
-  onProgress: (speed: number) => void
-): Promise<number> {
+async function measureUploadSpeed(onProgress: (speed: number) => void): Promise<number> {
   const measurements: number[] = [];
 
   // Create test data of varying sizes
@@ -252,7 +259,9 @@ async function measureUploadSpeed(
         cache: 'no-store',
       });
 
-      if (!response.ok) continue;
+      if (!response.ok) {
+        continue;
+      }
 
       const endTime = performance.now();
       const durationMs = endTime - startTime;
@@ -268,7 +277,9 @@ async function measureUploadSpeed(
     }
   }
 
-  if (measurements.length === 0) return 0;
+  if (measurements.length === 0) {
+    return 0;
+  }
 
   // Return average
   return measurements.reduce((a, b) => a + b, 0) / measurements.length;
@@ -293,9 +304,12 @@ async function runSpeedTest(): Promise<SpeedTestResult> {
   result.ipAddress = ipAddress;
   result.latency = latency;
 
-  if (elements.ipValue) elements.ipValue.textContent = ipAddress;
-  if (elements.latencyValue)
+  if (elements.ipValue) {
+    elements.ipValue.textContent = ipAddress;
+  }
+  if (elements.latencyValue) {
     elements.latencyValue.textContent = `${Math.round(latency)} ${translations.ms}`;
+  }
 
   updateProgressRing(20);
 
@@ -337,23 +351,35 @@ export async function initSpeedTest(t: SpeedTestTranslations): Promise<void> {
   translations = t;
   const elements = getElements();
 
-  if (!elements.startBtn) return;
+  if (!elements.startBtn) {
+    return;
+  }
 
   // Set initial state
   updateProgressRing(0);
 
   elements.startBtn.addEventListener('click', async () => {
-    if (isRunning) return;
+    if (isRunning) {
+      return;
+    }
 
     isRunning = true;
     elements.startBtn.disabled = true;
     elements.startBtn.textContent = translations.testing;
 
     // Reset values
-    if (elements.downloadValue) elements.downloadValue.textContent = '-- ' + translations.mbps;
-    if (elements.uploadValue) elements.uploadValue.textContent = '-- ' + translations.mbps;
-    if (elements.latencyValue) elements.latencyValue.textContent = '-- ' + translations.ms;
-    if (elements.ipValue) elements.ipValue.textContent = '--';
+    if (elements.downloadValue) {
+      elements.downloadValue.textContent = '-- ' + translations.mbps;
+    }
+    if (elements.uploadValue) {
+      elements.uploadValue.textContent = '-- ' + translations.mbps;
+    }
+    if (elements.latencyValue) {
+      elements.latencyValue.textContent = '-- ' + translations.ms;
+    }
+    if (elements.ipValue) {
+      elements.ipValue.textContent = '--';
+    }
     updateProgressRing(0);
     updateCurrentSpeed(0, '');
 
@@ -363,6 +389,7 @@ export async function initSpeedTest(t: SpeedTestTranslations): Promise<void> {
       updateCurrentSpeed(0, '');
     } catch (error) {
       updateStatus(translations.error);
+      // eslint-disable-next-line no-console
       console.error('Speed test error:', error);
     } finally {
       isRunning = false;

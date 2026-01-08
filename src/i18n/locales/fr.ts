@@ -1352,7 +1352,7 @@ export const fr = {
   // Typing Practice
   'typing_practice.title': 'Pratique de la Frappe',
   'typing_practice.description':
-    'Apprenez la frappe tactile avec la technique des 10 doigts. Pratiquez avec des leçons guidées du facile à l\'avancé. Améliorez votre vitesse et précision de frappe avec des guides visuels des doigts.',
+    "Apprenez la frappe tactile avec la technique des 10 doigts. Pratiquez avec des leçons guidées du facile à l'avancé. Améliorez votre vitesse et précision de frappe avec des guides visuels des doigts.",
   'typing_practice.select_lesson': 'Sélectionner la Leçon',
   'typing_practice.lesson_home_row': 'Rangée de Base (ASDF JKL;)',
   'typing_practice.lesson_home_row_extended': 'Rangée de Base Étendue (+ GH)',

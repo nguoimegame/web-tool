@@ -130,7 +130,9 @@ const getKeyStyle = (key: KeyDef) => {
           <label for="lesson-select">{t('typing_practice.select_lesson')}</label>
           <select id="lesson-select">
             <option value="home-row">{t('typing_practice.lesson_home_row')}</option>
-            <option value="home-row-extended">{t('typing_practice.lesson_home_row_extended')}</option>
+            <option value="home-row-extended"
+              >{t('typing_practice.lesson_home_row_extended')}</option
+            >
             <option value="top-row">{t('typing_practice.lesson_top_row')}</option>
             <option value="bottom-row">{t('typing_practice.lesson_bottom_row')}</option>
             <option value="all-letters">{t('typing_practice.lesson_all_letters')}</option>
@@ -256,7 +258,9 @@ const getKeyStyle = (key: KeyDef) => {
         <!-- Actions -->
         <div class="actions">
           <button id="restart-btn" class="btn-action">{t('typing_practice.restart')}</button>
-          <button id="next-btn" class="btn-action btn-primary">{t('typing_practice.next_lesson')}</button>
+          <button id="next-btn" class="btn-action btn-primary"
+            >{t('typing_practice.next_lesson')}</button
+          >
         </div>
       </div>
     </div>
@@ -324,7 +328,9 @@ const getKeyStyle = (key: KeyDef) => {
       </div>
       <div class="completion-actions">
         <button class="btn-action" id="modal-restart">{t('typing_practice.restart')}</button>
-        <button class="btn-action btn-primary" id="modal-next">{t('typing_practice.next_lesson')}</button>
+        <button class="btn-action btn-primary" id="modal-next"
+          >{t('typing_practice.next_lesson')}</button
+        >
       </div>
     </div>
   </div>
@@ -884,7 +890,7 @@ const getKeyStyle = (key: KeyDef) => {
       },
       symbols: {
         chars: '!@#$%^&*()_+-=[]{}|;:\'",.<>/?`~',
-        text: "hello! what? yes... no!!! @email.com #hashtag $100 50% 2^8 a&b (test) under_score 2+2=4 [array] {object} a|b semi;colon 'quote' \"double\" 1<2 2>1 path/to/file back\\slash",
+        text: 'hello! what? yes... no!!! @email.com #hashtag $100 50% 2^8 a&b (test) under_score 2+2=4 [array] {object} a|b semi;colon \'quote\' "double" 1<2 2>1 path/to/file back\\slash',
       },
       full: {
         chars: 'abcdefghijklmnopqrstuvwxyz1234567890!@#$%',
@@ -978,7 +984,7 @@ const getKeyStyle = (key: KeyDef) => {
     const keyboardEl = document.querySelector('.keyboard-wrapper') as HTMLDivElement;
     const handsEl = document.getElementById('hands-guide') as HTMLDivElement;
     const instructionsEl = document.getElementById('instructions') as HTMLDivElement;
-    
+
     // Modal elements
     const completionModal = document.getElementById('completion-modal') as HTMLDivElement;
     const modalWpm = document.getElementById('modal-wpm') as HTMLDivElement;
@@ -1091,8 +1097,12 @@ const getKeyStyle = (key: KeyDef) => {
 
     function highlightCurrentKey() {
       // Remove all highlights
-      document.querySelectorAll('.key.highlight').forEach((key) => key.classList.remove('highlight'));
-      document.querySelectorAll('.finger.highlight').forEach((f) => f.classList.remove('highlight'));
+      document
+        .querySelectorAll('.key.highlight')
+        .forEach((key) => key.classList.remove('highlight'));
+      document
+        .querySelectorAll('.finger.highlight')
+        .forEach((f) => f.classList.remove('highlight'));
 
       if (isCompleted || currentIndex >= currentText.length) return;
 
@@ -1115,7 +1125,10 @@ const getKeyStyle = (key: KeyDef) => {
             const shiftCode = isLeftHand ? 'ShiftRight' : 'ShiftLeft';
             const shiftEl = document.querySelector(`.key[data-code="${shiftCode}"]`);
             if (shiftEl) {
-              (shiftEl as HTMLElement).style.setProperty('--highlight-color', fingerColors['right-pinky']);
+              (shiftEl as HTMLElement).style.setProperty(
+                '--highlight-color',
+                fingerColors['right-pinky']
+              );
               shiftEl.classList.add('highlight');
             }
           }
@@ -1139,7 +1152,8 @@ const getKeyStyle = (key: KeyDef) => {
       wpmEl.textContent = String(wpm);
 
       // Accuracy
-      const accuracy = totalChars > 0 ? Math.round(((totalChars - errors) / totalChars) * 100) : 100;
+      const accuracy =
+        totalChars > 0 ? Math.round(((totalChars - errors) / totalChars) * 100) : 100;
       accuracyEl.textContent = accuracy + '%';
 
       // Errors
@@ -1269,14 +1283,14 @@ const getKeyStyle = (key: KeyDef) => {
 
     restartBtn?.addEventListener('click', initLesson);
     nextBtn?.addEventListener('click', goToNextLesson);
-    
+
     // Modal event listeners
     modalRestart?.addEventListener('click', () => {
       hideModal();
       initLesson();
     });
     modalNext?.addEventListener('click', goToNextLesson);
-    
+
     // Close modal when clicking outside
     completionModal?.addEventListener('click', (e) => {
       if (e.target === completionModal) {
