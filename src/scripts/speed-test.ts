@@ -99,13 +99,13 @@ async function measureLatency(): Promise<number> {
     } catch {
       // If fetch fails, try another endpoint
       try {
-        const start2 = performance.now();
+        const fallbackStart = performance.now();
         await fetch('https://api.ipify.org?format=json', {
           method: 'HEAD',
           cache: 'no-store',
         });
-        const end2 = performance.now();
-        latencies.push(end2 - start2);
+        const fallbackEnd = performance.now();
+        latencies.push(fallbackEnd - fallbackStart);
       } catch {
         // Ignore failures
       }
@@ -177,7 +177,7 @@ async function measureDownloadSpeed(
         const currentTime = performance.now();
         const elapsedMs = currentTime - chunkStartTime;
 
-        // Update progress every 500ms worth of data
+        // Update progress every 100ms
         if (elapsedMs > 100) {
           const speedBps = (receivedBytes * 8) / ((currentTime - startTime) / 1000);
           const speedMbps = speedBps / 1000000;
