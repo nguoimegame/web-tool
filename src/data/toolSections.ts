@@ -65,6 +65,7 @@ export const toolSections: ToolSection[] = [
           { url: 'clock/stopwatch', name: 'Stopwatch', icon: 'timer' },
           { url: 'clock/timer', name: 'Timer', icon: 'hourglass' },
           { url: 'clock/alarm', name: 'Alarm', icon: 'alarm-clock' },
+          { url: 'clock/calendar', name: 'Calendar', icon: 'calendar' },
         ],
       },
       {
