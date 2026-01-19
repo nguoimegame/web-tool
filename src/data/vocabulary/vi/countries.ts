@@ -1,0 +1,48 @@
+export interface VocabularyItem {
+  word: string;
+  phonetic: string;
+  meaning: string;
+}
+
+export const vocabularyData: VocabularyItem[] = [
+  { word: 'Vietnam', phonetic: '/ˌvjɛtˈnæm/', meaning: 'Việt Nam' },
+  { word: 'United States', phonetic: '/juːˌnaɪtɪd ˈsteɪts/', meaning: 'Hoa Kỳ' },
+  { word: 'England', phonetic: '/ˈɪŋglənd/', meaning: 'Anh' },
+  { word: 'France', phonetic: '/frɑːns/', meaning: 'Pháp' },
+  { word: 'Germany', phonetic: '/ˈʤɜːməni/', meaning: 'Đức' },
+  { word: 'Japan', phonetic: '/ʤəˈpæn/', meaning: 'Nhật Bản' },
+  { word: 'China', phonetic: '/ˈʧaɪnə/', meaning: 'Trung Quốc' },
+  { word: 'Korea', phonetic: '/kəˈriːə/', meaning: 'Hàn Quốc' },
+  { word: 'Thailand', phonetic: '/ˈtaɪlænd/', meaning: 'Thái Lan' },
+  { word: 'Australia', phonetic: '/ɒˈstreɪliə/', meaning: 'Úc' },
+  { word: 'Canada', phonetic: '/ˈkænədə/', meaning: 'Canada' },
+  { word: 'Italy', phonetic: '/ˈɪtəli/', meaning: 'Ý' },
+  { word: 'Spain', phonetic: '/speɪn/', meaning: 'Tây Ban Nha' },
+  { word: 'Russia', phonetic: '/ˈrʌʃə/', meaning: 'Nga' },
+  { word: 'Brazil', phonetic: '/brəˈzɪl/', meaning: 'Brazil' },
+  { word: 'India', phonetic: '/ˈɪndiə/', meaning: 'Ấn Độ' },
+  { word: 'Mexico', phonetic: '/ˈmɛksɪkəʊ/', meaning: 'Mexico' },
+  { word: 'Singapore', phonetic: '/ˈsɪŋgəpɔː/', meaning: 'Singapore' },
+  { word: 'Malaysia', phonetic: '/məˈleɪziə/', meaning: 'Malaysia' },
+  { word: 'Indonesia', phonetic: '/ˌɪndəˈniːziə/', meaning: 'Indonesia' },
+  { word: 'Philippines', phonetic: '/ˈfɪlɪpiːnz/', meaning: 'Philippines' },
+  { word: 'Cambodia', phonetic: '/kæmˈbəʊdiə/', meaning: 'Campuchia' },
+  { word: 'Laos', phonetic: '/laʊs/', meaning: 'Lào' },
+  { word: 'Myanmar', phonetic: '/ˈmjænmɑː/', meaning: 'Myanmar' },
+  { word: 'Netherlands', phonetic: '/ˈnɛðələndz/', meaning: 'Hà Lan' },
+  { word: 'Belgium', phonetic: '/ˈbɛlʤəm/', meaning: 'Bỉ' },
+  { word: 'Switzerland', phonetic: '/ˈswɪtsələnd/', meaning: 'Thụy Sĩ' },
+  { word: 'Sweden', phonetic: '/ˈswiːdn/', meaning: 'Thụy Điển' },
+  { word: 'Norway', phonetic: '/ˈnɔːweɪ/', meaning: 'Na Uy' },
+  { word: 'Denmark', phonetic: '/ˈdɛnmɑːk/', meaning: 'Đan Mạch' },
+  { word: 'Poland', phonetic: '/ˈpəʊlənd/', meaning: 'Ba Lan' },
+  { word: 'Greece', phonetic: '/griːs/', meaning: 'Hy Lạp' },
+  { word: 'Turkey', phonetic: '/ˈtɜːki/', meaning: 'Thổ Nhĩ Kỳ' },
+  { word: 'Egypt', phonetic: '/ˈiːʤɪpt/', meaning: 'Ai Cập' },
+  { word: 'South Africa', phonetic: '/saʊθ ˈæfrɪkə/', meaning: 'Nam Phi' },
+  { word: 'Argentina', phonetic: '/ˌɑːʤənˈtiːnə/', meaning: 'Argentina' },
+  { word: 'New Zealand', phonetic: '/njuː ˈziːlənd/', meaning: 'New Zealand' },
+  { word: 'Portugal', phonetic: '/ˈpɔːtjʊgəl/', meaning: 'Bồ Đào Nha' },
+  { word: 'Ireland', phonetic: '/ˈaɪələnd/', meaning: 'Ireland' },
+  { word: 'Scotland', phonetic: '/ˈskɒtlənd/', meaning: 'Scotland' },
+];

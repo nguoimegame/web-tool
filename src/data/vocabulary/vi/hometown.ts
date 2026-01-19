@@ -1,0 +1,48 @@
+export interface VocabularyItem {
+  word: string;
+  phonetic: string;
+  meaning: string;
+}
+
+export const vocabularyData: VocabularyItem[] = [
+  { word: 'Hometown', phonetic: '/ˈhəʊmtaʊn/', meaning: 'Quê hương' },
+  { word: 'Village', phonetic: '/ˈvɪlɪʤ/', meaning: 'Làng' },
+  { word: 'Town', phonetic: '/taʊn/', meaning: 'Thị trấn' },
+  { word: 'City', phonetic: '/ˈsɪti/', meaning: 'Thành phố' },
+  { word: 'Country', phonetic: '/ˈkʌntri/', meaning: 'Đất nước' },
+  { word: 'Countryside', phonetic: '/ˈkʌntrisaɪd/', meaning: 'Nông thôn' },
+  { word: 'Urban', phonetic: '/ˈɜːbən/', meaning: 'Thành thị' },
+  { word: 'Rural', phonetic: '/ˈrʊərəl/', meaning: 'Nông thôn' },
+  { word: 'District', phonetic: '/ˈdɪstrɪkt/', meaning: 'Quận' },
+  { word: 'Province', phonetic: '/ˈprɒvɪns/', meaning: 'Tỉnh' },
+  { word: 'Region', phonetic: '/ˈriːʤən/', meaning: 'Vùng' },
+  { word: 'Neighbor', phonetic: '/ˈneɪbə/', meaning: 'Hàng xóm' },
+  { word: 'Community', phonetic: '/kəˈmjuːnɪti/', meaning: 'Cộng đồng' },
+  { word: 'Population', phonetic: '/ˌpɒpjʊˈleɪʃən/', meaning: 'Dân số' },
+  { word: 'Scenery', phonetic: '/ˈsiːnəri/', meaning: 'Phong cảnh' },
+  { word: 'Landscape', phonetic: '/ˈlændskeɪp/', meaning: 'Cảnh quan' },
+  { word: 'Mountain', phonetic: '/ˈmaʊntɪn/', meaning: 'Núi' },
+  { word: 'River', phonetic: '/ˈrɪvə/', meaning: 'Sông' },
+  { word: 'Lake', phonetic: '/leɪk/', meaning: 'Hồ' },
+  { word: 'Sea', phonetic: '/siː/', meaning: 'Biển' },
+  { word: 'Beach', phonetic: '/biːʧ/', meaning: 'Bãi biển' },
+  { word: 'Forest', phonetic: '/ˈfɒrɪst/', meaning: 'Rừng' },
+  { word: 'Field', phonetic: '/fiːld/', meaning: 'Cánh đồng' },
+  { word: 'Rice field', phonetic: '/raɪs fiːld/', meaning: 'Ruộng lúa' },
+  { word: 'Farm', phonetic: '/fɑːm/', meaning: 'Nông trại' },
+  { word: 'Bridge', phonetic: '/brɪʤ/', meaning: 'Cầu' },
+  { word: 'Road', phonetic: '/rəʊd/', meaning: 'Đường' },
+  { word: 'Street', phonetic: '/striːt/', meaning: 'Phố' },
+  { word: 'Temple', phonetic: '/ˈtɛmpl/', meaning: 'Đền' },
+  { word: 'Pagoda', phonetic: '/pəˈgəʊdə/', meaning: 'Chùa' },
+  { word: 'Church', phonetic: '/ʧɜːʧ/', meaning: 'Nhà thờ' },
+  { word: 'Market', phonetic: '/ˈmɑːkɪt/', meaning: 'Chợ' },
+  { word: 'School', phonetic: '/skuːl/', meaning: 'Trường học' },
+  { word: 'Hospital', phonetic: '/ˈhɒspɪtl/', meaning: 'Bệnh viện' },
+  { word: 'Park', phonetic: '/pɑːk/', meaning: 'Công viên' },
+  { word: 'Memory', phonetic: '/ˈmɛməri/', meaning: 'Kỷ niệm' },
+  { word: 'Childhood', phonetic: '/ˈʧaɪldhʊd/', meaning: 'Tuổi thơ' },
+  { word: 'Native', phonetic: '/ˈneɪtɪv/', meaning: 'Bản địa' },
+  { word: 'Local', phonetic: '/ˈləʊkəl/', meaning: 'Địa phương' },
+  { word: 'Tradition', phonetic: '/trəˈdɪʃən/', meaning: 'Truyền thống' },
+];

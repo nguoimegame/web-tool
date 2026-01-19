@@ -1,0 +1,45 @@
+export interface VocabularyItem {
+  word: string;
+  phonetic: string;
+  meaning: string;
+}
+
+export const vocabularyData: VocabularyItem[] = [
+  { word: 'Apple', phonetic: '/ˈæpl/', meaning: 'Táo' },
+  { word: 'Banana', phonetic: '/bəˈnɑːnə/', meaning: 'Chuối' },
+  { word: 'Orange', phonetic: '/ˈɒrɪnʤ/', meaning: 'Cam' },
+  { word: 'Grape', phonetic: '/greɪp/', meaning: 'Nho' },
+  { word: 'Watermelon', phonetic: '/ˈwɔːtəˌmɛlən/', meaning: 'Dưa hấu' },
+  { word: 'Mango', phonetic: '/ˈmæŋgəʊ/', meaning: 'Xoài' },
+  { word: 'Pineapple', phonetic: '/ˈpaɪnˌæpl/', meaning: 'Dứa' },
+  { word: 'Strawberry', phonetic: '/ˈstrɔːbəri/', meaning: 'Dâu tây' },
+  { word: 'Cherry', phonetic: '/ˈʧɛri/', meaning: 'Anh đào' },
+  { word: 'Peach', phonetic: '/piːʧ/', meaning: 'Đào' },
+  { word: 'Plum', phonetic: '/plʌm/', meaning: 'Mận' },
+  { word: 'Lemon', phonetic: '/ˈlɛmən/', meaning: 'Chanh vàng' },
+  { word: 'Lime', phonetic: '/laɪm/', meaning: 'Chanh xanh' },
+  { word: 'Coconut', phonetic: '/ˈkəʊkənʌt/', meaning: 'Dừa' },
+  { word: 'Papaya', phonetic: '/pəˈpaɪə/', meaning: 'Đu đủ' },
+  { word: 'Avocado', phonetic: '/ˌævəˈkɑːdəʊ/', meaning: 'Bơ' },
+  { word: 'Pomelo', phonetic: '/ˈpɒmɪləʊ/', meaning: 'Bưởi' },
+  { word: 'Lychee', phonetic: '/ˈlaɪʧiː/', meaning: 'Vải' },
+  { word: 'Longan', phonetic: '/ˈlɒŋgən/', meaning: 'Nhãn' },
+  { word: 'Dragon fruit', phonetic: '/ˈdrægən fruːt/', meaning: 'Thanh long' },
+  { word: 'Durian', phonetic: '/ˈdʊərɪən/', meaning: 'Sầu riêng' },
+  { word: 'Rambutan', phonetic: '/ræmˈbuːtən/', meaning: 'Chôm chôm' },
+  { word: 'Mangosteen', phonetic: '/ˈmæŋgəstiːn/', meaning: 'Măng cụt' },
+  { word: 'Guava', phonetic: '/ˈgwɑːvə/', meaning: 'Ổi' },
+  { word: 'Passion fruit', phonetic: '/ˈpæʃən fruːt/', meaning: 'Chanh dây' },
+  { word: 'Pomegranate', phonetic: '/ˈpɒmɪgrænɪt/', meaning: 'Lựu' },
+  { word: 'Kiwi', phonetic: '/ˈkiːwi/', meaning: 'Kiwi' },
+  { word: 'Pear', phonetic: '/peə/', meaning: 'Lê' },
+  { word: 'Melon', phonetic: '/ˈmɛlən/', meaning: 'Dưa' },
+  { word: 'Blueberry', phonetic: '/ˈbluːbəri/', meaning: 'Việt quất' },
+  { word: 'Raspberry', phonetic: '/ˈrɑːzbəri/', meaning: 'Mâm xôi' },
+  { word: 'Apricot', phonetic: '/ˈeɪprɪkɒt/', meaning: 'Mơ' },
+  { word: 'Mandarin', phonetic: '/ˈmændərɪn/', meaning: 'Quýt' },
+  { word: 'Persimmon', phonetic: '/pəˈsɪmən/', meaning: 'Hồng' },
+  { word: 'Jackfruit', phonetic: '/ˈʤækfruːt/', meaning: 'Mít' },
+  { word: 'Starfruit', phonetic: '/ˈstɑːfruːt/', meaning: 'Khế' },
+  { word: 'Cantaloupe', phonetic: '/ˈkæntəluːp/', meaning: 'Dưa vàng' },
+];

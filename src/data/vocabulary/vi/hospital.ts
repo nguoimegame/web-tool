@@ -1,0 +1,46 @@
+export interface VocabularyItem {
+  word: string;
+  phonetic: string;
+  meaning: string;
+}
+
+export const vocabularyData: VocabularyItem[] = [
+  { word: 'Hospital', phonetic: '/ˈhɒspɪtl/', meaning: 'Bệnh viện' },
+  { word: 'Clinic', phonetic: '/ˈklɪnɪk/', meaning: 'Phòng khám' },
+  { word: 'Doctor', phonetic: '/ˈdɒktə/', meaning: 'Bác sĩ' },
+  { word: 'Nurse', phonetic: '/nɜːs/', meaning: 'Y tá' },
+  { word: 'Patient', phonetic: '/ˈpeɪʃənt/', meaning: 'Bệnh nhân' },
+  { word: 'Medicine', phonetic: '/ˈmɛdsɪn/', meaning: 'Thuốc' },
+  { word: 'Prescription', phonetic: '/prɪˈskrɪpʃən/', meaning: 'Đơn thuốc' },
+  { word: 'Pharmacy', phonetic: '/ˈfɑːməsi/', meaning: 'Nhà thuốc' },
+  { word: 'Treatment', phonetic: '/ˈtriːtmənt/', meaning: 'Điều trị' },
+  { word: 'Surgery', phonetic: '/ˈsɜːʤəri/', meaning: 'Phẫu thuật' },
+  { word: 'Emergency', phonetic: '/ɪˈmɜːʤənsi/', meaning: 'Cấp cứu' },
+  { word: 'Ambulance', phonetic: '/ˈæmbjʊləns/', meaning: 'Xe cấp cứu' },
+  { word: 'Examination', phonetic: '/ɪgˌzæmɪˈneɪʃən/', meaning: 'Khám bệnh' },
+  { word: 'Diagnosis', phonetic: '/ˌdaɪəgˈnəʊsɪs/', meaning: 'Chẩn đoán' },
+  { word: 'Symptom', phonetic: '/ˈsɪmptəm/', meaning: 'Triệu chứng' },
+  { word: 'Disease', phonetic: '/dɪˈziːz/', meaning: 'Bệnh' },
+  { word: 'Illness', phonetic: '/ˈɪlnɪs/', meaning: 'Ốm' },
+  { word: 'Fever', phonetic: '/ˈfiːvə/', meaning: 'Sốt' },
+  { word: 'Headache', phonetic: '/ˈhɛdeɪk/', meaning: 'Đau đầu' },
+  { word: 'Stomachache', phonetic: '/ˈstʌməkeɪk/', meaning: 'Đau bụng' },
+  { word: 'Toothache', phonetic: '/ˈtuːθeɪk/', meaning: 'Đau răng' },
+  { word: 'Backache', phonetic: '/ˈbækeɪk/', meaning: 'Đau lưng' },
+  { word: 'Cough', phonetic: '/kɒf/', meaning: 'Ho' },
+  { word: 'Cold', phonetic: '/kəʊld/', meaning: 'Cảm lạnh' },
+  { word: 'Flu', phonetic: '/fluː/', meaning: 'Cúm' },
+  { word: 'Allergy', phonetic: '/ˈæləʤi/', meaning: 'Dị ứng' },
+  { word: 'Injection', phonetic: '/ɪnˈʤɛkʃən/', meaning: 'Tiêm' },
+  { word: 'Blood test', phonetic: '/blʌd tɛst/', meaning: 'Xét nghiệm máu' },
+  { word: 'X-ray', phonetic: '/ˈɛks reɪ/', meaning: 'X-quang' },
+  { word: 'Vaccine', phonetic: '/ˈvæksiːn/', meaning: 'Vắc xin' },
+  { word: 'Insurance', phonetic: '/ɪnˈʃʊərəns/', meaning: 'Bảo hiểm' },
+  { word: 'Recovery', phonetic: '/rɪˈkʌvəri/', meaning: 'Phục hồi' },
+  { word: 'Healthy', phonetic: '/ˈhɛlθi/', meaning: 'Khỏe mạnh' },
+  { word: 'Sick', phonetic: '/sɪk/', meaning: 'Ốm' },
+  { word: 'Pain', phonetic: '/peɪn/', meaning: 'Đau' },
+  { word: 'Wound', phonetic: '/wuːnd/', meaning: 'Vết thương' },
+  { word: 'Bandage', phonetic: '/ˈbændɪʤ/', meaning: 'Băng bó' },
+  { word: 'Wheelchair', phonetic: '/ˈwiːlʧeə/', meaning: 'Xe lăn' },
+];

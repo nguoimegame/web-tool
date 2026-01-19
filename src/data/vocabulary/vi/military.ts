@@ -1,0 +1,48 @@
+export interface VocabularyItem {
+  word: string;
+  phonetic: string;
+  meaning: string;
+}
+
+export const vocabularyData: VocabularyItem[] = [
+  { word: 'Army', phonetic: '/ˈɑːmi/', meaning: 'Quân đội' },
+  { word: 'Navy', phonetic: '/ˈneɪvi/', meaning: 'Hải quân' },
+  { word: 'Air Force', phonetic: '/eə fɔːs/', meaning: 'Không quân' },
+  { word: 'Soldier', phonetic: '/ˈsəʊlʤə/', meaning: 'Lính' },
+  { word: 'Officer', phonetic: '/ˈɒfɪsə/', meaning: 'Sĩ quan' },
+  { word: 'General', phonetic: '/ˈʤɛnərəl/', meaning: 'Tướng' },
+  { word: 'Colonel', phonetic: '/ˈkɜːnl/', meaning: 'Đại tá' },
+  { word: 'Captain', phonetic: '/ˈkæptɪn/', meaning: 'Đại úy' },
+  { word: 'Lieutenant', phonetic: '/lɛfˈtɛnənt/', meaning: 'Trung úy' },
+  { word: 'Sergeant', phonetic: '/ˈsɑːʤənt/', meaning: 'Trung sĩ' },
+  { word: 'Private', phonetic: '/ˈpraɪvɪt/', meaning: 'Binh nhì' },
+  { word: 'Commander', phonetic: '/kəˈmɑːndə/', meaning: 'Chỉ huy' },
+  { word: 'Troop', phonetic: '/truːp/', meaning: 'Quân đội' },
+  { word: 'Battalion', phonetic: '/bəˈtæljən/', meaning: 'Tiểu đoàn' },
+  { word: 'Regiment', phonetic: '/ˈrɛʤɪmənt/', meaning: 'Trung đoàn' },
+  { word: 'Division', phonetic: '/dɪˈvɪʒən/', meaning: 'Sư đoàn' },
+  { word: 'Tank', phonetic: '/tæŋk/', meaning: 'Xe tăng' },
+  { word: 'Helicopter', phonetic: '/ˈhɛlɪkɒptə/', meaning: 'Trực thăng' },
+  { word: 'Fighter jet', phonetic: '/ˈfaɪtə ʤɛt/', meaning: 'Máy bay chiến đấu' },
+  { word: 'Warship', phonetic: '/ˈwɔːʃɪp/', meaning: 'Tàu chiến' },
+  { word: 'Submarine', phonetic: '/ˈsʌbməriːn/', meaning: 'Tàu ngầm' },
+  { word: 'Rifle', phonetic: '/ˈraɪfl/', meaning: 'Súng trường' },
+  { word: 'Pistol', phonetic: '/ˈpɪstl/', meaning: 'Súng lục' },
+  { word: 'Missile', phonetic: '/ˈmɪsaɪl/', meaning: 'Tên lửa' },
+  { word: 'Bomb', phonetic: '/bɒm/', meaning: 'Bom' },
+  { word: 'Grenade', phonetic: '/grɪˈneɪd/', meaning: 'Lựu đạn' },
+  { word: 'Ammunition', phonetic: '/ˌæmjʊˈnɪʃən/', meaning: 'Đạn dược' },
+  { word: 'Uniform', phonetic: '/ˈjuːnɪfɔːm/', meaning: 'Quân phục' },
+  { word: 'Medal', phonetic: '/ˈmɛdl/', meaning: 'Huy chương' },
+  { word: 'Flag', phonetic: '/flæg/', meaning: 'Cờ' },
+  { word: 'Base', phonetic: '/beɪs/', meaning: 'Căn cứ' },
+  { word: 'Barracks', phonetic: '/ˈbærəks/', meaning: 'Doanh trại' },
+  { word: 'Mission', phonetic: '/ˈmɪʃən/', meaning: 'Nhiệm vụ' },
+  { word: 'War', phonetic: '/wɔː/', meaning: 'Chiến tranh' },
+  { word: 'Peace', phonetic: '/piːs/', meaning: 'Hòa bình' },
+  { word: 'Battle', phonetic: '/ˈbætl/', meaning: 'Trận chiến' },
+  { word: 'Victory', phonetic: '/ˈvɪktəri/', meaning: 'Chiến thắng' },
+  { word: 'Defense', phonetic: '/dɪˈfɛns/', meaning: 'Phòng thủ' },
+  { word: 'Attack', phonetic: '/əˈtæk/', meaning: 'Tấn công' },
+  { word: 'Strategy', phonetic: '/ˈstrætəʤi/', meaning: 'Chiến lược' },
+];

@@ -1,0 +1,45 @@
+export interface VocabularyItem {
+  word: string;
+  phonetic: string;
+  meaning: string;
+}
+
+export const vocabularyData: VocabularyItem[] = [
+  { word: 'Shop', phonetic: '/ʃɒp/', meaning: 'Cửa hàng' },
+  { word: 'Store', phonetic: '/stɔː/', meaning: 'Cửa hàng' },
+  { word: 'Supermarket', phonetic: '/ˈsuːpəˌmɑːkɪt/', meaning: 'Siêu thị' },
+  { word: 'Mall', phonetic: '/mɔːl/', meaning: 'Trung tâm thương mại' },
+  { word: 'Market', phonetic: '/ˈmɑːkɪt/', meaning: 'Chợ' },
+  { word: 'Boutique', phonetic: '/buːˈtiːk/', meaning: 'Cửa hàng thời trang' },
+  { word: 'Department store', phonetic: '/dɪˈpɑːtmənt stɔː/', meaning: 'Cửa hàng bách hóa' },
+  { word: 'Convenience store', phonetic: '/kənˈviːniəns stɔː/', meaning: 'Cửa hàng tiện lợi' },
+  { word: 'Grocery store', phonetic: '/ˈgrəʊsəri stɔː/', meaning: 'Cửa hàng tạp hóa' },
+  { word: 'Pharmacy', phonetic: '/ˈfɑːməsi/', meaning: 'Hiệu thuốc' },
+  { word: 'Bookstore', phonetic: '/ˈbʊkstɔː/', meaning: 'Hiệu sách' },
+  { word: 'Bakery', phonetic: '/ˈbeɪkəri/', meaning: 'Tiệm bánh' },
+  { word: 'Butcher', phonetic: '/ˈbʊʧə/', meaning: 'Cửa hàng thịt' },
+  { word: 'Florist', phonetic: '/ˈflɒrɪst/', meaning: 'Cửa hàng hoa' },
+  { word: 'Price', phonetic: '/praɪs/', meaning: 'Giá' },
+  { word: 'Discount', phonetic: '/ˈdɪskaʊnt/', meaning: 'Giảm giá' },
+  { word: 'Sale', phonetic: '/seɪl/', meaning: 'Khuyến mãi' },
+  { word: 'Bargain', phonetic: '/ˈbɑːgɪn/', meaning: 'Mặc cả' },
+  { word: 'Cashier', phonetic: '/kæˈʃɪə/', meaning: 'Thu ngân' },
+  { word: 'Customer', phonetic: '/ˈkʌstəmə/', meaning: 'Khách hàng' },
+  { word: 'Receipt', phonetic: '/rɪˈsiːt/', meaning: 'Hóa đơn' },
+  { word: 'Cash', phonetic: '/kæʃ/', meaning: 'Tiền mặt' },
+  { word: 'Credit card', phonetic: '/ˈkrɛdɪt kɑːd/', meaning: 'Thẻ tín dụng' },
+  { word: 'Debit card', phonetic: '/ˈdɛbɪt kɑːd/', meaning: 'Thẻ ghi nợ' },
+  { word: 'Change', phonetic: '/ʧeɪnʤ/', meaning: 'Tiền thối' },
+  { word: 'Shopping cart', phonetic: '/ˈʃɒpɪŋ kɑːt/', meaning: 'Xe đẩy' },
+  { word: 'Shopping basket', phonetic: '/ˈʃɒpɪŋ ˈbɑːskɪt/', meaning: 'Giỏ mua hàng' },
+  { word: 'Fitting room', phonetic: '/ˈfɪtɪŋ ruːm/', meaning: 'Phòng thử đồ' },
+  { word: 'Size', phonetic: '/saɪz/', meaning: 'Kích cỡ' },
+  { word: 'Brand', phonetic: '/brænd/', meaning: 'Thương hiệu' },
+  { word: 'Quality', phonetic: '/ˈkwɒlɪti/', meaning: 'Chất lượng' },
+  { word: 'Expensive', phonetic: '/ɪkˈspɛnsɪv/', meaning: 'Đắt' },
+  { word: 'Cheap', phonetic: '/ʧiːp/', meaning: 'Rẻ' },
+  { word: 'Affordable', phonetic: '/əˈfɔːdəbl/', meaning: 'Phải chăng' },
+  { word: 'Refund', phonetic: '/ˈriːfʌnd/', meaning: 'Hoàn tiền' },
+  { word: 'Exchange', phonetic: '/ɪksˈʧeɪnʤ/', meaning: 'Đổi hàng' },
+  { word: 'Warranty', phonetic: '/ˈwɒrənti/', meaning: 'Bảo hành' },
+];

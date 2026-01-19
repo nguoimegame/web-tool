@@ -1,0 +1,48 @@
+export interface VocabularyItem {
+  word: string;
+  phonetic: string;
+  meaning: string;
+}
+
+export const vocabularyData: VocabularyItem[] = [
+  { word: 'Movie', phonetic: '/ˈmuːvi/', meaning: 'Phim' },
+  { word: 'Film', phonetic: '/fɪlm/', meaning: 'Phim' },
+  { word: 'Cinema', phonetic: '/ˈsɪnɪmə/', meaning: 'Rạp chiếu phim' },
+  { word: 'Theater', phonetic: '/ˈθɪətə/', meaning: 'Rạp hát' },
+  { word: 'Actor', phonetic: '/ˈæktə/', meaning: 'Nam diễn viên' },
+  { word: 'Actress', phonetic: '/ˈæktrɪs/', meaning: 'Nữ diễn viên' },
+  { word: 'Director', phonetic: '/dɪˈrɛktə/', meaning: 'Đạo diễn' },
+  { word: 'Producer', phonetic: '/prəˈdjuːsə/', meaning: 'Nhà sản xuất' },
+  { word: 'Screenwriter', phonetic: '/ˈskriːnˌraɪtə/', meaning: 'Biên kịch' },
+  { word: 'Scene', phonetic: '/siːn/', meaning: 'Cảnh' },
+  { word: 'Script', phonetic: '/skrɪpt/', meaning: 'Kịch bản' },
+  { word: 'Trailer', phonetic: '/ˈtreɪlə/', meaning: 'Đoạn giới thiệu' },
+  { word: 'Soundtrack', phonetic: '/ˈsaʊndtræk/', meaning: 'Nhạc phim' },
+  { word: 'Subtitle', phonetic: '/ˈsʌbˌtaɪtl/', meaning: 'Phụ đề' },
+  { word: 'Dubbing', phonetic: '/ˈdʌbɪŋ/', meaning: 'Lồng tiếng' },
+  { word: 'Action', phonetic: '/ˈækʃən/', meaning: 'Hành động' },
+  { word: 'Comedy', phonetic: '/ˈkɒmədi/', meaning: 'Hài' },
+  { word: 'Drama', phonetic: '/ˈdrɑːmə/', meaning: 'Chính kịch' },
+  { word: 'Horror', phonetic: '/ˈhɒrə/', meaning: 'Kinh dị' },
+  { word: 'Thriller', phonetic: '/ˈθrɪlə/', meaning: 'Giật gân' },
+  { word: 'Romance', phonetic: '/rəʊˈmæns/', meaning: 'Lãng mạn' },
+  { word: 'Science fiction', phonetic: '/ˈsaɪəns ˈfɪkʃən/', meaning: 'Khoa học viễn tưởng' },
+  { word: 'Documentary', phonetic: '/ˌdɒkjʊˈmɛntəri/', meaning: 'Phim tài liệu' },
+  { word: 'Animation', phonetic: '/ˌænɪˈmeɪʃən/', meaning: 'Hoạt hình' },
+  { word: 'Musical', phonetic: '/ˈmjuːzɪkəl/', meaning: 'Nhạc kịch' },
+  { word: 'Award', phonetic: '/əˈwɔːd/', meaning: 'Giải thưởng' },
+  { word: 'Oscar', phonetic: '/ˈɒskə/', meaning: 'Oscar' },
+  { word: 'Box office', phonetic: '/bɒks ˈɒfɪs/', meaning: 'Phòng vé' },
+  { word: 'Premiere', phonetic: '/ˈprɛmɪeə/', meaning: 'Buổi công chiếu' },
+  { word: 'Sequel', phonetic: '/ˈsiːkwəl/', meaning: 'Phần tiếp theo' },
+  { word: 'Remake', phonetic: '/ˈriːmeɪk/', meaning: 'Làm lại' },
+  { word: 'Plot', phonetic: '/plɒt/', meaning: 'Cốt truyện' },
+  { word: 'Character', phonetic: '/ˈkærɪktə/', meaning: 'Nhân vật' },
+  { word: 'Cast', phonetic: '/kɑːst/', meaning: 'Dàn diễn viên' },
+  { word: 'Camera', phonetic: '/ˈkæmərə/', meaning: 'Máy quay' },
+  { word: 'Screen', phonetic: '/skriːn/', meaning: 'Màn hình' },
+  { word: 'Popcorn', phonetic: '/ˈpɒpkɔːn/', meaning: 'Bỏng ngô' },
+  { word: 'Ticket', phonetic: '/ˈtɪkɪt/', meaning: 'Vé' },
+  { word: 'Seat', phonetic: '/siːt/', meaning: 'Ghế ngồi' },
+  { word: '3D', phonetic: '/θriː diː/', meaning: '3D' },
+];
